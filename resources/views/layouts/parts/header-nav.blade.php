@@ -1,9 +1,20 @@
-<nav>
+<nav class="main-nav">
     <ul>
-        <li>111</li>
-        <li>222</li>
-        <li>333</li>
-        <li>444</li>
-        <li>555</li>
+        <li>
+            <a class="js-subnav-opener js-subnav-opener-about" href="/o-kompanii/">О компании</a>
+        </li>
+        <li>
+            <a class="js-subnav-opener js-subnav-opener-zhd" href="/zhd-perevozki/">ЖД перевозки</a>
+        </li>
+        <li>
+
+            <a class="js-subnav-opener js-subnav-opener-scheme" href="/shemy-pogruzki/">Схемы погрузки</a>
+        </li>
+        <li>
+            <a class="js-subnav-opener js-subnav-opener-portfolio" href="/portfolio/">Портфолио</a>
+        </li>
+        <li>
+            <a class="js-subnav-opener js-subnav-opener-contacts" href="/kontakty/">Контакты</a>
+        </li>
     </ul>
 </nav>
