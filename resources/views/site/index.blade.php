@@ -92,7 +92,7 @@
             </div>
         </div>
 
-        @include('main.parts.section-portfolio')
+        @include('site.parts.section-portfolio')
 
     </section>
 @endsection
