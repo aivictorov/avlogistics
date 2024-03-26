@@ -9,8 +9,7 @@ class HomeController extends Controller
 {
     public function __invoke()
     {
-        $menu = Page::select('name', 'url')
-            ->where([
+        $menu = Page::where([
                 ['parent_id', '=', 1],
                 ['menu_show', '=', 1],
             ])
