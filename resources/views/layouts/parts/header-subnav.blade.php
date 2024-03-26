@@ -3,37 +3,24 @@
         <div class="subnav-blocks__block_in">
             <a class="subnav-blocks__close js-subnav-blocks__close" href="#">закрыть</a>
             <div class="subnav-block-header">
-                <h2>Заголовок 2</h2>
+                <h2>{{ $tree[array_key_first($tree)]['children'][3]['name'] }}</h2>
                 <a href="№!">В раздел</a>
             </div>
-
             <div class="subnav-blocks-columns">
-                <div class="subnav-blocks-column subnav-blocks-column--1">
-                    <div class="subnav-column-header">
-                        Заголовок
+                @foreach ($tree[array_key_first($tree)]['children'][3]['children'] as $header)
+                    <div class="subnav-blocks-column subnav-blocks-column--1">
+                        <div class="subnav-column-header">
+                            <a href="#!">{{ $header['name'] }}</a>
+                        </div>
+                        <ul class="subnav-list-menu">
+                            @if (isset($header['children']))
+                                @foreach ($header['children'] as $child)
+                                    <li><a href="#!">{{ $child['name'] }}</a></li>
+                                @endforeach
+                            @endif
+                        </ul>
                     </div>
-                    <ul class="subnav-list-menu">
-                        <li>Элемент списка</li>
-                    </ul>
-                </div>
-
-                <div class="subnav-blocks-column subnav-blocks-column--2">
-                    <div class="subnav-column-header">
-                        Заголовок
-                    </div>
-                    <ul class="subnav-list-menu">
-                        <li>Элемент списка</li>
-                    </ul>
-                </div>
-
-                <div class="subnav-blocks-column subnav-blocks-column--3">
-                    <div class="subnav-column-header">
-                        Заголовок
-                    </div>
-                    <ul class="subnav-list-menu">
-                        <li>Элемент списка</li>
-                    </ul>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

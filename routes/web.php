@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 
-
 // Route::view('/', 'site.index');
 // Route::redirect('/test', '/', 301);
 
@@ -20,6 +19,9 @@ Route::delete('/pages/{page}', [PageController::class, 'destroy'])->name('pages.
 
 // Route::resource('/pages', PageController::class);
 // Route::resource('/pages', PageController::class)->only(['index', 'show']);
+
+Route::get('/admin', HomeController::class);
+
 
 Route::fallback(function () {
     return "404";
