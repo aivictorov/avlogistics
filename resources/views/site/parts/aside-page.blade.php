@@ -1,6 +1,6 @@
 <aside class="main-aside">
     @foreach ($tree[array_key_first($tree)]['children'] as $header)
-        @if ($header['id'] == $page['id'])
+        @if (isset( $parents[1]) && $header['id'] == $parents[1]['id'] || $header['id'] == $page['id'])
             <div class="aside-header">
                 <a href={{ route('pages.show', $header['url']) }}>{{ $header['name'] }}</a>
             </div>
@@ -13,7 +13,7 @@
                         @if (isset($child['children']))
                             @foreach ($child['children'] as $subchild)
                                 <li>
-                                    <a href="#!">{{ $subchild['name'] }}</a>
+                                    <a href={{ route('pages.show', $subchild['url']) }}>{{ $subchild['name'] }}</a>
                                 </li>
                             @endforeach
                         @endif

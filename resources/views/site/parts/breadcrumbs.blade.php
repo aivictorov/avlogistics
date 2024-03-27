@@ -1,8 +1,8 @@
 <div class="page-breadcrumbs">
-    <a href="/index/">Главная</a>
-    <span class="divider">/</span>
-    <a href="/zhd-perevozki/">ЖД перевозки</a>
-    <span class="divider">/</span>
-    <a href="/zhd-perevozki/negabaritnye-perevozki/">Негабаритные перевозки</a>
-    <span class="divider">/</span> <span class="no-url">Перевозки тяжеловесных грузов</span>
+    @foreach ($parents as $parent)
+        <a href={{ route('pages.show', $parent['url']) }}>{{ $parent['name'] }}</a>
+        <span class="divider">/</span>
+    @endforeach
+
+    <span class="no-url">{{ $page['name'] }}</span>
 </div>

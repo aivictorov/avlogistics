@@ -1,0 +1,55 @@
+@extends('layouts.main')
+
+@section('content')
+    <section class="main-section main-section__container--page">
+        <div class="main-section__container main-section__container--aside">
+            <article class="aside-page">
+
+                @include('site.parts.breadcrumbs')
+
+                <h1 class="page-h1">Вход</h1>
+
+                <form id="login-form" class="form-horizontal" action="/login/" method="post">
+                    @csrf
+                    {{-- <input type="hidden" name="_csrf" value="M1pjSjJicGkFFRooRCg4W1YUVC1QG0UQezsHEHcNRiNFNlUYdAAnWg=="> --}}
+                    <div class="form-group field-loginform-username required has-success">
+                        <label class="col-lg-1 control-label" for="loginform-username">Логин</label>
+                        <div class="col-lg-3">
+                            <input type="text" id="loginform-username" class="form-control" name="LoginForm[username]">
+                            @error('loginform-username')
+                                <div>Error message</div>
+                            @enderror
+                        </div>
+                        <div class="col-lg-8">
+                            <p class="help-block help-block-error"></p>
+                        </div>
+                    </div>
+                    <div class="form-group field-loginform-password required has-success">
+                        <label class="col-lg-1 control-label" for="loginform-password">Пароль</label>
+                        <div class="col-lg-3"><input type="password" id="loginform-password" class="form-control"
+                                name="LoginForm[password]"></div>
+                        <div class="col-lg-8">
+                            <p class="help-block help-block-error"></p>
+                        </div>
+                    </div>
+                    {{-- <div class="form-group field-loginform-rememberme">
+                        <div class="checkbox">
+                            <label>
+                                <input type="hidden" name="LoginForm[rememberMe]" value="0"><input type="checkbox"
+                                    id="loginform-rememberme" name="LoginForm[rememberMe]" value="1" checked="">
+                                Запомнить
+                            </label>
+                            <p class="help-block help-block-error"></p>
+
+                        </div>
+                    </div> --}}
+                    <div class="form-group">
+                        <div class="col-lg-offset-1 col-lg-11">
+                            <button type="submit" class="btn btn-primary" name="login-button">Вход</button>
+                        </div>
+                    </div>
+                </form>
+            </article>
+        </div>
+    </section>
+@endsection

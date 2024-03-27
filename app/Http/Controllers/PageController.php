@@ -27,18 +27,29 @@ class PageController extends Controller
 
     public function show($url)
     {
-
         $page = Page::where('url', $url)->first();
 
         $image = Image::where([['parent_id', $page->id], ['parent_type', 'page_avatar']])->first();
 
-        if (isset($image)) {
+        if ($image) {
             $image_path = "\\upload\\" . $image->parent_type . "\\" . $image->parent_id . "\\" . $image->id . "\\sizes\\page_" . $image->image;
         } else {
             $image_path = "";
         }
 
-        $res = Page::all('id', 'name', 'parent_id', 'url')->toArray();
+        $res = Page::select('id', 'name', 'parent_id', 'url')->where('menu_show', 1)->orWhere('id', 1)->orderBy('menu_sort')->get()->toArray();
+
+        $parents = array();
+
+        $current_id = $page['parent_id'];
+
+        do {
+            $parent =  Page::where('id', $current_id)->first();
+            array_unshift($parents, $parent);
+            $current_id = $parent['parent_id'];
+           
+        } while ($current_id > 0);
+
 
         $nodes = array();
 
@@ -51,6 +62,7 @@ class PageController extends Controller
             $tree = array();
 
             foreach ($dataset as $id => &$node) {
+
                 if ($node['parent_id'] === 0) {
                     $tree[$id] = &$node;
                 } else {
@@ -62,12 +74,8 @@ class PageController extends Controller
 
         $tree = getTree($nodes);
 
-        // dd($tree);
-
-        return view('site.page', compact('page', 'tree', 'image_path'));
+        return view('site.page', compact('page', 'tree', 'parents', 'image_path'));
     }
-
-
 
     public function edit()
     {

@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function __invoke()
     {
-        $res = Page::all('id', 'name', 'parent_id', 'url')->toArray();
+        $res = Page::select('id', 'name', 'parent_id', 'url')->where('menu_show', 1)->orWhere('id', 1)->orderBy('menu_sort')->get()->toArray();
 
         $nodes = array();
 

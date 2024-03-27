@@ -1,4 +1,4 @@
-<nav class="main-nav">
+<nav class="{{ $type }}-nav">
     <ul>
         @foreach ($tree[array_key_first($tree)]['children'] as $key => $item)
 
