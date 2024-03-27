@@ -10,12 +10,6 @@ class HomeController extends Controller
 {
     public function __invoke()
     {
-        // $menu = Page::where([
-        //     ['parent_id', '=', 1],
-        //     ['menu_show', '=', 1],
-        // ])
-        //     ->get();
-
         $res = Page::all('id', 'name', 'parent_id', 'url')->toArray();
 
         $nodes = array();

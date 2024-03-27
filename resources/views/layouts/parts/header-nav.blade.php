@@ -1,48 +1,31 @@
 <nav class="main-nav">
     <ul>
-        
+        @foreach ($tree[array_key_first($tree)]['children'] as $key => $item)
 
+            <?php
+            $class = '';
+            
+            if ($item['url'] === 'o-kompanii') {
+                $class = '-about';
+            }
+            
+            if ($item['url'] === 'zhd-perevozki') {
+                $class = '-zhd';
+            }
+            
+            if ($item['url'] === 'shemy-pogruzki') {
+                $class = '-scheme';
+            }
 
-        @foreach ($tree[array_key_first($tree)]['children'] as $item)
-            {{-- @dd($item) --}}
+            if ($item['url'] === 'kontakty') {
+                $class = '-contacts';
+            }
+            ?>
+
             <li>
-                <a class="js-subnav-opener js-subnav-opener-portfolio"
-                    href="{{ route('pages.show', $item['url'] ) }}">{{ $item['name'] }}</a>
+                <a class="js-subnav-opener js-subnav-opener{{ $class }}"
+                    href="{{ route('pages.show', $item['url']) }}">{{ $item['name'] }}</a>
             </li>
         @endforeach
-
-        {{-- <li>
-            <a class="js-subnav-opener js-subnav-opener-zhd" href="{{ route('pages.show', 'zhd-perevozki') }}">ЖД
-                перевозки</a>
-        </li>
-        <li>
-
-            <a class="js-subnav-opener js-subnav-opener-scheme" href="{{ route('pages.show', 'shemy-pogruzki') }}">Схемы
-                погрузки</a>
-        </li>
-        <li>
-            <a class="js-subnav-opener js-subnav-opener-portfolio"
-                href="{{ route('pages.show', 'portfolio') }}">Портфолио</a>
-        </li>
-        <li>
-            <a class="js-subnav-opener js-subnav-opener-contacts"
-                href="{{ route('pages.show', 'kontakty') }}">Контакты</a>
-        </li> --}}
     </ul>
 </nav>
-
-
-{{-- @foreach ($tree[array_key_first($tree)]['children'][3]['children'] as $header)
-<div class="subnav-blocks-column subnav-blocks-column--1">
-    <div class="subnav-column-header">
-        <a href="#!">{{ $header['name'] }}</a>
-    </div>
-    <ul class="subnav-list-menu">
-        @if (isset($header['children']))
-            @foreach ($header['children'] as $child)
-                <li><a href="#!">{{ $child['name'] }}</a></li>
-            @endforeach
-        @endif
-    </ul>
-</div>
-@endforeach --}}
