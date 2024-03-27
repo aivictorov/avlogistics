@@ -10,17 +10,13 @@ class HomeController extends Controller
 {
     public function __invoke()
     {
-        $menu = Page::where([
-            ['parent_id', '=', 1],
-            ['menu_show', '=', 1],
-        ])
-            ->get();
+        // $menu = Page::where([
+        //     ['parent_id', '=', 1],
+        //     ['menu_show', '=', 1],
+        // ])
+        //     ->get();
 
-
-
-
-
-        $res = Page::all('id', 'name', 'parent_id')->toArray();
+        $res = Page::all('id', 'name', 'parent_id', 'url')->toArray();
 
         $nodes = array();
 
@@ -45,6 +41,6 @@ class HomeController extends Controller
         $tree = getTree($nodes);
 
 
-        return view('site.index', compact('menu', 'tree'));
+        return view('site.index', compact('tree'));
     }
 }

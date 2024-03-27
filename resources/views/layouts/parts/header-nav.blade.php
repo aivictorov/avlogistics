@@ -1,13 +1,17 @@
 <nav class="main-nav">
     <ul>
-        {{-- @foreach ($menu as $item)
+        
+
+
+        @foreach ($tree[array_key_first($tree)]['children'] as $item)
+            {{-- @dd($item) --}}
             <li>
                 <a class="js-subnav-opener js-subnav-opener-portfolio"
-                    href="{{ route('pages.show', $item->url) }}">{{ $item->name }}</a>
+                    href="{{ route('pages.show', $item['url'] ) }}">{{ $item['name'] }}</a>
             </li>
-        @endforeach --}}
+        @endforeach
 
-        <li>
+        {{-- <li>
             <a class="js-subnav-opener js-subnav-opener-zhd" href="{{ route('pages.show', 'zhd-perevozki') }}">ЖД
                 перевозки</a>
         </li>
@@ -23,7 +27,7 @@
         <li>
             <a class="js-subnav-opener js-subnav-opener-contacts"
                 href="{{ route('pages.show', 'kontakty') }}">Контакты</a>
-        </li>
+        </li> --}}
     </ul>
 </nav>
 

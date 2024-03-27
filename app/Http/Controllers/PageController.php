@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Page;
+use App\Models\Image;
 
 class PageController extends Controller
 {
@@ -26,8 +27,16 @@ class PageController extends Controller
 
     public function show($url)
     {
-        
+
         $page = Page::where('url', $url)->first();
+
+        $image = Image::where([['parent_id', $page->id], ['parent_type', 'page_avatar']])->first();
+
+        if (isset($image)) {
+            $image_path = "\\upload\\" . $image->parent_type . "\\" . $image->parent_id . "\\" . $image->id . "\\sizes\\page_" . $image->image;
+        } else {
+            $image_path = "";
+        }
 
         $res = Page::all('id', 'name', 'parent_id', 'url')->toArray();
 
@@ -55,7 +64,7 @@ class PageController extends Controller
 
         // dd($tree);
 
-        return view('site.page', compact('page', 'tree'));
+        return view('site.page', compact('page', 'tree', 'image_path'));
     }
 
 

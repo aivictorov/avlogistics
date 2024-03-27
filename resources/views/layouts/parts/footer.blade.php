@@ -5,8 +5,8 @@
             <div>Телефон: <span>+7 (812) 642-26-40</span>, e-mail: <a href="mailto:info@zhd.su">info@zhd.su</a></div>
         </div>
         <div class="main-footer__container_right">
-            <div>Дизайн: <a href="http://blackit.ru">blackit</a></div>
-            <div>Разработка и продвижение: <a href="http://shvedovka.ru">shvedovka</a></div>
+            {{-- <div>Дизайн: <a href="http://blackit.ru">blackit</a></div>
+            <div>Разработка и продвижение: <a href="http://shvedovka.ru">shvedovka</a></div> --}}
         </div>
     </div>
 </footer>
