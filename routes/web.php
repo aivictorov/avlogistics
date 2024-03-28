@@ -22,7 +22,7 @@ Route::post('/register', [RegistrationController::class, 'register'])->name('reg
 Route::middleware('auth')->name('admin.')->group(function(){
     Route::get('/adminka', [AdminController::class, 'index'])->name('index');
     Route::get('/adminka/{page}', [AdminController::class, 'show'])->name('page')->where('page', '.+');
-})->middleware('auth');
+});
 
 // Route::get('/pages', [PageController::class, 'index'])->name('pages.index');
 Route::get('/pages/create', [PageController::class, 'create'])->name('pages.create');
