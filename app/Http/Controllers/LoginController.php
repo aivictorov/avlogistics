@@ -11,10 +11,8 @@ class LoginController extends Controller
 {
     public function login()
     {
-
         if (Auth::check()) {
-
-            return redirect(route('admin.index'));
+            return redirect(route('admin.main'));
 
         } else {
 
@@ -69,7 +67,7 @@ class LoginController extends Controller
         }
     }
 
-    public function authentificate(Request $request)
+    public function auth(Request $request)
     {
         if (!Auth::check()) {
 
@@ -80,7 +78,7 @@ class LoginController extends Controller
                 // return redirect(route('admin.index'));
             }
 
-            return redirect(route('login'))->withErrors([
+            return redirect(route('user.login'))->withErrors([
                 'email' => 'не удалось авторизоваться'
             ]);
         }

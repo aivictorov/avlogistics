@@ -15,10 +15,4 @@ class AdminController extends Controller
 
         return view('admin.index', compact('pages_count', 'users_count'));
     }
-
-    public function show()
-    {
-        return view('admin.pages.index');
-    }
-
 }

@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Page;
 use App\Models\User;
 
-class RegistrationController extends Controller
+class RegisterController extends Controller
 {
 
-    public function registration()
+    public function register()
     {
         if (Auth::check()) {
 
@@ -52,7 +52,7 @@ class RegistrationController extends Controller
         }
     }
 
-    public function register(Request $request)
+    public function createUser(Request $request)
     {
         if (Auth::check()) {
             return redirect(route('admin.index'));

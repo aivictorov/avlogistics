@@ -18,7 +18,7 @@
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <a href={{ route('admin.page') }} class="small-box-footer">Открыть список <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href={{ route('admin.pages.index') }} class="small-box-footer">Открыть список <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
