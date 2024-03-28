@@ -9,14 +9,14 @@
 
                 <h1 class="page-h1">Вход</h1>
 
-                <form id="login-form" class="form-horizontal" action="/login/" method="post">
+                <form id="login-form" class="form-horizontal" action={{ route('authentificate') }} method="post">
                     @csrf
                     {{-- <input type="hidden" name="_csrf" value="M1pjSjJicGkFFRooRCg4W1YUVC1QG0UQezsHEHcNRiNFNlUYdAAnWg=="> --}}
                     <div class="form-group field-loginform-username required has-success">
-                        <label class="col-lg-1 control-label" for="loginform-username">Логин</label>
+                        <label class="col-lg-1 control-label" for="name">email</label>
                         <div class="col-lg-3">
-                            <input type="text" id="loginform-username" class="form-control" name="LoginForm[username]">
-                            @error('loginform-username')
+                            <input type="text" id="email" class="form-control" name="email">
+                            @error('email')
                                 <div>Error message</div>
                             @enderror
                         </div>
@@ -24,10 +24,12 @@
                             <p class="help-block help-block-error"></p>
                         </div>
                     </div>
+
+
                     <div class="form-group field-loginform-password required has-success">
-                        <label class="col-lg-1 control-label" for="loginform-password">Пароль</label>
-                        <div class="col-lg-3"><input type="password" id="loginform-password" class="form-control"
-                                name="LoginForm[password]"></div>
+                        <label class="col-lg-1 control-label" for="password">Пароль</label>
+                        <div class="col-lg-3"><input type="password" id="password" class="form-control"
+                                name="password"></div>
                         <div class="col-lg-8">
                             <p class="help-block help-block-error"></p>
                         </div>

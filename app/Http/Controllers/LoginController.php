@@ -60,4 +60,29 @@ class LoginController extends Controller
             return view('site.login', compact('page', 'tree', 'parents'));
         }
     }
+
+    public function logout()
+    {
+        if (Auth::check()) {
+            Auth::logout();
+            return redirect(route('main'));
+        }
+    }
+
+    public function authentificate(Request $request)
+    {
+        if (!Auth::check()) {
+
+            $formFields = $request->only(['email', 'password']);
+
+            if (Auth::attempt($formFields)) {
+                return redirect()->intended(route('admin.index'));
+                // return redirect(route('admin.index'));
+            }
+
+            return redirect(route('login'))->withErrors([
+                'email' => 'не удалось авторизоваться'
+            ]);
+        }
+    }
 }

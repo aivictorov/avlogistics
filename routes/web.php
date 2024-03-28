@@ -8,13 +8,13 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrationController;
 
 // Route::view('/', 'site.index');
+
+Route::get('/', HomeController::class)->name('main');
 Route::redirect('/index', '/', 301);
 
-Route::get('/', HomeController::class);
-
 Route::get('/login', [LoginController::class, 'login'])->name('login');
-// Route::post('/login', [LoginController::class, 'index'])->name('authentificate');
-// Route::get('/logout', [LoginController::class, 'index'])->name('logout');
+Route::post('/login', [LoginController::class, 'authentificate'])->name('authentificate');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/registration', [RegistrationController::class, 'registration'])->name('registration');
 Route::post('/register', [RegistrationController::class, 'register'])->name('register');
@@ -24,7 +24,7 @@ Route::middleware('auth')->name('admin.')->group(function(){
     Route::get('/adminka/{page}', [AdminController::class, 'show'])->name('page')->where('page', '.+');
 })->middleware('auth');
 
-Route::get('/pages', [PageController::class, 'index'])->name('pages.index');
+// Route::get('/pages', [PageController::class, 'index'])->name('pages.index');
 Route::get('/pages/create', [PageController::class, 'create'])->name('pages.create');
 Route::post('/pages', [PageController::class, 'store'])->name('pages.store');
 Route::get('/{page}', [PageController::class, 'show'])->name('pages.show')->where('page', '.+');
