@@ -7,8 +7,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrationController;
 
-// Route::view('/', 'site.index');
-
 Route::get('/', HomeController::class)->name('main');
 Route::redirect('/index', '/', 301);
 
@@ -20,23 +18,21 @@ Route::get('/registration', [RegistrationController::class, 'registration'])->na
 Route::post('/register', [RegistrationController::class, 'register'])->name('register');
 
 Route::middleware('auth')->name('admin.')->group(function(){
-    Route::get('/adminka', [AdminController::class, 'index'])->name('index');
-    Route::get('/adminka/{page}', [AdminController::class, 'show'])->name('page')->where('page', '.+');
+    Route::get('/admin', [AdminController::class, 'index'])->name('index');
+    Route::get('/admin/page', [AdminController::class, 'show'])->name('page');
 });
 
-// Route::get('/pages', [PageController::class, 'index'])->name('pages.index');
-Route::get('/pages/create', [PageController::class, 'create'])->name('pages.create');
-Route::post('/pages', [PageController::class, 'store'])->name('pages.store');
 Route::get('/{page}', [PageController::class, 'show'])->name('pages.show')->where('page', '.+');
-Route::get('/pages/{page}/edit', [PageController::class, 'edit'])->name('pages.edit');
-Route::put('/pages/{page}', [PageController::class, 'update'])->name('pages.update');
-Route::delete('/pages/{page}', [PageController::class, 'destroy'])->name('pages.destroy');
+
+// Route::get('/pages', [PageController::class, 'index'])->name('pages.index');
+// Route::get('/pages/create', [PageController::class, 'create'])->name('pages.create');
+// Route::post('/pages', [PageController::class, 'store'])->name('pages.store');
+// Route::get('/pages/{page}/edit', [PageController::class, 'edit'])->name('pages.edit');
+// Route::put('/pages/{page}', [PageController::class, 'update'])->name('pages.update');
+// Route::delete('/pages/{page}', [PageController::class, 'destroy'])->name('pages.destroy');
 
 // Route::resource('/pages', PageController::class);
 // Route::resource('/pages', PageController::class)->only(['index', 'show']);
-
-Route::get('/admin', HomeController::class);
-
 
 Route::fallback(function () {
     return "404";

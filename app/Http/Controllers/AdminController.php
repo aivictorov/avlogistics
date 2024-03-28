@@ -13,12 +13,12 @@ class AdminController extends Controller
         $pages_count = Page::all()->count();
         $users_count = User::all()->count();
 
-        return view('admin.site.index', compact('pages_count', 'users_count'));
+        return view('admin.index', compact('pages_count', 'users_count'));
     }
 
     public function show()
     {
-        return view('admin.site.page');
+        return view('admin.pages.index');
     }
 
 }

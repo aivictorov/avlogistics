@@ -1,18 +1,8 @@
 @extends('admin.layouts.main')
 
-@section('content')
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">Главная</h1>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+@section('title', 'Главная страница')
 
+@section('content')
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -23,13 +13,12 @@
                     <div class="small-box bg-info">
                         <div class="inner">
                             <h3>{{ $pages_count }}</h3>
-
                             <p>Страниц сайта</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <a href="#" class="small-box-footer">Открыть список <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href={{ route('admin.page') }} class="small-box-footer">Открыть список <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -38,7 +27,6 @@
                     <div class="small-box bg-success">
                         <div class="inner">
                             <h3>53</h3>
-
                             <p>Элементов портфолио</p>
                         </div>
                         <div class="icon">
@@ -53,7 +41,6 @@
                     <div class="small-box bg-warning">
                         <div class="inner">
                             <h3>44</h3>
-
                             <p>Ответов на вопросы</p>
                         </div>
                         <div class="icon">
@@ -68,7 +55,6 @@
                     <div class="small-box bg-danger">
                         <div class="inner">
                             <h3>{{ $users_count }}</h3>
-
                             <p>Пользователей</p>
                         </div>
                         <div class="icon">
@@ -80,7 +66,6 @@
                 <!-- ./col -->
             </div>
             <!-- /.row -->
-
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
