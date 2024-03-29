@@ -18,8 +18,6 @@ class LoginController extends Controller
 
             $page = Page::where('url', 'login')->first();
 
-            $res = Page::select('id', 'name', 'parent_id', 'url')->where('menu_show', 1)->orWhere('id', 1)->orderBy('menu_sort')->get()->toArray();
-
             $parents = array();
 
             $current_id = $page['parent_id'];
@@ -31,31 +29,7 @@ class LoginController extends Controller
 
             } while ($current_id > 0);
 
-
-            $nodes = array();
-
-            foreach ($res as $value) {
-                $nodes[$value['id']] = $value;
-            }
-
-            function getTree($dataset)
-            {
-                $tree = array();
-
-                foreach ($dataset as $id => &$node) {
-
-                    if ($node['parent_id'] === 0) {
-                        $tree[$id] = &$node;
-                    } else {
-                        $dataset[$node['parent_id']]['children'][$id] = &$node;
-                    }
-                }
-                return $tree;
-            }
-
-            $tree = getTree($nodes);
-
-            return view('site.login', compact('page', 'tree', 'parents'));
+            return view('site.login', compact('page', 'parents'));
         }
     }
 
@@ -74,7 +48,7 @@ class LoginController extends Controller
             $formFields = $request->only(['email', 'password']);
 
             if (Auth::attempt($formFields)) {
-                return redirect()->intended(route('admin.index'));
+                return redirect()->intended(route('admin.main'));
                 // return redirect(route('admin.index'));
             }
 

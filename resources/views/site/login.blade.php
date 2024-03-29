@@ -9,7 +9,7 @@
 
                 <h1 class="page-h1">Вход</h1>
 
-                <form id="login-form" class="form-horizontal" action={{ route('authentificate') }} method="post">
+                <form id="login-form" class="form-horizontal" action={{ route('user.auth') }} method="post">
                     @csrf
                     {{-- <input type="hidden" name="_csrf" value="M1pjSjJicGkFFRooRCg4W1YUVC1QG0UQezsHEHcNRiNFNlUYdAAnWg=="> --}}
                     <div class="form-group field-loginform-username required has-success">
