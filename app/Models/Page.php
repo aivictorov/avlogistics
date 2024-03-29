@@ -14,14 +14,17 @@ class Page extends Model
     protected $fillable = [
         'id',
         'name',
-        'create_date', 'update_date',
+        'create_date',
+        'update_date',
         'user_id',
         'url',
         'system',
-        'h1', 'text',
+        'h1',
+        'text',
         'seo_id',
         'parent_id',
-        'menu_sort', 'menu_show',
+        'menu_sort',
+        'menu_show',
         'status',
         'system_page',
         'portfolio_section_id',
@@ -32,7 +35,25 @@ class Page extends Model
     ];
 
     protected $dates = [
-        'create_date', 
+        'create_date',
         'update_date',
-    ];  
+    ];
+
+    public static function parents($url)
+    {
+        $page = Page::where('url', $url)->first();
+
+        $parents = array();
+
+        $current_id = $page['parent_id'];
+
+        do {
+            $parent = Page::where('id', $current_id)->first();
+            array_unshift($parents, $parent);
+            $current_id = $parent['parent_id'];
+
+        } while ($current_id > 0);
+
+        return $parents;
+    }
 }

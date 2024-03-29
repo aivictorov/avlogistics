@@ -3,40 +3,30 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
 
-Route::get('/', HomeController::class)->name('main');
-Route::redirect('/index', '/', 301);
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+    Route::get('/', App\Http\Controllers\Admin\HomeController::class)->name('home');
+
+    Route::get('/pages', [App\Http\Controllers\Admin\PageController::class, 'index'])->name('pages.index');
+    Route::get('/pages/create', [App\Http\Controllers\Admin\PageController::class, 'create'])->name('pages.create');
+    Route::post('/pages', [App\Http\Controllers\Admin\PageController::class, 'store'])->name('pages.store');
+    Route::get('/pages/{page}/edit', [App\Http\Controllers\Admin\PageController::class, 'edit'])->name('pages.edit');
+    Route::put('/pages/{page}', [App\Http\Controllers\Admin\PageController::class, 'update'])->name('pages.update');
+    Route::delete('/pages/{page}', [App\Http\Controllers\Admin\PageController::class, 'destroy'])->name('pages.destroy');
+});
 
 Route::name('user.')->group(function () {
-    Route::get('/login', [LoginController::class, 'login'])->name('login');
-    Route::post('/login', [LoginController::class, 'auth'])->name('auth');
-    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-    
-    Route::get('/register', [RegisterController::class, 'create'])->name('create');
-    Route::post('/register', [RegisterController::class, 'store'])->name('store');
+    Route::get('/login', [UserController::class, 'login'])->name('login');
+    Route::post('/login', [UserController::class, 'auth'])->name('auth');
+    Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+    Route::get('/register', [UserController::class, 'create'])->name('create');
+    Route::post('/register', [UserController::class, 'store'])->name('store');
 });
 
-Route::name('admin.')->middleware('auth')->group(function () {
-    Route::get('/admin', [AdminController::class, 'index'])->name('main');
+Route::get('/', HomeController::class)->name('home');
 
-    Route::get('/admin/pages', [AdminController::class, 'show'])->name('pages.index');
-    Route::get('/admin/pages/create', [PageController::class, 'create'])->name('pages.create');
-    Route::post('/admin/pages', [PageController::class, 'store'])->name('pages.store');
-    Route::get('/admin/pages/{page}/edit', [PageController::class, 'edit'])->name('pages.edit');
-    Route::put('/admin/pages/{page}', [PageController::class, 'update'])->name('pages.update');
-    Route::delete('/admin/pages/{page}', [PageController::class, 'destroy'])->name('pages.destroy');
-
-    Route::get('/admin/portfolio', [AdminController::class, 'show'])->name('portfolio.index');
-    Route::get('/admin/faq', [AdminController::class, 'show'])->name('faq.index');
-});
-
-Route::get('/{page}', [PageController::class, 'show'])->name('pages.show')->where('page', '.+');
-
-// Route::resource('/pages', PageController::class);
-// Route::resource('/pages', PageController::class)->only(['index', 'show']);
+Route::get('/{page}', [PageController::class, 'show'])->where('page', '.+')->name('pages.show');
 
 Route::fallback(function () {
     return "404";

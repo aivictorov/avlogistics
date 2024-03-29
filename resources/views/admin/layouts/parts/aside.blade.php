@@ -24,7 +24,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 
                 <li class="nav-item">
-                    <a href="pages/widgets.html" class="nav-link">
+                    <a href={{ route('admin.home') }} class="nav-link">
                         <i class="nav-icon fas fa-home"></i>
                         <p>
                             Главная
@@ -33,7 +33,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href={{ route('admin.pages.index') }} class="nav-link">
                         <i class="nav-icon fas fa-newspaper"></i>
                         <p>
                             Страницы
@@ -42,7 +42,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="" class="nav-link">
                         <i class="nav-icon fas fa-image"></i>
                         <p>
                             Портфолио
@@ -51,7 +51,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/examples/invoice.html" class="nav-link">
+                            <a href={{ route('admin.pages.create') }} class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Записи</p>
                             </a>
@@ -99,7 +99,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href={{ route('user.logout') }} class="nav-link">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>
                             Выход

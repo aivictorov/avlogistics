@@ -3,13 +3,49 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Page;
 use App\Models\User;
 
-class RegisterController extends Controller
+class UserController extends Controller
 {
+    public function login()
+    {
+        if (Auth::check()) {
+            return redirect(route('admin.home'));
+
+        } else {
+            $page = Page::where('url', 'login')->first();
+            $parents = Page::parents('login');
+            return view('site.login', compact('page', 'parents'));
+        }
+    }
+
+    public function logout()
+    {
+        if (Auth::check()) {
+            Auth::logout();
+            return redirect(route('main'));
+        }
+    }
+
+    public function auth(Request $request)
+    {
+        if (!Auth::check()) {
+
+            $formFields = $request->only(['email', 'password']);
+
+            if (Auth::attempt($formFields)) {
+                return redirect()->intended(route('admin.home'));
+            }
+
+            return redirect(route('user.login'))->withErrors([
+                'email' => 'не удалось авторизоваться'
+            ]);
+        }
+    }
+
 
     public function register()
     {
@@ -20,18 +56,9 @@ class RegisterController extends Controller
         } else {
 
             $page = Page::where('url', 'login')->first();
-
-            $parents = array();
-
-            $current_id = $page['parent_id'];
-            do {
-                $parent = Page::where('id', $current_id)->first();
-                array_unshift($parents, $parent);
-                $current_id = $parent['parent_id'];
-
-            } while ($current_id > 0);
-           
+            $parents = Page::parents('login');
             return view('site.registration', compact('page', 'parents'));
+
         }
     }
 
@@ -39,7 +66,7 @@ class RegisterController extends Controller
     {
         if (Auth::check()) {
             return redirect(route('admin.index'));
-        };
+        }
 
         $validatedFields = $request->validate([
             // 'name' => ['required', 'string', 'max:64'],
@@ -55,7 +82,7 @@ class RegisterController extends Controller
         if ($user) {
             Auth::login($user);
             // auth()->login($user);
-            return redirect(route('admin.index'));
+            return redirect(route('admin.home'));
         }
 
         // return view('site.login', compact('page', 'tree', 'parents'))->withErrors([

@@ -25,4 +25,17 @@ class Image extends Model
     protected $dates = [
         'create_date',
     ];
+
+    public static function image($page_id)
+    {
+        $image = Image::where([['parent_id', $page_id], ['parent_type', 'page_avatar']])->first();
+
+        if ($image) {
+            $image_path = "\\upload\\" . $image->parent_type . "\\" . $image->parent_id . "\\" . $image->id . "\\sizes\\page_" . $image->image;
+        } else {
+            $image_path = "";
+        }
+
+        return $image_path;
+    }
 }
