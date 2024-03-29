@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
 use App\Models\Page;
 use App\Models\User;
 
-class UserController extends Controller
+class AuthController extends Controller
 {
+   
     public function login()
     {
         if (Auth::check()) {
@@ -26,14 +26,13 @@ class UserController extends Controller
     {
         if (Auth::check()) {
             Auth::logout();
-            return redirect(route('main'));
+            return redirect(route('home'));
         }
     }
 
     public function auth(Request $request)
     {
         if (!Auth::check()) {
-
             $formFields = $request->only(['email', 'password']);
 
             if (Auth::attempt($formFields)) {
@@ -50,15 +49,12 @@ class UserController extends Controller
     public function register()
     {
         if (Auth::check()) {
-
             return redirect(route('admin.index'));
 
         } else {
-
             $page = Page::where('url', 'login')->first();
             $parents = Page::parents('login');
             return view('site.registration', compact('page', 'parents'));
-
         }
     }
 

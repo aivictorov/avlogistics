@@ -1,10 +1,25 @@
 @extends('admin.layouts.main')
 
-@section('title', 'Добавить страницу')
+@section('title', 'Все страницы')
 
 @section('content')
     <section class="content">
         <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="card">
+                        <div class="card-body table-responsive p-0">
+                            <a href={{ route('admin.pages.create') }} type="button" class="btn btn-block btn-primary btn-lg">
+                                Добавить страницу
+                            </a>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">

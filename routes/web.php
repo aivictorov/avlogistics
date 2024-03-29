@@ -3,7 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\FAQController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactFormController;
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', App\Http\Controllers\Admin\HomeController::class)->name('home');
@@ -17,17 +20,19 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 });
 
 Route::name('user.')->group(function () {
-    Route::get('/login', [UserController::class, 'login'])->name('login');
-    Route::post('/login', [UserController::class, 'auth'])->name('auth');
-    Route::get('/logout', [UserController::class, 'logout'])->name('logout');
-    Route::get('/register', [UserController::class, 'create'])->name('create');
-    Route::post('/register', [UserController::class, 'store'])->name('store');
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'auth'])->name('auth');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/register', [AuthController::class, 'create'])->name('create');
+    Route::post('/register', [AuthController::class, 'store'])->name('store');
 });
 
 Route::get('/', HomeController::class)->name('home');
 
-Route::get('/{page}', [PageController::class, 'show'])->where('page', '.+')->name('pages.show');
+Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio.index');
 
-Route::fallback(function () {
-    return "404";
-});
+Route::get('/faq', [FAQController::class, 'index'])->name('portfolio.index');
+
+Route::get('/contact', ContactFormController::class)->name('contactForm');
+
+Route::get('/{page}', [PageController::class, 'show'])->where('page', '.+')->name('pages.show');

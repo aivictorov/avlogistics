@@ -12,7 +12,6 @@ class PageController extends Controller
     public function index()
     {
         return view('site.page');
-        // "Страница список постов";
     }
 
     public function create()
@@ -28,6 +27,11 @@ class PageController extends Controller
     public function show($url)
     {
         $page = Page::where('url', $url)->first();
+
+        if(!$page ) {
+            return view('site.404');
+        }
+
         $parents = Page::parents($url);
         $image_path = Image::image($page->id);
 
