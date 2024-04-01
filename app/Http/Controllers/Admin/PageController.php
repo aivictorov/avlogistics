@@ -63,7 +63,10 @@ class PageController extends Controller
 
             $watermark = Images::make(public_path('images/watermark.png'));
             $image->insert($watermark, 'center');
-            
+
+            $mini_watermark = Images::make(public_path('images/mini-watermark.png'));
+            $image->insert($mini_watermark, 'bottom-right');
+
             $original_filename = $request->file('image')->getClientOriginalName();
 
             $imageDB = Image::create([
