@@ -39,6 +39,8 @@ class Page extends Model
         'update_date',
     ];
 
+    public $timestamps = false;
+
     public static function parents($url)
     {
         $page = Page::where('url', $url)->first();

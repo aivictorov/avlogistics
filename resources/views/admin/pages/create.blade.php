@@ -14,39 +14,64 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form>
+                        <form action={{ route('admin.pages.store') }} method="post" enctype="multipart/form-data">
+                            @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1"
-                                        placeholder="Enter email">
+                                    <label for="name">Название</label>
+                                    <input type="text" class="form-control" id="name" name="name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1"
-                                        placeholder="Password">
+                                    <label for="h1">Заголовок</label>
+                                    <input type="text" class="form-control" id="h1" name="h1">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputFile">File input</label>
+                                    <label for="url">URL</label>
+                                    <input type="text" class="form-control" id="url" name="url">
+                                </div>
+                                <div class="form-group">
+                                    <label for="image">Изображение</label>
                                     <div class="input-group">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="exampleInputFile">
-                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                            <input type="file" class="custom-file-input" id="image" name="image">
+                                            <label class="custom-file-label" for="image">Выберите файл</label>
                                         </div>
                                         <div class="input-group-append">
-                                            <span class="input-group-text">Upload</span>
+                                            <span class="input-group-text">Загрузить</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Текст</label>
+                                    <textarea class="form-control" rows="3" name="text"></textarea>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!-- select -->
+                                        <div class="form-group">
+                                            <label>Страница родитель</label>
+                                            <select class="form-control">
+                                                <option>option 1</option>
+                                                <option>option 2</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="menu_sort">Порядок вывода</label>
+                                            <input type="text" class="form-control" id="menu_sort" name="menu_sort">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                    <input type="checkbox" class="form-check-input" id="menu_show">
+                                    <label class="form-check-label" for="menu_show">Отображать в меню</label>
                                 </div>
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Создать</button>
                             </div>
                         </form>
                     </div>
