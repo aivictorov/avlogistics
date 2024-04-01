@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Page;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use App\Models\Page;
-use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\Storage;
 
-Image::configure(['driver' => 'imagick']);
+use Intervention\Image\ImageManagerStatic as Images;
+
+Images::configure(['driver' => 'imagick']);
 
 class PageController extends Controller
 {
@@ -24,36 +27,14 @@ class PageController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'image' => ['required', 'mimes:jpg,jpeg', 'dimensions:min_width=600,min_height=400'],
-        ]);
-
-        $image = Image::make($request->file('image'));
-        $image_path = storage_path('app\public\upload\header.jpg');
-
-        $image->resize(null, 200, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-
-        $image->save($image_path);
-
-        dd($image);
-
-
-        $path = $request->file('image')->storeAs(
-            'upload/avatars',
-            $request->image()->id
-        );
-
-
-        $validatedFields = $request->validate([
+        $validatedPage = $request->validate([
             'name' => ['required', 'string'],
             'h1' => ['required', 'string'],
             'url' => ['required', 'string'],
             "text" => [],
         ]);
 
-        $validatedFields = array_merge($validatedFields, [
+        $validatedPage = array_merge($validatedPage, [
             'create_date' => Carbon::now()->toDateTimeString(),
             'update_date' => Carbon::now()->toDateTimeString(),
             'user_id' => 1,
@@ -67,13 +48,39 @@ class PageController extends Controller
             'portfolio_section_id' => null,
         ]);
 
-        $page = Page::create($validatedFields);
+        $page = Page::create($validatedPage);
 
         if ($page) {
-            return redirect(route('admin.pages.index'));
-        }
+            $request->validate([
+                'image' => ['required', 'mimes:jpg,jpeg', 'dimensions:min_width=670,min_height=270'],
+            ]);
 
-        return 'Сохранение страницы';
+            $parent_type = 'page_avatar';
+            $parent_id = $page->id;
+
+            $image = Images::make($request->file('image'));
+            $image->fit(670, 270);
+
+            $watermark = Images::make(public_path('images/watermark.png'));
+            $image->insert($watermark, 'center');
+            
+            $original_filename = $request->file('image')->getClientOriginalName();
+
+            $imageDB = Image::create([
+                'image' => $original_filename,
+                'create_date' => Carbon::now()->toDateTimeString(),
+                'sort' => 0,
+                'parent_type' => $parent_type,
+                'parent_id' => $parent_id,
+            ]);
+
+            Storage::makeDirectory('public/upload/' . $imageDB->id . '/original');
+            Storage::makeDirectory('public/upload/' . $imageDB->id . '/sizes');
+
+            $image_path = storage_path('app/public/upload/' . $imageDB->id . '/sizes/' . $original_filename);
+            $image->save($image_path);
+        }
+        return redirect(route('admin.pages.index'));
     }
 
     public function edit()
@@ -90,10 +97,4 @@ class PageController extends Controller
     {
         return 'Удаление страницы';
     }
-
-
-
-
-
-
 }

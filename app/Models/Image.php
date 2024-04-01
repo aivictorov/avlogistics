@@ -25,6 +25,8 @@ class Image extends Model
     protected $dates = [
         'create_date',
     ];
+    
+    public $timestamps = false;
 
     public static function image($page_id)
     {
