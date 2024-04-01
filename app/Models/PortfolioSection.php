@@ -30,5 +30,5 @@ class PortfolioSection extends Model
         'update_date',
     ];
 
-    
+    public $timestamps = false;
 }

@@ -34,4 +34,6 @@ class Portfolio extends Model
         'create_date',
         'update_date',
     ];
+
+    public $timestamps = false;
 }
