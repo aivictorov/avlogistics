@@ -140,13 +140,13 @@
                         <div class="subnav-column-header">
                             <a href={{ route('pages.show', $header['url']) }}>{{ $header['name'] }}</a>
                         </div>
-                        <ul class="subnav-list-menu">
-                            @if (isset($header['children']))
+                        @if (isset($header['children']))
+                            <ul class="subnav-list-menu">
                                 @foreach ($header['children'] as $child)
                                     <li><a href={{ route('pages.show', $child['url']) }}>{{ $child['name'] }}</a></li>
                                 @endforeach
-                            @endif
-                        </ul>
+                            </ul>
+                        @endif
                     </div>
                 @endforeach
             </div>
@@ -166,13 +166,13 @@
                         <div class="subnav-column-header">
                             <a href={{ route('pages.show', $header['url']) }}>{{ $header['name'] }}</a>
                         </div>
-                        <ul class="subnav-list-menu">
-                            @if (isset($header['children']))
+                        @if (isset($header['children']))
+                            <ul class="subnav-list-menu">
                                 @foreach ($header['children'] as $child)
                                     <li><a href={{ route('pages.show', $child['url']) }}>{{ $child['name'] }}</a></li>
                                 @endforeach
-                            @endif
-                        </ul>
+                            </ul>
+                        @endif
                     </div>
                 @endforeach
             </div>

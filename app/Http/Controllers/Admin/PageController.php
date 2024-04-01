@@ -77,10 +77,10 @@ class PageController extends Controller
                 'parent_id' => $parent_id,
             ]);
 
-            Storage::makeDirectory('public/upload/' . $imageDB->id . '/original');
-            Storage::makeDirectory('public/upload/' . $imageDB->id . '/sizes');
+            Storage::makeDirectory('public/upload/page_avatar/' . $parent_id . '/' . $imageDB->id . '/original');
+            Storage::makeDirectory('public/upload/page_avatar/' . $parent_id . '/' . $imageDB->id . '/sizes');
 
-            $image_path = storage_path('app/public/upload/' . $imageDB->id . '/sizes/' . $original_filename);
+            $image_path = storage_path('app/public/upload/page_avatar/' . $parent_id . '/' . $imageDB->id . '/sizes/' . 'page_' . $original_filename);
             $image->save($image_path);
         }
         return redirect(route('admin.pages.index'));

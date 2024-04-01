@@ -33,7 +33,7 @@ class Image extends Model
         $image = Image::where([['parent_id', $page_id], ['parent_type', 'page_avatar']])->first();
 
         if ($image) {
-            $image_path = "\\upload\\" . $image->parent_type . "\\" . $image->parent_id . "\\" . $image->id . "\\sizes\\page_" . $image->image;
+            $image_path = "\\storage\\upload\\" . $image->parent_type . "\\" . $image->parent_id . "\\" . $image->id . "\\sizes\\page_" . $image->image;
         } else {
             $image_path = "";
         }
