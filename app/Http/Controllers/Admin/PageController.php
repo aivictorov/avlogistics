@@ -17,7 +17,9 @@ class PageController extends Controller
 {
     public function index()
     {
-        return view('admin.pages.index');
+        $pages = Page::select('id', 'name')->where('status', 1)->orderBy('id')->get()->toArray();
+
+        return view('admin.pages.index', compact('pages'));
     }
 
     public function create(Request $request)

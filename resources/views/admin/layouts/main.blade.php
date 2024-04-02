@@ -71,39 +71,41 @@
     <!-- ./wrapper -->
 
     <!-- jQuery -->
-    <script src="/admin_panel/plugins/jquery/jquery.min.js"></script>
+    <script src="/admin_panel/plugins/jquery/jquery.js"></script>
     <!-- jQuery UI 1.11.4 -->
-    <script src="/admin_panel/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="/admin_panel/plugins/jquery-ui/jquery-ui.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
     <!-- Bootstrap 4 -->
-    <script src="/admin_panel/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/admin_panel/plugins/bootstrap/js/bootstrap.bundle.js"></script>
+    <!-- bs-custom-file-input -->
+    <script src="/admin_panel/plugins/bs-custom-file-input/bs-custom-file-input.js"></script>
     <!-- ChartJS -->
-    <script src="/admin_panel/plugins/chart.js/Chart.min.js"></script>
+    {{-- <script src="/admin_panel/plugins/chart.js/Chart.js"></script> --}}
     <!-- Sparkline -->
-    <script src="/admin_panel/plugins/sparklines/sparkline.js"></script>
+    {{-- <script src="/admin_panel/plugins/sparklines/sparkline.js"></script> --}}
     <!-- JQVMap -->
-    <script src="/admin_panel/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="/admin_panel/plugins/jqvmap/jquery.vmap.js"></script>
     <script src="/admin_panel/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
     <!-- jQuery Knob Chart -->
-    <script src="/admin_panel/plugins/jquery-knob/jquery.knob.min.js"></script>
+    {{-- <script src="/admin_panel/plugins/jquery-knob/jquery.knob.js"></script> --}}
     <!-- daterangepicker -->
-    <script src="/admin_panel/plugins/moment/moment.min.js"></script>
+    {{-- <script src="/admin_panel/plugins/moment/moment.js"></script> --}}
     <script src="/admin_panel/plugins/daterangepicker/daterangepicker.js"></script>
     <!-- Tempusdominus Bootstrap 4 -->
-    <script src="/admin_panel/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    {{-- <script src="/admin_panel/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.js"></script> --}}
     <!-- Summernote -->
-    <script src="/admin_panel/plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="/admin_panel/plugins/summernote/summernote-bs4.js"></script>
     <!-- overlayScrollbars -->
-    <script src="/admin_panel/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <script src="/admin_panel/plugins/overlayScrollbars/js/jquery.overlayScrollbars.js"></script>
     <!-- AdminLTE App -->
     <script src="/admin_panel/dist/js/adminlte.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="/admin_panel/dist/js/demo.js"></script>
+    {{-- <script src="/admin_panel/dist/js/demo.js"></script> --}}
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="/admin_panel/dist/js/pages/dashboard.js"></script>
+    {{-- <script src="/admin_panel/dist/js/pages/dashboard.js"></script> --}}
 </body>
 
 </html>

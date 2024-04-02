@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 
-@section('title', 'Добавить страницу')
+@section('title', 'Добавить страницу портфолио')
 
 @section('content')
     <section class="content">
@@ -14,7 +14,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action={{ route('admin.pages.store') }} method="post" enctype="multipart/form-data">
+                        <form action={{ route('admin.portfolio.store') }} method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
@@ -22,12 +22,20 @@
                                     <input type="text" class="form-control" id="name" name="name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="h1">Заголовок</label>
-                                    <input type="text" class="form-control" id="h1" name="h1">
+                                    <label>Категория</label>
+                                    <select class="form-control">
+                                        @foreach ($sections as $section)
+                                            <option value={{ $section['id']  }}>{{ $section['name'] }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="url">URL</label>
                                     <input type="text" class="form-control" id="url" name="url">
+                                </div>
+                                <div class="form-group">
+                                    <label for="h1">Заголовок</label>
+                                    <input type="text" class="form-control" id="h1" name="h1">
                                 </div>
                                 <div class="form-group">
                                     <label for="image">Изображение</label>
@@ -39,27 +47,15 @@
                                     <label>Текст</label>
                                     <textarea class="form-control" rows="3" name="text"></textarea>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <!-- select -->
-                                        <div class="form-group">
-                                            <label>Страница родитель</label>
-                                            <select class="form-control">
-                                                <option>option 1</option>
-                                                <option>option 2</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="menu_sort">Порядок вывода</label>
-                                            <input type="text" class="form-control" id="menu_sort" name="menu_sort">
-                                        </div>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="sort_key">Ключ сортировки</label>
+                                    <input type="text" class="form-control" id="sort_key" name="sort_key">
                                 </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="menu_show">
-                                    <label class="form-check-label" for="menu_show">Отображать в меню</label>
+                                <div class="form-group">
+                                    <label for="images">Галерея изображений</label>
+                                    <div class="input-group">
+                                        <input type="file" id="images" name="images" multiple>
+                                    </div>
                                 </div>
                             </div>
                             <!-- /.card-body -->

@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 
-@section('title', 'Все страницы')
+@section('title', 'Все категории портфолио')
 
 @section('content')
     <section class="content">
@@ -10,8 +10,9 @@
                 <div class="col-md-2">
                     <div class="card">
                         <div class="card-body table-responsive p-0">
-                            <a href={{ route('admin.pages.create') }} type="button" class="btn btn-block btn-primary btn-lg">
-                                Добавить страницу
+                            <a href={{ route('admin.portfolioSections.create') }} type="button"
+                                class="btn btn-block btn-primary btn-lg">
+                                Добавить категорию
                             </a>
                         </div>
                         <!-- /.card-body -->
@@ -57,10 +58,11 @@
                                                 placeholder="Reason">
                                         </td>
                                     </tr>
-                                    @foreach ($pages as $page)
+
+                                    @foreach ($sections as $section)
                                         <tr>
-                                            <td>{{ $page['id'] }}</td>
-                                            <td>{{ $page['name'] }}</td>
+                                            <td>{{ $section['id'] }}</td>
+                                            <td>{{ $section['name'] }}</td>
                                             <td>11-7-2014</td>
                                             <td><span class="tag tag-success">Approved</span></td>
                                             <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
