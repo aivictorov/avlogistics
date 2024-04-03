@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 
-@section('title', 'Добавить страницу портфолио')
+@section('title', 'Новая тема')
 
 @section('content')
     <section class="content">
@@ -23,58 +23,49 @@
                                     <input type="text" class="form-control" id="h1" name="h1">
                                 </div>
                                 <div class="form-group">
-                                    <label>Категория</label>
-                                    <select class="form-control">
-                                        @foreach ($sections as $section)
-                                            <option value={{ $section['id'] }}>{{ $section['name'] }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Текст</label>
-                                    <textarea class="form-control" rows="3" name="text"></textarea>
+                                    <label for="text">Анонс</label>
+                                    <textarea id="text" class="form-control" rows="3" name="text"></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-primary card-outline">
                             <div class="card-header">
-                                <h3 class="card-title">Основное изображение</h3>
+                                <h3 class="card-title">Вопросы</h3>
                             </div>
                             <div class="card-body">
-                                <div class="form-group">
-                                    <label for="image">Основное изображение</label>
-                                    <div class="input-group">
-                                        <input type="file" id="image" name="image">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div class="form-group">
+                                                    <label for="name">Название</label>
+                                                    <input type="text" class="form-control" id="name"
+                                                        name="name">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Текст</label>
+                                                    <textarea class="form-control" rows="3" name="text"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-block btn-outline-primary">Добавить
+                                                вопрос</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card card-primary card-outline">
-                            <div class="card-header">
-                                <h3 class="card-title">Галерея изображений</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="images">Галерея изображений</label>
-                                    <div class="input-group">
-                                        <input type="file" id="images" name="images" multiple>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-primary card-outline">

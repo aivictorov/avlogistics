@@ -8,7 +8,7 @@ use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Str;
 use Intervention\Image\ImageManagerStatic as Images;
 
 Images::configure(['driver' => 'imagick']);
@@ -17,7 +17,11 @@ class PageController extends Controller
 {
     public function index()
     {
-        $pages = Page::select('id', 'name')->where('status', 1)->orderBy('id')->get()->toArray();
+        $pages = Page::select('id', 'name', 'url', 'update_date', 'status')->orderBy('id')->get()->toArray();
+
+        foreach ($pages as $key => $page) {
+            $pages[$key]['update_date'] = Carbon::parse($page['update_date'])->toDateString();
+        }
 
         return view('admin.pages.index', compact('pages'));
     }
@@ -29,14 +33,20 @@ class PageController extends Controller
 
     public function store(Request $request)
     {
-        $validatedPage = $request->validate([
+        if (!$request->filled('url')) {
+            $request->merge([
+                'url' => Str::slug($request->input('name')),
+            ]);
+        }
+
+        $validated = $request->validate([
             'name' => ['required', 'string'],
             'h1' => ['required', 'string'],
             'url' => ['required', 'string'],
-            "text" => [],
+            'text' => ['required'],
         ]);
 
-        $validatedPage = array_merge($validatedPage, [
+        $validated = array_merge($validated, [
             'create_date' => Carbon::now()->toDateTimeString(),
             'update_date' => Carbon::now()->toDateTimeString(),
             'user_id' => 1,
@@ -50,11 +60,11 @@ class PageController extends Controller
             'portfolio_section_id' => null,
         ]);
 
-        $page = Page::create($validatedPage);
+        $page = Page::create($validated);
 
-        if ($page) {
+        if ($page && $request->filled('image')) {
             $request->validate([
-                'image' => ['required', 'mimes:jpg,jpeg', 'dimensions:min_width=670,min_height=270'],
+                'image' => ['mimes:jpg,jpeg', 'dimensions:min_width=670,min_height=270'],
             ]);
 
             $parent_type = 'page_avatar';
@@ -85,12 +95,15 @@ class PageController extends Controller
             $image_path = storage_path('app/public/upload/page_avatar/' . $parent_id . '/' . $imageDB->id . '/sizes/' . 'page_' . $original_filename);
             $image->save($image_path);
         }
+
         return redirect(route('admin.pages.index'));
     }
 
-    public function edit()
+    public function edit($id)
     {
-        return 'Редактирование страницы';
+        $page = Page::where('id', $id)->first();
+
+        return view('admin.pages.edit', compact('page'));
     }
 
     public function update()
@@ -98,8 +111,10 @@ class PageController extends Controller
         return 'Изменение страницы';
     }
 
-    public function destroy()
+    public function destroy($id)
     {
-        return 'Удаление страницы';
+        Page::find($id)->delete();
+
+        return redirect(route('admin.pages.index'));
     }
 }

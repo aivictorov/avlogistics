@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 
-@section('title', 'Все страницы')
+@section('title', 'FAQ')
 
 @section('content')
     <section class="content">
@@ -10,7 +10,8 @@
                 <div class="col-md-2">
                     <div class="card">
                         <div class="card-body table-responsive p-0">
-                            <a href={{ route('admin.pages.create') }} type="button" class="btn btn-block btn-primary btn-lg">
+                            <a href={{ route('admin.faq.create') }} type="button"
+                                class="btn btn-block btn-primary btn-lg">
                                 Добавить страницу
                             </a>
                         </div>
@@ -19,6 +20,7 @@
                 </div>
             </div>
             <!-- /.row -->
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -27,10 +29,10 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th class="w-50">Наименование</th>
-                                        <th>Дата изменения</th>
-                                        <th>Статус</th>
-                                        <th>Действия</th>
+                                        <th>User</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Reason</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -56,28 +58,13 @@
                                                 placeholder="Reason">
                                         </td>
                                     </tr>
-                                    @foreach ($pages as $page)
+                                    @foreach ($faq_categories as $item)
                                         <tr>
-                                            <td>{{ $page['id'] }}</td>
-                                            <td>
-                                                <a href={{ route('admin.pages.edit', ['id' => $page['id']]) }}>
-                                                    {{ $page['name'] }}
-                                                </a>
-                                            </td>
-                                            <td>{{ $page['update_date'] }}</td>
-                                            <td>
-                                                @if ($page['status'] == 1)
-                                                    <i class="fas fa-eye"></i>
-                                                @else
-                                                    <i class="fas fa-eye-slash"></i>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <a href={{ route('admin.pages.destroy', ['id' => $page['id']]) }}
-                                                    rel="nofollow">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                            </td>
+                                            <td>{{ $item['id'] }}</td>
+                                            <td>{{ $item['name'] }}</td>
+                                            <td>11-7-2014</td>
+                                            <td><span class="tag tag-success">Approved</span></td>
+                                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

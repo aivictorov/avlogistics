@@ -22,7 +22,6 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                
                 <li class="nav-item">
                     <a href={{ route('admin.home') }} class="nav-link">
                         <i class="nav-icon fas fa-home"></i>
@@ -31,7 +30,6 @@
                         </p>
                     </a>
                 </li>
-
                 <li class="nav-item">
                     <a href={{ route('admin.pages.index') }} class="nav-link">
                         <i class="nav-icon fas fa-newspaper"></i>
@@ -40,57 +38,40 @@
                         </p>
                     </a>
                 </li>
-
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href={{ route('admin.portfolio.index') }} class="nav-link">
                         <i class="nav-icon fas fa-image"></i>
                         <p>
                             Портфолио
-                            <i class="fas fa-angle-up right"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href={{ route('admin.portfolio.index') }} class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Записи</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href={{ route('admin.portfolioSections.index') }} class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Категории</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
-            
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-question-circle"></i>
+                    <a href={{ route('admin.portfolioSections.index') }} class="nav-link">
+                        <i class="nav-icon fas fa-images"></i>
                         <p>
-                            Впоросы и ответы
-                            <i class="fas fa-angle-up right"></i>
+                            Категории портфолио
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="pages/examples/invoice.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Записи</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/examples/profile.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Категории</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
-
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href={{ route('admin.faq.index') }} class="nav-link">
+                        <i class="nav-icon fas fa-reply"></i>
+                        <p>
+                            FAQ
+                        </p>
+                    </a>
+                </li>
+                {{-- <li class="nav-item">
+                    <a href={{ route('admin.faq.index') }} class="nav-link">
+                        <i class="nav-icon fas fa-reply-all"></i>
+                        <p>
+                            FAQ (категории)
+                        </p>
+                    </a>
+                </li> --}}
+                <li class="nav-item">
+                    <a href={{ route('admin.users.index') }} class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Пользователи

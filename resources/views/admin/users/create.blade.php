@@ -1,11 +1,11 @@
 @extends('admin.layouts.main')
 
-@section('title', 'Добавить категорию портфолио')
+@section('title', 'Добавить пользователя')
 
 @section('content')
     <section class="content">
         <div class="container-fluid">
-            <form action={{ route('admin.portfolioSections.store') }} method="post" enctype="multipart/form-data">
+            <form action={{ route('admin.users.store') }} method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-12">
@@ -15,8 +15,20 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="name">Название</label>
+                                    <label for="name">Имя пользователя</label>
                                     <input type="text" class="form-control" id="name" name="name">
+                                </div>          
+                                <div class="form-group">
+                                    <label for="name">Электронная почта</label>
+                                    <input type="text" class="form-control" id="name" name="name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="h1">Пароль</label>
+                                    <input type="text" class="form-control" id="h1" name="h1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="h1">Подтверждение пароля</label>
+                                    <input type="text" class="form-control" id="h1" name="h1">
                                 </div>
                             </div>
                         </div>
@@ -32,8 +44,10 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="sort_key">Ключ сортировки</label>
-                                            <input type="text" class="form-control" id="sort_key" name="sort_key">
+                                            <label>Роль</label>
+                                            <select class="form-control">
+                                                <option>Администратор</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">

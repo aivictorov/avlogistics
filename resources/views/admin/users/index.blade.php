@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 
-@section('title', 'Все страницы')
+@section('title', 'Пользователи')
 
 @section('content')
     <section class="content">
@@ -10,7 +10,7 @@
                 <div class="col-md-2">
                     <div class="card">
                         <div class="card-body table-responsive p-0">
-                            <a href={{ route('admin.pages.create') }} type="button" class="btn btn-block btn-primary btn-lg">
+                            <a href={{ route('admin.users.create') }} type="button" class="btn btn-block btn-primary btn-lg">
                                 Добавить страницу
                             </a>
                         </div>
@@ -19,15 +19,19 @@
                 </div>
             </div>
             <!-- /.row -->
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body table-responsive p-0">
+
+
                             <table class="table table-hover text-nowrap">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th class="w-50">Наименование</th>
+                                        <th class="w-50">Имя пользователя</th>
+                                        <th class="w-50">Электронная почта</th>
                                         <th>Дата изменения</th>
                                         <th>Статус</th>
                                         <th>Действия</th>
@@ -56,24 +60,27 @@
                                                 placeholder="Reason">
                                         </td>
                                     </tr>
-                                    @foreach ($pages as $page)
+                                    @foreach ($users as $user)
                                         <tr>
-                                            <td>{{ $page['id'] }}</td>
+                                            <td>{{ $user['id'] }}</td>
                                             <td>
-                                                <a href={{ route('admin.pages.edit', ['id' => $page['id']]) }}>
-                                                    {{ $page['name'] }}
+                                                <a href={{ route('admin.users.edit', ['id' => $user['id']]) }}>
+                                                    {{ $user['name'] }}
                                                 </a>
                                             </td>
-                                            <td>{{ $page['update_date'] }}</td>
                                             <td>
-                                                @if ($page['status'] == 1)
-                                                    <i class="fas fa-eye"></i>
-                                                @else
-                                                    <i class="fas fa-eye-slash"></i>
-                                                @endif
+                                                {{ $user['email'] }}
+                                            </td>
+                                            <td>{{ $user['updated_at'] }}</td>
+                                            <td>
+                                                {{-- @if ($user['status'] == 1) --}}
+                                                <i class="fas fa-eye"></i>
+                                                {{-- @else --}}
+                                                {{-- <i class="fas fa-eye-slash"></i> --}}
+                                                {{-- @endif --}}
                                             </td>
                                             <td>
-                                                <a href={{ route('admin.pages.destroy', ['id' => $page['id']]) }}
+                                                <a href={{ route('admin.users.destroy', ['id' => $user['id']]) }}
                                                     rel="nofollow">
                                                     <i class="fas fa-trash"></i>
                                                 </a>

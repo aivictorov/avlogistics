@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 
-@section('title', 'Добавить категорию портфолио')
+@section('title', 'Редактировать категорию портфолио')
 
 @section('content')
     <section class="content">
