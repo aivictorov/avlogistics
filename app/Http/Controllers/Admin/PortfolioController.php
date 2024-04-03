@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Carbon;
 use App\Models\Portfolio;
+use App\Models\Image;
 use App\Models\PortfolioSection;
 
 class PortfolioController extends Controller
@@ -53,7 +54,28 @@ class PortfolioController extends Controller
     {
         $portfolio = Portfolio::where('id', $id)->first();
         $sections = PortfolioSection::select('id', 'name', 'update_date', 'status')->orderBy('id')->get()->toArray();
-        return view('admin.portfolio.edit', compact('portfolio', 'sections'));
+
+        $image = Image::where([
+            ['parent_type', 'portfolio_avatar'],
+            ['parent_id', $id],
+        ])->first();
+
+        if ($image) {
+            $image_path = '/storage/upload/portfolio_avatar/' . $id . '/' . $image['id'] . '/sizes/page_' . $image['image'];
+        }
+
+        $gallery = Image::where([
+            ['parent_type', 'portfolio_image'],
+            ['parent_id', $id],
+        ])->get();
+
+        if ($gallery) {
+            foreach ($gallery as $key => $image) {
+                $gallery[$key] = '/storage/upload/portfolio_image/' . $id . '/' . $image['id'] . '/sizes/small_' . $image['image'];
+            }
+        }
+
+        return view('admin.portfolio.edit', compact('portfolio', 'sections', 'image_path', 'gallery'));
     }
 
     public function update(Request $request, $id)

@@ -16,11 +16,13 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="name">Название</label>
-                                    <input type="text" class="form-control" id="name" name="name">
+                                    <x-input type="text" class="form-control" id="name" name="name"
+                                        value="{{ $portfolio['name'] }}" />
                                 </div>
                                 <div class="form-group">
                                     <label for="h1">Заголовок</label>
-                                    <input type="text" class="form-control" id="h1" name="h1">
+                                    <x-input type="text" class="form-control" id="h1" name="h1"
+                                        value="{{ $portfolio['h1'] }}" />
                                 </div>
                                 <div class="form-group">
                                     <label>Категория</label>
@@ -32,7 +34,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Текст</label>
-                                    <textarea class="form-control" rows="3" name="text"></textarea>
+                                    <textarea class="form-control" rows="3" name="text">{{ $portfolio['text'] }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -51,6 +53,11 @@
                                     <div class="input-group">
                                         <input type="file" id="image" name="image">
                                     </div>
+                                    @if ($image_path)
+                                        <div class="d-block mt-3">
+                                            <img src={{ $image_path }} />
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -69,6 +76,13 @@
                                     <div class="input-group">
                                         <input type="file" id="images" name="images" multiple>
                                     </div>
+                                    @if ($gallery)
+                                        @foreach ($gallery as $image_path)
+                                            <div class="d-inline-block mt-1">
+                                                <img src={{ $image_path }} />
+                                            </div>
+                                        @endforeach
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -109,21 +123,25 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="url">URL</label>
-                                            <input type="text" class="form-control" id="url" name="url">
+                                            <x-input type="text" class="form-control" id="url" name="url"
+                                                value="{{ $portfolio['url'] }}" />
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="sort_key">Ключ сортировки</label>
-                                            <input type="text" class="form-control" id="sort_key" name="sort_key">
+                                            <x-input type="text" class="form-control" id="sort_key" name="sort_key"
+                                                value="{{ $portfolio['sort_key'] }}" />
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Статус</label>
-                                            <select class="form-control">
-                                                <option>Включено</option>
-                                                <option>Выключено</option>
+                                            <select class="form-control" name="status">
+                                                <option value="1" {{ $portfolio['status'] == 1 ? 'selected' : '' }}>
+                                                    Включено</option>
+                                                <option value="0" {{ $portfolio['status'] == 0 ? 'selected' : '' }}>
+                                                    Отключено</option>
                                             </select>
                                         </div>
                                     </div>
