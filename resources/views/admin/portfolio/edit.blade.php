@@ -88,7 +88,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-primary card-outline">
@@ -98,15 +97,15 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="title">Title</label>
-                                    <input type="text" class="form-control" id="title" name="url">
+                                    <x-input type="text" class="form-control" id="title" name="url" value="{{ $seo['title'] }}" />
                                 </div>
                                 <div class="form-group">
                                     <label for="meta_keywords">meta:Description</label>
-                                    <textarea id="meta_description" class="form-control" rows="3" name="text"></textarea>
+                                    <textarea id="meta_description" class="form-control" rows="3" name="text">{{ $seo['description'] }}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="meta_keywords">meta:Keywords</label>
-                                    <textarea id="meta_keywords" class="form-control" rows="3" name="text"></textarea>
+                                    <textarea id="meta_keywords" class="form-control" rows="3" name="text">{{ $seo['keywords'] }}</textarea>
                                 </div>
                             </div>
                         </div>

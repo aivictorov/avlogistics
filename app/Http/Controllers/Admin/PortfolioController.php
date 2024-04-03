@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Carbon;
 use App\Models\Portfolio;
 use App\Models\Image;
 use App\Models\PortfolioSection;
+use App\Models\SEO;
 
 class PortfolioController extends Controller
 {
@@ -75,7 +75,9 @@ class PortfolioController extends Controller
             }
         }
 
-        return view('admin.portfolio.edit', compact('portfolio', 'sections', 'image_path', 'gallery'));
+        $seo = SEO::find($portfolio['seo_id']);
+
+        return view('admin.portfolio.edit', compact('portfolio', 'sections', 'image_path', 'gallery', 'seo'));
     }
 
     public function update(Request $request, $id)

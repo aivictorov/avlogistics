@@ -16,15 +16,17 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="name">Название</label>
-                                    <input type="text" class="form-control" id="name" name="name">
+                                    <x-input type="text" class="form-control" id="name" name="name"
+                                        value="{{ $faq_category['name'] }}" />
                                 </div>
                                 <div class="form-group">
                                     <label for="h1">Заголовок</label>
-                                    <input type="text" class="form-control" id="h1" name="h1">
+                                    <x-input type="text" class="form-control" id="h1" name="h1"
+                                        value="{{ $faq_category['h1'] }}" />
                                 </div>
                                 <div class="form-group">
                                     <label for="text">Анонс</label>
-                                    <textarea id="text" class="form-control" rows="3" name="text"></textarea>
+                                    <textarea id="text" class="form-control" rows="3" name="text">{{ $faq_category['announce'] }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -75,15 +77,16 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="title">Title</label>
-                                    <input type="text" class="form-control" id="title" name="url">
+                                    <x-input type="text" class="form-control" id="title" name="url"
+                                        value="{{ $seo['title'] }}" />
                                 </div>
                                 <div class="form-group">
                                     <label for="meta_keywords">meta:Description</label>
-                                    <textarea id="meta_description" class="form-control" rows="3" name="text"></textarea>
+                                    <textarea id="meta_description" class="form-control" rows="3" name="text">{{ $seo['description'] }}</textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="meta_keywords">meta:Keywords</label>
-                                    <textarea id="meta_keywords" class="form-control" rows="3" name="text"></textarea>
+                                    <textarea id="meta_keywords" class="form-control" rows="3" name="text">{{ $seo['keywords'] }}</textarea>
                                 </div>
                             </div>
                         </div>

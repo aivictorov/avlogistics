@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\FAQ_Questions;
 use App\Models\FAQ_Categories;
 use Illuminate\Support\Carbon;
+use App\Models\SEO;
 
 class FAQController extends Controller
 {
@@ -52,8 +53,12 @@ class FAQController extends Controller
         return redirect(route('admin.faq.index'));
     }
 
-    public function edit()
+    public function edit($id)
     {
-        return view('admin.faq.edit');
+        $faq_category = FAQ_Categories::find($id);
+
+        $seo = SEO::find($faq_category['seo_id']);
+
+        return view('admin.faq.edit', compact('faq_category', 'seo'));
     }
 }
