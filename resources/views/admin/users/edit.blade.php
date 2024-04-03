@@ -16,19 +16,19 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="name">Имя пользователя</label>
-                                    <input type="text" class="form-control" id="name" name="name">
+                                    <x-input type="text" class="form-control" id="name" name="name" value="{{ $user['name'] }}"/>
                                 </div>          
                                 <div class="form-group">
                                     <label for="name">Электронная почта</label>
-                                    <input type="text" class="form-control" id="name" name="name">
+                                    <x-input type="text" class="form-control" id="name" name="name" value="{{ $user['email'] }}"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="h1">Пароль</label>
-                                    <input type="text" class="form-control" id="h1" name="h1">
+                                    <input type="text" class="form-control" id="h1" name="password">
                                 </div>
                                 <div class="form-group">
                                     <label for="h1">Подтверждение пароля</label>
-                                    <input type="text" class="form-control" id="h1" name="h1">
+                                    <input type="text" class="form-control" id="h1" name="password_confirm">
                                 </div>
                             </div>
                         </div>
@@ -67,12 +67,17 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-block btn-primary btn-lg">Создать</button>
+                            <button type="submit" class="btn btn-block btn-primary btn-lg">Сохранить</button>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-block btn-outline-primary btn-lg">Назад</button>
+                            <a href={{ route('admin.users.destroy', ['id' => $user['id']]) }} class="btn btn-block btn-danger btn-lg">Удалить</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <a href={{ url()->previous() }} type="button" class="btn btn-block btn-outline-primary btn-lg">Назад</a>
                         </div>
                     </div>
                 </div>

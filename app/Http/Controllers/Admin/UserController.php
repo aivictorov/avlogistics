@@ -54,8 +54,10 @@ class UserController extends Controller
         return redirect(route('admin.users.index'));
     }
 
-    public function edit()
+    public function edit($id)
     {
-        return view('admin.users.edit', ['id' => 1]);
+        $user = User::find($id);
+
+        return view('admin.users.edit', compact('user'));
     }
 }

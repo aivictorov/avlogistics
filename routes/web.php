@@ -24,19 +24,29 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/portfolio', [App\Http\Controllers\Admin\PortfolioController::class, 'index'])->name('portfolio.index');
     Route::get('/portfolio/create', [App\Http\Controllers\Admin\PortfolioController::class, 'create'])->name('portfolio.create');
     Route::post('/portfolio', [App\Http\Controllers\Admin\PortfolioController::class, 'store'])->name('portfolio.store');
+    Route::get('/portfolio/{id}/edit', [App\Http\Controllers\Admin\PortfolioController::class, 'edit'])->name('portfolio.edit');
+    Route::put('/portfolio/{id}', [App\Http\Controllers\Admin\PortfolioController::class, 'update'])->name('portfolio.update');
+    Route::get('/portfolio/{id}/delete', [App\Http\Controllers\Admin\PortfolioController::class, 'destroy'])->name('portfolio.destroy');
 
     Route::get('/portfolioSections', [App\Http\Controllers\Admin\PortfolioSectionController::class, 'index'])->name('portfolioSections.index');
     Route::get('/portfolioSections/create', [App\Http\Controllers\Admin\PortfolioSectionController::class, 'create'])->name('portfolioSections.create');
     Route::post('/portfolioSections', [App\Http\Controllers\Admin\PortfolioSectionController::class, 'store'])->name('portfolioSections.store');
+    Route::get('/portfolioSections/{id}/edit', [App\Http\Controllers\Admin\PortfolioSectionController::class, 'edit'])->name('portfolioSections.edit');
+    Route::put('/portfolioSections/{id}', [App\Http\Controllers\Admin\PortfolioSectionController::class, 'update'])->name('portfolioSections.update');
+    Route::get('/portfolioSections/{id}/delete', [App\Http\Controllers\Admin\PortfolioSectionController::class, 'destroy'])->name('portfolioSections.destroy');
 
     Route::get('/faq', [App\Http\Controllers\Admin\FAQController::class, 'index'])->name('faq.index');
     Route::get('/faq/create', [App\Http\Controllers\Admin\FAQController::class, 'create'])->name('faq.create');
     Route::post('/faq', [App\Http\Controllers\Admin\FAQController::class, 'store'])->name('faq.store');
+    Route::get('/faq/{id}/edit', [App\Http\Controllers\Admin\FAQController::class, 'edit'])->name('faq.edit');
+    Route::put('/faq/{id}', [App\Http\Controllers\Admin\FAQController::class, 'update'])->name('faq.update');
+    Route::get('/faq/{id}/delete', [App\Http\Controllers\Admin\FAQController::class, 'destroy'])->name('faq.destroy');
 
     Route::get('/users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
     Route::get('/users/create', [App\Http\Controllers\Admin\UserController::class, 'create'])->name('users.create');
     Route::post('/users', [App\Http\Controllers\Admin\UserController::class, 'store'])->name('users.store');
     Route::get('/users/{id}/edit', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{id}', [App\Http\Controllers\Admin\FAQController::class, 'update'])->name('users.update');
     Route::get('/users/{id}/delete', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
 });
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Page;
+use App\Models\SEO;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -101,9 +102,9 @@ class PageController extends Controller
 
     public function edit($id)
     {
-        $page = Page::where('id', $id)->first();
-
-        return view('admin.pages.edit', compact('page'));
+        $page = Page::find($id);
+        $seo = SEO::find($page['seo_id']);
+        return view('admin.pages.edit', compact('page', 'seo'));
     }
 
     public function update()
@@ -114,7 +115,6 @@ class PageController extends Controller
     public function destroy($id)
     {
         Page::find($id)->delete();
-
         return redirect(route('admin.pages.index'));
     }
 }

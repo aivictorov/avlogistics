@@ -25,7 +25,55 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body table-responsive p-0">
+
                             <table class="table table-hover text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th class="w-50">Наименование</th>
+                                        <th>Дата изменения</th>
+                                        <th>Статус</th>
+                                        <th>Действия</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td><input id="search" class="form-control float-right" placeholder="Поиск"></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    @foreach ($portfolioItems as $item)
+                                        <tr>
+                                            <td>{{ $item['id'] }}</td>
+                                            <td>
+                                                <a href={{ route('admin.portfolio.edit', ['id' => $item['id']]) }}>
+                                                    {{ $item['name'] }}
+                                                </a>
+                                            </td>
+                                            <td>{{ $item['update_date'] }}</td>
+                                            <td>
+                                                @if ($item['status'] == 1)
+                                                    <i class="fas fa-eye"></i>
+                                                @else
+                                                    <i class="fas fa-eye-slash"></i>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <a href={{ route('admin.portfolio.destroy', ['id' => $item['id']]) }}
+                                                    rel="nofollow">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+
+
+
+                            {{-- <table class="table table-hover text-nowrap">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -68,7 +116,7 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            </table>
+                            </table> --}}
                         </div>
                         <!-- /.card-body -->
                     </div>

@@ -15,12 +15,9 @@
                                 Добавить страницу
                             </a>
                         </div>
-                        <!-- /.card-body -->
                     </div>
                 </div>
             </div>
-            <!-- /.row -->
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -29,46 +26,46 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>User</th>
-                                        <th>Date</th>
-                                        <th>Status</th>
-                                        <th>Reason</th>
+                                        <th class="w-50">Наименование</th>
+                                        <th>Дата изменения</th>
+                                        <th>Статус</th>
+                                        <th>Действия</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>
-                                            <input type="text" name="table_search" class="form-control float-right"
-                                                placeholder="ID">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="table_search" class="form-control float-right"
-                                                placeholder="User">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="table_search" class="form-control float-right"
-                                                placeholder="Date">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="table_search" class="form-control float-right"
-                                                placeholder="Status">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="table_search" class="form-control float-right"
-                                                placeholder="Reason">
-                                        </td>
+                                        <td></td>
+                                        <td><input id="search" class="form-control float-right" placeholder="Поиск"></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
-                                    @foreach ($faq_categories as $item)
+                                    @foreach ($faq_categories as $faq_category)
                                         <tr>
-                                            <td>{{ $item['id'] }}</td>
-                                            <td>{{ $item['name'] }}</td>
-                                            <td>11-7-2014</td>
-                                            <td><span class="tag tag-success">Approved</span></td>
-                                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                            <td>{{ $faq_category['id'] }}</td>
+                                            <td>
+                                                <a href={{ route('admin.faq.edit', ['id' => $faq_category['id']]) }}>
+                                                    {{ $faq_category['name'] }}
+                                                </a>
+                                            </td>
+                                            <td>{{ $faq_category['update_date'] }}</td>
+                                            <td>
+                                                @if ($faq_category['status'] == 1)
+                                                    <i class="fas fa-eye"></i>
+                                                @else
+                                                    <i class="fas fa-eye-slash"></i>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <a href={{ route('admin.portfolioSections.destroy', ['id' => $faq_category['id']]) }}
+                                                    rel="nofollow">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            </table>
+                            </table>                  
                         </div>
                         <!-- /.card-body -->
                     </div>

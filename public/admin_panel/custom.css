@@ -1,0 +1,22 @@
+.brand-link {
+    display: block;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    padding: .8125rem calc(1rem + 8px);
+    white-space: wrap;
+}
+
+.brand-link .brand-image {
+    float: left;
+    line-height: .8;
+    margin-left: unset;
+    margin-right: .5rem;
+    margin-top: -3px;
+    max-height: 33px;
+    width: auto;
+}
+
+.user-panel .info {
+    display: inline-block;
+    padding: 5px 5px 5px 1rem;
+}

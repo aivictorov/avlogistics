@@ -12,7 +12,7 @@ class FAQController extends Controller
 {
     public function index()
     {
-        $faq_categories = FAQ_Categories::select('id', 'name')->orderBy('id')->get()->toArray();
+        $faq_categories = FAQ_Categories::select('id', 'name', 'update_date', 'status')->orderBy('id')->get()->toArray();
 
         // return view('admin.faq.index');
         return view('admin.faq.index', compact('faq_categories'));
@@ -50,5 +50,10 @@ class FAQController extends Controller
         // $faq = FAQ_Questions::create($validated);
 
         return redirect(route('admin.faq.index'));
+    }
+
+    public function edit()
+    {
+        return view('admin.faq.edit');
     }
 }

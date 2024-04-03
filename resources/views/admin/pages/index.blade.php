@@ -5,7 +5,6 @@
 @section('content')
     <section class="content">
         <div class="container-fluid">
-
             <div class="row">
                 <div class="col-md-2">
                     <div class="card">
@@ -35,26 +34,11 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>
-                                            <input type="text" name="table_search" class="form-control float-right"
-                                                placeholder="ID">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="table_search" class="form-control float-right"
-                                                placeholder="User">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="table_search" class="form-control float-right"
-                                                placeholder="Date">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="table_search" class="form-control float-right"
-                                                placeholder="Status">
-                                        </td>
-                                        <td>
-                                            <input type="text" name="table_search" class="form-control float-right"
-                                                placeholder="Reason">
-                                        </td>
+                                        <td></td>
+                                        <td><input id="search" class="form-control float-right" placeholder="Поиск"></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
                                     @foreach ($pages as $page)
                                         <tr>
