@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href={{ route('home') }} class="brand-link">
-        <span class="brand-text font-weight-light">ООО "Авангард Лоджистикс"</span>
+        <span class="brand-text font-weight-light">Панель управления</span>
     </a>
 
     <!-- Sidebar -->

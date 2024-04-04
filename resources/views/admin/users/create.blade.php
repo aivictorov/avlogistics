@@ -17,18 +17,18 @@
                                 <div class="form-group">
                                     <label for="name">Имя пользователя</label>
                                     <input type="text" class="form-control" id="name" name="name">
-                                </div>          
+                                </div>
                                 <div class="form-group">
                                     <label for="name">Электронная почта</label>
                                     <input type="text" class="form-control" id="name" name="name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="h1">Пароль</label>
-                                    <input type="text" class="form-control" id="h1" name="h1">
+                                    <label for="password">Пароль</label>
+                                    <input id="password" class="form-control" type="text" name="password">
                                 </div>
                                 <div class="form-group">
-                                    <label for="h1">Подтверждение пароля</label>
-                                    <input type="text" class="form-control" id="h1" name="h1">
+                                    <label for="password_confirmation">Подтверждение пароля</label>
+                                    <input id="password_confirmation" class="form-control" type="text" name="password_confirmation">
                                 </div>
                             </div>
                         </div>

@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="text">Анонс</label>
-                                    <textarea id="text" class="form-control" rows="3" name="text"></textarea>
+                                    <x-textarea id="text" class="form-control" rows="3" name="text"/>
                                 </div>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Текст</label>
-                                                    <textarea class="form-control" rows="3" name="text"></textarea>
+                                                    <x-textarea class="form-control" rows="3" name="text"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -79,11 +79,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="meta_keywords">meta:Description</label>
-                                    <textarea id="meta_description" class="form-control" rows="3" name="text"></textarea>
+                                    <x-textarea id="meta_description" class="form-control" rows="3" name="text"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="meta_keywords">meta:Keywords</label>
-                                    <textarea id="meta_keywords" class="form-control" rows="3" name="text"></textarea>
+                                    <x-textarea id="meta_keywords" class="form-control" rows="3" name="text"/>
                                 </div>
                             </div>
                         </div>

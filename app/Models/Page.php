@@ -41,6 +41,21 @@ class Page extends Model
 
     public $timestamps = false;
 
+    public static function getRules(): array
+    {
+        return [
+            'name' => ['required', 'string', 'min:3', 'max:50'],
+            'h1' => ['required', 'string', 'min:3', 'max:100'],
+            'parent_id' => ['required', 'integer', 'min:0'],
+            'text' => ['required', 'string', 'min:10'],
+            'url' => ['required', 'min:3', 'max:50'],
+            'menu_sort' => ['required', 'integer', 'min:0', 'max:100'],
+            'menu_show' => ['required', 'boolean'],
+            'status' => ['required', 'boolean'],
+            'system_page' => ['required', 'in:0,1,2,3,4,5,6,7'],
+        ];
+    }
+
     public static function parents($url)
     {
         $page = Page::where('url', $url)->first();

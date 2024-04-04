@@ -64,12 +64,14 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <a href={{ route('admin.portfolioSections.destroy', ['id' => $section['id']]) }} class="btn btn-block btn-danger btn-lg">Удалить</a>
+                            <a href={{ route('admin.portfolioSections.destroy', ['id' => $section['id']]) }}
+                                class="btn btn-block btn-danger btn-lg">Удалить</a>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <a href={{ url()->previous() }} type="button" class="btn btn-block btn-outline-primary btn-lg">Назад</a>
+                            <a href={{ url()->previous() }} type="button"
+                                class="btn btn-block btn-outline-primary btn-lg">Назад</a>
                         </div>
                     </div>
                 </div>

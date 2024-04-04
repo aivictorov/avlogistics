@@ -8,11 +8,11 @@ use App\Models\SEO;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use Intervention\Image\ImageManagerStatic as Images;
 
-Images::configure(['driver' => 'imagick']);
+use Illuminate\Support\Str;
 
 class PageController extends Controller
 {
@@ -29,7 +29,9 @@ class PageController extends Controller
 
     public function create(Request $request)
     {
-        return view('admin.pages.create');
+        $pages = Page::select('id', 'name', 'url', 'update_date', 'status')->orderBy('id')->get()->toArray();
+
+        return view('admin.pages.create', compact('pages'));
     }
 
     public function store(Request $request)
@@ -40,63 +42,34 @@ class PageController extends Controller
             ]);
         }
 
-        $validated = $request->validate([
-            'name' => ['required', 'string'],
-            'h1' => ['required', 'string'],
-            'url' => ['required', 'string'],
-            'text' => ['required'],
-        ]);
+        $validated = $request->validate(array_merge(Page::getRules(), SEO::getRules(), Image::getRules()));
 
         $validated = array_merge($validated, [
             'create_date' => Carbon::now()->toDateTimeString(),
             'update_date' => Carbon::now()->toDateTimeString(),
-            'user_id' => 1,
-            "parent_id" => 3,
-            "menu_sort" => 0,
-            'menu_show' => 1,
-            'status' => 1,
+            'user_id' => Auth::user()->id,
             'system' => 0,
-            'system_page' => 0,
-            'seo_id' => 9,
             'portfolio_section_id' => null,
         ]);
 
-        $page = Page::create($validated);
+        DB::transaction(function () use ($validated, $request) {
+            $seo = SEO::create($validated);
+            $validated = array_merge($validated, ['seo_id' => $seo->id]);
 
-        if ($page && $request->filled('image')) {
-            $request->validate([
-                'image' => ['mimes:jpg,jpeg', 'dimensions:min_width=670,min_height=270'],
-            ]);
+            $page = Page::create($validated);
 
-            $parent_type = 'page_avatar';
-            $parent_id = $page->id;
+            if ($request->has('image')) {
+                $image = Image::create([
+                    'image' => $request->file('image')->getClientOriginalName(),
+                    'create_date' => Carbon::now()->toDateTimeString(),
+                    'sort' => 0,
+                    'parent_type' => 'page_avatar',
+                    'parent_id' => $page->id,
+                ]);
 
-            $image = Images::make($request->file('image'));
-            $image->fit(670, 270);
-
-            $watermark = Images::make(public_path('images/watermark.png'));
-            $image->insert($watermark, 'center');
-
-            $mini_watermark = Images::make(public_path('images/mini-watermark.png'));
-            $image->insert($mini_watermark, 'bottom-right');
-
-            $original_filename = $request->file('image')->getClientOriginalName();
-
-            $imageDB = Image::create([
-                'image' => $original_filename,
-                'create_date' => Carbon::now()->toDateTimeString(),
-                'sort' => 0,
-                'parent_type' => $parent_type,
-                'parent_id' => $parent_id,
-            ]);
-
-            Storage::makeDirectory('public/upload/page_avatar/' . $parent_id . '/' . $imageDB->id . '/original');
-            Storage::makeDirectory('public/upload/page_avatar/' . $parent_id . '/' . $imageDB->id . '/sizes');
-
-            $image_path = storage_path('app/public/upload/page_avatar/' . $parent_id . '/' . $imageDB->id . '/sizes/' . 'page_' . $original_filename);
-            $image->save($image_path);
-        }
-
+                Image::savePageAvatar($request->file('image'), $image->id, $page->id);
+            }
+        }, 3);
         return redirect(route('admin.pages.index'));
     }
 
@@ -114,7 +87,22 @@ class PageController extends Controller
 
     public function destroy($id)
     {
-        Page::find($id)->delete();
+        DB::transaction(function () use ($id) {
+            $page = Page::find($id);
+            $image = Image::where([
+                ['parent_type', 'page_avatar'],
+                ['parent_id', $id],
+            ])->first();
+            $seo = SEO::find($page['seo_id']);
+
+            $page->delete();
+            if ($image) {
+                $image->delete();
+                Storage::deleteDirectory('public/upload/page_avatar/' . $id);
+            }
+            $seo->delete();
+        }, 3);
+
         return redirect(route('admin.pages.index'));
     }
 }

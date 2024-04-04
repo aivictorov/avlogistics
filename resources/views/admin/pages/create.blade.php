@@ -15,6 +15,9 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
+                                    <x-errors />
+                                </div>
+                                <div class="form-group">
                                     <label for="name">Название</label>
                                     <x-input type="text" class="form-control" id="name" name="name" />
                                 </div>
@@ -25,14 +28,16 @@
 
                                 <div class="form-group">
                                     <label>Категория (страница родитель)</label>
-                                    <select class="form-control">
-                                        <option>Главная</option>
-                                        <option>ЖД перевозки</option>
+                                    <select class="form-control" name="parent_id">
+                                        <option value="0">Без родителя</option>
+                                        @foreach ($pages as $page)
+                                            <option value="{{ $page['id'] }}">{{ $page['name'] }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Текст</label>
-                                    <textarea class="form-control" rows="3" name="text"></textarea>
+                                    <x-textarea class="form-control" rows="3" name="text" />
                                 </div>
                             </div>
                         </div>
@@ -48,7 +53,7 @@
                                 <div class="form-group">
                                     <label for="image">Изображение</label>
                                     <div class="input-group">
-                                        <x-input type="file" id="image" name="image"/>
+                                        <x-input type="file" id="image" name="image" />
                                     </div>
                                 </div>
                             </div>
@@ -63,16 +68,18 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="seo_title">Title</label>
-                                    <x-input id="seo_title" class="form-control" type="text" name="seo_title"/>
+                                    <label for="title">Title</label>
+                                    <x-input id="title" class="form-control" type="text" name="title" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="meta_keywords">meta:Description</label>
-                                    <textarea id="meta_description" class="form-control" name="meta_description" rows="3"></textarea>
+                                    <label for="description">meta:Description</label>
+                                    <x-textarea id="description" class="form-control" name="description"
+                                        rows="3" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="meta_keywords">meta:Keywords</label>
-                                    <textarea id="meta_keywords" class="form-control" name="meta_keywords" rows="3"></textarea>
+                                    <label for="keywords">meta:Keywords</label>
+                                    <x-textarea id="keywords" class="form-control" name="keywords"
+                                        rows="3" />
                                 </div>
                             </div>
                         </div>
@@ -89,39 +96,39 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="url">URL</label>
-                                            <x-input type="text" class="form-control" id="url" name="url"/>
+                                            <x-input type="text" class="form-control" id="url" name="url" />
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="sort_key">Ключ сортировки</label>
-                                            <x-input type="text" class="form-control" id="sort_key" name="sort_key"/>
+                                            <label for="menu_sort">Ключ сортировки</label>
+                                            <x-input type="text" class="form-control" id="menu_sort" name="menu_sort" />
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Отображение в меню</label>
-                                            <select class="form-control">
-                                                <option>Включено</option>
-                                                <option>Выключено</option>
+                                            <select class="form-control" name="menu_show">
+                                                <option value="1" selected>Включено</option>
+                                                <option value="0">Выключено</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Статус</label>
-                                            <select class="form-control">
-                                                <option>Включено</option>
-                                                <option>Выключено</option>
+                                            <select class="form-control" name="status">
+                                                <option value="1" selected>Включено</option>
+                                                <option value="0">Выключено</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Системная страница</label>
-                                            <select class="form-control">
-                                                <option>Включено</option>
-                                                <option>Выключено</option>
+                                            <select class="form-control" name="system_page">
+                                                <option value="1">Включено</option>
+                                                <option value="0" selected>Выключено</option>
                                             </select>
                                         </div>
                                     </div>
