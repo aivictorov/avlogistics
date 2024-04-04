@@ -15,12 +15,15 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
+                                    <x-errors />
+                                </div>
+                                <div class="form-group">
                                     <label for="name">Название</label>
-                                    <input type="text" class="form-control" id="name" name="name">
+                                    <x-input type="text" class="form-control" id="name" name="name" />
                                 </div>
                                 <div class="form-group">
                                     <label for="h1">Заголовок</label>
-                                    <input type="text" class="form-control" id="h1" name="h1">
+                                    <x-input type="text" class="form-control" id="h1" name="h1" />
                                 </div>
                                 <div class="form-group">
                                     <label>Категория</label>
@@ -32,13 +35,13 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Текст</label>
-                                    <textarea class="form-control" rows="3" name="text"></textarea>
+                                    <trix-editor input="text"></trix-editor>
+                                    <x-input id="text" type="hidden" name="text" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-primary card-outline">
@@ -49,14 +52,13 @@
                                 <div class="form-group">
                                     <label for="image">Основное изображение</label>
                                     <div class="input-group">
-                                        <input type="file" id="image" name="image">
+                                        <x-input type="file" id="image" name="image" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-primary card-outline">
@@ -67,14 +69,13 @@
                                 <div class="form-group">
                                     <label for="images">Галерея изображений</label>
                                     <div class="input-group">
-                                        <input type="file" id="images" name="images" multiple>
+                                        <x-input type="file" id="images" name="images" multiple />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-primary card-outline">
@@ -84,15 +85,17 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="title">Title</label>
-                                    <input type="text" class="form-control" id="title" name="url">
+                                    <x-input id="title" class="form-control" type="text" name="url" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="meta_keywords">meta:Description</label>
-                                    <textarea id="meta_description" class="form-control" rows="3" name="text"></textarea>
+                                    <label for="description">meta:Description</label>
+                                    <x-textarea id="description" class="form-control" rows="3"
+                                        name="description"></x-textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="meta_keywords">meta:Keywords</label>
-                                    <textarea id="meta_keywords" class="form-control" rows="3" name="text"></textarea>
+                                    <label for="keywords">meta:Keywords</label>
+                                    <x-textarea id="keywords" class="form-control" rows="3"
+                                        name="keywords"></x-textarea>
                                 </div>
                             </div>
                         </div>
@@ -109,21 +112,21 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="url">URL</label>
-                                            <input type="text" class="form-control" id="url" name="url">
+                                            <x-input type="text" class="form-control" id="url" name="url" />
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="sort_key">Ключ сортировки</label>
-                                            <input type="text" class="form-control" id="sort_key" name="sort_key">
+                                            <x-input type="text" class="form-control" id="sort_key" name="sort_key" />
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Статус</label>
-                                            <select class="form-control">
-                                                <option>Включено</option>
-                                                <option>Выключено</option>
+                                            <select class="form-control" name="status">
+                                                <option value="1" selected>Включено</option>
+                                                <option value="0">Выключено</option>
                                             </select>
                                         </div>
                                     </div>

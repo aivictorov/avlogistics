@@ -31,4 +31,13 @@ class PortfolioSection extends Model
     ];
 
     public $timestamps = false;
+
+    public static function getRules(): array
+    {
+        return [
+            'name' => ['required', 'string'],
+            'sort_key' => ['required'],
+            'status' => ['required', 'boolean'],
+        ];
+    }
 }

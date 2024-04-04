@@ -7,6 +7,7 @@
         <div class="container-fluid">
             <form action={{ route('admin.pages.update', ['id' => $page['id']]) }} method="post"
                 enctype="multipart/form-data">
+                @method('PUT')
                 @csrf
                 <div class="row">
                     <div class="col-md-12">
@@ -15,6 +16,9 @@
                                 <h3 class="card-title">Основные данные</h3>
                             </div>
                             <div class="card-body">
+                                <div class="form-group">
+                                    <x-errors />
+                                </div>
                                 <div class="form-group">
                                     <label for="name">Название</label>
                                     <x-input type="text" class="form-control" id="name" name="name"
@@ -35,7 +39,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Текст</label>
-                                    <textarea class="form-control" rows="3" name="text">{{ $page['text'] }}</textarea>
+                                    <trix-editor input="text"></trix-editor>
+                                    <input id="text" value="{{ $page['text'] }}" type="hidden" name="text">
                                 </div>
                             </div>
                         </div>

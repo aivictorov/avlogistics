@@ -84,15 +84,21 @@ class PageController extends Controller
 
         if ($image) {
             $image_path = '/storage/upload/page_avatar/' . $id . '/' . $image['id'] . '/sizes/page_' . $image['image'];
+        } else {
+            $image_path = '';
         }
 
         $seo = SEO::find($page['seo_id']);
         return view('admin.pages.edit', compact('page', 'image_path', 'seo'));
     }
 
-    public function update()
+    public function update(Request $request, $id)
     {
-        return 'Изменение страницы';
+        // $validated = $request->validate(Page::getRules());
+
+        // Page::find($id)->update($validated);
+
+        return redirect(route('admin.pages.index'));
     }
 
     public function destroy($id)

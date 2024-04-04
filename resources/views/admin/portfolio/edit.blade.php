@@ -6,6 +6,7 @@
     <section class="content">
         <div class="container-fluid">
             <form action={{ route('admin.portfolio.store') }} method="post" enctype="multipart/form-data">
+                @method('PUT')
                 @csrf
                 <div class="row">
                     <div class="col-md-12">
@@ -34,7 +35,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Текст</label>
-                                    <textarea class="form-control" rows="3" name="text">{{ $portfolio['text'] }}</textarea>
+                                    <trix-editor input="text"></trix-editor>
+                                    <input id="text" value="{{ $portfolio['text'] }}" type="hidden" name="text">
                                 </div>
                             </div>
                         </div>

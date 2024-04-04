@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="/admin_panel/plugins/summernote/summernote-bs4.min.css">
 
 
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
+
     <link rel="stylesheet" href="/admin_panel/custom.css">
 </head>
 
@@ -109,6 +111,7 @@
     {{-- <script src="/admin_panel/dist/js/demo.js"></script> --}}
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     {{-- <script src="/admin_panel/dist/js/pages/dashboard.js"></script> --}}
+    <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
 
 
     <script src="/js/admin.js"></script>

@@ -23,8 +23,9 @@
                                     <input type="text" class="form-control" id="h1" name="h1">
                                 </div>
                                 <div class="form-group">
-                                    <label for="text">Анонс</label>
-                                    <x-textarea id="text" class="form-control" rows="3" name="text"/>
+                                    <label>Анонс</label>
+                                    <trix-editor input="announce"></trix-editor>
+                                    <x-input id="announce" type="hidden" name="announce" />
                                 </div>
                             </div>
                         </div>
@@ -48,7 +49,8 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Текст</label>
-                                                    <x-textarea class="form-control" rows="3" name="text"/>
+                                                    <trix-editor input="text"></trix-editor>
+                                                    <x-input id="text" type="hidden" name="text" />
                                                 </div>
                                             </div>
                                         </div>

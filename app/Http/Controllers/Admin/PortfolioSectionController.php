@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\PortfolioSection;
+use Illuminate\Support\Facades\Auth;
 
 class PortfolioSectionController extends Controller
 {
@@ -27,19 +28,15 @@ class PortfolioSectionController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => ['required', 'string'],
-            'sort_key' => ['required'],
-        ]);
+        $validated = $request->validate(PortfolioSection::getRules());
 
         $validated = array_merge($validated, [
             'create_date' => Carbon::now()->toDateTimeString(),
             'update_date' => Carbon::now()->toDateTimeString(),
-            'user_id' => 1,
-            'status' => 1,
+            'user_id' => Auth::user()->id,
         ]);
 
-        $portfolioSection = PortfolioSection::create($validated);
+        PortfolioSection::create($validated);
 
         return redirect(route('admin.portfolioSections.index'));
     }
@@ -47,23 +44,15 @@ class PortfolioSectionController extends Controller
     public function edit($id)
     {
         $section = PortfolioSection::find($id);
+
         return view('admin.portfolioSections.edit', compact('section'));
     }
 
     public function update(Request $request, $id)
     {
+        $validated = $request->validate(PortfolioSection::getRules());
 
-        $validated = $request->validate([
-            'name' => ['required', 'string'],
-            'sort_key' => ['required'],
-            'status' => ['required'],
-        ]);
-
-        PortfolioSection::find($id)->update([
-            'name' => $request->name,
-            'status' => $request->status,
-            'sort_key' => $request->sort_key,
-        ]);
+        PortfolioSection::find($id)->update($validated);
 
         return redirect(route('admin.portfolioSections.index'));
     }
@@ -71,6 +60,7 @@ class PortfolioSectionController extends Controller
     public function destroy($id)
     {
         PortfolioSection::find($id)->delete();
+        
         return redirect(route('admin.portfolioSections.index'));
     }
 }

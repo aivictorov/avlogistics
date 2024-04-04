@@ -25,7 +25,6 @@
                                     <label for="h1">Заголовок</label>
                                     <x-input type="text" class="form-control" id="h1" name="h1" />
                                 </div>
-
                                 <div class="form-group">
                                     <label>Категория (страница родитель)</label>
                                     <select class="form-control" name="parent_id">
@@ -37,7 +36,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Текст</label>
-                                    <x-textarea class="form-control" rows="3" name="text" />
+                                    <trix-editor input="text"></trix-editor>
+                                    <x-input id="text" type="hidden" name="text" />
                                 </div>
                             </div>
                         </div>
@@ -73,13 +73,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="description">meta:Description</label>
-                                    <x-textarea id="description" class="form-control" name="description"
-                                        rows="3" />
+                                    <x-textarea id="description" class="form-control" name="description" rows="3" />
                                 </div>
                                 <div class="form-group">
                                     <label for="keywords">meta:Keywords</label>
-                                    <x-textarea id="keywords" class="form-control" name="keywords"
-                                        rows="3" />
+                                    <x-textarea id="keywords" class="form-control" name="keywords" rows="3" />
                                 </div>
                             </div>
                         </div>

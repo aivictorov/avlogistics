@@ -15,8 +15,11 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
+                                    <x-errors />
+                                </div>
+                                <div class="form-group">
                                     <label for="name">Название</label>
-                                    <input type="text" class="form-control" id="name" name="name">
+                                    <x-input type="text" class="form-control" id="name" name="name" />
                                 </div>
                             </div>
                         </div>
@@ -33,15 +36,15 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="sort_key">Ключ сортировки</label>
-                                            <input type="text" class="form-control" id="sort_key" name="sort_key">
+                                            <x-input type="text" class="form-control" id="sort_key" name="sort_key" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Статус</label>
-                                            <select class="form-control">
-                                                <option>Включено</option>
-                                                <option>Выключено</option>
+                                            <select class="form-control" name="status">
+                                                <option value="1" selected>Включено</option>
+                                                <option value="0">Выключено</option>
                                             </select>
                                         </div>
                                     </div>

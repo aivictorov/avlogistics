@@ -36,7 +36,7 @@ class PortfolioController extends Controller
             'name' => ['required', 'string'],
             'h1' => ['required', 'string'],
             'url' => ['required', 'string'],
-            "text" => [],
+            'text' => ['required', 'string'],
             'sort_key' => ['required'],
         ]);
 
@@ -66,6 +66,8 @@ class PortfolioController extends Controller
 
         if ($image) {
             $image_path = '/storage/upload/portfolio_avatar/' . $id . '/' . $image['id'] . '/sizes/page_' . $image['image'];
+        } else {
+            $image_path = '';
         }
 
         $gallery = Image::where([

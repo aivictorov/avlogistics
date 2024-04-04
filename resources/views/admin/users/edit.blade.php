@@ -15,6 +15,9 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
+                                    <x-errors />
+                                </div>
+                                <div class="form-group">
                                     <label for="name">Имя пользователя</label>
                                     <x-input type="text" class="form-control" id="name" name="name" value="{{ $user['name'] }}"/>
                                 </div>          
