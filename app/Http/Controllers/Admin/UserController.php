@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 
 class UserController extends Controller
 {
@@ -16,6 +17,10 @@ class UserController extends Controller
             'email',
             'updated_at',
         )->orderBy('id')->get()->toArray();
+
+        foreach ($users as $key => $user) {
+            $users[$key]['updated_at'] = Carbon::parse($user['updated_at'])->toDateString();
+        }
 
         return view('admin.users.index', compact('users'));
     }

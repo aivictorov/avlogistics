@@ -45,14 +45,19 @@
                     <div class="col-md-12">
                         <div class="card card-primary card-outline">
                             <div class="card-header">
-                                <h3 class="card-title">Изображение</h3>
+                                <h3 class="card-title">Основное изображение</h3>
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="image">Изображение</label>
+                                    <label for="image">Основное изображение</label>
                                     <div class="input-group">
-                                        <x-input type="file" id="image" name="image" />
+                                        <input type="file" id="image" name="image">
                                     </div>
+                                    @if ($image_path)
+                                        <div class="d-block mt-3">
+                                            <img src={{ $image_path }} />
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -108,8 +113,10 @@
                                         <div class="form-group">
                                             <label>Отображение в меню</label>
                                             <select class="form-control">
-                                                <option value="1" {{ $page['menu_show'] == 1 ? 'selected' : '' }}>Включено</option>
-                                                <option value="0" {{ $page['menu_show'] == 0 ? 'selected' : '' }}>Отключено</option>
+                                                <option value="1" {{ $page['menu_show'] == 1 ? 'selected' : '' }}>
+                                                    Включено</option>
+                                                <option value="0" {{ $page['menu_show'] == 0 ? 'selected' : '' }}>
+                                                    Отключено</option>
                                             </select>
                                         </div>
                                     </div>
@@ -117,8 +124,10 @@
                                         <div class="form-group">
                                             <label>Статус</label>
                                             <select class="form-control">
-                                                <option value="1" {{ $page['status'] == 1 ? 'selected' : '' }}>Включено</option>
-                                                <option value="0" {{ $page['status'] == 0 ? 'selected' : '' }}>Отключено</option>
+                                                <option value="1" {{ $page['status'] == 1 ? 'selected' : '' }}>
+                                                    Включено</option>
+                                                <option value="0" {{ $page['status'] == 0 ? 'selected' : '' }}>
+                                                    Отключено</option>
                                             </select>
                                         </div>
                                     </div>
@@ -144,12 +153,14 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <a href={{ route('admin.pages.destroy', ['id' => $page['id']]) }} class="btn btn-block btn-danger btn-lg">Удалить</a>
+                            <a href={{ route('admin.pages.destroy', ['id' => $page['id']]) }}
+                                class="btn btn-block btn-danger btn-lg">Удалить</a>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <a href={{ url()->previous() }} type="button" class="btn btn-block btn-outline-primary btn-lg">Назад</a>
+                            <a href={{ url()->previous() }} type="button"
+                                class="btn btn-block btn-outline-primary btn-lg">Назад</a>
                         </div>
                     </div>
                 </div>

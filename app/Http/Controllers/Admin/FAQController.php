@@ -15,7 +15,10 @@ class FAQController extends Controller
     {
         $faq_categories = FAQ_Categories::select('id', 'name', 'update_date', 'status')->orderBy('id')->get()->toArray();
 
-        // return view('admin.faq.index');
+        foreach ($faq_categories as $key => $category) {
+            $faq_categories[$key]['update_date'] = Carbon::parse($category['update_date'])->toDateString();
+        }
+
         return view('admin.faq.index', compact('faq_categories'));
     }
 

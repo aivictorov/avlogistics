@@ -76,8 +76,18 @@ class PageController extends Controller
     public function edit($id)
     {
         $page = Page::find($id);
+
+        $image = Image::where([
+            ['parent_type', 'page_avatar'],
+            ['parent_id', $id],
+        ])->first();
+
+        if ($image) {
+            $image_path = '/storage/upload/page_avatar/' . $id . '/' . $image['id'] . '/sizes/page_' . $image['image'];
+        }
+
         $seo = SEO::find($page['seo_id']);
-        return view('admin.pages.edit', compact('page', 'seo'));
+        return view('admin.pages.edit', compact('page', 'image_path', 'seo'));
     }
 
     public function update()
