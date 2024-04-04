@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Page;
 use App\Models\User;
+use App\Models\SEO;
 
 class AuthController extends Controller
 {
-   
+
     public function login()
     {
         if (Auth::check()) {
@@ -18,7 +19,9 @@ class AuthController extends Controller
         } else {
             $page = Page::where('url', 'login')->first();
             $parents = Page::parents('login');
-            return view('site.login', compact('page', 'parents'));
+            $seo = SEO::find($page['seo_id']);
+
+            return view('site.login', compact('page', 'parents', 'seo'));
         }
     }
 

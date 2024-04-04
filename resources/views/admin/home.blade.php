@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 
-@section('title', 'Главная страница')
+@section('title', 'Панель управления')
 
 @section('content')
     <!-- Main content -->

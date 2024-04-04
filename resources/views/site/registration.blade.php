@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('title', $seo->title)
+@section('description', $seo->description)
+@section('keywords', $seo->keywords)
+
 @section('content')
     <section class="main-section main-section__container--page">
         <div class="main-section__container main-section__container--aside">
