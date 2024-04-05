@@ -25,7 +25,7 @@ class PortfolioController extends Controller
         }
 
         foreach ($sections as $key => $section) {
-            $sections[$key]['items'] = Portfolio::where('portfolio_section_id', $section['id'])->get(['id', 'name', 'url'])->toArray();
+            $sections[$key]['items'] = Portfolio::where('portfolio_section_id', $section['id'])->orderBy('sort_key')->get(['id', 'name', 'url'])->toArray();
 
             foreach ($sections[$key]['items'] as $key2 => $item) {
                 $sections[$key]['items'][$key2]['image'] = Image::where([
@@ -41,6 +41,8 @@ class PortfolioController extends Controller
     public function show($url)
     {
         $parents = Page::parents('portfolio');
+        array_push($parents, Page::where('url', 'portfolio')->first());
+        // dd($parents);
 
         $page = Portfolio::where('url', $url)->first();
         $seo = SEO::find($page['seo_id']);

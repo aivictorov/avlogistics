@@ -19,8 +19,6 @@ class FAQController extends Controller
 
         $faq_categories = FAQ_Categories::select('id', 'name', 'url', 'h1', 'announce')->where('status', 1)->orderBy('sort_key')->get()->toArray();
 
-        // dd($faq_categories);
-
         foreach ($faq_categories as $key => $category) {
             $faq_categories[$key]['items'] = FAQ_Questions::select('name', 'answer')->where('faq_id', $category['id'])->orderBy('sort')->get()->toArray();
 
@@ -29,19 +27,18 @@ class FAQController extends Controller
             }
         }
 
-        // dd($faq_categories);
-
         return view('faq.index', compact('page', 'parents', 'seo', 'faq_categories'));
     }
 
     public function show($url)
     {
-        $parents = Page::parents('faq');
-
-        $page = Page::where('url', 'faq')->first();
+        $page = FAQ_Categories::where('url', $url)->first();
 
         $faq_page = FAQ_Categories::where('url', $url)->first();
+
         $parents = Page::parents('faq');
+        array_push($parents, Page::where('url', 'faq')->first());
+
         $seo = SEO::find($faq_page['seo_id']);
 
         $faq_questions = FAQ_Questions::select('name', 'answer')->where('faq_id', $faq_page['id'])->orderBy('sort')->get()->toArray();
