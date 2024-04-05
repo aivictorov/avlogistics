@@ -22,4 +22,6 @@
             @endif
         @endif
     @endforeach
+    <a href="{{ route('contactForm') }}" class="main-aside__send-form">Рассчитать стоимость</a>
+    {{-- <a href="{{ route('contactForm') }}" class="js-form-open main-aside__send-form">Рассчитать стоимость</a> --}}
 </aside>
