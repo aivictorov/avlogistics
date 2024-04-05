@@ -61,8 +61,10 @@ Route::name('user.')->group(function () {
 Route::get('/', HomeController::class)->name('home');
 
 Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio.index');
+Route::get('/portfolio/{page}', [PortfolioController::class, 'show'])->where('page', '.+')->name('portfolio.show');
 
-Route::get('/faq', [FAQController::class, 'index'])->name('portfolio.index');
+Route::get('/faq', [FAQController::class, 'index'])->name('faq.index');
+Route::get('/faq/{page}', [FAQController::class, 'show'])->where('page', '.+')->name('faq.show');
 
 Route::get('/contact', ContactFormController::class)->name('contactForm');
 

@@ -1,39 +1,40 @@
+@extends('layouts.main')
 
-<section class="main-section main-section__container--page">
-    <div class="main-section__container main-section__container--aside">
-        <div class="aside-page">
-            <?= $this->render('@app/views/layouts/parts/breadcrumbs', ['breadcrumbs'=>  $webpage->breadcrumbs, 'devider' => '/']) ?>
-            <h1 class="page-h1"><?= Html::encode($webpage->h1) ?></h1>
+@section('title', $seo->title)
+@section('description', $seo->description)
+@section('keywords', $seo->keywords)
 
+@section('content')
+    <section class="main-section main-section__container--page">
+        <div class="main-section__container main-section__container--aside">
+            <div class="aside-page">
 
+                @include('site.parts.breadcrumbs')
 
-            <div class="page-content">
-                <?= $webpage->announce ?>
+                <h1 class="page-h1">{{ $faq_page['name'] }}</h1>
 
-                <div class="faq-page-questions">
-                    <?php foreach($faq_page->questions as $question): ?>
-                        <div class="faq-page-questions_item">
-                            <a class="faq-anchor" name="<?= \app\components\Translit::urlTranslit($question->name) ?>"></a>
-                            <h2>
-                                <?= $question->name ?>
-                            </h2>
-                            <blockquote>
-                                <?= $question->answer; ?>
-                            </blockquote>
-                        </div>
+                <div class="page-content">
+                    Одним из основных понятий, с которым сталкивается грузоотправитель при перевозке груза железнодорожным
+                    транспортом, это габарит погрузки. Что такое габарит погрузки? Какие виды габаритов погрузки
+                    используются на железнодорожном транспорте. Каковы их основные размеры? Ответы на все эти вопросы Вы
+                    можете найти на данной странице.
 
-                    <?php endforeach; ?>
+                    <div class="faq-page-questions">
+                        @foreach ($faq_questions as $question)
+                            <div class="faq-page-questions_item">
+                                <a class="faq-anchor" name="{{ $question['url'] }}"></a>
+                                <h2>{{ $question['name'] }}</h2>
+                                <blockquote>
+                                    {!! $question['answer'] !!}
+                                </blockquote>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
 
+            @include('faq.parts.aside')
 
         </div>
-
-
-        <?= $this->render('parts/aside', ['faq_sections' => $faq]) ?>
-
-    </div>
-
-
-
-</section>
+    </section>
+@endsection

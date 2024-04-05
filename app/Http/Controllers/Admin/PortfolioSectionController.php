@@ -52,6 +52,11 @@ class PortfolioSectionController extends Controller
     {
         $validated = $request->validate(PortfolioSection::getRules());
 
+        $validated = array_merge($validated, [
+            'update_date' => Carbon::now()->toDateTimeString(),
+            'user_id' => Auth::user()->id,
+        ]);
+
         PortfolioSection::find($id)->update($validated);
 
         return redirect(route('admin.portfolioSections.index'));

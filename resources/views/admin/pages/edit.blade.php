@@ -29,12 +29,16 @@
                                     <x-input type="text" class="form-control" id="h1" name="h1"
                                         value="{{ $page['h1'] }}" />
                                 </div>
-
                                 <div class="form-group">
                                     <label>Категория (страница родитель)</label>
-                                    <select class="form-control">
-                                        <option>Главная</option>
-                                        <option>ЖД перевозки</option>
+                                    <select class="form-control" name="parent_id">
+                                        <option value="0" {{ $page['parent_id'] == 0 ? 'selected' : '' }}>Без родителя
+                                        </option>
+                                        @foreach ($pages as $parent)
+                                            <option value="{{ $parent['id'] }}"
+                                                {{ $page['parent_id'] == $parent['id'] ? 'selected' : '' }}>
+                                                {{ $parent['name'] }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -76,17 +80,17 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="seo_title">Title</label>
-                                    <x-input id="seo_title" class="form-control" type="text" name="seo_title"
+                                    <label for="title">Title</label>
+                                    <x-input id="title" class="form-control" type="text" name="title"
                                         value="{{ $seo['title'] }}" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="meta_keywords">meta:Description</label>
-                                    <textarea id="meta_description" class="form-control" name="meta_description" rows="3">{{ $seo['description'] }}</textarea>
+                                    <label for="description">meta:Description</label>
+                                    <textarea id="description" class="form-control" name="description" rows="3">{{ $seo['description'] }}</textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="meta_keywords">meta:Keywords</label>
-                                    <textarea id="meta_keywords" class="form-control" name="meta_keywords" rows="3">{{ $seo['keywords'] }}</textarea>
+                                    <label for="keywords">meta:Keywords</label>
+                                    <textarea id="keywords" class="form-control" name="keywords" rows="3">{{ $seo['keywords'] }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -109,15 +113,15 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="sort_key">Ключ сортировки</label>
-                                            <x-input type="text" class="form-control" id="sort_key" name="sort_key"
+                                            <label for="menu_sort">Ключ сортировки</label>
+                                            <x-input type="text" class="form-control" id="menu_sort" name="menu_sort"
                                                 value="{{ $page['menu_sort'] }}" />
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Отображение в меню</label>
-                                            <select class="form-control">
+                                            <label for="menu_show">Отображение в меню</label>
+                                            <select class="form-control" id="menu_show" name="menu_show">
                                                 <option value="1" {{ $page['menu_show'] == 1 ? 'selected' : '' }}>
                                                     Включено</option>
                                                 <option value="0" {{ $page['menu_show'] == 0 ? 'selected' : '' }}>
@@ -127,8 +131,8 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Статус</label>
-                                            <select class="form-control">
+                                            <label for="status">Статус</label>
+                                            <select class="form-control" id="status" name="status">
                                                 <option value="1" {{ $page['status'] == 1 ? 'selected' : '' }}>
                                                     Включено</option>
                                                 <option value="0" {{ $page['status'] == 0 ? 'selected' : '' }}>
@@ -138,10 +142,12 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Системная страница</label>
-                                            <select class="form-control" disabled>
-                                                <option>Включено</option>
-                                                <option selected>Отключено</option>
+                                            <label for="system_page">Системная страница</label>
+                                            <select class="form-control" id="system_page" name="system_page">
+                                                <option value="1" {{ $page['system_page'] == 1 ? 'selected' : '' }}>
+                                                    Включено</option>
+                                                <option value="0" {{ $page['system_page'] == 0 ? 'selected' : '' }}>
+                                                    Выключено</option>
                                             </select>
                                         </div>
                                     </div>

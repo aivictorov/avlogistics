@@ -5,7 +5,7 @@
 @section('content')
     <section class="content">
         <div class="container-fluid">
-            <form action={{ route('admin.portfolio.store') }} method="post" enctype="multipart/form-data">
+            <form action={{ route('admin.portfolio.update', ['id' => $portfolio['id']]) }} method="post" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="row">
@@ -15,6 +15,9 @@
                                 <h3 class="card-title">Основные данные</h3>
                             </div>
                             <div class="card-body">
+                                <div class="form-group">
+                                    <x-errors />
+                                </div>
                                 <div class="form-group">
                                     <label for="name">Название</label>
                                     <x-input type="text" class="form-control" id="name" name="name"
@@ -27,7 +30,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Категория</label>
-                                    <select class="form-control">
+                                    <select class="form-control" name="portfolio_section_id">
                                         @foreach ($sections as $section)
                                             <option value={{ $section['id'] }}>{{ $section['name'] }}</option>
                                         @endforeach
@@ -42,7 +45,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-primary card-outline">
@@ -65,7 +67,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-primary card-outline">
@@ -99,15 +100,15 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="title">Title</label>
-                                    <x-input type="text" class="form-control" id="title" name="url" value="{{ $seo['title'] }}" />
+                                    <x-input type="text" class="form-control" id="title" name="title" value="{{ $seo['title'] }}" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="meta_keywords">meta:Description</label>
-                                    <textarea id="meta_description" class="form-control" rows="3" name="text">{{ $seo['description'] }}</textarea>
+                                    <label for="description">meta:Description</label>
+                                    <textarea id="description" class="form-control" rows="3" name="description">{{ $seo['description'] }}</textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="meta_keywords">meta:Keywords</label>
-                                    <textarea id="meta_keywords" class="form-control" rows="3" name="text">{{ $seo['keywords'] }}</textarea>
+                                    <label for="keywords">meta:Keywords</label>
+                                    <textarea id="keywords" class="form-control" rows="3" name="keywords">{{ $seo['keywords'] }}</textarea>
                                 </div>
                             </div>
                         </div>

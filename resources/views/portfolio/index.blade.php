@@ -24,24 +24,15 @@
                         <a class="portfolio-anchor" name="type-{{ $section['url'] }}"></a>
                         <h2 class="portfolio-list-item-header">{{ $section['name'] }}</h2>
                         <div class="portfolio-slider js-portfolio-slider" id="slider-container_17" data-count="1">
-                            <div class="inslider" style="width: 2000px;"><a class="portfolio-slide"
-                                    href="/portfolio/zhd-perevozka-buldozerov-caterpillar-d6-i-caterpillar-d8/">
-                                    <img src="/upload/portfolio_avatar/18/175/sizes/page_dsc02994.jpg">
-                                    <span class="portfolio-slide-name">Перевозка бульдозеров Caterpillar D6 и Caterpillar D8</span>
-                                    <span class="portfolio-slide-more">Подробнее</span>
-                                </a>
-                                <a class="portfolio-slide"
-                                    href="/portfolio/zhd-perevozka-buldozerov-caterpillar-d6-i-caterpillar-d8/">
-                                    <img src="/upload/portfolio_avatar/18/175/sizes/page_dsc02994.jpg">
-                                    <span class="portfolio-slide-name">Перевозка бульдозеров Caterpillar D6 и Caterpillar D8</span>
-                                    <span class="portfolio-slide-more">Подробнее</span>
-                                </a>
-                                <a class="portfolio-slide"
-                                    href="/portfolio/zhd-perevozka-buldozerov-caterpillar-d6-i-caterpillar-d8/">
-                                    <img src="/upload/portfolio_avatar/18/175/sizes/page_dsc02994.jpg">
-                                    <span class="portfolio-slide-name">Перевозка бульдозеров Caterpillar D6 и Caterpillar D8</span>
-                                    <span class="portfolio-slide-more">Подробнее</span>
-                                </a>
+                            <div class="inslider" style="width: 2000px;">
+                                @foreach ($section['items'] as $item)
+                                    <a class="portfolio-slide"
+                                        href="/portfolio/{{ $item['url'] }}">
+                                        <img src="/storage/upload/portfolio_avatar/{{ $item['id'] }}/{{ $item['image']['id'] }}/sizes/page_{{ $item['image']['image'] }}">
+                                        <span class="portfolio-slide-name">{{ $item['name'] }}</span>
+                                        <span class="portfolio-slide-more">Подробнее</span>
+                                    </a>
+                                @endforeach
                             </div>
                             <span
                                 class="portfolio-slider-arrow portfolio-slider-arrow__left js-portfolio-slider-arrow__left"></span>
@@ -50,11 +41,8 @@
                         </div>
                     </div>
                 @endforeach
-
             </div>
-
             @include('portfolio.parts.aside')
         </div>
-
     </section>
 @endsection

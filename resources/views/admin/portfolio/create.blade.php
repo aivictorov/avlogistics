@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Категория</label>
-                                    <select class="form-control">
+                                    <select class="form-control" name="portfolio_section_id">
                                         @foreach ($sections as $section)
                                             <option value={{ $section['id'] }}>{{ $section['name'] }}</option>
                                         @endforeach
@@ -85,7 +85,7 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="title">Title</label>
-                                    <x-input id="title" class="form-control" type="text" name="url" />
+                                    <x-input id="title" class="form-control" type="text" name="title"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="description">meta:Description</label>

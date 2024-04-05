@@ -3,12 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use App\Models\Portfolio;
-use App\Models\Image;
 use App\Models\PortfolioSection;
 use App\Models\SEO;
+use App\Models\Image;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 
 class PortfolioController extends Controller
 {
@@ -32,24 +37,38 @@ class PortfolioController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => ['required', 'string'],
-            'h1' => ['required', 'string'],
-            'url' => ['required', 'string'],
-            'text' => ['required', 'string'],
-            'sort_key' => ['required'],
-        ]);
+        if (!$request->filled('url')) {
+            $request->merge([
+                'url' => Str::slug($request->input('name')),
+            ]);
+        }
+
+        $validated = $request->validate(array_merge(Portfolio::getRules(), SEO::getRules(), Image::getRules()));
 
         $validated = array_merge($validated, [
             'create_date' => Carbon::now()->toDateTimeString(),
             'update_date' => Carbon::now()->toDateTimeString(),
-            'portfolio_section_id' => 1,
-            'user_id' => 1,
-            'status' => 1,
-            'seo_id' => 1,
+            'user_id' => Auth::user()->id,
         ]);
 
-        $portfolio = Portfolio::create($validated);
+        DB::transaction(function () use ($validated, $request) {
+            $seo = SEO::create($validated);
+            $validated = array_merge($validated, ['seo_id' => $seo->id]);
+
+            $portfolio = Portfolio::create($validated);
+
+            if ($request->has('image')) {
+                $image = Image::create([
+                    'image' => $request->file('image')->getClientOriginalName(),
+                    'create_date' => Carbon::now()->toDateTimeString(),
+                    'sort' => 0,
+                    'parent_type' => 'portfolio_avatar',
+                    'parent_id' => $portfolio->id,
+                ]);
+
+                Image::savePortfolioAvatar($request->file('image'), $image->id, $portfolio->id);
+            }
+        }, 3);
 
         return redirect(route('admin.portfolio.index'));
     }
@@ -88,26 +107,80 @@ class PortfolioController extends Controller
 
     public function update(Request $request, $id)
     {
-        return 'update';
+        if (!$request->filled('url')) {
+            $request->merge([
+                'url' => Str::slug($request->input('name')),
+            ]);
+        }
 
-        // $validated = $request->validate([
-        //     'name' => ['required', 'string'],
-        //     'sort_key' => ['required'],
-        //     'status' => ['required'],
-        // ]);
+        $validated = $request->validate(array_merge(Portfolio::getRules(), SEO::getRules(), Image::getRules()));
 
-        // Portfolio::find($id)->update([
-        //     'name' => $request->name,
-        //     'status' => $request->status,
-        //     'sort_key' => $request->sort_key,
-        // ]);
+        $validated = array_merge($validated, [
+            'update_date' => Carbon::now()->toDateTimeString(),
+            'user_id' => Auth::user()->id,
+        ]);
 
-        // return redirect(route('admin.portfolio.index'));
+        $portfolio = Portfolio::find($id);
+        $seo = SEO::find($portfolio['seo_id']);
+
+        DB::transaction(function () use ($portfolio, $seo, $validated, $request, $id) {
+            $portfolio->update($validated);
+            $seo->update($validated);
+
+            if ($request->has('image')) {
+                $image = Image::where([
+                    ['parent_type', 'portfolio_avatar'],
+                    ['parent_id', $id],
+                ])->first();
+
+                if ($image) {
+                    Storage::deleteDirectory('public/upload/portfolio_avatar/' . $id);
+
+                    $image->update([
+                        'image' => $request->file('image')->getClientOriginalName(),
+                        'create_date' => Carbon::now()->toDateTimeString(),
+                        'sort' => 0,
+                        'parent_type' => 'portfolio_avatar',
+                        'parent_id' => $portfolio->id,
+                    ]);
+
+                    Image::savePortfolioAvatar($request->file('image'), $image->id, $portfolio->id);
+
+                } else {
+                    $image = Image::create([
+                        'image' => $request->file('image')->getClientOriginalName(),
+                        'create_date' => Carbon::now()->toDateTimeString(),
+                        'sort' => 0,
+                        'parent_type' => 'portfolio_avatar',
+                        'parent_id' => $portfolio->id,
+                    ]);
+
+                    Image::savePortfolioAvatar($request->file('image'), $image->id, $portfolio->id);
+                }
+            }
+        }, 3);
+
+        return redirect(route('admin.portfolio.index'));
     }
 
     public function destroy($id)
     {
-        Portfolio::find($id)->delete();
+        DB::transaction(function () use ($id) {
+            $portfolio = Portfolio::find($id);
+            $image = Image::where([
+                ['parent_type', 'portfolio_avatar'],
+                ['parent_id', $id],
+            ])->first();
+            $seo = SEO::find($portfolio['seo_id']);
+
+            $portfolio->delete();
+            if ($image) {
+                $image->delete();
+                Storage::deleteDirectory('public/upload/portfolio_avatar/' . $id);
+            }
+            $seo->delete();
+        }, 3);
+
         return redirect(route('admin.portfolio.index'));
     }
 }

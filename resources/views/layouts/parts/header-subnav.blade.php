@@ -7,8 +7,8 @@
                 <a href={{ route('pages.show', $tree[array_key_first($tree)]['children'][2]['url']) }}>В раздел</a>
             </div>
             <div class="subnav-blocks-columns subnav-blocks-columns--about">
-                <div class="subnav-blocks-column subnav-blocks-column--1">
-                    @foreach ($tree[array_key_first($tree)]['children'][2]['children'] as $header)
+                @foreach ($tree[array_key_first($tree)]['children'][2]['children'] as $header)
+                    <div class="subnav-blocks-column subnav-blocks-column--1">
                         <div class="subnav-column-header">
                             <a href={{ route('pages.show', $header['url']) }}>{{ $header['name'] }}</a>
                         </div>
@@ -19,10 +19,10 @@
                                 @endforeach
                             </ul>
                         @endif
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
 
-                <div class="subnav-blocks-column subnav-blocks-column--2">
+                {{-- <div class="subnav-blocks-column subnav-blocks-column--2">
                     <div class="subnav-column-header subnav-column-header--blog">
                         Записи в <a href="/blog/">блоге</a>
                     </div>
@@ -33,9 +33,9 @@
                                 05 / 2017</span>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
-                <div class="subnav-blocks-column subnav-blocks-column--3">
+                {{-- <div class="subnav-blocks-column subnav-blocks-column--3">
                     <div class="subnav-column-header subnav-column-header--portfolio">
                         <a href="/portfolio/">Портфолио</a>
                     </div>
@@ -121,7 +121,7 @@
                     <div class="subnav-column__porfolio-text">
                         Ознакомьтесь с <a href="/portfolio/">портфолио</a> железнодорожных перевозок
                     </div>
-                </div>
+                </div> --}}
 
             </div>
         </div>

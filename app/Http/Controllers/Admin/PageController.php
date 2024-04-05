@@ -11,7 +11,6 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-
 use Illuminate\Support\Str;
 
 class PageController extends Controller
@@ -89,14 +88,62 @@ class PageController extends Controller
         }
 
         $seo = SEO::find($page['seo_id']);
-        return view('admin.pages.edit', compact('page', 'image_path', 'seo'));
+
+        $pages = Page::select('id', 'name', 'url', 'update_date', 'status')->orderBy('id')->get()->toArray();
+
+        return view('admin.pages.edit', compact('page', 'image_path', 'seo', 'pages'));
     }
 
     public function update(Request $request, $id)
     {
-        // $validated = $request->validate(Page::getRules());
+        if (!$request->filled('url')) {
+            $request->merge([
+                'url' => Str::slug($request->input('name')),
+            ]);
+        }
 
-        // Page::find($id)->update($validated);
+        $validated = $request->validate(array_merge(Page::getRules(), SEO::getRules(), Image::getRules()));
+
+        $validated = array_merge($validated, [
+            'update_date' => Carbon::now()->toDateTimeString(),
+            'user_id' => Auth::user()->id,
+        ]);
+
+        $page = Page::find($id);
+        $seo = SEO::find($page['seo_id']);
+
+        DB::transaction(function () use ($page, $seo, $validated, $request, $id) {
+            $page->update($validated);
+            $seo->update($validated);
+
+            if ($request->has('image')) {
+                $image = Image::where([
+                    ['parent_type', 'page_avatar'],
+                    ['parent_id', $id],
+                ])->first();
+
+                if ($image) {
+                    Storage::deleteDirectory('public/upload/page_avatar/' . $id);
+                    $image->update([
+                        'image' => $request->file('image')->getClientOriginalName(),
+                        'create_date' => Carbon::now()->toDateTimeString(),
+                        'sort' => 0,
+                        'parent_type' => 'page_avatar',
+                        'parent_id' => $page->id,
+                    ]);
+                    Image::savePageAvatar($request->file('image'), $image->id, $page->id);
+                } else {
+                    $image = Image::create([
+                        'image' => $request->file('image')->getClientOriginalName(),
+                        'create_date' => Carbon::now()->toDateTimeString(),
+                        'sort' => 0,
+                        'parent_type' => 'page_avatar',
+                        'parent_id' => $page->id,
+                    ]);
+                    Image::savePageAvatar($request->file('image'), $image->id, $page->id);
+                }
+            }
+        }, 3);
 
         return redirect(route('admin.pages.index'));
     }
