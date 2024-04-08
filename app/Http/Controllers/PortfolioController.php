@@ -41,21 +41,21 @@ class PortfolioController extends Controller
     public function show($url)
     {
         $id = (new GetPortfolioIdByUrlAction)->run($url);
-        $portfolio = (new GetPortfolioAction)->run($id);
+        $portfolio_page = (new GetPortfolioAction)->run($id);
         $parents = (new GetPortfolioParentsAction)->run();
-        $seo = (new GetSeoAction)->run($portfolio['seo_id']);
+        $seo = (new GetSeoAction)->run($portfolio_page['seo_id']);
         $sections = (new GetPortfolioSectionsAction)->run();
         $avatar = (new GetPortfolioAvatarAction)->run($id);
 
         $gallery = Image::where([
             ['parent_type', 'portfolio_image'],
-            ['parent_id', $portfolio->id],
+            ['parent_id', $portfolio_page->id],
         ])->get(['id', 'image'])->toArray();
 
         // return view('portfolio.show', compact('page', 'parents', 'seo', 'sections', 'avatar', 'gallery'));
 
         return view('portfolio.show')->with([
-            'page' => $portfolio,
+            'page' => $portfolio_page,
             'parents' => $parents,
             'seo' => $seo,
             'sections' => $sections,

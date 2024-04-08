@@ -21,7 +21,6 @@ use App\Actions\SEO\GetSeoAction;
 use App\Actions\SEO\UpdateSeoAction;
 use App\Actions\SEO\UpdateSeoData;
 use App\Http\Controllers\Controller;
-use App\Models\Image;
 use App\Requests\Pages\PageRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -75,7 +74,7 @@ class PageController extends Controller
                 (new CreateImageAction)->run(
                     $image_file,
                     new CreateImageData(
-                        image: $validated['image']->getClientOriginalName(),
+                        image: $image_file->getClientOriginalName(),
                         parent_type: 'page_avatar',
                         parent_id: $page->id,
                     )

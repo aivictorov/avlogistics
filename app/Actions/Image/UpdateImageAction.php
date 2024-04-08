@@ -2,8 +2,8 @@
 
 namespace App\Actions\Image;
 
+use App\Actions\Image\SaveAvatarAction;
 use App\Actions\Image\UpdateImageData;
-use App\Models\Image;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,7 +21,7 @@ class UpdateImageAction
             'create_date' => Carbon::now()->toDateTimeString(),
         ]);
 
-        Image::savePageAvatar($image_file, $image->id, $image->parent_id);
+        (new SaveAvatarAction)->run($image_file, $image->id, $image->parent_id, $image->parent_type);
 
         return;
     }

@@ -2,9 +2,7 @@
 
 namespace App\Requests\Pages;
 
-use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class PageRequest extends FormRequest

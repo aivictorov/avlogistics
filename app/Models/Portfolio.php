@@ -36,17 +36,4 @@ class Portfolio extends Model
     ];
 
     public $timestamps = false;
-
-    public static function getRules(): array
-    {
-        return [
-            'name' => ['required', 'string', 'min:3', 'max:50'],
-            'h1' => ['required', 'string', 'min:3', 'max:100'],
-            'portfolio_section_id' => ['required', 'integer', 'min:0'],
-            'text' => ['required', 'string', 'min:20'],
-            'url' => ['required', 'min:3', 'max:50'],
-            'sort_key' => ['required', 'integer', 'min:0', 'max:100'],
-            'status' => ['required', 'boolean'],
-        ];
-    }
 }

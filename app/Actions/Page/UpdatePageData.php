@@ -18,7 +18,6 @@ class UpdatePageData
         public $status,
         public $system_page,
     ) {
-        $this->update_date = Carbon::now()->toDateTimeString();
-        $this->user_id = Auth::user()->id;
+        //
     }
 }
