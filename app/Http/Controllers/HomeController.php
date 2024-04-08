@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Page;
-use App\Models\SEO;
+use App\Actions\Page\GetPageAction;
+use App\Actions\Page\GetPageIdByUrlAction;
+use App\Actions\SEO\GetSeoAction;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
     public function __invoke()
     {
-        $page = Page::where('url', 'index')->first();
-        $seo = SEO::find($page['seo_id']);
+        $id = (new GetPageIdByUrlAction)->run('index');
+        $page = (new GetPageAction)->run($id);
+        $seo = (new GetSeoAction)->run($page['seo_id']);
 
         return view('site.home', compact('seo'));
     }

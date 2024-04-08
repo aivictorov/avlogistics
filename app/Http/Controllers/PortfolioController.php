@@ -2,31 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Page;
-use App\Models\Portfolio;
-use App\Models\PortfolioSection;
-use Illuminate\Support\Str;
-use App\Models\SEO;
+use App\Actions\Image\GetPortfolioAvatarAction;
+use App\Actions\Page\GetPageAction;
+use App\Actions\Page\GetPageIdByUrlAction;
+use App\Actions\Page\GetPageParentsAction;
+use App\Actions\Portfolio\GetPortfolioAction;
+use App\Actions\Portfolio\GetPortfolioIdByUrlAction;
+use App\Actions\Portfolio\GetPortfolioParentsAction;
+use App\Actions\Portfolio\GetPortfolioSectionsAction;
+use App\Actions\SEO\GetSeoAction;
+use App\Http\Controllers\Controller;
 use App\Models\Image;
+use App\Models\Portfolio;
 
 class PortfolioController extends Controller
 {
     public function index()
     {
-        $page = Page::where('url', 'portfolio')->first();
-        $parents = Page::parents('portfolio');
-        $seo = SEO::find($page['seo_id']);
-
-        $sections = PortfolioSection::select('id', 'name')->where('status', 1)->orderBy('sort_key')->get()->toArray();
-
-        foreach ($sections as $key => $section) {
-            $sections[$key]['url'] = Str::slug($section['name']);
-        }
+        $id = (new GetPageIdByUrlAction)->run('portfolio');
+        $page = (new GetPageAction)->run($id);
+        $seo = (new GetSeoAction)->run($page['seo_id']);
+        $parents = (new GetPageParentsAction)->run($id);
+        $sections = (new GetPortfolioSectionsAction)->run();
 
         foreach ($sections as $key => $section) {
             $sections[$key]['items'] = Portfolio::where('portfolio_section_id', $section['id'])->orderBy('sort_key')->get(['id', 'name', 'url'])->toArray();
-
             foreach ($sections[$key]['items'] as $key2 => $item) {
                 $sections[$key]['items'][$key2]['image'] = Image::where([
                     ['parent_type', 'portfolio_avatar'],
@@ -40,33 +40,27 @@ class PortfolioController extends Controller
 
     public function show($url)
     {
-        $parents = Page::parents('portfolio');
-        array_push($parents, Page::where('url', 'portfolio')->first());
-        // dd($parents);
-
-        $page = Portfolio::where('url', $url)->first();
-        $seo = SEO::find($page['seo_id']);
-
-        $sections = PortfolioSection::select('name')->where('status', 1)->orderBy('sort_key')->get()->toArray();
-
-        foreach ($sections as $key => $section) {
-            $sections[$key]['url'] = Str::slug($section['name']);
-        }
-
-        if (!$page) {
-            return view('site.404');
-        }
-
-        $avatar = Image::where([
-            ['parent_type', 'portfolio_avatar'],
-            ['parent_id', $page->id],
-        ])->first(['id', 'image'])->toArray();
+        $id = (new GetPortfolioIdByUrlAction)->run($url);
+        $portfolio = (new GetPortfolioAction)->run($id);
+        $parents = (new GetPortfolioParentsAction)->run();
+        $seo = (new GetSeoAction)->run($portfolio['seo_id']);
+        $sections = (new GetPortfolioSectionsAction)->run();
+        $avatar = (new GetPortfolioAvatarAction)->run($id);
 
         $gallery = Image::where([
             ['parent_type', 'portfolio_image'],
-            ['parent_id', $page->id],
+            ['parent_id', $portfolio->id],
         ])->get(['id', 'image'])->toArray();
 
-        return view('portfolio.show', compact('page', 'parents','seo', 'sections', 'avatar', 'gallery'));
+        // return view('portfolio.show', compact('page', 'parents', 'seo', 'sections', 'avatar', 'gallery'));
+
+        return view('portfolio.show')->with([
+            'page' => $portfolio,
+            'parents' => $parents,
+            'seo' => $seo,
+            'sections' => $sections,
+            'avatar' => $avatar,
+            'gallery' => $gallery,
+        ]);
     }
 }

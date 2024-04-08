@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Auth\AuthUser;
+use App\Actions\Page\GetPageAction;
+use App\Actions\Page\GetPageIdByUrlAction;
+use App\Actions\Page\GetPageParentsAction;
+use App\Actions\SEO\GetSeoAction;
+use App\Actions\User\CreateUserAction;
+use App\Actions\User\CreateUserData;
+use App\Requests\Auth\RegisterRequest;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Page;
-use App\Models\User;
-use App\Models\SEO;
 
 class AuthController extends Controller
 {
@@ -17,9 +23,10 @@ class AuthController extends Controller
             return redirect(route('admin.home'));
 
         } else {
-            $page = Page::where('url', 'login')->first();
-            $parents = Page::parents('login');
-            $seo = SEO::find($page['seo_id']);
+            $id = (new GetPageIdByUrlAction)->run('login');
+            $page = (new GetPageAction)->run($id);
+            $seo = (new GetSeoAction)->run($page['seo_id']);
+            $parents = (new GetPageParentsAction)->run($id);
 
             return view('site.login', compact('page', 'parents', 'seo'));
         }
@@ -48,44 +55,45 @@ class AuthController extends Controller
         }
     }
 
-
-    public function register()
+    public function create()
     {
         if (Auth::check()) {
             return redirect(route('admin.index'));
 
         } else {
-            $page = Page::where('url', 'login')->first();
-            $parents = Page::parents('login');
-            return view('site.registration', compact('page', 'parents'));
+            $id = (new GetPageIdByUrlAction)->run('login');
+            $page = (new GetPageAction)->run($id);
+            $seo = (new GetSeoAction)->run($page['seo_id']);
+            $parents = (new GetPageParentsAction)->run($id);
+
+            return view('site.registration', compact('page', 'parents', 'seo'));
         }
     }
 
-    public function createUser(Request $request)
+    public function store(RegisterRequest $request)
     {
-        if (Auth::check()) {
-            return redirect(route('admin.index'));
-        }
+        if (Auth::check())
+            return redirect(route('admin.home'));
 
-        $validatedFields = $request->validate([
-            // 'name' => ['required', 'string', 'max:64'],
-            // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            // 'password' => ['required', 'string', 'min:6', 'max:16', 'confirmed'],
-            'name' => ['required'],
-            'email' => ['required'],
-            'password' => ['required'],
-        ]);
+        $validated = $request->validated();
 
-        $user = User::create($validatedFields);
+        $user = (new CreateUserAction)->run(
+            new CreateUserData(
+                name: $validated['name'],
+                email: $validated['email'],
+                password: $validated['password'],
+            )
+        );
 
         if ($user) {
-            Auth::login($user);
-            // auth()->login($user);
+            (new AuthUser)->run($user);
             return redirect(route('admin.home'));
         }
 
-        // return view('site.login', compact('page', 'tree', 'parents'))->withErrors([
-        //     'formError' => 'Error text'
-        // ]);
+        // else {
+        //     return view('site.login', compact('page', 'tree', 'parents'))->withErrors([
+        //         'formError' => 'Error text'
+        //     ]);  
+        // }
     }
 }

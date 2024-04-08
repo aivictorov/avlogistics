@@ -13,7 +13,7 @@
 
                 <h1 class="page-h1">Registration</h1>
 
-                <form id="login-form" class="form-horizontal" action={{ route('register') }} method="post">
+                <form id="login-form" class="form-horizontal" action={{ route('user.store') }} method="post">
                     @csrf
                     <div class="form-group field-loginform-username required has-success">
                         <label class="col-lg-1 control-label" for="email">Имя</label>

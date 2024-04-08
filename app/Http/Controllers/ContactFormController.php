@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Page;
-use App\Models\SEO;
+use App\Actions\Page\GetPageAction;
+use App\Actions\Page\GetPageIdByUrlAction;
+use App\Actions\Page\GetPageParentsAction;
+use App\Actions\SEO\GetSeoAction;
+use App\Http\Controllers\Controller;
 
 class ContactFormController extends Controller
 {
     public function __invoke()
     {
-        $page = Page::where('url', 'contact')->first();
-        $parents = Page::parents('contact');
-        $seo = SEO::find($page['seo_id']);
+        $id = (new GetPageIdByUrlAction)->run('contact');
+        $page = (new GetPageAction)->run($id);
+        $seo = (new GetSeoAction)->run($page['seo_id']);
+        $parents = (new GetPageParentsAction)->run($id);
 
         return view('site.contactForm', compact('page', 'parents', 'seo'));
     }

@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Page;
-use Illuminate\Http\Request;
-use App\Models\SEO;
-use App\Models\FAQ_Categories;
+use App\Actions\FAQ\GetFaqAction;
+use App\Actions\FAQ\GetFaqIdByUrlAction;
+use App\Actions\FAQ\GetFaqParentsAction;
+use App\Actions\FAQ\GetFaqQuestionsAction;
+use App\Actions\FAQ\GetFaqSectionsAction;
+use App\Actions\Page\GetPageAction;
+use App\Actions\Page\GetPageIdByUrlAction;
+use App\Actions\Page\GetPageParentsAction;
+use App\Actions\SEO\GetSeoAction;
+use App\Http\Controllers\Controller;
 use App\Models\FAQ_Questions;
 use Illuminate\Support\Str;
 
@@ -13,11 +19,12 @@ class FAQController extends Controller
 {
     public function index()
     {
-        $page = Page::where('url', 'faq')->first();
-        $parents = Page::parents('faq');
-        $seo = SEO::find($page['seo_id']);
+        $id = (new GetPageIdByUrlAction)->run('faq');
+        $page = (new GetPageAction)->run($id);
+        $seo = (new GetSeoAction)->run($page['seo_id']);
+        $parents = (new GetPageParentsAction)->run($id);
 
-        $faq_categories = FAQ_Categories::select('id', 'name', 'url', 'h1', 'announce')->where('status', 1)->orderBy('sort_key')->get()->toArray();
+        $faq_categories = (new GetFaqSectionsAction)->run();
 
         foreach ($faq_categories as $key => $category) {
             $faq_categories[$key]['items'] = FAQ_Questions::select('name', 'answer')->where('faq_id', $category['id'])->orderBy('sort')->get()->toArray();
@@ -32,23 +39,13 @@ class FAQController extends Controller
 
     public function show($url)
     {
-        $page = FAQ_Categories::where('url', $url)->first();
+        $id = (new GetFaqIdByUrlAction)->run($url);
+        $page = (new GetFaqAction)->run($id);
+        $parents = (new GetFaqParentsAction)->run();
+        $seo = (new GetSeoAction)->run($page['seo_id']);
+        $faq_categories = (new GetFaqSectionsAction)->run();
+        $faq_questions = (new GetFaqQuestionsAction)->run($id);
 
-        $faq_page = FAQ_Categories::where('url', $url)->first();
-
-        $parents = Page::parents('faq');
-        array_push($parents, Page::where('url', 'faq')->first());
-
-        $seo = SEO::find($faq_page['seo_id']);
-
-        $faq_questions = FAQ_Questions::select('name', 'answer')->where('faq_id', $faq_page['id'])->orderBy('sort')->get()->toArray();
-
-        foreach ($faq_questions as $key => $question) {
-            $faq_questions[$key]['url'] = Str::slug($question['name']);
-        }
-
-        $faq_categories = FAQ_Categories::select('id', 'name', 'url', 'h1', 'announce')->where('status', 1)->orderBy('sort_key')->get()->toArray();
-
-        return view('faq.show', compact('page', 'faq_page', 'parents', 'seo', 'faq_questions', 'faq_categories'));
+        return view('faq.show', compact('page', 'parents', 'seo', 'faq_questions', 'faq_categories'));
     }
 }

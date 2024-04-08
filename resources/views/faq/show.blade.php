@@ -11,7 +11,7 @@
 
                 @include('site.parts.breadcrumbs')
 
-                <h1 class="page-h1">{{ $faq_page['name'] }}</h1>
+                <h1 class="page-h1">{{ $page['name'] }}</h1>
 
                 <div class="page-content">
                     Одним из основных понятий, с которым сталкивается грузоотправитель при перевозке груза железнодорожным
