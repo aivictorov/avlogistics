@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\Page\GetPageAction;
+use App\Actions\Page\GetPagesAction;
+use App\Actions\SEO\GetSeoAction;
 use App\Http\Controllers\Controller;
+use App\Models\Image;
 use App\Models\Page;
 use App\Models\SEO;
-use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -17,18 +20,14 @@ class PageController extends Controller
 {
     public function index()
     {
-        $pages = Page::select('id', 'name', 'url', 'update_date', 'status')->orderBy('id')->get()->toArray();
-
-        foreach ($pages as $key => $page) {
-            $pages[$key]['update_date'] = Carbon::parse($page['update_date'])->toDateString();
-        }
+        $pages = (new GetPagesAction)->run();
 
         return view('admin.pages.index', compact('pages'));
     }
 
     public function create(Request $request)
     {
-        $pages = Page::select('id', 'name', 'url', 'update_date', 'status')->orderBy('id')->get()->toArray();
+        $pages = (new GetPagesAction)->run();
 
         return view('admin.pages.create', compact('pages'));
     }
@@ -74,7 +73,9 @@ class PageController extends Controller
 
     public function edit($id)
     {
-        $page = Page::find($id);
+        $page = (new GetPageAction)->run($id);
+        $seo = (new GetSeoAction)->run($page['seo_id']);
+        $pages = (new GetPagesAction)->run();
 
         $image = Image::where([
             ['parent_type', 'page_avatar'],
@@ -86,10 +87,6 @@ class PageController extends Controller
         } else {
             $image_path = '';
         }
-
-        $seo = SEO::find($page['seo_id']);
-
-        $pages = Page::select('id', 'name', 'url', 'update_date', 'status')->orderBy('id')->get()->toArray();
 
         return view('admin.pages.edit', compact('page', 'image_path', 'seo', 'pages'));
     }
@@ -109,8 +106,8 @@ class PageController extends Controller
             'user_id' => Auth::user()->id,
         ]);
 
-        $page = Page::find($id);
-        $seo = SEO::find($page['seo_id']);
+        $page = (new GetPageAction)->run($id);
+        $seo = (new GetSeoAction)->run($page['seo_id']);
 
         DB::transaction(function () use ($page, $seo, $validated, $request, $id) {
             $page->update($validated);
@@ -151,19 +148,19 @@ class PageController extends Controller
     public function destroy($id)
     {
         DB::transaction(function () use ($id) {
-            $page = Page::find($id);
+            $page = (new GetPageAction)->run($id);
+            $seo = (new GetSeoAction)->run($page['seo_id']);
             $image = Image::where([
                 ['parent_type', 'page_avatar'],
                 ['parent_id', $id],
             ])->first();
-            $seo = SEO::find($page['seo_id']);
 
             $page->delete();
+            $seo->delete();
             if ($image) {
                 $image->delete();
                 Storage::deleteDirectory('public/upload/page_avatar/' . $id);
             }
-            $seo->delete();
         }, 3);
 
         return redirect(route('admin.pages.index'));

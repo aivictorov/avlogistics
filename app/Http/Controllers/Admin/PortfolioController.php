@@ -2,35 +2,33 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\Portfolio\GetPortfolioAction;
+use App\Actions\Portfolio\GetPortfolioItemsAction;
+use App\Actions\Portfolio\GetPortfolioSectionsAction;
+use App\Actions\SEO\GetSeoAction;
 use App\Http\Controllers\Controller;
-use App\Models\Portfolio;
-use App\Models\PortfolioSection;
-use App\Models\SEO;
 use App\Models\Image;
+use App\Models\Portfolio; 
+use App\Models\SEO;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-
 
 class PortfolioController extends Controller
 {
     public function index()
     {
-        $portfolioItems = Portfolio::select('id', 'name', 'update_date', 'status')->orderBy('id')->get()->toArray();
-
-        foreach ($portfolioItems as $key => $item) {
-            $portfolioItems[$key]['update_date'] = Carbon::parse($item['update_date'])->toDateString();
-        }
+        $portfolioItems = (new GetPortfolioItemsAction)->run();
 
         return view('admin.portfolio.index', compact('portfolioItems'));
     }
 
     public function create()
     {
-        $sections = PortfolioSection::select('id', 'name')->where('status', 1)->orderBy('sort_key')->get()->toArray();
+        $sections = (new GetPortfolioSectionsAction)->run();
 
         return view('admin.portfolio.create', compact('sections'));
     }
@@ -75,8 +73,9 @@ class PortfolioController extends Controller
 
     public function edit($id)
     {
-        $portfolio = Portfolio::where('id', $id)->first();
-        $sections = PortfolioSection::select('id', 'name', 'update_date', 'status')->orderBy('id')->get()->toArray();
+        $portfolio = (new GetPortfolioAction)->run($id);
+        $sections = (new GetPortfolioSectionsAction)->run();
+        $seo = (new GetSeoAction)->run($portfolio['seo_id']);
 
         $image = Image::where([
             ['parent_type', 'portfolio_avatar'],
@@ -100,8 +99,6 @@ class PortfolioController extends Controller
             }
         }
 
-        $seo = SEO::find($portfolio['seo_id']);
-
         return view('admin.portfolio.edit', compact('portfolio', 'sections', 'image_path', 'gallery', 'seo'));
     }
 
@@ -120,8 +117,8 @@ class PortfolioController extends Controller
             'user_id' => Auth::user()->id,
         ]);
 
-        $portfolio = Portfolio::find($id);
-        $seo = SEO::find($portfolio['seo_id']);
+        $portfolio = (new GetPortfolioAction)->run($id);
+        $seo = (new GetSeoAction)->run($portfolio['seo_id']);
 
         DB::transaction(function () use ($portfolio, $seo, $validated, $request, $id) {
             $portfolio->update($validated);
@@ -166,19 +163,21 @@ class PortfolioController extends Controller
     public function destroy($id)
     {
         DB::transaction(function () use ($id) {
-            $portfolio = Portfolio::find($id);
+            $portfolio = (new GetPortfolioAction)->run($id);
+            $seo = (new GetSeoAction)->run($portfolio['seo_id']);
+
             $image = Image::where([
                 ['parent_type', 'portfolio_avatar'],
                 ['parent_id', $id],
             ])->first();
-            $seo = SEO::find($portfolio['seo_id']);
 
             $portfolio->delete();
+            $seo->delete();
+
             if ($image) {
                 $image->delete();
                 Storage::deleteDirectory('public/upload/portfolio_avatar/' . $id);
             }
-            $seo->delete();
         }, 3);
 
         return redirect(route('admin.portfolio.index'));

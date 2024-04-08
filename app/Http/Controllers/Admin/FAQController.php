@@ -2,32 +2,28 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\FAQ\GetFaqAction;
+use App\Actions\FAQ\GetFaqSectionsAction;
+use App\Actions\SEO\GetSeoAction;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\FAQ_Questions;
 use App\Models\FAQ_Categories;
-use Illuminate\Support\Carbon;
 use App\Models\SEO;
+use Illuminate\Http\Request;
 
 class FAQController extends Controller
 {
     public function index()
     {
-        $faq_categories = FAQ_Categories::select('id', 'name', 'update_date', 'status')->orderBy('id')->get()->toArray();
-
-        foreach ($faq_categories as $key => $category) {
-            $faq_categories[$key]['update_date'] = Carbon::parse($category['update_date'])->toDateString();
-        }
+        $faq_categories = (new GetFaqSectionsAction)->run();
 
         return view('admin.faq.index', compact('faq_categories'));
     }
 
     public function create()
     {
-        // $sections = FAQ_Questions::select('id', 'name')->where('status', 1)->orderBy('sort_key')->get()->toArray();
+        $sections = (new GetFaqSectionsAction)->run();
 
-        return view('admin.faq.create');
-        // return view('admin.faq.create', compact('sections'));
+        return view('admin.faq.create', compact('sections'));
     }
 
     public function store(Request $request)
@@ -58,10 +54,8 @@ class FAQController extends Controller
 
     public function edit($id)
     {
-        $faq_category = FAQ_Categories::find($id);
-
-        $seo = SEO::find($faq_category['seo_id']);
-
+        $faq_category = (new GetFaqAction)->run($id);
+        $seo = (new GetSeoAction)->run($faq_category['seo_id']);
         return view('admin.faq.edit', compact('faq_category', 'seo'));
     }
 }
