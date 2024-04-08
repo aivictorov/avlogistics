@@ -4,17 +4,24 @@ namespace App\Actions\Image;
 
 use App\Actions\Image\CreateImageData;
 use App\Models\Image;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class CreateImageAction
 {
-    public function run(CreateImageData $data)
+    public function run($image_file, CreateImageData $data)
     {
-        return Image::create([
+        $image = Image::create([
             'image' => $data->image,
-            'create_date' => $data->create_date,
-            'sort' => $data->sort,
             'parent_type' => $data->parent_type,
             'parent_id' => $data->parent_id,
+
+            'create_date' => Carbon::now()->toDateTimeString(),
+            'sort' => 0,
         ]);
+
+        Image::savePageAvatar($image_file, $image->id, $image->parent_id);
+
+        return;
     }
 }

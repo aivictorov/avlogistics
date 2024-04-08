@@ -77,30 +77,4 @@ class Image extends Model
 
         return;
     }
-
-    // public static function image($page_id)
-    // {
-    //     $image = Image::where([['parent_id', $page_id], ['parent_type', 'page_avatar']])->first();
-
-    //     if ($image) {
-    //         $image_path = "\\storage\\upload\\" . $image->parent_type . "\\" . $image->parent_id . "\\" . $image->id . "\\sizes\\page_" . $image->image;
-    //     } else {
-    //         $image_path = "";
-    //     }
-
-    //     return $image_path;
-    // }
-
-    // public static function portfolio_image_path($page_id)
-    // {
-    //     $image = Image::where([['parent_id', $page_id], ['parent_type', 'portfolio_avatar']])->first();
-
-    //     if ($image) {
-    //         $image_path = "\\storage\\upload\\" . $image->parent_type . "\\" . $image->parent_id . "\\" . $image->id . "\\sizes\\page_" . $image->image;
-    //     } else {
-    //         $image_path = "";
-    //     }
-
-    //     return $image_path;
-    // }
 }

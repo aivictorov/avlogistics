@@ -11,7 +11,6 @@ class UpdateImageData
         public $parent_type,
         public $parent_id,
     ) {
-        $this->sort = 0;
-        $this->create_date = Carbon::now()->toDateTimeString();
+        //
     }
 }

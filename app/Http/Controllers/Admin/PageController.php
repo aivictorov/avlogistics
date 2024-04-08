@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Actions\Image\BuildPageAvatarPathAction;
 use App\Actions\Image\CreateImageAction;
 use App\Actions\Image\CreateImageData;
+use App\Actions\Image\DestroyImageAction;
 use App\Actions\Image\GetPageAvatarAction;
 use App\Actions\Image\UpdateImageAction;
 use App\Actions\Image\UpdateImageData;
@@ -24,7 +25,6 @@ use App\Models\Image;
 use App\Requests\Pages\PageRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class PageController extends Controller
 {
@@ -70,17 +70,16 @@ class PageController extends Controller
             );
 
             if ($request->has('image')) {
-                $image = (new CreateImageAction)->run(
+                $image_file = $validated['image'];
+
+                (new CreateImageAction)->run(
+                    $image_file,
                     new CreateImageData(
-                        image: $validated['image'],
-                        create_date: $validated['create_date'],
-                        sort: $validated['sort'],
-                        parent_type: $validated['parent_type'],
-                        parent_id: $validated['parent_id'],
+                        image: $validated['image']->getClientOriginalName(),
+                        parent_type: 'page_avatar',
+                        parent_id: $page->id,
                     )
                 );
-
-                Image::savePageAvatar($request->file('image'), $image->id, $page->id);
             }
         }, 3);
         return redirect(route('admin.pages.index'));
@@ -130,15 +129,14 @@ class PageController extends Controller
 
             if ($request->has('image')) {
                 $image = (new GetPageAvatarAction)->run($page->id);
+                $image_file = $validated['image'];
 
                 if ($image) {
-                    Storage::deleteDirectory('public/upload/page_avatar/' . $page->id);
-                    Image::savePageAvatar($request->file('image'), $image->id, $page->id);
-
                     (new UpdateImageAction)->run(
                         $image,
+                        $image_file,
                         new UpdateImageData(
-                            image: $request->file('image')->getClientOriginalName(),
+                            image: $image_file->getClientOriginalName(),
                             parent_type: 'page_avatar',
                             parent_id: $page->id,
                         )
@@ -146,15 +144,12 @@ class PageController extends Controller
                 }
 
                 if (!$image) {
-                    Image::savePageAvatar($request->file('image'), $image->id, $page->id);
-
-                    $image = (new CreateImageAction)->run(
+                    (new CreateImageAction)->run(
+                        $image_file,
                         new CreateImageData(
-                            image: $validated['image'],
-                            create_date: $validated['create_date'],
-                            sort: $validated['sort'],
-                            parent_type: $validated['parent_type'],
-                            parent_id: $validated['parent_id'],
+                            image: $image_file->getClientOriginalName(),
+                            parent_type: 'page_avatar',
+                            parent_id: $page->id,
                         )
                     );
                 }
@@ -173,12 +168,7 @@ class PageController extends Controller
 
             $page->delete();
             $seo->delete();
-
-            if ($image) {
-                $image->delete();
-                Storage::deleteDirectory('public/upload/page_avatar/' . $id);
-            }
-
+            (new DestroyImageAction)->run($image);
         }, 3);
 
         return redirect(route('admin.pages.index'));
