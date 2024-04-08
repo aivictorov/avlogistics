@@ -11,6 +11,6 @@ class GetPortfolioAvatarAction
         return Image::where([
             ['parent_type', 'portfolio_avatar'],
             ['parent_id', $id],
-        ])->first(['id', 'image'])->toArray();
+        ])->first();
     }
 }

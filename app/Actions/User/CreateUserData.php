@@ -9,6 +9,6 @@ class CreateUserData
         public $email,
         public $password,
     ) {
-        
+        //
     }
 }

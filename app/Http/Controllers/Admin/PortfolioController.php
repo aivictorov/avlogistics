@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\Image\BuildGalleryImagesPathsAction;
+use App\Actions\Image\BuildPortfolioAvatarPathAction;
+use App\Actions\Image\GetPortfolioAvatarAction;
+use App\Actions\Image\GetPortfolioGalleryAction;
 use App\Actions\Portfolio\GetPortfolioAction;
 use App\Actions\Portfolio\GetPortfolioItemsAction;
 use App\Actions\Portfolio\GetPortfolioSectionsAction;
@@ -76,28 +80,11 @@ class PortfolioController extends Controller
         $portfolio = (new GetPortfolioAction)->run($id);
         $sections = (new GetPortfolioSectionsAction)->run();
         $seo = (new GetSeoAction)->run($portfolio['seo_id']);
+        $image = (new GetPortfolioAvatarAction)->run($id);
+        $image_path = (new BuildPortfolioAvatarPathAction)->run($image);
 
-        $image = Image::where([
-            ['parent_type', 'portfolio_avatar'],
-            ['parent_id', $id],
-        ])->first();
-
-        if ($image) {
-            $image_path = '/storage/upload/portfolio_avatar/' . $id . '/' . $image['id'] . '/sizes/page_' . $image['image'];
-        } else {
-            $image_path = '';
-        }
-
-        $gallery = Image::where([
-            ['parent_type', 'portfolio_image'],
-            ['parent_id', $id],
-        ])->get();
-
-        if ($gallery) {
-            foreach ($gallery as $key => $image) {
-                $gallery[$key] = '/storage/upload/portfolio_image/' . $id . '/' . $image['id'] . '/sizes/small_' . $image['image'];
-            }
-        }
+        $gallery = (new GetPortfolioGalleryAction)->run($id);
+        $gallery = (new BuildGalleryImagesPathsAction)->run($id, $gallery );
 
         return view('admin.portfolio.edit', compact('portfolio', 'sections', 'image_path', 'gallery', 'seo'));
     }
