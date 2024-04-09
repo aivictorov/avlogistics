@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\Questions;
+namespace App\Actions\Question;
 
 class UpdateQuestionData
 {

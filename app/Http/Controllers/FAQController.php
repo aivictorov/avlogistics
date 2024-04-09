@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Actions\FAQ\GetFaqAction;
-use App\Actions\FAQ\GetFaqIdByUrlAction;
+use App\Actions\FAQ\GetFaqIDAction;
 use App\Actions\FAQ\GetFaqParentsAction;
 use App\Actions\FAQ\GetFaqSectionsAction;
 use App\Actions\Page\GetPageAction;
-use App\Actions\Page\GetPageIdByUrlAction;
+use App\Actions\Page\GetPageIDAction;
 use App\Actions\Page\GetPageParentsAction;
-use App\Actions\Questions\GetQuestionsAction;
+use App\Actions\Question\GetQuestionsAction;
 use App\Actions\SEO\GetSeoAction;
 use App\Http\Controllers\Controller;
 use App\Models\FAQ_Questions;
@@ -19,12 +19,11 @@ class FAQController extends Controller
 {
     public function index()
     {
-        $id = (new GetPageIdByUrlAction)->run('faq');
+        $id = (new GetPageIDAction)->run('faq');
         $page = (new GetPageAction)->run($id);
         $seo = (new GetSeoAction)->run($page['seo_id']);
         $parents = (new GetPageParentsAction)->run($id);
-
-        $faq_categories = (new GetFaqSectionsAction)->run();
+        $faq_categories = (new GetFaqSectionsAction)->run(sort: 'sort_key', active: true);
 
         foreach ($faq_categories as $key => $category) {
             $faq_categories[$key]['items'] = FAQ_Questions::select('name', 'answer')->where('faq_id', $category['id'])->orderBy('sort')->get()->toArray();
@@ -39,13 +38,18 @@ class FAQController extends Controller
 
     public function show($url)
     {
-        $id = (new GetFaqIdByUrlAction)->run($url);
-        $page = (new GetFaqAction)->run($id);
-        $parents = (new GetFaqParentsAction)->run();
-        $seo = (new GetSeoAction)->run($page['seo_id']);
-        $faq_categories = (new GetFaqSectionsAction)->run();
-        $faq_questions = (new GetQuestionsAction)->run($id);
+        $id = (new GetFaqIDAction)->run($url);
 
-        return view('faq.show', compact('page', 'parents', 'seo', 'faq_questions', 'faq_categories'));
+        if ($id) {
+            $page = (new GetFaqAction)->run($id);
+            $parents = (new GetFaqParentsAction)->run();
+            $seo = (new GetSeoAction)->run($page['seo_id']);
+            $faq_categories = (new GetFaqSectionsAction)->run(sort: 'sort_key', active: true);
+            $faq_questions = (new GetQuestionsAction)->run($id);
+
+            return view('faq.show', compact('page', 'parents', 'seo', 'faq_questions', 'faq_categories'));
+        } else {
+            return view('site.404');
+        }
     }
 }

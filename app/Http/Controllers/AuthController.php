@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Page\GetPageAction;
-use App\Actions\Page\GetPageIdByUrlAction;
+use App\Actions\Page\GetPageIDAction;
 use App\Actions\Page\GetPageParentsAction;
 use App\Actions\SEO\GetSeoAction;
 use Illuminate\Http\Request;
@@ -19,7 +19,7 @@ class AuthController extends Controller
             return redirect(route('admin.home'));
 
         } else {
-            $id = (new GetPageIdByUrlAction)->run('login');
+            $id = (new GetPageIDAction)->run('login');
             $page = (new GetPageAction)->run($id);
             $seo = (new GetSeoAction)->run($page['seo_id']);
             $parents = (new GetPageParentsAction)->run($id);

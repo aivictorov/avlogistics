@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Actions\Portfolio\GetPortfolioSectionAction;
-use App\Actions\Portfolio\GetPortfolioSectionsAction;
+use App\Actions\PortfolioSection\GetPortfolioSectionAction;
+use App\Actions\PortfolioSection\GetPortfolioSectionsAction;
 use App\Http\Controllers\Controller;
 use App\Models\PortfolioSection;
 use Illuminate\Http\Request;
@@ -15,7 +15,6 @@ class PortfolioSectionController extends Controller
     public function index()
     {
         $sections = (new GetPortfolioSectionsAction)->run();
-
         return view('admin.portfolioSections.index', compact('sections'));
     }
 
@@ -65,7 +64,7 @@ class PortfolioSectionController extends Controller
     {
         $section = (new GetPortfolioSectionAction)->run($id);
         $section->delete();
-        
+
         return redirect(route('admin.portfolioSections.index'));
     }
 }

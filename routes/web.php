@@ -56,6 +56,7 @@ Route::name('user.')->group(function () {
 });
 
 Route::get('/', HomeController::class)->name('home');
+Route::redirect('/index', '/', 301);
 
 Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio.index');
 Route::get('/portfolio/{page}', [PortfolioController::class, 'show'])->where('page', '.+')->name('portfolio.show');
