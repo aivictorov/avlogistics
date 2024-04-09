@@ -17,17 +17,12 @@ class FaqRequest extends FormRequest
             'sort_key' => ['required'],
             'status' => ['required'],
 
-            // 'questions[]' => ['required'],
             'questions.*.name' => ['required'],
             'questions.*.answer' => ['required'],
-            // 'questions.*.sort' => ['nullable'],
 
-            // 'create_date',
-            // 'update_date',
-            // 'user_id',
-            // 'faq_id',
-            // 'file_id',
-            // 'sort',
+            'title' => ['nullable', 'string', 'min:3', 'max:100'],
+            'description' => ['nullable', 'string', 'min:3', 'max:250'],
+            'keywords' => ['nullable', 'string', 'min:3', 'max:250'],
         ];
     }
 

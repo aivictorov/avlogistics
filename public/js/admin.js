@@ -24,22 +24,39 @@ function search() {
 function questions() {
     const block = document.getElementById('questions');
     const btn = document.getElementById('questions_btn');
-    let id = 0;
+    let id = 1;
 
     btn.addEventListener('click', function () {
 
         block.insertAdjacentHTML('beforeend', `
-            <div class="card">
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="question_name">Название</label>
-                        <input type="text" class="form-control" id="question_name"
-                            name="questions[${id}][name]">
-                    </div>
-                    <div class="form-group">
-                        <label for="question_answer">Ответ</label>
-                        <x-textarea id="question_answer" class="form-control" rows="3"
-                            name="questions[${id}][answer]" />
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="question_name[${id}]">Название</label>
+                            <input type="text" class="form-control" id="question_name[${id}]"
+                                name="questions[${id}][name]">
+                        </div>
+                        <div class="form-group">
+                            <label for="question_answer[${id}]">Ответ</label>
+                            <textarea id="question_answer[${id}]" class="form-control" rows="3" name="questions[${id}][answer]"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="sort">Ключ сортировки</label>
+                                    <input type="text" class="form-control"
+                                        id="questions[0][sort]" name="questions[0][sort]">
+                                </div>
+                            </div>
+                            <div class="col-md-4 d-flex align-items-end">
+                                <div class="form-group w-100">
+                                    <button type="button" class="btn btn-block btn-outline-danger">
+                                        Удалить
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -47,6 +64,5 @@ function questions() {
 
         id++;
     })
-
 };
 

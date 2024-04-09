@@ -41,9 +41,9 @@
                                 <h3 class="card-title">Вопросы</h3>
                             </div>
                             <div class="card-body">
-                                <div class="row">
-                                    <div id="questions" class="col-md-12">
-                                        {{-- <div class="card">
+                                <div class="row" id="questions">
+                                    <div class="col-md-6">
+                                        <div class="card">
                                             <div class="card-body">
                                                 <div class="form-group">
                                                     <label for="question_name">Название</label>
@@ -51,18 +51,34 @@
                                                         name="questions[0][name]">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="question_answer">Ответ</label>
-                                                    <x-textarea id="question_answer" class="form-control" rows="3"
-                                                        name="questions[0][answer]" />
+                                                    <label for="questions[0][answer]">Ответ</label>
+                                                    <textarea id="questions[0][answer]" class="form-control" rows="3" name="questions[0][answer]"></textarea>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="form-group">
+                                                            <label for="sort">Ключ сортировки</label>
+                                                            <input type="text" class="form-control"
+                                                                id="questions[0][sort]" name="questions[0][sort]">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 d-flex align-items-end">
+                                                        <div class="form-group w-100">
+                                                            <button type="button" class="btn btn-block btn-outline-danger">
+                                                                Удалить
+                                                            </button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div> --}}
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <button type="button" id="questions_btn" class="btn btn-block btn-outline-primary">
+                                            <button type="button" id="questions_btn"
+                                                class="btn btn-block btn-outline-primary">
                                                 Добавить вопрос
                                             </button>
                                         </div>

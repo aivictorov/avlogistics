@@ -21,7 +21,7 @@ use App\Actions\SEO\GetSeoAction;
 use App\Actions\SEO\UpdateSeoAction;
 use App\Actions\SEO\UpdateSeoData;
 use App\Http\Controllers\Controller;
-use App\Requests\Pages\PageRequest;
+use App\Requests\PageRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -83,6 +83,7 @@ class PageController extends Controller
         }, 3);
         return redirect(route('admin.pages.index'));
     }
+
     public function edit($id)
     {
         $page = (new GetPageAction)->run($id);
