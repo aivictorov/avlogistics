@@ -24,10 +24,13 @@ function search() {
 function questions() {
     const block = document.getElementById('questions');
     const btn = document.getElementById('questions_btn');
-    let id = 1;
+    deleteQuestion();
+
+    block.querySelectorAll('.col-md-6')
+
+    let id = Math.random() * 999999;
 
     btn.addEventListener('click', function () {
-
         block.insertAdjacentHTML('beforeend', `
             <div class="col-md-6">
                 <div class="card">
@@ -51,7 +54,7 @@ function questions() {
                             </div>
                             <div class="col-md-4 d-flex align-items-end">
                                 <div class="form-group w-100">
-                                    <button type="button" class="btn btn-block btn-outline-danger">
+                                    <button type="button" class="btn btn-block btn-outline-danger" data-action="remove_question_btn">
                                         Удалить
                                     </button>
                                 </div>
@@ -63,6 +66,18 @@ function questions() {
         `);
 
         id++;
+
+        deleteQuestion();
     })
+
+    function deleteQuestion() {
+        const delete_buttons = document.querySelectorAll('[data-action="remove_question_btn"]');
+
+        delete_buttons.forEach(function (btn) {
+            btn.addEventListener('click', () => {
+                btn.closest('.col-md-6').remove();
+            })
+        })
+    }
 };
 

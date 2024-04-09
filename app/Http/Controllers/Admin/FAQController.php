@@ -7,6 +7,7 @@ use App\Actions\FAQ\CreateFaqData;
 use App\Actions\FAQ\CreateQuestionAction;
 use App\Actions\FAQ\CreateQuestionData;
 use App\Actions\FAQ\GetFaqAction;
+use App\Actions\FAQ\GetFaqQuestionsAction;
 use App\Actions\FAQ\GetFaqSectionsAction;
 use App\Actions\Image\CreateImageAction;
 use App\Actions\Image\CreateImageData;
@@ -37,8 +38,6 @@ class FAQController extends Controller
     {
         $validated = $request->validated();
 
-        // dd($validated);
-
         DB::transaction(function () use ($validated) {
 
             $seo = (new CreateSeoAction)->run(
@@ -66,6 +65,7 @@ class FAQController extends Controller
                     new CreateQuestionData(
                         name: $question['name'],
                         answer: $question['answer'],
+                        sort: $question['sort'],
                         faq_id: $faq->id,
                     )
                 );
@@ -79,6 +79,8 @@ class FAQController extends Controller
     {
         $faq_category = (new GetFaqAction)->run($id);
         $seo = (new GetSeoAction)->run($faq_category['seo_id']);
-        return view('admin.faq.edit', compact('faq_category', 'seo'));
+        $questions = (new GetFaqQuestionsAction)->run($id);
+
+        return view('admin.faq.edit', compact('faq_category', 'seo', 'questions'));
     }
 }

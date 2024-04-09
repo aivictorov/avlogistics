@@ -9,8 +9,7 @@ class GetFaqQuestionsAction
 {
     public function run($id)
     {
-        $faq_questions = FAQ_Questions::select('name', 'answer')
-            ->where('faq_id', $id)
+        $faq_questions = FAQ_Questions::where('faq_id', $id)
             ->orderBy('sort')
             ->get()
             ->toArray();
