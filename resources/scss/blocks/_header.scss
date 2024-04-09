@@ -1,0 +1,15 @@
+.main-header {
+    border-bottom: 3px solid #f14214;
+    height: 131px;
+}
+
+.main-header.vh {
+    visibility: hidden;
+}
+
+.main-header__container {
+    width: 940px;
+    padding: 0 30px;
+    margin: 0 auto;
+    position: relative;
+}

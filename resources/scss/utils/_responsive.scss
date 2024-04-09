@@ -1,0 +1,15 @@
+/*responsive*/
+@media (max-width: 1000px) {
+    .top-header.show {
+        display: none;
+    }
+
+    .subnav-blocks.sl {
+        top: 134px;
+        position: absolute;
+    }
+
+    .main-header.vh {
+        visibility: visible;
+    }
+}

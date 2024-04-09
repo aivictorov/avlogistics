@@ -1,0 +1,135 @@
+.index-content__main-text {
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+    font-size: 24px;
+    text-align: center;
+    padding: 40px 10px;
+}
+
+.index-content__h2 {
+    font-size: 36px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+    text-align: center;
+}
+
+.index-content-wedo {
+    margin: 50px 0 0 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.index-content-wedo__item {
+    float: left;
+    width: 125px;
+    padding: 160px 0 0 0;
+    background-position: top center;
+    background-repeat: no-repeat;
+    margin: 0 32px 20px 30px;
+    text-align: center;
+    list-style: none;
+    font-size: 16px;
+}
+
+.index-content-wedo__item_1 {
+    background-image: url('/images/index_content/icons_we_do.png');
+    background-position: 0 0;
+}
+
+.index-content-wedo__item_2 {
+    background-image: url('/images/index_content/icons_we_do.png');
+    background-position: -182px 0;
+}
+
+.index-content-wedo__item_3 {
+    background-image: url('/images/index_content/icons_we_do.png');
+    background-position: -364px 0;
+}
+
+.index-content-wedo__item_4 {
+    background-image: url('/images/index_content/icons_we_do.png');
+    background-position: -546px 0;
+}
+
+.index-content-wedo__item_5 {
+    background-image: url('/images/index_content/icons_we_do.png');
+    background-position: -728px 0;
+}
+
+.index-content__submain-text {
+    padding: 20px 50px;
+    margin: 20px;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+    text-align: center;
+    line-height: 29px;
+    position: relative;
+}
+
+
+.index-content-allinclusive {
+    background: url('/images/index_content/allinclusive.png') top center no-repeat;
+    padding: 140px 100px 20px 100px;
+    font-size: 24px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.index-content-ourbest {
+    background: url('/images/index_content/ourbest.png') no-repeat top center;
+    padding: 170px 150px 30px 150px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+    text-align: center;
+    font-size: 24px;
+    margin: 40px 0;
+}
+
+.index-content-columns {
+    overflow: hidden;
+    margin-top: 50px;
+}
+
+.index-content-columns__left {
+    display: block;
+    margin: 0;
+    padding: 0 50px 0 0;
+    width: 420px;
+    float: left;
+    list-style: none;
+}
+
+
+.index-content-columns__right {
+    display: block;
+    margin: 0;
+    padding: 0 0 0 50px;
+    width: 420px;
+    float: left;
+    list-style: none;
+}
+
+
+.index-content-columns__item {
+    list-style: none;
+    background: url('/images/index_content/icon_ok.png') 0 6px no-repeat;
+    padding-left: 70px;
+    min-height: 70px;
+    margin-bottom: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+    font-size: 18px;
+    line-height: 29px;
+}
+
+.index-content-simple {
+    padding: 30px 40px 30px 40px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: lighter;
+    text-align: center;
+    font-size: 24px;
+    margin: 20px 0 70px 0;
+}

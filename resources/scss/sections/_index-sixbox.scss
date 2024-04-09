@@ -1,0 +1,75 @@
+.sixbox {
+    position: relative;
+    height: 380px;
+    margin-top: -30px;
+}
+
+.sixbox__block {
+    height: 330px;
+    position: absolute;
+    top: 0px;
+}
+
+.sixbox__block--question {
+    width: 363px;
+    height: 330px;
+    background: url('/images/sixbox_question.png') no-repeat 10px 20px;
+    left: 0;
+}
+
+.sixbox__block--form {
+    width: 213px;
+    height: 330px;
+    background: url('/images/sixbox_form.png') no-repeat;
+    left: 363px;
+}
+
+.sixbox__block--form.hovered {
+    width: 213px;
+    background-position: 100% 100%;
+}
+
+.sixbox__block--blog {
+    width: 361px;
+    height: 330px;
+    background: url('/images/sixbox_blog.png') no-repeat 10px -10px;
+    left: 576px;
+}
+
+
+.sixbox__text {
+    position: absolute;
+    color: #ffffff;
+    font-size: 26px;
+    font-family: 'robofanregular';
+    text-align: center;
+    width: 200px;
+    display: block;
+    text-decoration: none;
+    height: 70px;
+    padding-top: 130px;
+}
+
+.sixbox__text span {
+    font-size: 14px;
+    display: block;
+}
+
+
+.sixbox__block--question .sixbox__text {
+    top: 50px;
+    left: 110px;
+}
+
+
+.sixbox__block--form .sixbox__text {
+    top: 50px;
+    left: 10px;
+    color: #333333;
+}
+
+
+.sixbox__block--blog .sixbox__text {
+    top: 50px;
+    left: 58px;
+}
