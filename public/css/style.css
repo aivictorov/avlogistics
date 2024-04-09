@@ -1002,6 +1002,63 @@ h6 {
   display: none;
 }
 
+.login-form {
+  max-width: 60%;
+}
+
+.form-errors {
+  padding: 20px;
+  color: #ef4012;
+  border: 1px solid #ef4012;
+}
+.form-errors ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.form-errors ul li + li {
+  margin-top: 5px;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.label {
+  margin-bottom: 0.5rem;
+  display: block;
+  font-size: 12px;
+  color: #414040;
+  font-family: "Tahoma", sans-serif;
+}
+
+.error-notify {
+  color: #dc3545;
+  font-size: 80%;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.input {
+  display: block;
+  padding: 7px 10px;
+  border: 1px solid #cacaca;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.button {
+  display: block;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  color: #ffffff;
+  font-size: 14px;
+  background-color: #ef4012;
+  cursor: pointer;
+  width: 100%;
+}
+
 .blackback {
   background: rgba(0, 0, 0, 0.7);
   position: fixed;

@@ -6,7 +6,7 @@ use App\Actions\Page\GetPageAction;
 use App\Actions\Page\GetPageIDAction;
 use App\Actions\Page\GetPageParentsAction;
 use App\Actions\SEO\GetSeoAction;
-use Illuminate\Http\Request;
+use App\Requests\AuthRequest;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,18 +36,19 @@ class AuthController extends Controller
         }
     }
 
-    public function auth(Request $request)
+    public function auth(AuthRequest $request)
     {
+        $validated = $request->validated();
+
         if (!Auth::check()) {
-            $formFields = $request->only(['email', 'password']);
 
-            if (Auth::attempt($formFields)) {
+            if (Auth::attempt($validated)) {
                 return redirect()->intended(route('admin.home'));
+            } else {
+                return redirect(route('user.login'))->withErrors([
+                    'form' => 'Не удалось авторизоваться, введен неверный e-mail либо пароль.'
+                ]);
             }
-
-            return redirect(route('user.login'))->withErrors([
-                'email' => 'не удалось авторизоваться'
-            ]);
         }
     }
 }

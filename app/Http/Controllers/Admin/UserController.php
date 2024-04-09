@@ -11,7 +11,7 @@ use App\Actions\User\UpdateUserData;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Requests\UserEditRequest;
-use App\Requests\UserRequest;
+use App\Requests\UserCreateRequest;
 
 class UserController extends Controller
 {
@@ -26,7 +26,7 @@ class UserController extends Controller
         return view('admin.users.create');
     }
 
-    public function store(UserRequest $request)
+    public function store(UserCreateRequest $request)
     {
         $validated = $request->validated();
 

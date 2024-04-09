@@ -11,36 +11,39 @@
 
                 @include('site.parts.breadcrumbs')
 
-                <h1 class="page-h1">Вход</h1>
-
-                {{-- @foreach ($errors->all() as $error)
-                    {{ $error }}
-                @endforeach --}}
-
-                <x-errors />
-
-                <form id="login-form" class="form-horizontal" action={{ route('user.auth') }} method="post">
+                <form id="login-form" class="login-form" action={{ route('user.auth') }} method="post">
                     @csrf
-                    {{-- <input type="hidden" name="_csrf" value="M1pjSjJicGkFFRooRCg4W1YUVC1QG0UQezsHEHcNRiNFNlUYdAAnWg=="> --}}
-                    <div class="form-group field-loginform-username required has-success">
-                        <label class="col-lg-1 control-label" for="name">email</label>
-                        <div class="col-lg-3">
-                            <x-input type="text" id="email" class="form-control" name="email" />
+
+                    <h1 class="page-h1">Вход</h1>
+
+                    @if ($errors->any())
+                        <div class="form-group form-errors">
+                            <ul>
+                                @foreach ($errors->all() as $message)
+                                    <li>
+                                        {{ $message }}
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
-                        <div class="col-lg-8">
-                            <p class="help-block help-block-error"></p>
-                        </div>
+                    @endif
+
+                    <div class="form-group">
+                        <label class="label" for="email">E-mail:</label>
+                        <input type="text" id="email" class="input" name="email">
+                        @error('email')
+                            <div class="error-notify">{{ $message }}</div>
+                        @enderror
                     </div>
 
-                    <div class="form-group field-loginform-password required has-success">
-                        <label class="col-lg-1 control-label" for="password">Пароль</label>
-                        <div class="col-lg-3">
-                            <x-input type="password" id="password" class="form-control" name="password" />
-                        </div>
-                        <div class="col-lg-8">
-                            <p class="help-block help-block-error"></p>
-                        </div>
+                    <div class="form-group">
+                        <label class="label" for="password">Пароль:</label>
+                        <input type="password" id="password" class="input" name="password">
+                        @error('password')
+                            <div class="error-notify">{{ $message }}</div>
+                        @enderror
                     </div>
+
                     {{-- <div class="form-group field-loginform-rememberme">
                         <div class="checkbox">
                             <label>
@@ -49,13 +52,11 @@
                                 Запомнить
                             </label>
                             <p class="help-block help-block-error"></p>
-
                         </div>
                     </div> --}}
+
                     <div class="form-group">
-                        <div class="col-lg-offset-1 col-lg-11">
-                            <button type="submit" class="btn btn-primary" name="login-button">Вход</button>
-                        </div>
+                        <button type="submit" class="button">Вход</button>
                     </div>
                 </form>
             </article>
