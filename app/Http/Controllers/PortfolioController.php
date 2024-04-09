@@ -36,6 +36,8 @@ class PortfolioController extends Controller
             }
         }
 
+        // dd(count($sections[3]['items']));
+
         return view('portfolio.index', compact('page', 'parents', 'sections', 'seo'));
     }
 

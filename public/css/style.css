@@ -2034,11 +2034,6 @@ h6 {
        column-count: 3;
 }
 
-.subnav-blocks-columns--about {
-  -moz-column-count: unset;
-       column-count: unset;
-}
-
 /*responsive*/
 @media (max-width: 1000px) {
   .top-header.show {
