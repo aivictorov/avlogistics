@@ -18,7 +18,8 @@
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <a href={{ route('admin.pages.index') }} class="small-box-footer">Открыть список <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href={{ route('admin.pages.index') }} class="small-box-footer">Открыть список <i
+                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -26,13 +27,14 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3>53</h3>
-                            <p>Элементов портфолио</p>
+                            <h3>{{ $portfolio_count }}</h3>
+                            <p>Галереи портфолио в <b>{{ $portfolio_section_count }} категориях</b></p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-                        <a href={{ route('admin.portfolio.index') }} class="small-box-footer">Открыть список <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href={{ route('admin.portfolio.index') }} class="small-box-footer">Открыть список <i
+                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -40,13 +42,14 @@
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>44</h3>
-                            <p>Ответов на вопросы</p>
+                            <h3>{{ $questions_count }}</h3>
+                            <p>Ответов на вопросы в <b>{{ $faq_count }} темах</b></p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
                         </div>
-                        <a href={{ route('admin.faq.index') }} class="small-box-footer">Открыть список <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href={{ route('admin.faq.index') }} class="small-box-footer">Открыть список <i
+                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -60,7 +63,8 @@
                         <div class="icon">
                             <i class="ion ion-pie-graph"></i>
                         </div>
-                        <a href={{ route('admin.users.index') }} class="small-box-footer">Открыть список <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href={{ route('admin.users.index') }} class="small-box-footer">Открыть список <i
+                                class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->

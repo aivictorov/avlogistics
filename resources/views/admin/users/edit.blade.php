@@ -5,7 +5,9 @@
 @section('content')
     <section class="content">
         <div class="container-fluid">
-            <form action={{ route('admin.users.store') }} method="post" enctype="multipart/form-data">
+            <form action={{ route('admin.users.update', ['id' => $user['id']]) }} method="post"
+                enctype="multipart/form-data">
+                @method('PUT')
                 @csrf
                 <div class="row">
                     <div class="col-md-12">
@@ -19,19 +21,27 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Имя пользователя</label>
-                                    <x-input type="text" class="form-control" id="name" name="name" value="{{ $user['name'] }}"/>
-                                </div>          
-                                <div class="form-group">
-                                    <label for="name">Электронная почта</label>
-                                    <x-input type="text" class="form-control" id="name" name="name" value="{{ $user['email'] }}"/>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                        value="{{ $user['name'] }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="h1">Пароль</label>
-                                    <input type="text" class="form-control" id="h1" name="password">
+                                    <label for="email">Электронная почта</label>
+                                    <input type="text" class="form-control" id="email" name="email"
+                                        value="{{ $user['email'] }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="h1">Подтверждение пароля</label>
-                                    <input type="text" class="form-control" id="h1" name="password_confirm">
+                                    <label for="current_password">Текущий пароль</label>
+                                    <input id="current_password" class="form-control" type="password"
+                                        name="current_password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Новый пароль</label>
+                                    <input id="password" class="form-control" type="password" name="password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password_confirmation">Подтверждение пароля</label>
+                                    <input id="password_confirmation" class="form-control" type="password"
+                                        name="password_confirmation">
                                 </div>
                             </div>
                         </div>
@@ -48,7 +58,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Роль</label>
-                                            <select class="form-control">
+                                            <select class="form-control" disabled>
                                                 <option>Администратор</option>
                                             </select>
                                         </div>
@@ -56,9 +66,9 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Статус</label>
-                                            <select class="form-control">
-                                                <option>Включено</option>
-                                                <option>Выключено</option>
+                                            <select class="form-control" name="status">
+                                                <option value="1" selected>Включено</option>
+                                                <option value="0">Выключено</option>
                                             </select>
                                         </div>
                                     </div>
@@ -73,14 +83,9 @@
                             <button type="submit" class="btn btn-block btn-primary btn-lg">Сохранить</button>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <a href={{ route('admin.users.destroy', ['id' => $user['id']]) }} class="btn btn-block btn-danger btn-lg">Удалить</a>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <a href={{ url()->previous() }} type="button" class="btn btn-block btn-outline-primary btn-lg">Назад</a>
+                            <button type="submit" class="btn btn-block btn-outline-primary btn-lg">Назад</button>
                         </div>
                     </div>
                 </div>

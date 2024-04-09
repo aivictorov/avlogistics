@@ -7,11 +7,11 @@ use Carbon\Carbon;
 
 class GetFaqSectionsAction
 {
-    public function run()
+    public function run($sort = 'id')
     {
         $faq_categories = FAQ_Categories::select('id', 'name', 'url', 'h1', 'announce', 'update_date', 'status')
             // ->where('status', 1)
-            ->orderBy('sort_key')
+            ->orderBy($sort)
             ->get()
             ->toArray();
 

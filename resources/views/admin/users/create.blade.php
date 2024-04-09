@@ -22,8 +22,8 @@
                                     <input type="text" class="form-control" id="name" name="name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="name">Электронная почта</label>
-                                    <input type="text" class="form-control" id="name" name="name">
+                                    <label for="email">Электронная почта</label>
+                                    <input type="text" class="form-control" id="email" name="email">
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Пароль</label>
@@ -31,7 +31,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="password_confirmation">Подтверждение пароля</label>
-                                    <input id="password_confirmation" class="form-control" type="text" name="password_confirmation">
+                                    <input id="password_confirmation" class="form-control" type="text"
+                                        name="password_confirmation">
                                 </div>
                             </div>
                         </div>
@@ -48,7 +49,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Роль</label>
-                                            <select class="form-control">
+                                            <select class="form-control" disabled>
                                                 <option>Администратор</option>
                                             </select>
                                         </div>
@@ -56,9 +57,9 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Статус</label>
-                                            <select class="form-control">
-                                                <option>Включено</option>
-                                                <option>Выключено</option>
+                                            <select class="form-control" name="status">
+                                                <option value="1" selected>Включено</option>
+                                                <option value="0">Выключено</option>
                                             </select>
                                         </div>
                                     </div>

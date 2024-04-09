@@ -10,8 +10,7 @@
                 <div class="col-md-2">
                     <div class="card">
                         <div class="card-body table-responsive p-0">
-                            <a href={{ route('admin.faq.create') }} type="button"
-                                class="btn btn-block btn-primary btn-lg">
+                            <a href={{ route('admin.faq.create') }} type="button" class="btn btn-block btn-primary btn-lg">
                                 Добавить страницу
                             </a>
                         </div>
@@ -57,7 +56,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href={{ route('admin.portfolioSections.destroy', ['id' => $faq_category['id']]) }}
+                                                <a href={{ route('admin.faq.destroy', ['id' => $faq_category['id']]) }}
                                                     rel="nofollow">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
@@ -65,7 +64,7 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            </table>                  
+                            </table>
                         </div>
                         <!-- /.card-body -->
                     </div>

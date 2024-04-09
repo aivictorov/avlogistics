@@ -1,14 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactFormController;
+use App\Http\Controllers\FAQController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PortfolioController;
-use App\Http\Controllers\FAQController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\PortfolioSectionController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', App\Http\Controllers\Admin\HomeController::class)->name('home');
@@ -19,7 +19,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/pages/{id}/edit', [App\Http\Controllers\Admin\PageController::class, 'edit'])->name('pages.edit');
     Route::put('/pages/{id}', [App\Http\Controllers\Admin\PageController::class, 'update'])->name('pages.update');
     Route::get('/pages/{id}/delete', [App\Http\Controllers\Admin\PageController::class, 'destroy'])->name('pages.destroy');
-    // Route::delete('/pages/{id}', [App\Http\Controllers\Admin\PageController::class, 'destroy'])->name('pages.destroy');
 
     Route::get('/portfolio', [App\Http\Controllers\Admin\PortfolioController::class, 'index'])->name('portfolio.index');
     Route::get('/portfolio/create', [App\Http\Controllers\Admin\PortfolioController::class, 'create'])->name('portfolio.create');
@@ -46,7 +45,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/users/create', [App\Http\Controllers\Admin\UserController::class, 'create'])->name('users.create');
     Route::post('/users', [App\Http\Controllers\Admin\UserController::class, 'store'])->name('users.store');
     Route::get('/users/{id}/edit', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('users.edit');
-    Route::put('/users/{id}', [App\Http\Controllers\Admin\FAQController::class, 'update'])->name('users.update');
+    Route::put('/users/{id}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update');
     Route::get('/users/{id}/delete', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
 });
 

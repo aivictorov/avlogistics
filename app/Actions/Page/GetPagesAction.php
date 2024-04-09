@@ -7,14 +7,17 @@ use Carbon\Carbon;
 
 class GetPagesAction
 {
-    public function run()
+    public function run($sort = 'id')
     {
-        $pages = Page::select('id', 'name', 'url', 'update_date', 'status')->orderBy('id')->get()->toArray();
+        $pages = Page::select('id', 'name', 'url', 'update_date', 'status')
+            ->get()
+            ->sortBy($sort)
+            ->toArray();
 
         foreach ($pages as $key => $page) {
             $pages[$key]['update_date'] = Carbon::parse($page['update_date'])->toDateString();
         }
-        
+
         return $pages;
     }
 }

@@ -8,9 +8,9 @@ use Illuminate\Support\Str;
 
 class GetPortfolioSectionsAction
 {
-    public function run()
+    public function run($sort = 'id')
     {
-        $sections = PortfolioSection::select('id', 'name', 'update_date', 'status')->where('status', 1)->orderBy('sort_key')->get()->toArray();
+        $sections = PortfolioSection::select('id', 'name', 'update_date', 'status')->where('status', 1)->orderBy($sort)->get()->toArray();
 
         foreach ($sections as $key => $section) {
             $sections[$key]['url'] = Str::slug($section['name']);

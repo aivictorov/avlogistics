@@ -4,6 +4,7 @@ namespace App\Actions\User;
 
 use App\Actions\User\CreateUserData;
 use App\Models\User;
+use Carbon\Carbon;
 
 class CreateUserAction
 {
@@ -13,7 +14,9 @@ class CreateUserAction
             'name' => $data->name,
             'email' => $data->email,
             'password' => $data->password,
-            // 'password' => bcrypt($data->password),
+
+            'created_at' => Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon::now()->toDateTimeString(),
         ]);
     }
 }

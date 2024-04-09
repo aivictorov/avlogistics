@@ -2,7 +2,7 @@
 
 namespace App\Actions\User;
 
-class CreateUserData
+class UpdateUserData
 {
     public function __construct(
         public string $name,
