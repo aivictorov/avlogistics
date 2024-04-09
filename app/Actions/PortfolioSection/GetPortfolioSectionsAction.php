@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\Portfolio;
+namespace App\Actions\PortfolioSection;
 
 use App\Models\PortfolioSection;
 use Carbon\Carbon;

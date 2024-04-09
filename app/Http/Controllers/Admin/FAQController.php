@@ -4,15 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Actions\FAQ\CreateFaqAction;
 use App\Actions\FAQ\CreateFaqData;
-use App\Actions\FAQ\CreateQuestionAction;
-use App\Actions\FAQ\CreateQuestionData;
 use App\Actions\FAQ\GetFaqAction;
-use App\Actions\FAQ\GetFaqQuestionsAction;
 use App\Actions\FAQ\GetFaqSectionsAction;
 use App\Actions\FAQ\UpdateFaqAction;
 use App\Actions\FAQ\UpdateFaqData;
-use App\Actions\FAQ\UpdateQuestionAction;
-use App\Actions\FAQ\UpdateQuestionData;
+use App\Actions\Questions\CreateQuestionAction;
+use App\Actions\Questions\CreateQuestionData;
+use App\Actions\Questions\GetQuestionsAction;
+use App\Actions\Questions\UpdateQuestionAction;
+use App\Actions\Questions\UpdateQuestionData;
 use App\Actions\SEO\CreateSeoAction;
 use App\Actions\SEO\CreateSeoData;
 use App\Actions\SEO\GetSeoAction;
@@ -80,7 +80,7 @@ class FAQController extends Controller
     {
         $faq = (new GetFaqAction)->run($id);
         $seo = (new GetSeoAction)->run($faq['seo_id']);
-        $questions = (new GetFaqQuestionsAction)->run($id);
+        $questions = (new GetQuestionsAction)->run($id);
 
         return view('admin.faq.edit', compact('faq', 'seo', 'questions'));
     }
@@ -90,7 +90,7 @@ class FAQController extends Controller
         $faq = (new GetFaqAction)->run($id);
         $seo = (new GetSeoAction)->run($faq['seo_id']);
 
-        $questions = (new GetFaqQuestionsAction)->run($id);
+        $questions = (new GetQuestionsAction)->run($id);
 
         foreach ($questions as $key => $question) {
             unset($questions[$key]['url']);
@@ -141,7 +141,7 @@ class FAQController extends Controller
         DB::transaction(function () use ($id) {
             $faq = (new GetFaqAction)->run($id);
             $seo = (new GetSeoAction)->run($faq['seo_id']);
-            $questions = (new GetFaqQuestionsAction)->run($id);
+            $questions = (new GetQuestionsAction)->run($id);
 
             $faq->delete();
             $seo->delete();

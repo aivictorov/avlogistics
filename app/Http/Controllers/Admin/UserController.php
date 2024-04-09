@@ -66,8 +66,12 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        $user = User::find($id);
-        $user->delete();
-        return redirect(route('admin.users.index'));
+        if (User::count() > 1) {
+            $user = User::find($id);
+            $user->delete();
+            return redirect(route('admin.users.index'));
+        } else {
+            return 'Нельзя удалить единственного пользователя';
+        }
     }
 }

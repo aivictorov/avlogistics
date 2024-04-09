@@ -12,10 +12,10 @@ body {
     // min-width: 1000px;
 
     // Sticky footer
-    // display: flex;
-    // flex-direction: column;
+    display: flex;
+    flex-direction: column;
     // justify-content: space-between;
-    // height: 100vh;
+    min-height: 100vh;
 }
 
 a {

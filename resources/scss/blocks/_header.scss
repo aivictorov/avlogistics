@@ -1,6 +1,9 @@
 .main-header {
     border-bottom: 3px solid #f14214;
     height: 131px;
+
+    // Sticky footer
+    flex-shrink: 0;
 }
 
 .main-header.vh {

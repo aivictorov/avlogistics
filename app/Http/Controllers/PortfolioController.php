@@ -9,7 +9,7 @@ use App\Actions\Page\GetPageParentsAction;
 use App\Actions\Portfolio\GetPortfolioAction;
 use App\Actions\Portfolio\GetPortfolioIdByUrlAction;
 use App\Actions\Portfolio\GetPortfolioParentsAction;
-use App\Actions\Portfolio\GetPortfolioSectionsAction;
+use App\Actions\PortfolioSection\GetPortfolioSectionsAction;
 use App\Actions\SEO\GetSeoAction;
 use App\Http\Controllers\Controller;
 use App\Models\Image;

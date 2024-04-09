@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Actions\FAQ\GetFaqAction;
 use App\Actions\FAQ\GetFaqIdByUrlAction;
 use App\Actions\FAQ\GetFaqParentsAction;
-use App\Actions\FAQ\GetFaqQuestionsAction;
 use App\Actions\FAQ\GetFaqSectionsAction;
 use App\Actions\Page\GetPageAction;
 use App\Actions\Page\GetPageIdByUrlAction;
 use App\Actions\Page\GetPageParentsAction;
+use App\Actions\Questions\GetQuestionsAction;
 use App\Actions\SEO\GetSeoAction;
 use App\Http\Controllers\Controller;
 use App\Models\FAQ_Questions;
@@ -44,7 +44,7 @@ class FAQController extends Controller
         $parents = (new GetFaqParentsAction)->run();
         $seo = (new GetSeoAction)->run($page['seo_id']);
         $faq_categories = (new GetFaqSectionsAction)->run();
-        $faq_questions = (new GetFaqQuestionsAction)->run($id);
+        $faq_questions = (new GetQuestionsAction)->run($id);
 
         return view('faq.show', compact('page', 'parents', 'seo', 'faq_questions', 'faq_categories'));
     }

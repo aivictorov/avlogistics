@@ -1,11 +1,9 @@
 <?php
 
 namespace App\Actions\FAQ;
-use App\Actions\FAQ\GetFaqAction;
-use App\Actions\FAQ\GetFaqIdByUrlAction;
+
 use App\Actions\Page\GetPageAction;
 use App\Actions\Page\GetPageIdByUrlAction;
-use App\Models\FAQ_Categories;
 use App\Models\Page;
 
 class GetFaqParentsAction

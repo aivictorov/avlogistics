@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Actions\FAQ;
+namespace App\Actions\Questions;
 
 use App\Models\FAQ_Questions;
 use Illuminate\Support\Str;
 
-class GetFaqQuestionsAction
+class GetQuestionsAction
 {
     public function run($id)
     {
