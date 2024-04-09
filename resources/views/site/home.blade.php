@@ -9,8 +9,10 @@
         <div class="main-section__container">
             <div class="zhd">
                 <h1 class="zhd__big">ЖД перевозки</h1>
-                <a class="zhd__neg" href="">негабаритных грузов </a> <span class="zhd__rf">из Санкт-Петербурга по
-                    РФ</span>
+                <div class="zhd__row">
+                    <a class="zhd__neg" href="#!">грузов любой сложности </a>
+                    <span class="zhd__rf">в вагонах и контейнерах</span>
+                </div>
             </div>
         </div>
 

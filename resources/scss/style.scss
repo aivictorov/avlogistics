@@ -11,9 +11,9 @@
 @import "./blocks/header";
 @import "./blocks/logo";
 @import "./blocks/nav";
+@import "./blocks/pagination";
 @import "./blocks/subnav";
 @import "./blocks/top";
-@import "./blocks/pagination";
 
 // Cards
 // @import "./cards/service-card";
@@ -26,14 +26,15 @@
 
 // Sections
 @import "./sections/aside-page";
+@import "./sections/faq";
 @import "./sections/index-main";
 @import "./sections/index-content";
 @import "./sections/index-portfolio";
 @import "./sections/index-sixbox";
 @import "./sections/portfolio";
 @import "./sections/post";
-@import "./sections/faq";
+@import "./sections/zhd";
 
 // Utils
-@import "./utils/responsive";
 @import "./utils/corrections";
+@import "./utils/responsive";

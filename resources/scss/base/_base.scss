@@ -9,7 +9,13 @@ html {
 body {
     margin: 0;
     padding: 0;
-    min-width: 1000px;
+    // min-width: 1000px;
+
+    // Sticky footer
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: space-between;
+    // height: 100vh;
 }
 
 a {
@@ -27,3 +33,41 @@ h6 {
     margin: 0;
     padding: 0;
 }
+
+.main-section__container {
+    max-width: 940px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 30px;
+
+    &--inhider {
+        display: none;
+    }
+
+    &--center {
+        text-align: center;
+    }
+
+
+    &--page {
+        margin-top: 30px;
+        min-height: 300px;
+    }
+
+    &--aside {
+        overflow: hidden;
+    }
+}
+
+// .container {
+// 	max-width: 1300px;
+// 	width: 100%;
+// 	margin: 0 auto;
+// 	padding: 0 25px;
+// 	position: relative;
+
+// 	@include bp(960px) {
+// 		// max-width: 768px;
+// 		padding: 0 20px;
+// 	}
+// }

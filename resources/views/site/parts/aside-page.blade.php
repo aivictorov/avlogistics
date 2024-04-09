@@ -1,6 +1,6 @@
 <aside class="main-aside">
     @foreach ($tree[array_key_first($tree)]['children'] as $header)
-        @if (isset( $parents[1]) && $header['id'] == $parents[1]['id'] || $header['id'] == $page['id'])
+        @if ((isset($parents[1]) && $header['id'] == $parents[1]['id']) || $header['id'] == $page['id'])
             <div class="aside-header">
                 <a href={{ route('pages.show', $header['url']) }}>{{ $header['name'] }}</a>
             </div>
@@ -22,6 +22,7 @@
             @endif
         @endif
     @endforeach
-    <a href="{{ route('contactForm') }}" class="main-aside__send-form">Рассчитать стоимость</a>
-    {{-- <a href="{{ route('contactForm') }}" class="js-form-open main-aside__send-form">Рассчитать стоимость</a> --}}
+
+    @include('site.parts.calculate-button')
+
 </aside>

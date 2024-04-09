@@ -1,0 +1,62 @@
+.zhd {
+    height: 310px;
+    // position: relative;
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 0;
+    padding: 0;
+}
+
+.zhd__big {
+    display: block;
+    padding: 0;
+    margin-top: 85px;
+    font-size: 88px;
+    font-family: 'robofanregular';
+    // width: 700px;
+    height: 86px;
+    // position: absolute;
+    // left: 152px;
+    // top: 85px;
+    color: #000000;
+}
+
+.zhd__row {
+    display: block;
+    margin-top: 9px;
+}
+
+.zhd__neg {
+    // position: absolute;
+    top: 180px;
+    // left: 150px;
+    /* text-indent: -9999px; */
+    /* background: url("/images/zhd_n.png") no-repeat; */
+    // width: 265px;
+    height: 24px;
+    font-family: 'robofanregular';
+    font-size: 25px;
+    color: #f14214;
+    text-decoration: none;
+
+    &:hover {
+        border-bottom: 2px solid #f14214;
+    }
+}
+
+.zhd__rf {
+    // position: absolute;
+    // top: 180px;
+    // left: 416px;
+    /* text-indent: -9999px; */
+    /* background: url("/images/zhd_rf.png") no-repeat; */
+    // width: 374px;
+    height: 24px;
+    font-family: 'robofanregular';
+    font-size: 25px;
+    color: #afafaf;
+}

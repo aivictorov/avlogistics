@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-	
+
 	$('.js-index-content-opener').click(function () {
 		var indexContent = $('.js-index-content');
 		if (indexContent.data("opened") == true) {
