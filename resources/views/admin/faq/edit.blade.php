@@ -5,7 +5,8 @@
 @section('content')
     <section class="content">
         <div class="container-fluid">
-            <form action={{ route('admin.faq.store') }} method="post" enctype="multipart/form-data">
+            <form action={{ route('admin.faq.update', ['id' => $faq['id']]) }} method="post" enctype="multipart/form-data">
+                @method('PUT')
                 @csrf
                 <div class="row">
                     <div class="col-md-12">
@@ -20,16 +21,16 @@
                                 <div class="form-group">
                                     <label for="name">Название</label>
                                     <x-input type="text" class="form-control" id="name" name="name"
-                                        value="{{ $faq_category['name'] }}" />
+                                        value="{{ $faq['name'] }}" />
                                 </div>
                                 <div class="form-group">
                                     <label for="h1">Заголовок</label>
                                     <x-input type="text" class="form-control" id="h1" name="h1"
-                                        value="{{ $faq_category['h1'] }}" />
+                                        value="{{ $faq['h1'] }}" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="text">Анонс</label>
-                                    <textarea id="text" class="form-control" rows="3" name="text">{{ $faq_category['announce'] }}</textarea>
+                                    <label for="announce">Анонс</label>
+                                    <textarea id="announce" class="form-control" rows="3" name="announce">{!! $faq['announce'] !!}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -55,15 +56,18 @@
                                                             value="{{ $question['name'] }}">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="questions[0][answer]">Ответ</label>
-                                                        <textarea id="questions[0][answer]" class="form-control" rows="3" name="questions[0][answer]"></textarea>
+                                                        <label for="questions[{{ $question['id'] }}][answer]">Ответ</label>
+                                                        <textarea id="questions[{{ $question['id'] }}][answer]" class="form-control" rows="3"
+                                                            name="questions[{{ $question['id'] }}][answer]">{!! $question['answer'] !!}</textarea>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-8">
                                                             <div class="form-group">
                                                                 <label for="sort">Ключ сортировки</label>
                                                                 <input type="text" class="form-control"
-                                                                    id="questions[0][sort]" name="questions[0][sort]">
+                                                                    id="questions[{{ $question['id'] }}][sort]"
+                                                                    name="questions[{{ $question['id'] }}][sort]"
+                                                                    value="{{ $question['sort'] }}">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4 d-flex align-items-end">
@@ -131,21 +135,25 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="url">URL</label>
-                                            <input type="text" class="form-control" id="url" name="url">
+                                            <input type="text" class="form-control" id="url" name="url"
+                                                value="{{ $faq['url'] }}">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="sort_key">Ключ сортировки</label>
-                                            <input type="text" class="form-control" id="sort_key" name="sort_key">
+                                            <input type="text" class="form-control" id="sort_key" name="sort_key"
+                                                value="{{ $faq['sort_key'] }}">
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Статус</label>
-                                            <select class="form-control" name="status">
-                                                <option value="1" selected>Включено</option>
-                                                <option value="0">Выключено</option>
+                                            <label for="status">Статус</label>
+                                            <select class="form-control" id="status" name="status">
+                                                <option value="1" {{ $faq['status'] == 1 ? 'selected' : '' }}>
+                                                    Включено</option>
+                                                <option value="0" {{ $faq['status'] == 0 ? 'selected' : '' }}>
+                                                    Отключено</option>
                                             </select>
                                         </div>
                                     </div>
@@ -157,7 +165,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-block btn-primary btn-lg">Создать</button>
+                            <button type="submit" class="btn btn-block btn-primary btn-lg">Сохранить</button>
                         </div>
                     </div>
                     <div class="col-md-6">

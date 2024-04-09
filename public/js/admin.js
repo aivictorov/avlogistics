@@ -47,9 +47,9 @@ function questions() {
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="form-group">
-                                    <label for="sort">Ключ сортировки</label>
+                                    <label for="questions[${id}][sort]">Ключ сортировки</label>
                                     <input type="text" class="form-control"
-                                        id="questions[0][sort]" name="questions[0][sort]">
+                                        id="questions[${id}][sort]" name="questions[${id}][sort]">
                                 </div>
                             </div>
                             <div class="col-md-4 d-flex align-items-end">

@@ -9,13 +9,15 @@ use App\Actions\FAQ\CreateQuestionData;
 use App\Actions\FAQ\GetFaqAction;
 use App\Actions\FAQ\GetFaqQuestionsAction;
 use App\Actions\FAQ\GetFaqSectionsAction;
-use App\Actions\Image\CreateImageAction;
-use App\Actions\Image\CreateImageData;
-use App\Actions\Page\CreatePageAction;
-use App\Actions\Page\CreatePageData;
+use App\Actions\FAQ\UpdateFaqAction;
+use App\Actions\FAQ\UpdateFaqData;
+use App\Actions\FAQ\UpdateQuestionAction;
+use App\Actions\FAQ\UpdateQuestionData;
 use App\Actions\SEO\CreateSeoAction;
 use App\Actions\SEO\CreateSeoData;
 use App\Actions\SEO\GetSeoAction;
+use App\Actions\SEO\UpdateSeoAction;
+use App\Actions\SEO\UpdateSeoData;
 use App\Http\Controllers\Controller;
 use App\Requests\FaqRequest;
 use Illuminate\Support\Facades\DB;
@@ -74,13 +76,80 @@ class FAQController extends Controller
         return redirect(route('admin.faq.index'));
     }
 
-
     public function edit($id)
     {
-        $faq_category = (new GetFaqAction)->run($id);
-        $seo = (new GetSeoAction)->run($faq_category['seo_id']);
+        $faq = (new GetFaqAction)->run($id);
+        $seo = (new GetSeoAction)->run($faq['seo_id']);
         $questions = (new GetFaqQuestionsAction)->run($id);
 
-        return view('admin.faq.edit', compact('faq_category', 'seo', 'questions'));
+        return view('admin.faq.edit', compact('faq', 'seo', 'questions'));
+    }
+
+    public function update(FaqRequest $request, $id)
+    {
+        $faq = (new GetFaqAction)->run($id);
+        $seo = (new GetSeoAction)->run($faq['seo_id']);
+
+        $questions = (new GetFaqQuestionsAction)->run($id);
+
+        foreach ($questions as $key => $question) {
+            unset($questions[$key]['url']);
+        }
+
+        $validated = $request->validated();
+
+        DB::transaction(function () use ($faq, $seo, $validated, $questions) {
+
+            (new UpdateFaqAction)->run(
+                $faq,
+                new UpdateFaqData(
+                    name: $validated['name'],
+                    h1: $validated['h1'],
+                    announce: $validated['announce'],
+                    url: $validated['url'],
+                    sort_key: $validated['sort_key'],
+                    status: $validated['status'],
+                )
+            );
+
+            (new UpdateSeoAction)->run(
+                $seo,
+                new UpdateSeoData(
+                    title: $validated['title'],
+                    description: $validated['description'],
+                    keywords: $validated['keywords'],
+                )
+            );
+
+            foreach ($questions as $question) {
+                $question = (new UpdateQuestionAction)->run(
+                    $question,
+                    new UpdateQuestionData(
+                        name: $question['name'],
+                        answer: $question['answer'],
+                        sort: $question['sort'],
+                    )
+                );
+            };
+        }, 3);
+
+        return redirect(route('admin.faq.index'));
+    }
+
+    public function destroy($id)
+    {
+        DB::transaction(function () use ($id) {
+            $faq = (new GetFaqAction)->run($id);
+            $seo = (new GetSeoAction)->run($faq['seo_id']);
+            $questions = (new GetFaqQuestionsAction)->run($id);
+
+            $faq->delete();
+            $seo->delete();
+            foreach ($questions as $key => $question) {
+                $question->delete();
+            }
+        }, 3);
+
+        return redirect(route('admin.faq.index'));
     }
 }
