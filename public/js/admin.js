@@ -1,10 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
     search();
     questions();
+    // gallery();
 })
 
+// function gallery() {
+//     const gallery = document.getElementById('portfolio-gallery');
+//     console.log(gallery);
+// }
+
 function search() {
-    searchField = document.getElementById('search');
+    const searchField = document.getElementById('search');
 
     if (searchField) table = searchField.closest('table');
     if (searchField && table) links = table.querySelectorAll('a');

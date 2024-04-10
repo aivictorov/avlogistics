@@ -5,7 +5,8 @@
 @section('content')
     <section class="content">
         <div class="container-fluid">
-            <form action={{ route('admin.portfolio.update', ['id' => $portfolio['id']]) }} method="post" enctype="multipart/form-data">
+            <form action={{ route('admin.portfolio.update', ['id' => $portfolio['id']]) }} method="post"
+                enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="row">
@@ -80,11 +81,26 @@
                                         <input type="file" id="images" name="images" multiple>
                                     </div>
                                     @if ($gallery)
-                                        @foreach ($gallery as $image_path)
-                                            <div class="d-inline-block mt-1">
-                                                <img src={{ $image_path }} />
-                                            </div>
-                                        @endforeach
+                                        <div id="portfolio-gallery">
+                                            @foreach ($gallery as $key => $path)
+                                                <div class="d-inline-flex flex-column mt-1">
+                                                    <img src={{ $path }} width="152" height="80" />
+                                                    <div>
+                                                        Sort: <input type="text" class="w-25"
+                                                            value="{{ $gallery_obj[$key]->sort }}"
+                                                            name="imageG[{{ $gallery_obj[$key]->id }}][sort]">
+                                                    </div>
+                                                    <div>
+                                                        <label class="d-flex">
+                                                            <input type="checkbox" class="w-25"
+                                                                value="{{ $gallery_obj[$key]->id }}"
+                                                                name="imageG[{{ $gallery_obj[$key]->id }}][del]">
+                                                            <span>Удалить</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     @endif
                                 </div>
                             </div>
@@ -100,7 +116,8 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="title">Title</label>
-                                    <x-input type="text" class="form-control" id="title" name="title" value="{{ $seo['title'] }}" />
+                                    <x-input type="text" class="form-control" id="title" name="title"
+                                        value="{{ $seo['title'] }}" />
                                 </div>
                                 <div class="form-group">
                                     <label for="description">meta:Description</label>

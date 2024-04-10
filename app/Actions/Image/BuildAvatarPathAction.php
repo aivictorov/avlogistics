@@ -2,7 +2,7 @@
 
 namespace App\Actions\Image;
 
-class BuildPortfolioAvatarPathAction
+class BuildAvatarPathAction
 {
     public function run($image)
     {
@@ -11,7 +11,6 @@ class BuildPortfolioAvatarPathAction
         } else {
             $image_path = "";
         }
-        
         return $image_path;
     }
 }

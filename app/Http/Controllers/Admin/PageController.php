@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Actions\Image\BuildPageAvatarPathAction;
+use App\Actions\Image\BuildAvatarPathAction;
 use App\Actions\Image\CreateImageAction;
 use App\Actions\Image\CreateImageData;
 use App\Actions\Image\DestroyImageAction;
@@ -90,7 +90,7 @@ class PageController extends Controller
         $seo = (new GetSeoAction)->run($page['seo_id']);
         $pages = (new GetPagesAction)->run();
         $image = (new GetPageAvatarAction)->run($id);
-        $image_path = (new BuildPageAvatarPathAction)->run($image);
+        $image_path = (new BuildAvatarPathAction)->run($image);
 
         return view('admin.pages.edit', compact('page', 'image_path', 'seo', 'pages'));
     }

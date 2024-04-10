@@ -24,7 +24,7 @@ class FAQ_Questions extends Model
     ];
 
     protected $casts = [
-        'status' => 'boolean',
+        // 'status' => 'boolean',
     ];
 
     protected $dates = [

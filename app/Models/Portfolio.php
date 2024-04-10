@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Portfolio extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'portfolio';
 
     protected $fillable = [
@@ -27,7 +27,7 @@ class Portfolio extends Model
     ];
 
     protected $casts = [
-        'status' => 'boolean',
+        // 'status' => 'boolean',
     ];
 
     protected $dates = [

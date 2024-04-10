@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Actions\Image\BuildGalleryImagesPathsAction;
-use App\Actions\Image\BuildPortfolioAvatarPathAction;
+use App\Actions\Image\BuildAvatarPathAction;
 use App\Actions\Image\CreateImageAction;
 use App\Actions\Image\CreateImageData;
 use App\Actions\Image\DestroyImageAction;
@@ -90,16 +90,28 @@ class PortfolioController extends Controller
         $sections = (new GetPortfolioSectionsAction)->run();
         $seo = (new GetSeoAction)->run($portfolio['seo_id']);
         $image = (new GetPortfolioAvatarAction)->run($id);
-        $image_path = (new BuildPortfolioAvatarPathAction)->run($image);
+        $image_path = (new BuildAvatarPathAction)->run($image);
 
-        $gallery = (new GetPortfolioGalleryAction)->run($id);
+        $gallery_obj = (new GetPortfolioGalleryAction)->run($id);
+
+        $gallery = array_merge([], $gallery_obj->toArray());
         $gallery = (new BuildGalleryImagesPathsAction)->run($id, $gallery);
 
-        return view('admin.portfolio.edit', compact('portfolio', 'sections', 'image_path', 'gallery', 'seo'));
+        return view('admin.portfolio.edit', compact('portfolio', 'sections', 'image_path', 'gallery', 'seo', 'gallery_obj'));
     }
 
     public function update(PortfolioRequest $request, $id)
     {
+
+        dd($request);
+
+        $request->imageG;
+
+
+
+        dd($request);
+
+
         $portfolio = (new GetPortfolioAction)->run($id);
         $seo = (new GetSeoAction)->run($portfolio['seo_id']);
 
