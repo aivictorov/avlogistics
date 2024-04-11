@@ -2,7 +2,7 @@
 
 namespace App\Actions\Image;
 
-use App\Actions\Image\SaveAvatarAction;
+use App\Actions\Image\SaveImageAction;
 use App\Actions\Image\ReplaceImageData;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
@@ -21,7 +21,7 @@ class ReplaceImageAction
             'create_date' => Carbon::now()->toDateTimeString(),
         ]);
 
-        (new SaveAvatarAction)->run($image_file, $image->id, $image->parent_id, $image->parent_type);
+        (new SaveImageAction)->run($image_file, $image->id, $image->parent_id, $image->parent_type);
 
         return;
     }

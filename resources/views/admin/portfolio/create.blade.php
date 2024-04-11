@@ -50,9 +50,9 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="image">Основное изображение</label>
+                                    <label for="avatar">Основное изображение</label>
                                     <div class="input-group">
-                                        <x-input type="file" id="image" name="image" />
+                                        <x-input type="file" id="avatar" name="avatar" />
                                     </div>
                                 </div>
                             </div>

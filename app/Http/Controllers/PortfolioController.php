@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Image\GetPortfolioAvatarAction;
+use App\Actions\Image\GetImageAction;
 use App\Actions\Page\GetPageAction;
 use App\Actions\Page\GetPageIDAction;
 use App\Actions\Page\GetPageParentsAction;
@@ -50,7 +50,7 @@ class PortfolioController extends Controller
             $parents = (new GetPortfolioParentsAction)->run();
             $seo = (new GetSeoAction)->run($portfolio_page['seo_id']);
             $sections = (new GetPortfolioSectionsAction)->run(sort: 'sort_key', active: true);
-            $avatar = (new GetPortfolioAvatarAction)->run($id);
+            $avatar = (new GetImageAction)->run($id);
 
             $gallery = Image::where([
                 ['parent_type', 'portfolio_image'],

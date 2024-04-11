@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Image\BuildAvatarPathAction;
-use App\Actions\Image\GetPageAvatarAction;
+use App\Actions\Image\BuildImagePathAction;
+use App\Actions\Image\GetImageAction;
 use App\Actions\Page\GetPageAction;
 use App\Actions\Page\GetPageIDAction;
 use App\Actions\Page\GetPageParentsAction;
@@ -19,8 +19,8 @@ class PageController extends Controller
             $page = (new GetPageAction)->run($id);
             $seo = (new GetSeoAction)->run($page['seo_id']);
             $parents = (new GetPageParentsAction)->run($id);
-            $image = (new GetPageAvatarAction)->run($id);
-            $image_path = (new BuildAvatarPathAction)->run($image);
+            $image = (new GetImageAction)->run($id);
+            $image_path = (new BuildImagePathAction)->run($image);
 
             return view('site.page', compact('page', 'parents', 'image_path', 'seo'));
         } else {

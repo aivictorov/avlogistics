@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Actions\Image\BuildAvatarPathAction;
+use App\Actions\Image\BuildImagePathAction;
 use App\Actions\Image\CreateImageAction;
 use App\Actions\Image\CreateImageData;
 use App\Actions\Image\DestroyImageAction;
-use App\Actions\Image\GetPageAvatarAction;
+use App\Actions\Image\GetImageAction;
 use App\Actions\Image\ReplaceImageAction;
 use App\Actions\Image\ReplaceImageData;
 use App\Actions\Page\CreatePageAction;
@@ -89,8 +89,8 @@ class PageController extends Controller
         $page = (new GetPageAction)->run($id);
         $seo = (new GetSeoAction)->run($page['seo_id']);
         $pages = (new GetPagesAction)->run();
-        $image = (new GetPageAvatarAction)->run($id);
-        $image_path = (new BuildAvatarPathAction)->run($image);
+        $image = (new GetImageAction)->run($id);
+        $image_path = (new BuildImagePathAction)->run($image);
 
         return view('admin.pages.edit', compact('page', 'image_path', 'seo', 'pages'));
     }
@@ -128,7 +128,7 @@ class PageController extends Controller
             );
 
             if ($request->has('image')) {
-                $image = (new GetPageAvatarAction)->run($page->id);
+                $image = (new GetImageAction)->run($page->id);
                 $image_file = $validated['image'];
 
                 if ($image) {
@@ -164,7 +164,7 @@ class PageController extends Controller
         DB::transaction(function () use ($id) {
             $page = (new GetPageAction)->run($id);
             $seo = (new GetSeoAction)->run($page['seo_id']);
-            $image = (new GetPageAvatarAction)->run($id);
+            $image = (new GetImageAction)->run($id);
 
             $page->delete();
             $seo->delete();

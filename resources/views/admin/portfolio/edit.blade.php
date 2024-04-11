@@ -1,3 +1,5 @@
+<?php use App\Models\Image; ?>
+
 @extends('admin.layouts.main')
 
 @section('title', 'Редактировать страницу портфолио')
@@ -58,9 +60,9 @@
                                     <div class="input-group">
                                         <input type="file" id="image" name="image">
                                     </div>
-                                    @if ($image_path)
+                                    @if ($avatar)
                                         <div class="d-block mt-3">
-                                            <img src={{ $image_path }} />
+                                            <img src={{ Image::path($avatar) }} />
                                         </div>
                                     @endif
                                 </div>
@@ -80,20 +82,20 @@
                                     <div class="input-group">
                                         <input type="file" id="images" name="images" multiple>
                                     </div>
-                                    @if ($gallery)
+                                    @if ($images)
                                         <div id="portfolio-gallery">
-                                            @foreach ($gallery as $key => $path)
+                                            @foreach ($images as $key => $image)
                                                 <div class="d-inline-flex flex-column mt-2">
-                                                    <img src={{ $path }} width="152" height="80" />
+                                                    <img src={{ Image::path($image) }} width="152" height="80" />
                                                     <div class="mt-1">
                                                         Sort: <input type="text" class="w-25"
-                                                            value="{{ $gallery_obj[$key]->sort }}"
-                                                            name="gallery_edit[{{ $gallery_obj[$key]->id }}][sort]">
+                                                            value="{{ $image->sort }}"
+                                                            name="gallery_edit[{{ $image->id }}][sort]">
                                                     </div>
                                                     <div class="mt-1">
                                                         <label class="d-flex">
                                                             <input type="checkbox" class="w-25" value={{ true }}
-                                                                name="gallery_edit[{{ $gallery_obj[$key]->id }}][del]">
+                                                                name="gallery_edit[{{ $image->id }}][del]">
                                                             <span>Удалить</span>
                                                         </label>
                                                     </div>

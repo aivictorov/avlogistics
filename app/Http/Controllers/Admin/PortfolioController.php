@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Actions\Image\BuildAvatarPathAction;
+use App\Actions\Image\BuildImagePathAction;
 use App\Actions\Image\BuildGalleryImagesPathsAction;
 use App\Actions\Image\CreateImageAction;
 use App\Actions\Image\CreateImageData;
 use App\Actions\Image\DestroyAllImagesAction;
 use App\Actions\Image\DestroyImageAction;
-use App\Actions\Image\GetPortfolioAvatarAction;
-use App\Actions\Image\GetPortfolioGalleryAction;
-use App\Actions\Image\GetPortfolioImagesAction;
+use App\Actions\Image\GetImageAction;
+use App\Actions\Image\GetImagesAction;
 use App\Actions\Image\ReplaceImageAction;
 use App\Actions\Image\ReplaceImageData;
 use App\Actions\Image\UpdateImageAction;
@@ -72,13 +71,13 @@ class PortfolioController extends Controller
                 )
             );
 
-            if ($request->has('image')) {
-                $image_file = $validated['image'];
+            if ($request->has('avatar')) {
+                $avatar_file = $validated['avatar'];
 
                 (new CreateImageAction)->run(
-                    $image_file,
+                    $avatar_file,
                     new CreateImageData(
-                        image: $image_file->getClientOriginalName(),
+                        image: $avatar_file->getClientOriginalName(),
                         parent_type: 'portfolio_avatar',
                         parent_id: $portfolio->id,
                     )
@@ -86,7 +85,7 @@ class PortfolioController extends Controller
             }
 
             if ($request->has('images')) {
-                foreach ($validated['images'] as $key => $item) {
+                foreach ($validated['images'] as $item) {
                     (new CreateImageAction)->run(
                         $item,
                         new CreateImageData(
@@ -107,15 +106,17 @@ class PortfolioController extends Controller
         $portfolio = (new GetPortfolioAction)->run($id);
         $sections = (new GetPortfolioSectionsAction)->run();
         $seo = (new GetSeoAction)->run($portfolio['seo_id']);
-        $image = (new GetPortfolioAvatarAction)->run($id);
-        $image_path = (new BuildAvatarPathAction)->run($image);
+        $avatar = (new GetImageAction)->run($id, parent_type: 'portfolio_avatar');
 
-        $gallery_obj = (new GetPortfolioGalleryAction)->run($id);
+        // $avatar_path = (new BuildImagePathAction)->run($avatar);
 
-        $gallery = array_merge([], $gallery_obj->toArray());
-        $gallery = (new BuildGalleryImagesPathsAction)->run($id, $gallery);
+        $images = (new GetImagesAction)->run($id, parent_type: 'portfolio_image');
 
-        return view('admin.portfolio.edit', compact('portfolio', 'sections', 'image_path', 'gallery', 'seo', 'gallery_obj'));
+        foreach ($images as $key => $image) {
+            $images[$key]['path'] = (new BuildImagePathAction)->run($image);
+        }
+
+        return view('admin.portfolio.edit', compact('portfolio', 'sections', 'seo', 'avatar', 'images'));
     }
 
     public function update(PortfolioRequest $request, $id)
@@ -150,7 +151,7 @@ class PortfolioController extends Controller
             );
 
             if ($request->has('image')) {
-                $image = (new GetPortfolioAvatarAction)->run($portfolio->id);
+                $image = (new GetImageAction)->run($portfolio->id);
                 $image_file = $validated['image'];
 
                 if ($image) {

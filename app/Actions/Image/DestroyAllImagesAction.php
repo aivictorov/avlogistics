@@ -8,8 +8,8 @@ class DestroyAllImagesAction
 {
     public function run($id): void
     {
-        $image = (new GetPortfolioAvatarAction)->run($id);
-        $images = (new GetPortfolioImagesAction)->run($id);
+        $image = (new GetImageAction)->run($id);
+        $images = (new GetImagesAction)->run($id);
 
         if ($image) {
             $image->delete();
