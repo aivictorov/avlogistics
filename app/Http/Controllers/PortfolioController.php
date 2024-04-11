@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Image\GetImageAction;
+use App\Actions\Image\GetImagesAction;
 use App\Actions\Page\GetPageAction;
 use App\Actions\Page\GetPageIDAction;
 use App\Actions\Page\GetPageParentsAction;
@@ -46,25 +47,14 @@ class PortfolioController extends Controller
         $id = (new GetPortfolioIDAction)->run($url);
 
         if ($id) {
-            $portfolio_page = (new GetPortfolioAction)->run($id);
+            $page = (new GetPortfolioAction)->run($id);
             $parents = (new GetPortfolioParentsAction)->run();
-            $seo = (new GetSeoAction)->run($portfolio_page['seo_id']);
+            $seo = (new GetSeoAction)->run($page['seo_id']);
             $sections = (new GetPortfolioSectionsAction)->run(sort: 'sort_key', active: true);
-            $avatar = (new GetImageAction)->run($id);
+            $avatar = (new GetImageAction)->run($id, parent_type: 'portfolio_avatar');
+            $images = (new GetImagesAction)->run($id, parent_type: 'portfolio_image');
 
-            $gallery = Image::where([
-                ['parent_type', 'portfolio_image'],
-                ['parent_id', $portfolio_page->id],
-            ])->get(['id', 'image'])->toArray();
-
-            return view('portfolio.show')->with([
-                'page' => $portfolio_page,
-                'parents' => $parents,
-                'seo' => $seo,
-                'sections' => $sections,
-                'avatar' => $avatar,
-                'gallery' => $gallery,
-            ]);
+            return view('portfolio.show', compact('page', 'parents', 'seo', 'sections', 'avatar', 'images'));
         } else {
             return view('site.404');
         }

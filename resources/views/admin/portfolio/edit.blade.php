@@ -86,21 +86,27 @@
                                     <div class="input-group">
                                         <input type="file" id="images" name="images" multiple>
                                     </div>
+                                </div>
+
+                                <div class="form-group">
                                     @if ($images)
-                                        <div id="portfolio-gallery">
+                                        <div id="portfolio-gallery" class="row">
                                             @foreach ($images as $key => $image)
-                                                <div class="d-inline-flex flex-column mt-2">
-                                                    <img src={{ Image::path($image) }} width="152" height="80" />
-                                                    <div class="mt-1">
-                                                        Sort: <input type="text" class="w-25"
-                                                            value="{{ $image->sort }}"
-                                                            name="edit_images[{{ $image->id }}][sort]">
+                                                <div class="mb-3 mr-2" style="max-width: 152px">
+                                                    <img src={{ Image::path($image, 'small') }} />
+                                                    <div class="small mt-1">
+                                                        <label>
+                                                            <span class="mr-1">Порядок:</span>
+                                                            <input type="text" class="w-25" value="{{ $image->sort }}"
+                                                                name="edit_images[{{ $image->id }}][sort]">
+                                                        </label>
                                                     </div>
-                                                    <div class="mt-1">
-                                                        <label class="d-flex">
-                                                            <input type="checkbox" class="w-25" value={{ true }}
+                                                    <div class="small">
+                                                        <label class="d-flex align-items-center">
+                                                            <span class="mr-1">Удалить:</span>
+                                                            <input type="checkbox" value={{ true }}
+                                                                id="edit_images[{{ $image->id }}][del]"
                                                                 name="edit_images[{{ $image->id }}][del]">
-                                                            <span>Удалить</span>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -183,13 +189,17 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <a href={{ route('admin.portfolio.destroy', ['id' => $portfolio['id']]) }}
-                                class="btn btn-block btn-danger btn-lg">Удалить</a>
+                                class="btn btn-block btn-danger btn-lg">
+                                Удалить
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <a href={{ url()->previous() }} type="button"
-                                class="btn btn-block btn-outline-primary btn-lg">Назад</a>
+                                class="btn btn-block btn-outline-primary btn-lg">
+                                Назад
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -1,3 +1,5 @@
+<?php use App\Models\Image; ?>
+
 @extends('layouts.main')
 
 @section('title', $seo->title)
@@ -16,12 +18,9 @@
                 <div class="js-portfoio-gallerey">
                     <div class="portfolio-gallerey">
                         <div class="portfolio-gallerey-in">
-                            <img src="/storage/upload/portfolio_avatar/{{ $page['id'] }}/{{ $avatar['id'] }}/sizes/big_{{ $avatar['image'] }}"
-                                class="portfolio-gallerey-bigimage" />
-
-                            @foreach ($gallery as $item)
-                                <img src="/storage/upload/portfolio_image/{{ $page['id'] }}/{{ $item['id'] }}/sizes/big_{{ $item['image'] }}"
-                                    class="portfolio-gallerey-bigimage" />
+                            <img src={{ Image::path($avatar, 'big') }} class="portfolio-gallerey-bigimage" />
+                            @foreach ($images as $image)
+                                <img src={{ Image::path($image, 'big') }} class="portfolio-gallerey-bigimage" />
                             @endforeach
                         </div>
                         <span
@@ -30,11 +29,9 @@
                             class="portfolio-gallerey-arrow portfolio-gallerey-arrow__right js-portfolio-gallerey-arrow__right"></span>
                     </div>
                     <div class="portfolio-miniimages">
-                        <img src="/storage/upload/portfolio_avatar/{{ $page['id'] }}/{{ $avatar['id'] }}/sizes/small_{{ $avatar['image'] }}"
-                            class="portfolio-gallerey-miniimage js-miniimage" />
-                        @foreach ($gallery as $item)
-                            <img src="/storage/upload/portfolio_image/{{ $page['id'] }}/{{ $item['id'] }}/sizes/small_{{ $item['image'] }}"
-                                class="portfolio-gallerey-miniimage js-miniimage" />
+                        <img src={{ Image::path($avatar, 'small') }} class="portfolio-gallerey-miniimage js-miniimage" />
+                        @foreach ($images as $image)
+                            <img src={{ Image::path($image, 'small') }} class="portfolio-gallerey-miniimage js-miniimage" />
                         @endforeach
                     </div>
                 </div>

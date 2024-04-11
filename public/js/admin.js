@@ -2,12 +2,57 @@ document.addEventListener('DOMContentLoaded', function () {
     search();
     questions();
     // gallery();
+    // callbackForm();
+    sendRequest()
 })
 
 // function gallery() {
 //     const gallery = document.getElementById('portfolio-gallery');
 //     console.log(gallery);
 // }
+
+
+function sendRequest() {
+    var request = new XMLHttpRequest();
+
+    request.open('GET', '/request');
+    request.send();
+}
+
+
+// function callbackForm() {
+//     const form = document.querySelector('#form')
+//     const answer = document.querySelector('#answer')
+
+//     form.addEventListener('submit', (event) => {
+//         event.preventDefault();
+
+//         const formData = new FormData(form);
+
+//         fetch('./../php/mail.php', {
+//             method: 'POST',
+//             body: formData
+//         }).then(response => {
+//             response.text().then(responseText => {
+//                 form.classList.add('none')
+//                 answer.innerText = responseText;
+//                 const closeBtn = event.target.closest('[modal-window]').querySelector('[close-modal-button]');
+
+//                 if (closeBtn) {
+//                     closeBtn.classList.remove('none');
+
+//                     closeBtn.addEventListener('click', function (event) {
+//                         form.classList.remove('none');
+//                         answer.innerText = "";
+//                         grecaptcha.reset();
+//                         closeBtn.classList.add('none');
+//                     });
+//                 };
+//             });
+//         });
+//     });
+// };
+
 
 function search() {
     const searchField = document.getElementById('search');
