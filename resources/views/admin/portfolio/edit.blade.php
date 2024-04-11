@@ -60,13 +60,17 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="image">Основное изображение</label>
+                                    <label for="avatar">Основное изображение</label>
                                     <div class="input-group">
-                                        <input type="file" id="image" name="image">
+                                        <input type="file" id="avatar" name="avatar">
                                     </div>
                                     @if ($avatar)
-                                        <div class="d-block mt-3">
+                                        <div class="d-block mt-3 portfolio-gallery__item">
                                             <img src={{ Image::path($avatar) }} />
+                                            <button class="position-absolute border-1" type="button" data-action="image"
+                                                data-id="{{ $avatar->id }}">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
                                         </div>
                                     @endif
                                 </div>
@@ -92,15 +96,28 @@
                                     @if ($images)
                                         <div id="portfolio-gallery" class="row">
                                             @foreach ($images as $key => $image)
-                                                <div class="mb-3 mr-2" style="max-width: 152px">
-                                                    <img src={{ Image::path($image, 'small') }} />
+                                                <div class="portfolio-gallery__item mb-3 mr-2 position-relative"
+                                                    style="max-width: 152px">
+
+                                                    <button class="position-absolute border-1" type="button"
+                                                        data-action="image" data-id="{{ $image->id }}">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+
+
+                                                    <img src={{ Image::path($image, 'small') }} width="152px" />
+
+
                                                     <div class="small mt-1">
                                                         <label>
                                                             <span class="mr-1">Порядок:</span>
-                                                            <input type="text" class="w-25" value="{{ $image->sort }}"
+                                                            <input type="text" class="w-25"
+                                                                value="{{ $image->sort }}"
                                                                 name="edit_images[{{ $image->id }}][sort]">
                                                         </label>
                                                     </div>
+
+
                                                     <div class="small">
                                                         <label class="d-flex align-items-center">
                                                             <span class="mr-1">Удалить:</span>
@@ -109,6 +126,11 @@
                                                                 name="edit_images[{{ $image->id }}][del]">
                                                         </label>
                                                     </div>
+
+
+
+
+
                                                 </div>
                                             @endforeach
                                         </div>

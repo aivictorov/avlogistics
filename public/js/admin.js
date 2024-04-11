@@ -1,57 +1,126 @@
 document.addEventListener('DOMContentLoaded', function () {
     search();
-    questions();
-    // gallery();
+    // questions();
+    gallery();
     // callbackForm();
     sendRequest()
 })
 
-// function gallery() {
-//     const gallery = document.getElementById('portfolio-gallery');
-//     console.log(gallery);
-// }
+function gallery() {
+    const gallery = document.querySelector('#portfolio-gallery');
+    const elements = gallery.querySelectorAll('.portfolio-gallery__item');
 
 
-function sendRequest() {
-    var request = new XMLHttpRequest();
 
-    request.open('GET', '/request');
-    request.send();
+
+    for (const element of elements) {
+        element.draggable = true;
+
+        element.addEventListener('dragstart', (event) => {
+            event.target.classList.add('selected');
+            console.log('drag start');
+        })
+
+        element.addEventListener('dragend', (event) => {
+            event.target.classList.remove('selected');
+            console.log('drag end');
+        });
+
+        element.addEventListener('dragover', (event) => {
+            event.preventDefault();
+
+            const activeElement = gallery.querySelector('.selected');
+            const currentElement = event.target;
+
+            const isMoveable = activeElement !== currentElement &&
+                currentElement.classList.contains('portfolio-gallery__item');
+
+            if (!isMoveable) return;
+
+            const nextElement = (currentElement === activeElement.nextElementSibling) ?
+                currentElement.nextElementSibling :
+                currentElement;
+
+            gallery.insertBefore(activeElement, nextElement);
+        });
+    }
 }
 
 
-// function callbackForm() {
-//     const form = document.querySelector('#form')
-//     const answer = document.querySelector('#answer')
+function sendRequest() {
 
-//     form.addEventListener('submit', (event) => {
-//         event.preventDefault();
+    const buttons = document.querySelectorAll('[data-action="image"]')
 
-//         const formData = new FormData(form);
+    buttons.forEach((button) => {
+        button.addEventListener('click', (event) => {
+            event.preventDefault;
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-//         fetch('./../php/mail.php', {
-//             method: 'POST',
-//             body: formData
-//         }).then(response => {
-//             response.text().then(responseText => {
-//                 form.classList.add('none')
-//                 answer.innerText = responseText;
-//                 const closeBtn = event.target.closest('[modal-window]').querySelector('[close-modal-button]');
+            const result = confirm("Удалить изображение?");
 
-//                 if (closeBtn) {
-//                     closeBtn.classList.remove('none');
+            if (result) {
+                fetch('/admin/ajax', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json;charset=utf-8',
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    body: JSON.stringify({ id: button.dataset.id }),
+                }).then(response => {
+                    response.text().then(responseText => {
+                        console.log('Ajax:', responseText);
+                    });
+                    button.closest('.portfolio-gallery__item').remove();
+                });
+            };
+        });
+    });
 
-//                     closeBtn.addEventListener('click', function (event) {
-//                         form.classList.remove('none');
-//                         answer.innerText = "";
-//                         grecaptcha.reset();
-//                         closeBtn.classList.add('none');
-//                     });
-//                 };
-//             });
-//         });
-//     });
-// };
+    // function postData(event){event.preventDefault();
+    //     var formData = new FormData();
+    //     formData.append('title', i('tittle').value);
+    //     formData.append('body', i('body').value);
+    //     fetch(url, {
+    //         method: 'POST',
+    //         body: formData,
+    //     }).then(response => response.json())
+    //     .then((data) =>  console.log(data))
+    // }
+}
+
+
+function callbackForm() {
+    const form = document.querySelector('#form')
+    const answer = document.querySelector('#answer')
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+
+        fetch('./../php/mail.php', {
+            method: 'POST',
+            body: formData
+        }).then(response => {
+            response.text().then(responseText => {
+                form.classList.add('none')
+                answer.innerText = responseText;
+                const closeBtn = event.target.closest('[modal-window]').querySelector('[close-modal-button]');
+
+                if (closeBtn) {
+                    closeBtn.classList.remove('none');
+
+                    closeBtn.addEventListener('click', function (event) {
+                        form.classList.remove('none');
+                        answer.innerText = "";
+                        grecaptcha.reset();
+                        closeBtn.classList.add('none');
+                    });
+                };
+            });
+        });
+    });
+};
 
 
 function search() {
