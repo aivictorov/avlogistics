@@ -4,10 +4,12 @@ namespace App\Actions\Image;
 
 use Carbon\Carbon;
 
-class UpdateImageData
+class ReplaceImageData
 {
     public function __construct(
-        public $sort,
+        public $image,
+        public $parent_type,
+        public $parent_id,
     ) {
         //
     }

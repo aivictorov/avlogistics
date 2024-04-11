@@ -69,7 +69,7 @@
                                 <div class="form-group">
                                     <label for="images">Галерея изображений</label>
                                     <div class="input-group">
-                                        <x-input type="file" id="images" name="images" multiple />
+                                        <x-input type="file" id="images" name="images[]" multiple />
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +85,7 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="title">Title</label>
-                                    <x-input id="title" class="form-control" type="text" name="title"/>
+                                    <x-input id="title" class="form-control" type="text" name="title" />
                                 </div>
                                 <div class="form-group">
                                     <label for="description">meta:Description</label>

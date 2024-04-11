@@ -7,8 +7,8 @@ use App\Actions\Image\CreateImageAction;
 use App\Actions\Image\CreateImageData;
 use App\Actions\Image\DestroyImageAction;
 use App\Actions\Image\GetPageAvatarAction;
-use App\Actions\Image\UpdateImageAction;
-use App\Actions\Image\UpdateImageData;
+use App\Actions\Image\ReplaceImageAction;
+use App\Actions\Image\ReplaceImageData;
 use App\Actions\Page\CreatePageAction;
 use App\Actions\Page\CreatePageData;
 use App\Actions\Page\GetPageAction;
@@ -132,10 +132,10 @@ class PageController extends Controller
                 $image_file = $validated['image'];
 
                 if ($image) {
-                    (new UpdateImageAction)->run(
+                    (new ReplaceImageAction)->run(
                         $image,
                         $image_file,
-                        new UpdateImageData(
+                        new ReplaceImageData(
                             image: $image_file->getClientOriginalName(),
                             parent_type: 'page_avatar',
                             parent_id: $page->id,

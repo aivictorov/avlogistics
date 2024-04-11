@@ -10,7 +10,7 @@ class DestroyImageAction
     {
         if ($image) {
             $image->delete();
-            Storage::deleteDirectory('public/upload/' . $image->parent_type . '/' . $image->parent_id);
+            Storage::deleteDirectory('public/upload/' . $image->parent_type . '/' . $image->parent_id . '/' . $image->id);
         }
     }
 }

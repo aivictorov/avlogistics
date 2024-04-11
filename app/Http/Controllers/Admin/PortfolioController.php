@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Actions\Image\BuildGalleryImagesPathsAction;
 use App\Actions\Image\BuildAvatarPathAction;
+use App\Actions\Image\BuildGalleryImagesPathsAction;
 use App\Actions\Image\CreateImageAction;
 use App\Actions\Image\CreateImageData;
+use App\Actions\Image\DestroyAllImagesAction;
 use App\Actions\Image\DestroyImageAction;
 use App\Actions\Image\GetPortfolioAvatarAction;
 use App\Actions\Image\GetPortfolioGalleryAction;
+use App\Actions\Image\GetPortfolioImagesAction;
+use App\Actions\Image\ReplaceImageAction;
+use App\Actions\Image\ReplaceImageData;
 use App\Actions\Image\UpdateImageAction;
 use App\Actions\Image\UpdateImageData;
 use App\Actions\Portfolio\CreatePortfolioAction;
@@ -24,6 +28,7 @@ use App\Actions\SEO\GetSeoAction;
 use App\Actions\SEO\UpdateSeoAction;
 use App\Actions\SEO\UpdateSeoData;
 use App\Http\Controllers\Controller;
+use App\Models\Image;
 use App\Requests\PortfolioRequest;
 use Illuminate\Support\Facades\DB;
 
@@ -79,6 +84,19 @@ class PortfolioController extends Controller
                     )
                 );
             }
+
+            if ($request->has('images')) {
+                foreach ($validated['images'] as $key => $item) {
+                    (new CreateImageAction)->run(
+                        $item,
+                        new CreateImageData(
+                            image: $item->getClientOriginalName(),
+                            parent_type: 'portfolio_image',
+                            parent_id: $portfolio->id,
+                        )
+                    );
+                }
+            }
         }, 3);
 
         return redirect(route('admin.portfolio.index'));
@@ -102,16 +120,6 @@ class PortfolioController extends Controller
 
     public function update(PortfolioRequest $request, $id)
     {
-
-        dd($request);
-
-        $request->imageG;
-
-
-
-        dd($request);
-
-
         $portfolio = (new GetPortfolioAction)->run($id);
         $seo = (new GetSeoAction)->run($portfolio['seo_id']);
 
@@ -146,10 +154,10 @@ class PortfolioController extends Controller
                 $image_file = $validated['image'];
 
                 if ($image) {
-                    (new UpdateImageAction)->run(
+                    (new ReplaceImageAction)->run(
                         $image,
                         $image_file,
-                        new UpdateImageData(
+                        new ReplaceImageData(
                             image: $image_file->getClientOriginalName(),
                             parent_type: 'portfolio_avatar',
                             parent_id: $portfolio->id,
@@ -168,6 +176,25 @@ class PortfolioController extends Controller
                     );
                 }
             }
+
+            if ($request->has('gallery_edit')) {
+                foreach ($validated['gallery_edit'] as $key => $gallery_item) {
+                    $id = $key;
+                    $image = Image::find($id);
+
+                    if (isset ($gallery_item['del']) && $gallery_item['del'] == true) {
+                        dd($gallery_item['del']);
+                        (new DestroyImageAction())->run($image);
+                    } else {
+                        (new UpdateImageAction)->run(
+                            $image,
+                            new UpdateImageData(
+                                sort: $gallery_item['sort'],
+                            )
+                        );
+                    }
+                }
+            }
         }, 3);
 
         return redirect(route('admin.portfolio.index'));
@@ -178,11 +205,10 @@ class PortfolioController extends Controller
         DB::transaction(function () use ($id) {
             $portfolio = (new GetPortfolioAction)->run($id);
             $seo = (new GetSeoAction)->run($portfolio['seo_id']);
-            $image = (new GetPortfolioAvatarAction)->run($id);
 
             $portfolio->delete();
             $seo->delete();
-            (new DestroyImageAction)->run($image);
+            (new DestroyAllImagesAction)->run($id);
         }, 3);
 
         return redirect(route('admin.portfolio.index'));

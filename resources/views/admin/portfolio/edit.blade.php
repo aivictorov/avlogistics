@@ -83,18 +83,17 @@
                                     @if ($gallery)
                                         <div id="portfolio-gallery">
                                             @foreach ($gallery as $key => $path)
-                                                <div class="d-inline-flex flex-column mt-1">
+                                                <div class="d-inline-flex flex-column mt-2">
                                                     <img src={{ $path }} width="152" height="80" />
-                                                    <div>
+                                                    <div class="mt-1">
                                                         Sort: <input type="text" class="w-25"
                                                             value="{{ $gallery_obj[$key]->sort }}"
-                                                            name="imageG[{{ $gallery_obj[$key]->id }}][sort]">
+                                                            name="gallery_edit[{{ $gallery_obj[$key]->id }}][sort]">
                                                     </div>
-                                                    <div>
+                                                    <div class="mt-1">
                                                         <label class="d-flex">
-                                                            <input type="checkbox" class="w-25"
-                                                                value="{{ $gallery_obj[$key]->id }}"
-                                                                name="imageG[{{ $gallery_obj[$key]->id }}][del]">
+                                                            <input type="checkbox" class="w-25" value={{ true }}
+                                                                name="gallery_edit[{{ $gallery_obj[$key]->id }}][del]">
                                                             <span>Удалить</span>
                                                         </label>
                                                     </div>
