@@ -22,6 +22,10 @@
                                     <x-errors />
                                 </div>
                                 <div class="form-group">
+                                    <x-notice />
+                                </div>
+
+                                <div class="form-group">
                                     <label for="name">Название</label>
                                     <x-input type="text" class="form-control" id="name" name="name"
                                         value="{{ $portfolio['name'] }}" />
@@ -90,12 +94,12 @@
                                                     <div class="mt-1">
                                                         Sort: <input type="text" class="w-25"
                                                             value="{{ $image->sort }}"
-                                                            name="gallery_edit[{{ $image->id }}][sort]">
+                                                            name="edit_images[{{ $image->id }}][sort]">
                                                     </div>
                                                     <div class="mt-1">
                                                         <label class="d-flex">
                                                             <input type="checkbox" class="w-25" value={{ true }}
-                                                                name="gallery_edit[{{ $image->id }}][del]">
+                                                                name="edit_images[{{ $image->id }}][del]">
                                                             <span>Удалить</span>
                                                         </label>
                                                     </div>

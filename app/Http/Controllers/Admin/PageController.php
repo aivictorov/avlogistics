@@ -89,10 +89,9 @@ class PageController extends Controller
         $page = (new GetPageAction)->run($id);
         $seo = (new GetSeoAction)->run($page['seo_id']);
         $pages = (new GetPagesAction)->run();
-        $image = (new GetImageAction)->run($id);
-        $image_path = (new BuildImagePathAction)->run($image);
+        $avatar = (new GetImageAction)->run($id, parent_type: 'page_avatar');
 
-        return view('admin.pages.edit', compact('page', 'image_path', 'seo', 'pages'));
+        return view('admin.pages.edit', compact('page', 'seo', 'pages', 'avatar'));
     }
 
     public function update(PageRequest $request, $id)

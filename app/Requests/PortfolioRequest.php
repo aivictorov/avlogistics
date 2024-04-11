@@ -22,12 +22,10 @@ class PortfolioRequest extends FormRequest
             'description' => ['nullable', 'string', 'min:3', 'max:250'],
             'keywords' => ['nullable', 'string', 'min:3', 'max:250'],
 
-            'gallery_edit.*.sort' => ['sometimes', 'integer'],
-            'gallery_edit.*.del' => ['sometimes'],
-
-            'image' => ['sometimes', 'mimes:jpg,jpeg', 'dimensions:min_width=670,min_height=270',],
-
-            'images.*' => ['sometimes', 'mimes:jpg,jpeg', 'dimensions:min_width=670,min_height=270',],
+            'avatar' => ['sometimes', 'mimes:jpg,jpeg', 'dimensions:min_width=670,min_height=270',],
+            'images.*' => ['sometimes', 'mimes:jpg,jpeg', 'dimensions:min_width=670,min_height=350',],
+            'edit_images.*.sort' => ['sometimes', 'integer'],
+            'edit_images.*.del' => ['sometimes'],
         ];
     }
 

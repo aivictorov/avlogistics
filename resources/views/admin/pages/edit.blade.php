@@ -1,3 +1,5 @@
+<?php use App\Models\Image; ?>
+
 @extends('admin.layouts.main')
 
 @section('title', 'Редактировать страницу')
@@ -62,9 +64,9 @@
                                     <div class="input-group">
                                         <input type="file" id="image" name="image">
                                     </div>
-                                    @if ($image_path)
+                                    @if ($avatar)
                                         <div class="d-block mt-3">
-                                            <img src={{ $image_path }} />
+                                            <img src={{ Image::path($avatar) }} />
                                         </div>
                                     @endif
                                 </div>

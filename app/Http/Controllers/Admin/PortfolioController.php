@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Actions\Image\BuildImagePathAction;
 use App\Actions\Image\BuildGalleryImagesPathsAction;
+use App\Actions\Image\BuildImagePathAction;
 use App\Actions\Image\CreateImageAction;
 use App\Actions\Image\CreateImageData;
 use App\Actions\Image\DestroyAllImagesAction;
@@ -30,6 +30,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Image;
 use App\Requests\PortfolioRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class PortfolioController extends Controller
 {
@@ -107,9 +108,6 @@ class PortfolioController extends Controller
         $sections = (new GetPortfolioSectionsAction)->run();
         $seo = (new GetSeoAction)->run($portfolio['seo_id']);
         $avatar = (new GetImageAction)->run($id, parent_type: 'portfolio_avatar');
-
-        // $avatar_path = (new BuildImagePathAction)->run($avatar);
-
         $images = (new GetImagesAction)->run($id, parent_type: 'portfolio_image');
 
         foreach ($images as $key => $image) {
@@ -150,27 +148,27 @@ class PortfolioController extends Controller
                 )
             );
 
-            if ($request->has('image')) {
-                $image = (new GetImageAction)->run($portfolio->id);
-                $image_file = $validated['image'];
+            if ($request->has('avatar')) {
+                $avatar = (new GetImageAction)->run($portfolio->id);
+                $avatar_file = $validated['avatar'];
 
-                if ($image) {
+                if ($avatar) {
                     (new ReplaceImageAction)->run(
-                        $image,
-                        $image_file,
+                        $avatar,
+                        $avatar_file,
                         new ReplaceImageData(
-                            image: $image_file->getClientOriginalName(),
+                            image: $avatar_file->getClientOriginalName(),
                             parent_type: 'portfolio_avatar',
                             parent_id: $portfolio->id,
                         )
                     );
                 }
 
-                if (!$image) {
+                if (!$avatar) {
                     (new CreateImageAction)->run(
-                        $image_file,
+                        $avatar_file,
                         new CreateImageData(
-                            image: $image_file->getClientOriginalName(),
+                            image: $avatar_file->getClientOriginalName(),
                             parent_type: 'portfolio_avatar',
                             parent_id: $portfolio->id,
                         )
@@ -178,19 +176,31 @@ class PortfolioController extends Controller
                 }
             }
 
-            if ($request->has('gallery_edit')) {
-                foreach ($validated['gallery_edit'] as $key => $gallery_item) {
+            if ($request->has('images')) {
+                foreach ($validated['images'] as $item) {
+                    (new CreateImageAction)->run(
+                        $item,
+                        new CreateImageData(
+                            image: $item->getClientOriginalName(),
+                            parent_type: 'portfolio_image',
+                            parent_id: $portfolio->id,
+                        )
+                    );
+                }
+            }
+
+            if ($request->has('edit_images')) {
+                foreach ($validated['edit_images'] as $key => $item) {
                     $id = $key;
                     $image = Image::find($id);
 
-                    if (isset ($gallery_item['del']) && $gallery_item['del'] == true) {
-                        dd($gallery_item['del']);
+                    if (isset ($item['del']) && $item['del'] == true) {
                         (new DestroyImageAction())->run($image);
                     } else {
                         (new UpdateImageAction)->run(
                             $image,
                             new UpdateImageData(
-                                sort: $gallery_item['sort'],
+                                sort: $item['sort'],
                             )
                         );
                     }
@@ -198,7 +208,9 @@ class PortfolioController extends Controller
             }
         }, 3);
 
-        return redirect(route('admin.portfolio.index'));
+        Session::flash('notice', 'Изменения сохранены');
+        return redirect(route('admin.portfolio.edit', ['id' => $id]));
+        // return redirect(route('admin.portfolio.index'));
     }
 
     public function destroy($id)

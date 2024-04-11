@@ -24,7 +24,7 @@ class PageRequest extends FormRequest
             'description' => ['nullable', 'string', 'min:3', 'max:250'],
             'keywords' => ['nullable', 'string', 'min:3', 'max:250'],
 
-            'image' => ['nullable', 'mimes:jpg,jpeg', 'dimensions:min_width=670,min_height=270',],
+            'avatar' => ['nullable', 'mimes:jpg,jpeg', 'dimensions:min_width=670,min_height=270',],
         ];
     }
 
