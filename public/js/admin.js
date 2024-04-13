@@ -59,9 +59,21 @@ function gallery() {
 
         if (btn) {
             btn.addEventListener('click', () => {
-                elements.forEach((element, id) => {
-                    console.log(element, id, element.offsetLeft, element.offsetTop)
+
+                let data = [];
+
+                gallery.querySelectorAll('.portfolio-gallery__item').forEach((item, id) => {
+                    data.push({
+                        id: item.dataset.id,
+                        sort: id
+                    });
                 })
+
+                console.log(data)
+
+                // elements.forEach((element, id) => {
+                //     console.log(element, id, element.offsetLeft, element.offsetTop)
+                // })
 
                 const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
@@ -71,7 +83,7 @@ function gallery() {
                         'Content-Type': 'application/json;charset=utf-8',
                         'X-CSRF-TOKEN': csrfToken
                     },
-                    body: '',
+                    body: JSON.stringify(data),
                 }).then(response => {
                     response.text().then(responseText => {
                         console.log('Ajax:', responseText);

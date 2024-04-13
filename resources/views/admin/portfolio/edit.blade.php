@@ -122,21 +122,11 @@
 
                                 <div class="form-group">
                                     <div class="portfolio-gallery row">
-
-                                        <div class="portfolio-gallery__item"
-                                            style="background-color: blue; width: 150px; height: 100px">1
-                                            <div
-                                                style="background-color: gray; width: 100px; height: 75px; pointer-events: none;">
+                                        @foreach ($images as $key => $image)
+                                            <div class="portfolio-gallery__item" data-id="{{ $image->id }}">
+                                                <img src={{ Image::path($image, 'small') }} width="152px" />
                                             </div>
-                                        </div>
-                                        <div class="portfolio-gallery__item"
-                                            style="background-color: green; width: 150px; height: 100px">2
-                                            <img src="/storage/upload/portfolio_image/6/1286/sizes/small_p1220997.jpg"
-                                                alt="" width="80px" height="auto">
-                                        </div>
-                                        <div class="portfolio-gallery__item"
-                                            style="background-color: red; width: 150px; height: 100px">3
-                                        </div>
+                                        @endforeach
 
                                         <div class="w-100">
                                             <button class="mt-2" type="button">Sort</button>

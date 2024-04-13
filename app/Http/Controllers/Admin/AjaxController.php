@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Actions\Image\DestroyImageAction;
+use App\Actions\Image\UpdateImageAction;
+use App\Actions\Image\UpdateImageData;
 use App\Http\Controllers\Controller;
 use App\Models\Image;
 
@@ -23,6 +25,19 @@ class AjaxController extends Controller
 
     public function drag_and_drop()
     {
-        return 'drag_and_drop';
+        $result = json_decode(file_get_contents('php://input'));
+
+        foreach ($result as $item) {
+            $image = Image::find($item->id);
+
+            (new UpdateImageAction)->run(
+                $image,
+                new UpdateImageData(
+                    sort: $item->sort,
+                )
+            );
+        }
+
+        return $result;
     }
 }
