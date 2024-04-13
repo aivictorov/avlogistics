@@ -4,7 +4,42 @@ document.addEventListener('DOMContentLoaded', function () {
     gallery();
     // callbackForm();
     sendRequest()
+    ajaxImgLoad()
 })
+
+function ajaxImgLoad() {
+
+    const input = document.querySelector('[data-js="img-input"]');
+    const btn = document.querySelector('[data-js="img-input-btn"]');
+
+    btn.addEventListener('click', () => {
+        var files = input.files;
+
+        var form = new FormData();
+        console.log(form)
+
+        for (var i = 0; i < files.length; i++) {
+            form.append(`images[${i}]`, files[i]);
+        }
+
+        console.log(form.get('images[0]'))
+
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        fetch('/admin/ajax-2', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            },
+            body: form,
+        }).then(response => {
+            response.text().then(responseText => {
+                console.log('Ajax:', responseText);
+            });
+        });
+    });
+}
+
 
 function gallery() {
     document.querySelectorAll('.portfolio-gallery').forEach((gallery) => {
@@ -23,6 +58,13 @@ function gallery() {
                 //     return false;
                 // };
             })
+
+
+            element.querySelectorAll('button').forEach((button) => {
+                button.draggable = false;
+                // button.style.pointerEvents = 'none';
+            })
+
 
             element.addEventListener('dragstart', (event) => {
                 event.target.classList.add('selected');

@@ -40,4 +40,18 @@ class AjaxController extends Controller
 
         return $result;
     }
+
+    public function load_img()
+    {
+
+        foreach ($_FILES["images"]["name"] as $key => $value) {
+            echo $_FILES["images"]["name"][$key] . '   ';
+        }
+
+        return;
+        // return $_POST['images']['name'];
+
+
+
+    }
 }

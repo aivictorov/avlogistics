@@ -85,53 +85,35 @@
                                 <h3 class="card-title">Галерея изображений</h3>
                             </div>
                             <div class="card-body">
+
                                 <div class="form-group">
                                     <label for="images">Галерея изображений</label>
                                     <div class="input-group">
-                                        <input type="file" id="images" name="images" multiple>
+                                        <x-input data-js="img-input" type="file" id="images" name="images[]"
+                                            multiple />
                                     </div>
-                                </div>
-
-                                <div class="form-group">
-                                    @if ($images)
-                                        <div class="portfolio-gallery row">
-                                            @foreach ($images as $key => $image)
-                                                <div class="portfolio-gallery__item mb-3 mr-2 position-relative"
-                                                    style="max-width: 152px">
-
-                                                    <button class="position-absolute border-1" type="button"
-                                                        data-action="image" data-id="{{ $image->id }}">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-
-                                                    <img src={{ Image::path($image, 'small') }} width="152px" />
-
-                                                    <div class="small mt-1">
-                                                        <label>
-                                                            <span class="mr-1">Порядок:</span>
-                                                            <input type="text" class="w-25"
-                                                                value="{{ $image->sort }}"
-                                                                name="edit_images[{{ $image->id }}][sort]">
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    @endif
+                                    <x-input data-js="test-input" type="text" name="test" />
+                                    <button data-js="img-input-btn" class="mt-2" type="button">Загрузить</button>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="portfolio-gallery row">
+
                                         @foreach ($images as $key => $image)
-                                            <div class="portfolio-gallery__item" data-id="{{ $image->id }}">
+                                            <div class="portfolio-gallery__item mb-2 mr-2 position-relative"
+                                                data-id="{{ $image->id }}">
+                                                <button class="delBtn" type="button" data-action="image"
+                                                    data-id="{{ $image->id }}">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
                                                 <img src={{ Image::path($image, 'small') }} width="152px" />
                                             </div>
                                         @endforeach
 
                                         <div class="w-100">
-                                            <button class="mt-2" type="button">Sort</button>
+                                            {{-- <button class="mt-2" type="button">Sort</button> --}}
                                             <button class="mt-2 sort-save-button" type="button">Save</button>
-                                            <button class="mt-2" type="button">Cancel</button>
+                                            {{-- <button class="mt-2" type="button">Cancel</button> --}}
                                         </div>
                                     </div>
                                 </div>
