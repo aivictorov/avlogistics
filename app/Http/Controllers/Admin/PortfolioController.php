@@ -48,6 +48,7 @@ class PortfolioController extends Controller
 
     public function store(PortfolioRequest $request)
     {
+
         $validated = $request->validated();
 
         DB::transaction(function () use ($validated, $request) {

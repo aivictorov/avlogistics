@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\Image\CreateImageAction;
+use App\Actions\Image\CreateImageData;
 use App\Actions\Image\DestroyImageAction;
 use App\Actions\Image\UpdateImageAction;
 use App\Actions\Image\UpdateImageData;
 use App\Http\Controllers\Controller;
 use App\Models\Image;
+use App\Requests\ImagesRequest;
 
 class AjaxController extends Controller
 {
@@ -41,17 +44,24 @@ class AjaxController extends Controller
         return $result;
     }
 
-    public function load_img()
+    public function load_img(ImagesRequest $request)
     {
+        $validated = $request->validated();
 
-        foreach ($_FILES["images"]["name"] as $key => $value) {
-            echo $_FILES["images"]["name"][$key] . '   ';
+        if ($request->has('images')) {
+            foreach ($validated['images'] as $item) {
+                (new CreateImageAction)->run(
+                    $item,
+                    new CreateImageData(
+                        image: $item->getClientOriginalName(),
+                        parent_type: 'portfolio_image',
+                        parent_id: $_POST['page_id'],
+                    )
+                );
+            }
         }
 
         return;
-        // return $_POST['images']['name'];
-
-
-
+        // return 'OK';
     }
 }

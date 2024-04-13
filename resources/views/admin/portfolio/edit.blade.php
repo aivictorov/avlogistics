@@ -92,8 +92,8 @@
                                         <x-input data-js="img-input" type="file" id="images" name="images[]"
                                             multiple />
                                     </div>
-                                    <x-input data-js="test-input" type="text" name="test" />
-                                    <button data-js="img-input-btn" class="mt-2" type="button">Загрузить</button>
+                                    <button data-js="img-input-btn" class="mt-2" type="button"
+                                        data-page="{{ $portfolio['id'] }}">Загрузить</button>
                                 </div>
 
                                 <div class="form-group">

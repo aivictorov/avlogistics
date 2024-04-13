@@ -12,32 +12,40 @@ function ajaxImgLoad() {
     const input = document.querySelector('[data-js="img-input"]');
     const btn = document.querySelector('[data-js="img-input-btn"]');
 
-    btn.addEventListener('click', () => {
-        var files = input.files;
+    if (btn) {
 
-        var form = new FormData();
-        console.log(form)
+        btn.addEventListener('click', () => {
+            var files = input.files;
 
-        for (var i = 0; i < files.length; i++) {
-            form.append(`images[${i}]`, files[i]);
-        }
+            var form = new FormData();
+            console.log(form);
 
-        console.log(form.get('images[0]'))
+            form.append('page_id', btn.dataset.page);
 
-        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            for (var i = 0; i < files.length; i++) {
+                form.append(`images[${i}]`, files[i]);
+            }
 
-        fetch('/admin/ajax-2', {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': csrfToken
-            },
-            body: form,
-        }).then(response => {
-            response.text().then(responseText => {
-                console.log('Ajax:', responseText);
+            console.log(form.get('page_id'));
+            // console.log(form.get('images[0]'));
+
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+            fetch('/admin/ajax-2', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                body: form,
+            }).then(response => {
+                response.text().then(responseText => {
+                    console.log('Ajax:', responseText);
+                });
             });
         });
-    });
+
+    }
+
 }
 
 
