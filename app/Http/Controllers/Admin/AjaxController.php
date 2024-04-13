@@ -8,7 +8,7 @@ use App\Models\Image;
 
 class AjaxController extends Controller
 {
-    public function __invoke()
+    public function destroy_image()
     {
         $result = json_decode(file_get_contents('php://input'));
 
@@ -19,5 +19,10 @@ class AjaxController extends Controller
         return $image->image;
 
         // return json_decode(file_get_contents('php://input'));
+    }
+
+    public function drag_and_drop()
+    {
+        return 'drag_and_drop';
     }
 }

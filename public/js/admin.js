@@ -7,43 +7,80 @@ document.addEventListener('DOMContentLoaded', function () {
 })
 
 function gallery() {
-    const gallery = document.querySelector('#portfolio-gallery');
-    const elements = gallery.querySelectorAll('.portfolio-gallery__item');
+    document.querySelectorAll('.portfolio-gallery').forEach((gallery) => {
+        const elements = gallery.querySelectorAll('.portfolio-gallery__item');
 
+        for (const element of elements) {
+            element.draggable = true;
 
+            // test
+            element.querySelectorAll('img').forEach((img) => {
+                img.draggable = false;
 
+                img.style.pointerEvents = 'none';
 
-    for (const element of elements) {
-        element.draggable = true;
+                // img.ondragstart = function () {
+                //     return false;
+                // };
+            })
 
-        element.addEventListener('dragstart', (event) => {
-            event.target.classList.add('selected');
-            console.log('drag start');
-        })
+            element.addEventListener('dragstart', (event) => {
+                event.target.classList.add('selected');
+                console.log('drag start');
+            })
 
-        element.addEventListener('dragend', (event) => {
-            event.target.classList.remove('selected');
-            console.log('drag end');
-        });
+            element.addEventListener('dragend', (event) => {
+                event.target.classList.remove('selected');
+                console.log('drag end');
+            });
 
-        element.addEventListener('dragover', (event) => {
-            event.preventDefault();
+            element.addEventListener('dragover', (event) => {
+                event.preventDefault();
 
-            const activeElement = gallery.querySelector('.selected');
-            const currentElement = event.target;
+                console.log('drag over');
 
-            const isMoveable = activeElement !== currentElement &&
-                currentElement.classList.contains('portfolio-gallery__item');
+                const activeElement = gallery.querySelector('.selected');
+                const currentElement = event.target;
 
-            if (!isMoveable) return;
+                const isMoveable = activeElement !== currentElement &&
+                    currentElement.classList.contains('portfolio-gallery__item');
 
-            const nextElement = (currentElement === activeElement.nextElementSibling) ?
-                currentElement.nextElementSibling :
-                currentElement;
+                if (!isMoveable) return;
 
-            gallery.insertBefore(activeElement, nextElement);
-        });
-    }
+                const nextElement = (currentElement === activeElement.nextElementSibling) ?
+                    currentElement.nextElementSibling :
+                    currentElement;
+
+                gallery.insertBefore(activeElement, nextElement);
+            });
+        };
+
+        const btn = gallery.querySelector('.sort-save-button');
+
+        if (btn) {
+            btn.addEventListener('click', () => {
+                elements.forEach((element, id) => {
+                    console.log(element, id, element.offsetLeft, element.offsetTop)
+                })
+
+                const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+                fetch('/admin/ajax-1', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json;charset=utf-8',
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    body: '',
+                }).then(response => {
+                    response.text().then(responseText => {
+                        console.log('Ajax:', responseText);
+                    });
+                });
+
+            })
+        }
+    });
 }
 
 

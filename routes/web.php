@@ -50,7 +50,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::put('/users/{id}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update');
     Route::get('/users/{id}/delete', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
 
-    Route::post('/ajax', App\Http\Controllers\Admin\AjaxController::class)->name('ajax');
+    Route::post('/ajax', [App\Http\Controllers\Admin\AjaxController::class, 'destroy_image'])->name('ajax');
+    Route::post('/ajax-1', [App\Http\Controllers\Admin\AjaxController::class, 'drag_and_drop'])->name('ajax');
 });
 
 Route::name('user.')->group(function () {
