@@ -388,6 +388,25 @@ function dragQuestions() {
     for (const element of elements) {
         element.draggable = true;
 
+
+        // test
+        element.querySelectorAll('input').forEach((input) => {
+            input.draggable = false;
+            input.style.pointerEvents = 'none';
+        })
+
+        element.querySelectorAll('label').forEach((label) => {
+            label.draggable = false;
+            label.style.pointerEvents = 'none';
+        })
+
+        element.querySelectorAll('textarea').forEach((textarea) => {
+            textarea.draggable = false;
+            textarea.style.pointerEvents = 'none';
+        })
+
+
+
         element.querySelectorAll('button').forEach((button) => {
             button.draggable = false;
         })
