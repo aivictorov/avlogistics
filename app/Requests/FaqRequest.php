@@ -21,9 +21,9 @@ class FaqRequest extends FormRequest
             'questions.*.answer' => ['required'],
             'questions.*.sort' => ['required', 'integer', 'min:0'],
 
-            'title' => ['nullable', 'string', 'min:3', 'max:100'],
-            'description' => ['nullable', 'string', 'min:3', 'max:250'],
-            'keywords' => ['nullable', 'string', 'min:3', 'max:250'],
+            'title' => ['required', 'string', 'min:3', 'max:100'],
+            'description' => ['required', 'string', 'min:3', 'max:250'],
+            'keywords' => ['required', 'string', 'min:3', 'max:250'],
         ];
     }
 

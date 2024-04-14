@@ -19,6 +19,7 @@ use App\Actions\SEO\GetSeoAction;
 use App\Actions\SEO\UpdateSeoAction;
 use App\Actions\SEO\UpdateSeoData;
 use App\Http\Controllers\Controller;
+use App\Models\FAQ_Questions;
 use App\Requests\FaqRequest;
 use Illuminate\Support\Facades\DB;
 
@@ -87,6 +88,8 @@ class FAQController extends Controller
 
     public function update(FaqRequest $request, $id)
     {
+        // dd($request);
+
         $faq = (new GetFaqAction)->run($id);
         $seo = (new GetSeoAction)->run($faq['seo_id']);
 
@@ -96,7 +99,11 @@ class FAQController extends Controller
             unset($questions[$key]['url']);
         }
 
+        // dd($questions);
+
         $validated = $request->validated();
+
+        dd($validated['questions']);
 
         DB::transaction(function () use ($faq, $seo, $validated, $questions) {
 
@@ -122,17 +129,33 @@ class FAQController extends Controller
             );
 
             foreach ($questions as $question) {
-                $question = (new UpdateQuestionAction)->run(
-                    $question,
-                    new UpdateQuestionData(
-                        name: $question['name'],
-                        answer: $question['answer'],
-                        sort: $question['sort'],
-                    )
-                );
+                if (isset ($validated['questions'][$question->id])) {
+                    (new UpdateQuestionAction)->run(
+                        $question,
+                        new UpdateQuestionData(
+                            name: $validated['questions'][$question->id]['name'],
+                            answer: $validated['questions'][$question->id]['answer'],
+                            sort: $validated['questions'][$question->id]['sort'],
+                        )
+                    );
+                } else {
+                    $question->delete();
+                };
+            };
+
+            foreach ($validated['questions'] as $key => $question) {
+                if (!FAQ_Questions::Find($key)) {
+                    (new CreateQuestionAction)->run(
+                        new CreateQuestionData(
+                            name: $question['name'],
+                            answer: $question['answer'],
+                            sort: $question['sort'],
+                            faq_id: $faq->id,
+                        )
+                    );
+                }
             };
         }, 3);
-
         return redirect(route('admin.faq.index'));
     }
 

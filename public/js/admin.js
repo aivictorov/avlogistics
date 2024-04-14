@@ -327,7 +327,7 @@ function questions() {
 
     block.querySelectorAll('.col-md-6')
 
-    let id = Math.random() * 999999;
+    let id = Math.floor(Math.random() * 9999);
 
     btn.addEventListener('click', function () {
         block.insertAdjacentHTML('beforeend', `
