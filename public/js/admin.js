@@ -11,22 +11,23 @@ function ajaxImgLoad() {
 
     const input = document.querySelector('[data-js="img-input"]');
     const btn = document.querySelector('[data-js="img-input-btn"]');
+    const gallery_html = document.querySelector('.portfolio-gallery');
 
     if (btn) {
-
         btn.addEventListener('click', () => {
             var files = input.files;
 
             var form = new FormData();
             console.log(form);
 
-            form.append('page_id', btn.dataset.page);
+            var page_id = btn.dataset.page;
+            form.append('page_id', page_id);
 
             for (var i = 0; i < files.length; i++) {
                 form.append(`images[${i}]`, files[i]);
             }
 
-            console.log(form.get('page_id'));
+            // console.log(form.get('page_id'));
             // console.log(form.get('images[0]'));
 
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -39,17 +40,94 @@ function ajaxImgLoad() {
                 body: form,
             }).then(response => {
                 response.text().then(responseText => {
-                    console.log('Ajax:', responseText);
+                    images = JSON.parse(responseText);
+
+                    console.log('Ajax:', images);
+
+
+                    var rand = Math.floor(Math.random() * 9999);
+                    console.log(rand);
+
+                    images.forEach((image) => {
+                        gallery_html.insertAdjacentHTML('afterbegin', `
+                            <div class="portfolio-gallery__item new_${rand} mb-2 mr-2 position-relative" data-id="${image.id}">
+                                <button class="delBtn" type="button" data-action="image" data-id="${image.id}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <img src="http://avlogistics.test/storage/upload/portfolio_image/${image.parent_id}/${image.id}/sizes/small_${image.image}" width="152px" style="pointer-events: none"/>
+                            </div>
+                        `);
+                    })
+
+                    var testGallery = document.querySelector('.portfolio-gallery');
+
+                    const newElements = document.querySelectorAll(`.portfolio-gallery__item.new_${rand}`);
+
+                    for (const element of newElements) {
+                        element.draggable = true;
+
+                        // test
+                        element.querySelectorAll('img').forEach((img) => {
+                            img.draggable = false;
+
+                            img.style.pointerEvents = 'none';
+
+                            // img.ondragstart = function () {
+                            //     return false;
+                            // };
+                        })
+
+
+                        element.querySelectorAll('button').forEach((button) => {
+                            button.draggable = false;
+                            // button.style.pointerEvents = 'none';
+                        })
+
+
+                        element.addEventListener('dragstart', (event) => {
+                            event.target.classList.add('selected');
+                            console.log('drag start');
+                        })
+
+                        element.addEventListener('dragend', (event) => {
+                            event.target.classList.remove('selected');
+                            console.log('drag end');
+                        });
+
+                        element.addEventListener('dragover', (event) => {
+                            event.preventDefault();
+
+                            console.log('drag over');
+
+                            const activeElement = document.querySelector('.selected');
+                            const currentElement = event.target;
+
+                            const isMoveable = activeElement !== currentElement &&
+                                currentElement.classList.contains('portfolio-gallery__item');
+
+                            if (!isMoveable) return;
+
+                            const nextElement = (currentElement === activeElement.nextElementSibling) ?
+                                currentElement.nextElementSibling :
+                                currentElement;
+
+                            console.log(testGallery);
+                            testGallery.insertBefore(activeElement, nextElement);
+                        });
+                    };
+
+
                 });
             });
         });
-
     }
-
 }
 
-
 function gallery() {
+
+    console.log('gallery start')
+    // document.querySelector('.sort-start-button').addEventListener('click', () => {
+
     document.querySelectorAll('.portfolio-gallery').forEach((gallery) => {
         const elements = gallery.querySelectorAll('.portfolio-gallery__item');
 
@@ -143,6 +221,8 @@ function gallery() {
             })
         }
     });
+
+    // })
 }
 
 

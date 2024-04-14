@@ -26,6 +26,6 @@ class CreateImageAction
             (new SaveImageAction)->run($image_file, $image->id, $image->parent_id, $image->parent_type);
         }
 
-        return;
+        return $image;
     }
 }

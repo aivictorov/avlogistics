@@ -49,19 +49,24 @@ class AjaxController extends Controller
         $validated = $request->validated();
 
         if ($request->has('images')) {
-            foreach ($validated['images'] as $item) {
-                (new CreateImageAction)->run(
-                    $item,
+            $images = $validated['images'];
+
+            $result = [];
+
+            foreach ($images as $image_file) {
+                $image = (new CreateImageAction)->run(
+                    $image_file,
                     new CreateImageData(
-                        image: $item->getClientOriginalName(),
+                        image: $image_file->getClientOriginalName(),
                         parent_type: 'portfolio_image',
                         parent_id: $_POST['page_id'],
                     )
                 );
+
+                array_push($result, $image);
             }
         }
 
-        return;
-        // return 'OK';
+        return $result;
     }
 }

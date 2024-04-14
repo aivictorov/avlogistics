@@ -65,9 +65,9 @@
                                         <input type="file" id="avatar" name="avatar">
                                     </div>
                                     @if ($avatar)
-                                        <div class="d-block mt-3 portfolio-gallery__item">
+                                        <div class="d-inline-block mt-3 portfolio-gallery__item position-relative">
                                             <img src={{ Image::path($avatar) }} />
-                                            <button class="position-absolute border-1" type="button" data-action="image"
+                                            <button class="delBtn" type="button" data-action="image"
                                                 data-id="{{ $avatar->id }}">
                                                 <i class="fas fa-trash"></i>
                                             </button>
@@ -111,7 +111,7 @@
                                         @endforeach
 
                                         <div class="w-100">
-                                            {{-- <button class="mt-2" type="button">Sort</button> --}}
+                                            <button class="mt-2 sort-start-button" type="button">Sort</button>
                                             <button class="mt-2 sort-save-button" type="button">Save</button>
                                             {{-- <button class="mt-2" type="button">Cancel</button> --}}
                                         </div>
