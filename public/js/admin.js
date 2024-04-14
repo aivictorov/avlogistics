@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
     search();
-    // questions();
+    questions();
     gallery();
     // callbackForm();
     sendRequest()
     ajaxImgLoad()
+    dragQuestions()
 })
 
 function ajaxImgLoad() {
@@ -124,9 +125,7 @@ function ajaxImgLoad() {
 }
 
 function gallery() {
-
     console.log('gallery start')
-    // document.querySelector('.sort-start-button').addEventListener('click', () => {
 
     document.querySelectorAll('.portfolio-gallery').forEach((gallery) => {
         const elements = gallery.querySelectorAll('.portfolio-gallery__item');
@@ -323,6 +322,7 @@ function search() {
 function questions() {
     const block = document.getElementById('questions');
     const btn = document.getElementById('questions_btn');
+
     deleteQuestion();
 
     block.querySelectorAll('.col-md-6')
@@ -378,5 +378,49 @@ function questions() {
             })
         })
     }
+};
+
+function dragQuestions() {
+    const questions = document.querySelector('#questions');
+
+    const elements = questions.querySelectorAll('.col-md-6');
+
+    for (const element of elements) {
+        element.draggable = true;
+
+        element.querySelectorAll('button').forEach((button) => {
+            button.draggable = false;
+        })
+
+        element.addEventListener('dragstart', (event) => {
+            event.target.classList.add('selected');
+            console.log('drag start');
+        })
+
+        element.addEventListener('dragend', (event) => {
+            event.target.classList.remove('selected');
+            console.log('drag end');
+        });
+
+        element.addEventListener('dragover', (event) => {
+            event.preventDefault();
+
+            console.log('drag over');
+
+            const activeElement = questions.querySelector('.selected');
+            const currentElement = event.target;
+
+            const isMoveable = activeElement !== currentElement &&
+                currentElement.classList.contains('col-md-6');
+
+            if (!isMoveable) return;
+
+            const nextElement = (currentElement === activeElement.nextElementSibling) ?
+                currentElement.nextElementSibling :
+                currentElement;
+
+            questions.insertBefore(activeElement, nextElement);
+        });
+    };
 };
 

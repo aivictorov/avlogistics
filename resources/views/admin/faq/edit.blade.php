@@ -29,8 +29,10 @@
                                         value="{{ $faq['h1'] }}" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="announce">Анонс</label>
-                                    <textarea id="announce" class="form-control" rows="3" name="announce">{!! $faq['announce'] !!}</textarea>
+                                    <label>Анонс</label>
+                                    <trix-editor input="announce"></trix-editor>
+                                    <x-input id="announce" type="hidden" name="announce"
+                                        value="{!! $faq['announce'] !!}" />
                                 </div>
                             </div>
                         </div>
