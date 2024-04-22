@@ -20,13 +20,14 @@ class CreatePageAction
             'menu_sort' => $data->menu_sort,
             'menu_show' => $data->menu_show,
             'status' => $data->status,
-            'system_page' => $data->system_page,
+            // 'system_page' => $data->system_page,
 
             'seo_id' => $data->seo_id,
 
             'create_date' => Carbon::now()->toDateTimeString(),
             'update_date' => Carbon::now()->toDateTimeString(),
             'user_id' => Auth::user()->id,
+            'system_page' => 0,
             'system' => 0,
             'portfolio_section_id' => null,
         ]);

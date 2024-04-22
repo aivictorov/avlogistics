@@ -18,11 +18,11 @@ class PageRequest extends FormRequest
             'menu_sort' => ['required', 'integer', 'min:0', 'max:100'],
             'menu_show' => ['required', 'boolean'],
             'status' => ['required', 'boolean'],
-            'system_page' => ['required', 'in:0,1,2,3,4,5,6,7'],
+            // 'system_page' => ['required', 'in:0,1,2,3,4,5,6,7'],
 
             'title' => ['nullable', 'string', 'min:3', 'max:100'],
-            'description' => ['nullable', 'string', 'min:3', 'max:250'],
-            'keywords' => ['nullable', 'string', 'min:3', 'max:250'],
+            'description' => ['nullable', 'string', 'min:3', 'max:500'],
+            'keywords' => ['nullable', 'string', 'min:3', 'max:500'],
 
             'avatar' => ['nullable', 'mimes:jpg,jpeg', 'dimensions:min_width=670,min_height=270',],
         ];

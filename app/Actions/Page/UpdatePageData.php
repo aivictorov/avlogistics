@@ -16,7 +16,7 @@ class UpdatePageData
         public $menu_sort,
         public $menu_show,
         public $status,
-        public $system_page,
+        // public $system_page,
     ) {
         //
     }

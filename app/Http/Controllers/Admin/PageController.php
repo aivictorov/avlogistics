@@ -63,7 +63,7 @@ class PageController extends Controller
                     menu_sort: $validated['menu_sort'],
                     menu_show: $validated['menu_show'],
                     status: $validated['status'],
-                    system_page: $validated['system_page'],
+                    // system_page: $validated['system_page'],
                     seo_id: $seo->id,
                 )
             );
@@ -113,7 +113,7 @@ class PageController extends Controller
                     menu_sort: $validated['menu_sort'],
                     menu_show: $validated['menu_show'],
                     status: $validated['status'],
-                    system_page: $validated['system_page'],
+                    // system_page: $validated['system_page'],
                 )
             );
 

@@ -18,7 +18,7 @@ class UpdatePageAction
             'menu_sort' => $data->menu_sort,
             'menu_show' => $data->menu_show,
             'status' => $data->status,
-            'system_page' => $data->system_page,
+            // 'system_page' => $data->system_page,
         ]);
     }
 }
