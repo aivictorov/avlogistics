@@ -125,8 +125,6 @@ function ajaxImgLoad() {
 }
 
 function gallery() {
-    console.log('gallery start')
-
     document.querySelectorAll('.portfolio-gallery').forEach((gallery) => {
         const elements = gallery.querySelectorAll('.portfolio-gallery__item');
 
@@ -323,51 +321,53 @@ function questions() {
     const block = document.getElementById('questions');
     const btn = document.getElementById('questions_btn');
 
-    deleteQuestion();
+    if (block && btn) {
+        deleteQuestion();
 
-    block.querySelectorAll('.col-md-6')
+        block.querySelectorAll('.col-md-6')
 
-    let id = Math.floor(Math.random() * 9999);
+        let id = Math.floor(Math.random() * 9999);
 
-    btn.addEventListener('click', function () {
-        block.insertAdjacentHTML('beforeend', `
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="question_name[${id}]">Название</label>
-                            <input type="text" class="form-control" id="question_name[${id}]"
-                                name="questions[${id}][name]">
-                        </div>
-                        <div class="form-group">
-                            <label for="question_answer[${id}]">Ответ</label>
-                            <textarea id="question_answer[${id}]" class="form-control" rows="3" name="questions[${id}][answer]"></textarea>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-8">
-                                <div class="form-group">
-                                    <label for="questions[${id}][sort]">Ключ сортировки</label>
-                                    <input type="text" class="form-control"
-                                        id="questions[${id}][sort]" name="questions[${id}][sort]">
-                                </div>
+        btn.addEventListener('click', function () {
+            block.insertAdjacentHTML('beforeend', `
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="question_name[${id}]">Название</label>
+                                <input type="text" class="form-control" id="question_name[${id}]"
+                                    name="questions[${id}][name]">
                             </div>
-                            <div class="col-md-4 d-flex align-items-end">
-                                <div class="form-group w-100">
-                                    <button type="button" class="btn btn-block btn-outline-danger" data-action="remove_question_btn">
-                                        Удалить
-                                    </button>
+                            <div class="form-group">
+                                <label for="question_answer[${id}]">Ответ</label>
+                                <textarea id="question_answer[${id}]" class="form-control" rows="3" name="questions[${id}][answer]"></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label for="questions[${id}][sort]">Ключ сортировки</label>
+                                        <input type="text" class="form-control"
+                                            id="questions[${id}][sort]" name="questions[${id}][sort]">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 d-flex align-items-end">
+                                    <div class="form-group w-100">
+                                        <button type="button" class="btn btn-block btn-outline-danger" data-action="remove_question_btn">
+                                            Удалить
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        `);
+            `);
 
-        id++;
+            id++;
 
-        deleteQuestion();
-    })
+            deleteQuestion();
+        })
+    }
 
     function deleteQuestion() {
         const delete_buttons = document.querySelectorAll('[data-action="remove_question_btn"]');
@@ -383,63 +383,64 @@ function questions() {
 function dragQuestions() {
     const questions = document.querySelector('#questions');
 
-    const elements = questions.querySelectorAll('.col-md-6');
+    if (questions) {
+        const elements = questions.querySelectorAll('.col-md-6');
 
-    for (const element of elements) {
-        element.draggable = true;
+        if (elements) {
+            for (const element of elements) {
+                element.draggable = true;
 
+                // test
+                element.querySelectorAll('input').forEach((input) => {
+                    input.draggable = false;
+                    input.style.pointerEvents = 'none';
+                })
 
-        // test
-        element.querySelectorAll('input').forEach((input) => {
-            input.draggable = false;
-            input.style.pointerEvents = 'none';
-        })
+                element.querySelectorAll('label').forEach((label) => {
+                    label.draggable = false;
+                    label.style.pointerEvents = 'none';
+                })
 
-        element.querySelectorAll('label').forEach((label) => {
-            label.draggable = false;
-            label.style.pointerEvents = 'none';
-        })
+                element.querySelectorAll('textarea').forEach((textarea) => {
+                    textarea.draggable = false;
+                    textarea.style.pointerEvents = 'none';
+                })
 
-        element.querySelectorAll('textarea').forEach((textarea) => {
-            textarea.draggable = false;
-            textarea.style.pointerEvents = 'none';
-        })
+                element.querySelectorAll('button').forEach((button) => {
+                    button.draggable = false;
+                })
 
+                element.addEventListener('dragstart', (event) => {
+                    event.target.classList.add('selected');
+                    console.log('drag start');
+                })
 
+                element.addEventListener('dragend', (event) => {
+                    event.target.classList.remove('selected');
+                    console.log('drag end');
+                });
 
-        element.querySelectorAll('button').forEach((button) => {
-            button.draggable = false;
-        })
+                element.addEventListener('dragover', (event) => {
+                    event.preventDefault();
 
-        element.addEventListener('dragstart', (event) => {
-            event.target.classList.add('selected');
-            console.log('drag start');
-        })
+                    console.log('drag over');
 
-        element.addEventListener('dragend', (event) => {
-            event.target.classList.remove('selected');
-            console.log('drag end');
-        });
+                    const activeElement = questions.querySelector('.selected');
+                    const currentElement = event.target;
 
-        element.addEventListener('dragover', (event) => {
-            event.preventDefault();
+                    const isMoveable = activeElement !== currentElement &&
+                        currentElement.classList.contains('col-md-6');
 
-            console.log('drag over');
+                    if (!isMoveable) return;
 
-            const activeElement = questions.querySelector('.selected');
-            const currentElement = event.target;
+                    const nextElement = (currentElement === activeElement.nextElementSibling) ?
+                        currentElement.nextElementSibling :
+                        currentElement;
 
-            const isMoveable = activeElement !== currentElement &&
-                currentElement.classList.contains('col-md-6');
-
-            if (!isMoveable) return;
-
-            const nextElement = (currentElement === activeElement.nextElementSibling) ?
-                currentElement.nextElementSibling :
-                currentElement;
-
-            questions.insertBefore(activeElement, nextElement);
-        });
-    };
+                    questions.insertBefore(activeElement, nextElement);
+                });
+            };
+        }
+    }
 };
 

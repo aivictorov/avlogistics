@@ -10,8 +10,6 @@
 }(this, (function () {
   'use strict';
 
-  console.log('input-file');
-
   var Selector = {
     CUSTOMFILE: '.custom-file input[type="file"]',
     CUSTOMFILELABEL: '.custom-file-label',
