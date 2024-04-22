@@ -172,7 +172,10 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-block btn-outline-primary btn-lg">Назад</button>
+                            <a href={{ route('admin.faq.index') }} type="button"
+                                class="btn btn-block btn-outline-primary btn-lg">
+                                Назад
+                            </a>
                         </div>
                     </div>
                 </div>

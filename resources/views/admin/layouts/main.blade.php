@@ -16,20 +16,19 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="/admin_panel/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    {{-- <link rel="stylesheet" href="/admin_panel/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"> --}}
     <!-- iCheck -->
-    <link rel="stylesheet" href="/admin_panel/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    {{-- <link rel="stylesheet" href="/admin_panel/plugins/icheck-bootstrap/icheck-bootstrap.min.css"> --}}
     <!-- JQVMap -->
-    <link rel="stylesheet" href="/admin_panel/plugins/jqvmap/jqvmap.min.css">
+    {{-- <link rel="stylesheet" href="/admin_panel/plugins/jqvmap/jqvmap.min.css"> --}}
     <!-- Theme style -->
     <link rel="stylesheet" href="/admin_panel/dist/css/adminlte.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="/admin_panel/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="/admin_panel/plugins/daterangepicker/daterangepicker.css">
+    {{-- <link rel="stylesheet" href="/admin_panel/plugins/daterangepicker/daterangepicker.css"> --}}
     <!-- summernote -->
-    <link rel="stylesheet" href="/admin_panel/plugins/summernote/summernote-bs4.min.css">
-
+    {{-- <link rel="stylesheet" href="/admin_panel/plugins/summernote/summernote-bs4.min.css"> --}}
 
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
 
@@ -80,11 +79,11 @@
     <!-- jQuery -->
     <script src="/admin_panel/plugins/jquery/jquery.js"></script>
     <!-- jQuery UI 1.11.4 -->
-    <script src="/admin_panel/plugins/jquery-ui/jquery-ui.js"></script>
+    {{-- <script src="/admin_panel/plugins/jquery-ui/jquery-ui.js"></script> --}}
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
+    {{-- <script>
         $.widget.bridge('uibutton', $.ui.button)
-    </script>
+    </script> --}}
     <!-- Bootstrap 4 -->
     <script src="/admin_panel/plugins/bootstrap/js/bootstrap.bundle.js"></script>
     <!-- bs-custom-file-input -->
@@ -94,17 +93,17 @@
     <!-- Sparkline -->
     {{-- <script src="/admin_panel/plugins/sparklines/sparkline.js"></script> --}}
     <!-- JQVMap -->
-    <script src="/admin_panel/plugins/jqvmap/jquery.vmap.js"></script>
-    <script src="/admin_panel/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    {{-- <script src="/admin_panel/plugins/jqvmap/jquery.vmap.js"></script> --}}
+    {{-- <script src="/admin_panel/plugins/jqvmap/maps/jquery.vmap.usa.js"></script> --}}
     <!-- jQuery Knob Chart -->
     {{-- <script src="/admin_panel/plugins/jquery-knob/jquery.knob.js"></script> --}}
     <!-- daterangepicker -->
     {{-- <script src="/admin_panel/plugins/moment/moment.js"></script> --}}
-    <script src="/admin_panel/plugins/daterangepicker/daterangepicker.js"></script>
+    {{-- <script src="/admin_panel/plugins/daterangepicker/daterangepicker.js"></script> --}}
     <!-- Tempusdominus Bootstrap 4 -->
     {{-- <script src="/admin_panel/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.js"></script> --}}
     <!-- Summernote -->
-    <script src="/admin_panel/plugins/summernote/summernote-bs4.js"></script>
+    {{-- <script src="/admin_panel/plugins/summernote/summernote-bs4.js"></script> --}}
     <!-- overlayScrollbars -->
     <script src="/admin_panel/plugins/overlayScrollbars/js/jquery.overlayScrollbars.js"></script>
     <!-- AdminLTE App -->
@@ -113,6 +112,7 @@
     {{-- <script src="/admin_panel/dist/js/demo.js"></script> --}}
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     {{-- <script src="/admin_panel/dist/js/pages/dashboard.js"></script> --}}
+
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
 
 

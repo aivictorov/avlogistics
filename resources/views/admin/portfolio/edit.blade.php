@@ -43,11 +43,13 @@
                                         @endforeach
                                     </select>
                                 </div>
+
                                 <div class="form-group">
                                     <label>Текст</label>
                                     <trix-editor input="text"></trix-editor>
                                     <input id="text" value="{{ $portfolio['text'] }}" type="hidden" name="text">
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -74,6 +76,31 @@
                                         </div>
                                     @endif
                                 </div>
+                                <div class="form-group">
+
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="customFile">
+                                        <label class="custom-file-label" for="customFile" data-browse="Выберите файл">Файл
+                                            не выбран</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputFile">File input</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="exampleInputFile"
+                                                id="avatar" name="avatar" multiple>
+                                            <label class="custom-file-label" for="exampleInputFile"
+                                                data-browse="Выберите файл">Файлы не выбраны</label>
+                                        </div>
+                                        <div class="input-group-append">
+                                            {{-- <span class="input-group-text"></span> --}}
+                                            <button type="button" class="btn btn-primary">Загрузить изоборажение</button>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -111,9 +138,11 @@
                                         @endforeach
 
                                         <div class="w-100">
-                                            <button class="mt-2 sort-start-button" type="button">Sort</button>
-                                            <button class="mt-2 sort-save-button" type="button">Save</button>
-                                            {{-- <button class="mt-2" type="button">Cancel</button> --}}
+                                            <button class="btn btn-success mt-2 sort-start-button"
+                                                type="button">Sort</button>
+                                            <button class="btn btn-primary mt-2 sort-save-button"
+                                                type="button">Save</button>
+                                            <button class="btn btn-danger mt-2" type="button">Cancel</button>
                                         </div>
                                     </div>
                                 </div>
@@ -201,7 +230,8 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <a href={{ url()->previous() }} type="button" class="btn btn-block btn-outline-primary btn-lg">
+                    <a href={{ route('admin.portfolio.index') }} type="button"
+                        class="btn btn-block btn-outline-primary btn-lg">
                         Назад
                     </a>
                 </div>

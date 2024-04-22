@@ -8,6 +8,131 @@ document.addEventListener('DOMContentLoaded', function () {
     dragQuestions()
 })
 
+$(document).ready(function () {
+    bsCustomFileInput.init();
+    trix();
+})
+
+
+
+
+
+
+
+function trix() {
+    var HOST = '/admin/ajax-3'
+
+
+
+
+    addEventListener("trix-attachment-remove", function (event) {
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        fetch('/admin/ajax-4', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                'X-CSRF-TOKEN': csrfToken
+            },
+            body: event.attachment.file.name,
+        }).then(response => {
+            response.text().then(responseText => {
+                console.log('Ajax:', responseText);
+            });
+        });
+
+
+    })
+
+
+    addEventListener("trix-attachment-add", function (event) {
+        if (event.attachment.file) {
+            uploadFileAttachment(event.attachment)
+        }
+    })
+
+    function uploadFileAttachment(attachment) {
+        uploadFile(attachment.file, setProgress, setAttributes)
+
+        function setProgress(progress) {
+            attachment.setUploadProgress(progress)
+        }
+
+        function setAttributes(attributes) {
+            attachment.setAttributes(attributes)
+        }
+    }
+
+    function uploadFile(file, progressCallback, successCallback) {
+        var key = createStorageKey(file)
+        var formData = createFormData(key, file)
+        var xhr = new XMLHttpRequest()
+
+        xhr.open("POST", HOST, true)
+
+        var sid = $("meta[name='csrf-token']").attr("content");
+        xhr.setRequestHeader("X-CSRF-Token", sid);
+
+        xhr.upload.addEventListener("progress", function (event) {
+            var progress = event.loaded / event.total * 100
+            progressCallback(progress)
+        })
+
+        xhr.addEventListener("load", function (event) {
+            if (xhr.status == 204) {
+                var attributes = {
+                    url: HOST + key,
+                    href: HOST + key + "?content-disposition=attachment"
+                }
+                successCallback(attributes)
+            }
+        })
+
+        xhr.send(formData)
+
+        xhr.onreadystatechange = function () { // подписываемся на событие изменения состояния запроса
+            if (xhr.readyState === 4) { // если запрос завершен
+                console.log(xhr.responseText);
+                // if (xhr.status === 200) { // если статус код ответа 200 OK
+                //     console.log(xhr.responseText); // выводим ответ сервера
+                // } else {
+                //     console.error(xhr.statusText); // выводим текст ошибки
+                // }
+            }
+        };
+
+        // fetch('/admin/ajax-3', {
+        //     method: 'POST',
+        //     headers: {
+        //         'X-CSRF-TOKEN': csrfToken
+        //     },
+        //     body: form,
+        // }).then(response => {
+        //     response.text().then(responseText => {
+        //         images = JSON.parse(responseText);
+        //     })
+        // })
+
+        return public_path();
+    }
+
+    function createStorageKey(file) {
+        var date = new Date()
+        var day = date.toISOString().slice(0, 10)
+        var name = date.getTime() + "-" + file.name
+        return ["tmp", day, name].join("/")
+    }
+
+    function createFormData(key, file) {
+        var data = new FormData()
+        data.append("key", key)
+        data.append("Content-Type", file.type)
+        data.append("file", file)
+        return data;
+    }
+}
+
+
 function ajaxImgLoad() {
 
     const input = document.querySelector('[data-js="img-input"]');

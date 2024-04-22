@@ -53,6 +53,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::post('/ajax', [App\Http\Controllers\Admin\AjaxController::class, 'destroy_image'])->name('ajax');
     Route::post('/ajax-1', [App\Http\Controllers\Admin\AjaxController::class, 'drag_and_drop'])->name('ajax');
     Route::post('/ajax-2', [App\Http\Controllers\Admin\AjaxController::class, 'load_img'])->name('ajax');
+    Route::post('/ajax-3', [App\Http\Controllers\Admin\AjaxController::class, 'load_content_img'])->name('ajax');
+    Route::post('/ajax-4', [App\Http\Controllers\Admin\AjaxController::class, 'remove_content_img'])->name('ajax');
 });
 
 Route::name('user.')->group(function () {

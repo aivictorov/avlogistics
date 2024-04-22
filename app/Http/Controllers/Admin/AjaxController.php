@@ -9,7 +9,12 @@ use App\Actions\Image\UpdateImageAction;
 use App\Actions\Image\UpdateImageData;
 use App\Http\Controllers\Controller;
 use App\Models\Image;
+use App\Requests\ImageRequest;
 use App\Requests\ImagesRequest;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as InterventionImage;
+
+InterventionImage::configure(['driver' => 'imagick']);
 
 class AjaxController extends Controller
 {
@@ -69,4 +74,28 @@ class AjaxController extends Controller
 
         return $result;
     }
+
+    public function load_content_img(ImageRequest $request)
+    {
+        $validated = $request->validated();
+
+        $file = $validated['file'];
+
+        $image = InterventionImage::make($file);
+
+        Storage::makeDirectory('public/upload/context_images/');
+        $original_image_path = storage_path('app/public/upload/context_images/' . $file->getClientOriginalName());
+        $image->save($original_image_path);
+
+        return 'load_content_img OK';
+    }
+
+    public function remove_content_img()
+    {
+        $filename = file_get_contents('php://input');
+        Storage::delete('public/upload/context_images/' . $filename);
+
+        return 'remove_content_img OK';
+    }
+
 }
