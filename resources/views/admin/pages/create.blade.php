@@ -47,13 +47,23 @@
                     <div class="col-md-12">
                         <div class="card card-primary card-outline">
                             <div class="card-header">
-                                <h3 class="card-title">Изображение</h3>
+                                <h3 class="card-title">Основное изображение</h3>
                             </div>
                             <div class="card-body">
-                                <div class="form-group">
-                                    <label for="image">Изображение</label>
-                                    <div class="input-group">
-                                        <x-input type="file" id="image" name="image" />
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="avatar">Основное изображение</label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="avatar"
+                                                        name="avatar">
+                                                    <div class="custom-file-label" data-browse="Выберите файл">
+                                                        Файл не выбран
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

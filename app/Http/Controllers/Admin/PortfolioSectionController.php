@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Actions\PortfolioSection\GetPortfolioSectionAction;
 use App\Actions\PortfolioSection\GetPortfolioSectionsAction;
 use App\Http\Controllers\Controller;
+use App\Models\Portfolio;
 use App\Models\PortfolioSection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -62,9 +63,13 @@ class PortfolioSectionController extends Controller
 
     public function destroy($id)
     {
-        $section = (new GetPortfolioSectionAction)->run($id);
-        $section->delete();
+        if (Portfolio::where('portfolio_section_id', $id)->count() > 0) {
+            return 'Нельзя удалить категорию, в которой есть элементы';
 
-        return redirect(route('admin.portfolioSections.index'));
+        } else {
+            $section = (new GetPortfolioSectionAction)->run($id);
+            $section->delete();
+            return redirect(route('admin.portfolioSections.index'));
+        }
     }
 }

@@ -83,7 +83,13 @@
                             <button type="submit" class="btn btn-block btn-primary btn-lg">Сохранить</button>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <a href={{ route('admin.users.destroy', ['id' => $user['id']]) }}
+                                class="btn btn-block btn-danger btn-lg">Удалить</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
                         <div class="form-group">
                             <a href={{ route('admin.users.index') }} type="button"
                                 class="btn btn-block btn-outline-primary btn-lg">

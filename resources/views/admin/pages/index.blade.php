@@ -13,11 +13,9 @@
                                 Добавить страницу
                             </a>
                         </div>
-                        <!-- /.card-body -->
                     </div>
                 </div>
             </div>
-            <!-- /.row -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -29,6 +27,7 @@
                                         <th class="w-50">Наименование</th>
                                         <th>Дата изменения</th>
                                         <th>Статус</th>
+                                        <th>Защита</th>
                                         <th>Действия</th>
                                     </tr>
                                 </thead>
@@ -36,6 +35,7 @@
                                     <tr>
                                         <td></td>
                                         <td><input id="search" class="form-control float-right" placeholder="Поиск"></td>
+                                        <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
@@ -57,6 +57,13 @@
                                                 @endif
                                             </td>
                                             <td>
+                                                @if ($page['system_page'] == 0)
+                                                    <i class="fas fa-lock-open"></i>
+                                                @else
+                                                    <i class="fas fa-lock"></i>
+                                                @endif
+                                            </td>
+                                            <td>
                                                 <a href={{ route('admin.pages.destroy', ['id' => $page['id']]) }}
                                                     rel="nofollow">
                                                     <i class="fas fa-trash"></i>
@@ -67,11 +74,9 @@
                                 </tbody>
                             </table>
                         </div>
-                        <!-- /.card-body -->
                     </div>
                 </div>
             </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
 @endsection

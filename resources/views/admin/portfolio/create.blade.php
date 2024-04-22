@@ -49,10 +49,20 @@
                                 <h3 class="card-title">Основное изображение</h3>
                             </div>
                             <div class="card-body">
-                                <div class="form-group">
-                                    <label for="avatar">Основное изображение</label>
-                                    <div class="input-group">
-                                        <x-input type="file" id="avatar" name="avatar" />
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="avatar">Основное изображение</label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="avatar"
+                                                        name="avatar">
+                                                    <div class="custom-file-label" data-browse="Выберите файл">
+                                                        Файл не выбран
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -66,10 +76,19 @@
                                 <h3 class="card-title">Галерея изображений</h3>
                             </div>
                             <div class="card-body">
-                                <div class="form-group">
-                                    <label for="images">Галерея изображений</label>
-                                    <div class="input-group">
-                                        <x-input type="file" id="images" name="images[]" multiple />
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="images">Галерея изображений</label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="images"
+                                                        name="images[]" data-js="img-input" multiple>
+                                                    <label class="custom-file-label" for="images"
+                                                        data-browse="Выберите файлы">Файлы не выбраны</label>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -112,13 +131,15 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="url">URL</label>
-                                            <x-input type="text" class="form-control" id="url" name="url" />
+                                            <x-input type="text" class="form-control" id="url"
+                                                name="url" />
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="sort_key">Ключ сортировки</label>
-                                            <x-input type="text" class="form-control" id="sort_key" name="sort_key" />
+                                            <x-input type="text" class="form-control" id="sort_key"
+                                                name="sort_key" />
                                         </div>
                                     </div>
                                     <div class="col-md-3">

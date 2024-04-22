@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // avatarRemoveButton();
+
+
     search();
     questions();
     gallery();
@@ -12,6 +15,21 @@ $(document).ready(function () {
     bsCustomFileInput.init();
     trix();
 })
+
+
+
+// function avatarRemoveButton() {
+//     document.querySelectorAll('.avatar').forEach((avatar) => {
+//         avatar.insertAdjacentHTML('beforeend', `
+//             <button class="delBtn" type="button" data-action="image" data-id="{{ $avatar->id }}">
+//                 <i class="fas fa-trash"></i>
+//             </button>
+//         `);
+//     });
+// };
+
+
+
 
 
 
@@ -319,8 +337,6 @@ function gallery() {
                     });
                 })
 
-                console.log(data)
-
                 // elements.forEach((element, id) => {
                 //     console.log(element, id, element.offsetLeft, element.offsetTop)
                 // })
@@ -346,6 +362,7 @@ function gallery() {
 
     // })
 }
+
 
 
 function sendRequest() {
@@ -441,6 +458,8 @@ function search() {
         });
     }
 };
+
+
 
 function questions() {
     const block = document.getElementById('questions');

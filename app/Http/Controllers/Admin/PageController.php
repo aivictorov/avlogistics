@@ -160,16 +160,23 @@ class PageController extends Controller
 
     public function destroy($id)
     {
-        DB::transaction(function () use ($id) {
+        $page = (new GetPageAction)->run($id);
+
+        if ($page->system_page > 0) {
+            return 'Нельзя удалить системную страницу';
+
+        } else {
             $page = (new GetPageAction)->run($id);
             $seo = (new GetSeoAction)->run($page['seo_id']);
             $image = (new GetImageAction)->run($id);
 
-            $page->delete();
-            $seo->delete();
-            (new DestroyImageAction)->run($image);
-        }, 3);
+            DB::transaction(function () use ($page, $seo, $image) {
+                $page->delete();
+                $seo->delete();
+                (new DestroyImageAction)->run($image);
+            }, 3);
 
-        return redirect(route('admin.pages.index'));
+            return redirect(route('admin.pages.index'));
+        }
     }
 }

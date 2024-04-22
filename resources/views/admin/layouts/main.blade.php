@@ -11,6 +11,7 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="/admin_panel/plugins/fontawesome-free/css/all.min.css">
+
     <link rel="stylesheet" href="/admin_panel/dist/css/adminlte.min.css">
 
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
@@ -48,9 +49,8 @@
     </div>
 
     <script src="/admin_panel/plugins/jquery/jquery.js"></script>
-    <script src="/admin_panel/plugins/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="/admin_panel/plugins/bootstrap5/js/bootstrap.bundle.js"></script>
     <script src="/admin_panel/plugins/bs-custom-file-input/bs-custom-file-input.js"></script>
-    <script src="/admin_panel/plugins/overlayScrollbars/js/jquery.overlayScrollbars.js"></script>
     <script src="/admin_panel/dist/js/adminlte.js"></script>
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
 

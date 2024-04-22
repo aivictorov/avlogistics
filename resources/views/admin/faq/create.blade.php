@@ -42,7 +42,8 @@
                             </div>
                             <div class="card-body">
                                 <div class="row" id="questions">
-                                    <div class="col-md-6">
+                                    Добавление вопросов станет возможным после сохранения темы.
+                                    {{-- <div class="col-md-6">
                                         <div class="card">
                                             <div class="card-body">
                                                 <div class="form-group">
@@ -72,9 +73,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <button type="button" id="questions_btn"
@@ -83,7 +84,7 @@
                                             </button>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>

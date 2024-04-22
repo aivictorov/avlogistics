@@ -9,7 +9,7 @@ class GetPagesAction
 {
     public function run($sort = 'id')
     {
-        $pages = Page::select('id', 'name', 'url', 'update_date', 'status')
+        $pages = Page::select('id', 'name', 'url', 'update_date', 'status', 'system_page')
             ->get()
             ->sortBy($sort)
             ->toArray();

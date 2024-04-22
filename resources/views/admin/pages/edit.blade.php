@@ -57,19 +57,46 @@
                         <div class="card card-primary card-outline">
                             <div class="card-header">
                                 <h3 class="card-title">Основное изображение</h3>
+                                <span class="card-tools badge badge-danger">Сохранение без перезагрузки</span>
                             </div>
                             <div class="card-body">
-                                <div class="form-group">
-                                    <label for="image">Основное изображение</label>
-                                    <div class="input-group">
-                                        <input type="file" id="image" name="image">
-                                    </div>
-                                    @if ($avatar)
-                                        <div class="d-block mt-3">
-                                            <img src={{ Image::path($avatar) }} />
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="avatar">Основное изображение</label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="avatar"
+                                                        name="avatar">
+                                                    <div class="custom-file-label" data-browse="Выберите файл">
+                                                        Файл не выбран
+                                                    </div>
+                                                </div>
+                                                <div class="input-group-append">
+                                                    <button type="button" class="btn btn-primary"
+                                                        data-page="{{ $page['id'] }}" data-js="img-input-btn">
+                                                        Загрузить
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
-                                    @endif
+                                    </div>
                                 </div>
+                                @if ($avatar)
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group d-flex">
+                                                <div class="avatar position-relative">
+                                                    <img src={{ Image::path($avatar) }} />
+                                                    <button class="delBtn" type="button" data-action="image"
+                                                        data-id="{{ $avatar->id }}">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -145,7 +172,7 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="system_page">Системная страница</label>
-                                            <select class="form-control" id="system_page" name="system_page">
+                                            <select class="form-control" id="system_page" name="system_page" disabled>
                                                 <option value="1" {{ $page['system_page'] == 1 ? 'selected' : '' }}>
                                                     Включено</option>
                                                 <option value="0" {{ $page['system_page'] == 0 ? 'selected' : '' }}>
