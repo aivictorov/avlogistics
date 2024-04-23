@@ -72,7 +72,8 @@
                                                 </div>
                                                 <div class="input-group-append">
                                                     <button type="button" class="btn btn-primary"
-                                                        data-page="{{ $portfolio['id'] }}" data-js="img-input-btn">
+                                                        data-action="updateAvatar" data-id="{{ $portfolio['id'] }}"
+                                                        data-type="portfolio">
                                                         Загрузить
                                                     </button>
                                                 </div>
@@ -80,21 +81,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                @if ($avatar)
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group d-flex">
-                                                <div class="avatar position-relative">
-                                                    <img src={{ Image::path($avatar) }} />
-                                                    <button class="delBtn" type="button" data-action="image"
-                                                        data-id="{{ $avatar->id }}">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group d-flex">
+                                            <div class="avatar position-relative">
+                                                @if ($avatar)
+                                                    <img src={{ Image::path($avatar) }} data-function="destroy" />
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
-                                @endif
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -119,7 +116,8 @@
                                                 </div>
                                                 <div class="input-group-append">
                                                     <button type="button" class="btn btn-primary"
-                                                        data-page="{{ $portfolio['id'] }}" data-js="img-input-btn">
+                                                        data-action="addImagesToPortfolioGallery"
+                                                        data-id="{{ $portfolio['id'] }}" data-type="portfolio">
                                                         Загрузить
                                                     </button>
                                                 </div>
@@ -127,37 +125,82 @@
                                         </div>
                                     </div>
                                 </div>
-                                @if (isset($images) && count($images) > 0)
-                                    <div class="form-group">
-                                        <div class="gallery d-flex flex-wrap m-n1">
+
+                                <div id="portfolio-gallery" class="d-flex mb-3">
+                                    <div class="portfolio-gallery-image mr-2"
+                                        style="width:152px; height:100px; background-color: blue"></div>
+                                    <div class="portfolio-gallery-image mr-2"
+                                        style="width:152px; height:100px; background-color: red"></div>
+                                    <div class="portfolio-gallery-image mr-2"
+                                        style="width:152px; height:100px; background-color: green"></div>
+                                    {{-- @if (isset($images) && count($images) > 0)
+                                        <div class="portfolio-gallery-images form-group d-flex flex-wrap">
                                             @foreach ($images as $key => $image)
-                                                <div class="gallery__item p-1" data-id="{{ $image->id }}">
-                                                    <div class="gallery__image position-relative">
-                                                        <img src={{ Image::path($image, 'small') }} width="152px" />
-                                                        <button class="delBtn" type="button" data-action="image"
-                                                            data-id="{{ $image->id }}">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-                                                    </div>
+                                                <div class="portfolio-gallery-image position-relative mr-2 mt-1 mb-1">
+                                                    <img src={{ Image::path($image, 'small') }} width="152px"
+                                                        data-function="destroy" />
                                                 </div>
                                             @endforeach
                                         </div>
-                                    </div>
+                                        <div class="portfolio-gallery-buttons">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <button type="button" class="btn btn-block btn-outline-success"
+                                                            data-action="sortPortfolioGallery">
+                                                            Сортировка
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <button type="button" class="btn btn-block btn-outline-primary"
+                                                            data-action="savePortfolioGallerySort" disabled>
+                                                            Сохранить
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <button type="button" class="btn btn-block btn-outline-danger"
+                                                            data-action="cancelPortfolioGallerySort" disabled>
+                                                            Отмена
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif --}}
+                                </div>
+                                <div id="portfolio-gallery-buttons">
                                     <div class="row">
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <button type="button"
-                                                    class="btn btn-block btn-outline-success">Сортировка</button>
+                                                <button type="button" class="btn btn-block btn-outline-success"
+                                                    data-action="sort">
+                                                    Сортировка
+                                                </button>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <button type="button"
-                                                    class="btn btn-block btn-outline-primary">Сохранить</button>
+                                                <button type="button" class="btn btn-block btn-outline-primary"
+                                                    data-action="save" disabled>
+                                                    Сохранить
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <button type="button" class="btn btn-block btn-outline-danger"
+                                                    data-action="cancel" disabled>
+                                                    Отмена
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
-                                @endif
+                                </div>
+
                             </div>
                         </div>
                     </div>

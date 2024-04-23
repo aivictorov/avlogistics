@@ -16,7 +16,6 @@ class CreatePageData
         public $menu_sort,
         public $menu_show,
         public $status,
-        // public $system_page,
         public $seo_id,
     ) {
         //

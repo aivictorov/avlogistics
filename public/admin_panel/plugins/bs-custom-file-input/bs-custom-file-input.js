@@ -76,8 +76,6 @@
   };
 
   function handleInputChange() {
-    console.log('change')
-
     var label = this.parentNode.querySelector(Selector.CUSTOMFILELABEL);
 
     if (label) {

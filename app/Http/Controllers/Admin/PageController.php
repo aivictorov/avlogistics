@@ -63,18 +63,17 @@ class PageController extends Controller
                     menu_sort: $validated['menu_sort'],
                     menu_show: $validated['menu_show'],
                     status: $validated['status'],
-                    // system_page: $validated['system_page'],
                     seo_id: $seo->id,
                 )
             );
 
-            if ($request->has('image')) {
-                $image_file = $validated['image'];
+            if ($request->has('avatar') && isset ($validated['avatar'])) {
+                $avatar_file = $validated['avatar'];
 
                 (new CreateImageAction)->run(
-                    $image_file,
+                    $avatar_file,
                     new CreateImageData(
-                        image: $image_file->getClientOriginalName(),
+                        image: $avatar_file->getClientOriginalName(),
                         parent_type: 'page_avatar',
                         parent_id: $page->id,
                     )
@@ -113,7 +112,6 @@ class PageController extends Controller
                     menu_sort: $validated['menu_sort'],
                     menu_show: $validated['menu_show'],
                     status: $validated['status'],
-                    // system_page: $validated['system_page'],
                 )
             );
 
@@ -126,27 +124,27 @@ class PageController extends Controller
                 )
             );
 
-            if ($request->has('image')) {
-                $image = (new GetImageAction)->run($page->id);
-                $image_file = $validated['image'];
+            if ($request->has('avatar') && isset ($validated['avatar'])) {
+                $avatar = (new GetImageAction)->run($page->id);
+                $avatar_file = $validated['avatar'];
 
-                if ($image) {
+                if ($avatar) {
                     (new ReplaceImageAction)->run(
-                        $image,
-                        $image_file,
+                        $avatar,
+                        $avatar_file,
                         new ReplaceImageData(
-                            image: $image_file->getClientOriginalName(),
+                            image: $avatar_file->getClientOriginalName(),
                             parent_type: 'page_avatar',
                             parent_id: $page->id,
                         )
                     );
                 }
 
-                if (!$image) {
+                if (!$avatar) {
                     (new CreateImageAction)->run(
-                        $image_file,
+                        $avatar_file,
                         new CreateImageData(
-                            image: $image_file->getClientOriginalName(),
+                            image: $avatar_file->getClientOriginalName(),
                             parent_type: 'page_avatar',
                             parent_id: $page->id,
                         )

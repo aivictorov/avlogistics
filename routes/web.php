@@ -10,8 +10,6 @@ use App\Http\Controllers\PortfolioSectionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-
-
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', App\Http\Controllers\Admin\HomeController::class)->name('home');
 
@@ -50,11 +48,16 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::put('/users/{id}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update');
     Route::get('/users/{id}/delete', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
 
-    Route::post('/ajax', [App\Http\Controllers\Admin\AjaxController::class, 'destroy_image'])->name('ajax');
     Route::post('/ajax-1', [App\Http\Controllers\Admin\AjaxController::class, 'drag_and_drop'])->name('ajax');
     Route::post('/ajax-2', [App\Http\Controllers\Admin\AjaxController::class, 'load_img'])->name('ajax');
     Route::post('/ajax-3', [App\Http\Controllers\Admin\AjaxController::class, 'load_content_img'])->name('ajax');
     Route::post('/ajax-4', [App\Http\Controllers\Admin\AjaxController::class, 'remove_content_img'])->name('ajax');
+    Route::get('/ajax/toggle_status', [App\Http\Controllers\Admin\AjaxController::class, 'toggle_status'])->name('ajax.toggle_status');
+
+    Route::prefix('ajax')->group(function () {
+        Route::post('/updateAvatar', [App\Http\Controllers\Admin\AjaxController::class, 'updateAvatar'])->name('ajax.updateAvatar');
+        Route::post('/destroyImage', [App\Http\Controllers\Admin\AjaxController::class, 'destroyImage'])->name('ajax.destroyImage');
+    });
 });
 
 Route::name('user.')->group(function () {

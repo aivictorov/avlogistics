@@ -74,7 +74,8 @@
                                                 </div>
                                                 <div class="input-group-append">
                                                     <button type="button" class="btn btn-primary"
-                                                        data-page="{{ $page['id'] }}" data-js="img-input-btn">
+                                                        data-action="updateAvatar" data-id="{{ $page['id'] }}"
+                                                        data-type="page">
                                                         Загрузить
                                                     </button>
                                                 </div>
@@ -82,21 +83,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                @if ($avatar)
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group d-flex">
-                                                <div class="avatar position-relative">
-                                                    <img src={{ Image::path($avatar) }} />
-                                                    <button class="delBtn" type="button" data-action="image"
-                                                        data-id="{{ $avatar->id }}">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group d-flex">
+                                            <div class="avatar position-relative">
+                                                @if ($avatar)
+                                                    <img src={{ Image::path($avatar) }} data-function="destroy" />
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
-                                @endif
+                                </div>
                             </div>
                         </div>
                     </div>

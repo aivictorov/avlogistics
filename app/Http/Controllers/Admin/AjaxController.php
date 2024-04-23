@@ -5,12 +5,19 @@ namespace App\Http\Controllers\Admin;
 use App\Actions\Image\CreateImageAction;
 use App\Actions\Image\CreateImageData;
 use App\Actions\Image\DestroyImageAction;
+use App\Actions\Image\GetImageAction;
+use App\Actions\Image\ReplaceImageAction;
+use App\Actions\Image\ReplaceImageData;
 use App\Actions\Image\UpdateImageAction;
 use App\Actions\Image\UpdateImageData;
 use App\Http\Controllers\Controller;
 use App\Models\Image;
+use App\Models\Page;
 use App\Requests\ImageRequest;
 use App\Requests\ImagesRequest;
+use App\Requests\UpdateAvatarRequest;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as InterventionImage;
 
@@ -18,18 +25,60 @@ InterventionImage::configure(['driver' => 'imagick']);
 
 class AjaxController extends Controller
 {
-    public function destroy_image()
+    public function updateAvatar(UpdateAvatarRequest $request)
+    {
+        $validated = $request->validated();
+
+        $page_id = $validated['page_id'];
+        $page_type = $validated['page_type'];
+        $avatar_file = $validated['avatar_file'];
+
+        $avatar = (new GetImageAction)->run($page_id);
+
+        if ($avatar) {
+            $result = (new ReplaceImageAction)->run(
+                $avatar,
+                $avatar_file,
+                new ReplaceImageData(
+                    image: $avatar_file->getClientOriginalName(),
+                    parent_type: $page_type . '_avatar',
+                    parent_id: $page_id,
+                )
+            );
+        }
+
+        if (!$avatar) {
+            $result = (new CreateImageAction)->run(
+                $avatar_file,
+                new CreateImageData(
+                    image: $avatar_file->getClientOriginalName(),
+                    parent_type: $page_type . '_avatar',
+                    parent_id: $page_id,
+                )
+            );
+        }
+
+        return Image::path($result);
+    }
+
+
+    public function destroyImage()
     {
         $result = json_decode(file_get_contents('php://input'));
-
         $image = Image::find($result->id);
 
         (new DestroyImageAction)->run($image);
 
         return $image->image;
-
-        // return json_decode(file_get_contents('php://input'));
     }
+
+
+
+
+
+
+
+
 
     public function drag_and_drop()
     {
@@ -48,6 +97,12 @@ class AjaxController extends Controller
 
         return $result;
     }
+
+
+
+
+
+
 
     public function load_img(ImagesRequest $request)
     {
@@ -97,5 +152,24 @@ class AjaxController extends Controller
 
         return 'remove_content_img OK';
     }
+
+    public function toggle_status(Request $request)
+    {
+        $id = $request->get('id');
+        $type = $request->get('type');
+        $status = $request->get('status');
+
+        if ($type == 'page') {
+            Page::find($id)->update([
+                'status' => $status,
+                'update_date' => Carbon::now()->toDateTimeString(),
+            ]);
+        }
+
+        return redirect()->back();
+    }
+
+
+
 
 }

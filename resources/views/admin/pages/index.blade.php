@@ -51,9 +51,15 @@
                                             <td>{{ $page['update_date'] }}</td>
                                             <td>
                                                 @if ($page['status'] == 1)
-                                                    <i class="fas fa-eye"></i>
+                                                    <a
+                                                        href={{ route('admin.ajax.toggle_status', ['id' => $page['id'], 'type' => 'page', 'status' => false]) }}>
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
                                                 @else
-                                                    <i class="fas fa-eye-slash"></i>
+                                                    <a
+                                                        href={{ route('admin.ajax.toggle_status', ['id' => $page['id'], 'type' => 'page', 'status' => true]) }}>
+                                                        <i class="fas fa-eye-slash"></i>
+                                                    </a>
                                                 @endif
                                             </td>
                                             <td>

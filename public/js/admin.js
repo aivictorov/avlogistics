@@ -1,12 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // avatarRemoveButton();
-
+    initUpdateAvatar();
+    initDestroyImageButtons();
+    initSortPortfolioGallery();
 
     search();
     questions();
-    gallery();
-    // callbackForm();
-    sendRequest()
+    // sendRequest()
     ajaxImgLoad()
     dragQuestions()
 })
@@ -16,25 +15,238 @@ $(document).ready(function () {
     trix();
 })
 
+function initUpdateAvatar() {
+    const button = document.querySelector('[data-action="updateAvatar"]');
+
+    if (button) {
+        const input = button.closest('.input-group').querySelector('.custom-file-input');
+        const label = button.closest('.input-group').querySelector('.custom-file-label');
+
+        if (input) {
+            button.addEventListener('click', () => {
+
+                if (input.files.length == 0) alert('Выберите файл')
+
+                if (input.files.length > 0) {
+                    const result = confirm("Будет загружено новое изображение. Продолжить?");
+
+                    const form = new FormData();
+                    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+                    const page_id = button.dataset.id;
+                    const page_type = button.dataset.type;
+                    const avatar_file = input.files[0];
+
+                    if (page_id && page_type && avatar_file) {
+                        form.append('page_id', page_id);
+                        form.append('page_type', page_type);
+                        form.append('avatar_file', avatar_file);
+
+                        fetch('/admin/ajax/updateAvatar', {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': csrfToken
+                            },
+                            body: form,
+                        }).then(response => {
+                            response.text().then(responseText => {
+                                const avatarPreview = document.querySelector('.avatar');
+
+                                if (avatarPreview) {
+                                    avatarPreview.innerHTML = "";
+
+                                    const image = document.createElement('img');
+                                    image.src = responseText;
+                                    avatarPreview.append(image);
+
+                                    addDestroyImageButton(image);
+                                }
+
+                                input.value = "";
+                                if (label) label.innerText = "Файл не выбран";
+                            })
+                        });
+                    }
+                }
+            });
+        }
+    }
+};
+
+function initDestroyImageButtons() {
+    const images = document.querySelectorAll('img[data-function="destroy"]');
+
+    if (images) {
+        images.forEach((image) => {
+            addDestroyImageButton(image)
+        });
+    }
+};
+
+function addDestroyImageButton(image) {
+    const id = image.src.split('/')[7];
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.classList.add('destroy-image-btn');
+    button.dataset.id = id;
+    button.innerHTML = `<i class="fas fa-trash"></i>`;
+
+    image.after(button)
+
+    button.addEventListener('click', (event) => {
+        event.preventDefault;
+        destroyImageHandle(id, button);
+    });
+};
+
+function destroyImageHandle(id, button) {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const result = confirm("Удалить изображение?");
+
+    if (result) {
+        fetch('/admin/ajax/destroyImage', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                'X-CSRF-TOKEN': csrfToken
+            },
+            body: JSON.stringify({ id: id }),
+        }).then(response => {
+            response.text().then(responseText => {
+                console.log('Ajax:', responseText);
+            });
+
+            // button.parentElement.remove();
+            button.parentElement.querySelector('img').remove();
+            button.remove();
+        });
+    };
+};
 
 
-// function avatarRemoveButton() {
-//     document.querySelectorAll('.avatar').forEach((avatar) => {
-//         avatar.insertAdjacentHTML('beforeend', `
-//             <button class="delBtn" type="button" data-action="image" data-id="{{ $avatar->id }}">
-//                 <i class="fas fa-trash"></i>
-//             </button>
-//         `);
-//     });
-// };
+
+
+function initSortPortfolioGallery() {
+    const gallery = document.getElementById('portfolio-gallery');
+    const buttons = document.getElementById('portfolio-gallery-buttons');
+
+    const sortButton = buttons.querySelector('[data-action="sort"]');
+    const saveButton = buttons.querySelector('[data-action="save"]');
+    const cancelButton = buttons.querySelector('[data-action="cancel"]');
+
+    sortButton.addEventListener('click', () => { sortStartHandle(sortButton, saveButton, cancelButton) });
+    saveButton.addEventListener('click', () => { saveHandle(sortButton, saveButton, cancelButton) });
+
+    function sortStartHandle(sortButton, saveButton, cancelButton) {
+        sortButton.setAttribute('disabled', '');
+        saveButton.removeAttribute('disabled');
+        cancelButton.removeAttribute('disabled',);
+
+        const oldGallery = gallery.cloneNode(true);
+
+        cancelButton.addEventListener('click', () => { cancelHandle(sortButton, saveButton, cancelButton, oldGallery) });
+
+        gallery.querySelectorAll('.portfolio-gallery-image').forEach((image) => {
+            image.draggable = true;
+
+            image.addEventListener('dragstart', dragStartHandle)
+            image.addEventListener('dragover', dragOverHandle);
+            image.addEventListener('dragend', dragEndHandle);
+
+            // image.querySelectorAll('img').forEach((img) => {
+            //     img.style.pointerEvents = 'none';
+            // })
+
+            // image.querySelectorAll('button').forEach((btn) => {
+            //     btn.style.pointerEvents = 'none';
+            // })
+        });
+    }
+
+    function sortEndHandle() {
+        gallery.querySelectorAll('.portfolio-gallery-image').forEach((image) => {
+            image.removeAttribute('draggable');
+            image.removeEventListener('dragstart', dragStartHandle)
+            image.removeEventListener('dragover', dragOverHandle);
+            image.removeEventListener('dragend', dragEndHandle);
+        })
+
+        sortButton.removeAttribute('disabled');
+        saveButton.setAttribute('disabled', '');
+        cancelButton.setAttribute('disabled', '');
+    }
+
+    function cancelHandle() {
+        sortEndHandle();
+    }
+
+
+
+
+    function dragStartHandle(event) {
+        console.log('dragStart')
+        event.target.classList.add('selected');
+    };
+
+    function dragEndHandle(event) {
+        console.log('dragEnd')
+        event.target.classList.remove('selected');
+    };
+
+    function dragOverHandle(event) {
+        console.log('dragOver')
+        event.preventDefault();
+
+        const activeElement = gallery.querySelector('.selected');
+        const currentElement = event.target;
+
+        const isMoveable = activeElement !== currentElement &&
+            currentElement.classList.contains('portfolio-gallery-image');
+
+        if (!isMoveable) return;
+
+        const nextElement = (currentElement === activeElement.nextElementSibling) ?
+            currentElement.nextElementSibling :
+            currentElement;
+
+        gallery.insertBefore(activeElement, nextElement);
+    }
 
 
 
 
 
+    function saveHandle() {
+        // let data = [];
 
+        // gallery.querySelectorAll('.portfolio-gallery-image').forEach((item, id) => {
+        //     const image_id = item.querySelector('img').src.split('/')[7];
 
+        //     data.push({
+        //         id: image_id,
+        //         sort: id
+        //     });
+        // })
 
+        // const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        // fetch('/admin/ajax-1', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json;charset=utf-8',
+        //         'X-CSRF-TOKEN': csrfToken
+        //     },
+        //     body: JSON.stringify(data),
+        // }).then(response => {
+        //     response.text().then(responseText => {
+        //         console.log('Ajax:', responseText);
+        //     });
+        // });
+
+        sortEndHandle();
+    }
+};
 
 
 function trix() {
@@ -149,7 +361,6 @@ function trix() {
         return data;
     }
 }
-
 
 function ajaxImgLoad() {
 
@@ -267,146 +478,6 @@ function ajaxImgLoad() {
     }
 }
 
-function gallery() {
-    document.querySelectorAll('.portfolio-gallery').forEach((gallery) => {
-        const elements = gallery.querySelectorAll('.portfolio-gallery__item');
-
-        for (const element of elements) {
-            element.draggable = true;
-
-            // test
-            element.querySelectorAll('img').forEach((img) => {
-                img.draggable = false;
-
-                img.style.pointerEvents = 'none';
-
-                // img.ondragstart = function () {
-                //     return false;
-                // };
-            })
-
-
-            element.querySelectorAll('button').forEach((button) => {
-                button.draggable = false;
-                // button.style.pointerEvents = 'none';
-            })
-
-
-            element.addEventListener('dragstart', (event) => {
-                event.target.classList.add('selected');
-                console.log('drag start');
-            })
-
-            element.addEventListener('dragend', (event) => {
-                event.target.classList.remove('selected');
-                console.log('drag end');
-            });
-
-            element.addEventListener('dragover', (event) => {
-                event.preventDefault();
-
-                console.log('drag over');
-
-                const activeElement = gallery.querySelector('.selected');
-                const currentElement = event.target;
-
-                const isMoveable = activeElement !== currentElement &&
-                    currentElement.classList.contains('portfolio-gallery__item');
-
-                if (!isMoveable) return;
-
-                const nextElement = (currentElement === activeElement.nextElementSibling) ?
-                    currentElement.nextElementSibling :
-                    currentElement;
-
-                gallery.insertBefore(activeElement, nextElement);
-            });
-        };
-
-        const btn = gallery.querySelector('.sort-save-button');
-
-        if (btn) {
-            btn.addEventListener('click', () => {
-
-                let data = [];
-
-                gallery.querySelectorAll('.portfolio-gallery__item').forEach((item, id) => {
-                    data.push({
-                        id: item.dataset.id,
-                        sort: id
-                    });
-                })
-
-                // elements.forEach((element, id) => {
-                //     console.log(element, id, element.offsetLeft, element.offsetTop)
-                // })
-
-                const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-                fetch('/admin/ajax-1', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json;charset=utf-8',
-                        'X-CSRF-TOKEN': csrfToken
-                    },
-                    body: JSON.stringify(data),
-                }).then(response => {
-                    response.text().then(responseText => {
-                        console.log('Ajax:', responseText);
-                    });
-                });
-
-            })
-        }
-    });
-
-    // })
-}
-
-
-
-function sendRequest() {
-
-    const buttons = document.querySelectorAll('[data-action="image"]')
-
-    buttons.forEach((button) => {
-        button.addEventListener('click', (event) => {
-            event.preventDefault;
-            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-            const result = confirm("Удалить изображение?");
-
-            if (result) {
-                fetch('/admin/ajax', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json;charset=utf-8',
-                        'X-CSRF-TOKEN': csrfToken
-                    },
-                    body: JSON.stringify({ id: button.dataset.id }),
-                }).then(response => {
-                    response.text().then(responseText => {
-                        console.log('Ajax:', responseText);
-                    });
-                    button.closest('.portfolio-gallery__item').remove();
-                });
-            };
-        });
-    });
-
-    // function postData(event){event.preventDefault();
-    //     var formData = new FormData();
-    //     formData.append('title', i('tittle').value);
-    //     formData.append('body', i('body').value);
-    //     fetch(url, {
-    //         method: 'POST',
-    //         body: formData,
-    //     }).then(response => response.json())
-    //     .then((data) =>  console.log(data))
-    // }
-}
-
-
 function callbackForm() {
     const form = document.querySelector('#form')
     const answer = document.querySelector('#answer')
@@ -440,7 +511,6 @@ function callbackForm() {
     });
 };
 
-
 function search() {
     const searchField = document.getElementById('search');
 
@@ -458,8 +528,6 @@ function search() {
         });
     }
 };
-
-
 
 function questions() {
     const block = document.getElementById('questions');

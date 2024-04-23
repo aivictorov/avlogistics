@@ -18,7 +18,6 @@ class PageRequest extends FormRequest
             'menu_sort' => ['required', 'integer', 'min:0', 'max:100'],
             'menu_show' => ['required', 'boolean'],
             'status' => ['required', 'boolean'],
-            // 'system_page' => ['required', 'in:0,1,2,3,4,5,6,7'],
 
             'title' => ['nullable', 'string', 'min:3', 'max:100'],
             'description' => ['nullable', 'string', 'min:3', 'max:500'],
@@ -33,6 +32,12 @@ class PageRequest extends FormRequest
         if (!$this->filled('url')) {
             $this->merge([
                 'url' => Str::slug($this->input('name')),
+            ]);
+        }
+
+        if (!$this->filled('menu_sort')) {
+            $this->merge([
+                'menu_sort' => 1,
             ]);
         }
     }
