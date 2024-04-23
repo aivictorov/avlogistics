@@ -125,48 +125,58 @@ function destroyImageHandle(id, button) {
 };
 
 
-
-
 function initSortPortfolioGallery() {
+    console.log('init');
+
     const gallery = document.getElementById('portfolio-gallery');
     const buttons = document.getElementById('portfolio-gallery-buttons');
+
+    initialGallery = gallery.cloneNode(true);
+    console.log('when init:', initialGallery);
 
     const sortButton = buttons.querySelector('[data-action="sort"]');
     const saveButton = buttons.querySelector('[data-action="save"]');
     const cancelButton = buttons.querySelector('[data-action="cancel"]');
 
-    sortButton.addEventListener('click', () => { sortStartHandle(sortButton, saveButton, cancelButton) });
-    saveButton.addEventListener('click', () => { saveHandle(sortButton, saveButton, cancelButton) });
+    sortButton.addEventListener('click', sortStartHandle);
+    saveButton.addEventListener('click', saveHandle);
+    cancelButton.addEventListener('click', () => { cancelHandle(initialGallery) });
 
-    function sortStartHandle(sortButton, saveButton, cancelButton) {
-        sortButton.setAttribute('disabled', '');
-        saveButton.removeAttribute('disabled');
-        cancelButton.removeAttribute('disabled',);
-
-        const oldGallery = gallery.cloneNode(true);
-
-        cancelButton.addEventListener('click', () => { cancelHandle(sortButton, saveButton, cancelButton, oldGallery) });
+    function sortStartHandle() {
+        console.log('--- sortStartHandle ---');
 
         gallery.querySelectorAll('.portfolio-gallery-image').forEach((image) => {
             image.draggable = true;
 
+            // image.querySelectorAll('img').forEach((element) => {
+            //     element.style.pointerEvents = 'none';
+            // });
+
             image.addEventListener('dragstart', dragStartHandle)
             image.addEventListener('dragover', dragOverHandle);
             image.addEventListener('dragend', dragEndHandle);
-
-            // image.querySelectorAll('img').forEach((img) => {
-            //     img.style.pointerEvents = 'none';
-            // })
-
-            // image.querySelectorAll('button').forEach((btn) => {
-            //     btn.style.pointerEvents = 'none';
-            // })
         });
+
+        sortButton.setAttribute('disabled', '');
+        saveButton.removeAttribute('disabled');
+        cancelButton.removeAttribute('disabled',);
     }
 
+    function cancelHandle(old) {
+        console.log('cancelHandle');
+        gallery.replaceWith(old);
+        sortEndHandle();
+
+        // initSortPortfolioGallery();
+    };
+
     function sortEndHandle() {
+        console.log('*** sortEndHandle ***');
+
         gallery.querySelectorAll('.portfolio-gallery-image').forEach((image) => {
             image.removeAttribute('draggable');
+            // image.removeAttribute('style');
+
             image.removeEventListener('dragstart', dragStartHandle)
             image.removeEventListener('dragover', dragOverHandle);
             image.removeEventListener('dragend', dragEndHandle);
@@ -176,13 +186,6 @@ function initSortPortfolioGallery() {
         saveButton.setAttribute('disabled', '');
         cancelButton.setAttribute('disabled', '');
     }
-
-    function cancelHandle() {
-        sortEndHandle();
-    }
-
-
-
 
     function dragStartHandle(event) {
         console.log('dragStart')
@@ -211,13 +214,11 @@ function initSortPortfolioGallery() {
             currentElement;
 
         gallery.insertBefore(activeElement, nextElement);
-    }
-
-
-
-
+    };
 
     function saveHandle() {
+        console.log('saveHandle');
+
         // let data = [];
 
         // gallery.querySelectorAll('.portfolio-gallery-image').forEach((item, id) => {
@@ -245,7 +246,9 @@ function initSortPortfolioGallery() {
         // });
 
         sortEndHandle();
-    }
+    };
+
+
 };
 
 

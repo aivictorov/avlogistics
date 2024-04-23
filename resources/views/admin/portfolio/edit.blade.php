@@ -134,42 +134,12 @@
                                     <div class="portfolio-gallery-image mr-2"
                                         style="width:152px; height:100px; background-color: green"></div>
                                     {{-- @if (isset($images) && count($images) > 0)
-                                        <div class="portfolio-gallery-images form-group d-flex flex-wrap">
-                                            @foreach ($images as $key => $image)
-                                                <div class="portfolio-gallery-image position-relative mr-2 mt-1 mb-1">
-                                                    <img src={{ Image::path($image, 'small') }} width="152px"
-                                                        data-function="destroy" />
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                        <div class="portfolio-gallery-buttons">
-                                            <div class="row">
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <button type="button" class="btn btn-block btn-outline-success"
-                                                            data-action="sortPortfolioGallery">
-                                                            Сортировка
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <button type="button" class="btn btn-block btn-outline-primary"
-                                                            data-action="savePortfolioGallerySort" disabled>
-                                                            Сохранить
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="form-group">
-                                                        <button type="button" class="btn btn-block btn-outline-danger"
-                                                            data-action="cancelPortfolioGallerySort" disabled>
-                                                            Отмена
-                                                        </button>
-                                                    </div>
-                                                </div>
+                                        @foreach ($images as $key => $image)
+                                            <div class="portfolio-gallery-image mr-2 mt-1 mb-1 d-block position-relative">
+                                                <img src={{ Image::path($image, 'small') }} width="152px" height="auto"
+                                                    data-function="destroy" />
                                             </div>
-                                        </div>
+                                        @endforeach
                                     @endif --}}
                                 </div>
                                 <div id="portfolio-gallery-buttons">
