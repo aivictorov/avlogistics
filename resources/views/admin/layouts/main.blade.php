@@ -54,7 +54,35 @@
     <script src="/admin_panel/dist/js/adminlte.js"></script>
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
 
+    <script src="/admin_panel/tinymce/tinymce/tinymce.min.js"></script>
+
+    {{-- <script>
+        tinymce.init({
+            selector: ".editor",
+            plugins: "file-manager table link lists code fullscreen",
+            Flmngr: {
+                apiKey: "FLMNFLMN",
+                urlFileManager: '/flmngr',
+                urlFiles: 'http://avlogistics.test/storage/upload/files'
+            },
+            relative_urls: false,
+            extended_valid_elements: "*[*]",
+            height: "600px",
+            toolbar: [
+                "cut copy | undo redo | searchreplace | bold italic strikethrough | forecolor backcolor | blockquote | removeformat | code",
+                "formatselect | link | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent"
+            ],
+            promotion: false,
+
+            // mode: "textareas",
+            // theme: "simple",
+            language: "ru"
+
+        });
+    </script> --}}
+
     <script src="/js/admin.js"></script>
+
 </body>
 
 </html>

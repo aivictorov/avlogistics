@@ -49,40 +49,11 @@
                                     <input id="text" value="{{ $page['text'] }}" type="hidden" name="text">
                                 </div>
 
-                                <div id="editor">
-                                    Hello world!
+                                <div class="form-group">
+                                    <label>Текст</label>
+                                    {{-- <trix-editor input="text"></trix-editor> --}}
+                                    <input value="{{ $page['text'] }}" type="hidden" name="text" class="editor">
                                 </div>
-
-
-                                <script src="/admin_panel/tinymce/tinymce/tinymce.min.js"></script>
-                                <script>
-                                    tinymce.init({
-                                        selector: "#editor",
-                                        plugins: "file-manager table link lists code fullscreen",
-                                        // Flmngr: {
-                                        //     apiKey: "FLMNFLMN",
-                                        //     urlFileManager: '/flmngr',
-                                        //     urlFiles: '/files'
-                                        // },
-
-                                        Flmngr: {
-                                            apiKey: "FLMNFLMN",
-                                            urlFileManager: '/flmngr',
-                                            urlFiles: '/storage/upload/files'
-                                        },
-
-                                        relative_urls: false,
-                                        extended_valid_elements: "*[*]",
-                                        height: "600px",
-                                        toolbar: [
-                                            "cut copy | undo redo | searchreplace | bold italic strikethrough | forecolor backcolor | blockquote | removeformat | code",
-                                            "formatselect | link | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent"
-                                        ],
-                                        promotion: false
-                                    });
-                                </script>
-
-
 
                             </div>
                         </div>

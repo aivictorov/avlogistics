@@ -59,8 +59,8 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="questions[{{ $question['id'] }}][answer]">Ответ</label>
-                                                        <textarea id="questions[{{ $question['id'] }}][answer]" data-name="answer" class="form-control" rows="3"
-                                                            name="questions[{{ $question['id'] }}][answer]">{!! $question['answer'] !!}</textarea>
+                                                        <textarea id="questions[{{ $question['id'] }}][answer]" data-name="answer" class="form-control mini-editor"
+                                                            rows="3" name="questions[{{ $question['id'] }}][answer]">{!! $question['answer'] !!}</textarea>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-5">
