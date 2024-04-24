@@ -12,16 +12,6 @@ use App\Http\Controllers\UserController;
 use EdSDK\FlmngrServer\FlmngrServer;
 use Illuminate\Support\Facades\Route;
 
-
-
-Route::post('/flmngr', function () {
-    FlmngrServer::flmngrRequest(
-        array (
-            'dirFiles' => base_path() . '/storage/app/public/upload/files'
-        )
-    );
-});
-
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', App\Http\Controllers\Admin\HomeController::class)->name('home');
 
@@ -31,6 +21,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/pages/{id}/edit', [App\Http\Controllers\Admin\PageController::class, 'edit'])->name('pages.edit');
     Route::put('/pages/{id}', [App\Http\Controllers\Admin\PageController::class, 'update'])->name('pages.update');
     Route::get('/pages/{id}/delete', [App\Http\Controllers\Admin\PageController::class, 'destroy'])->name('pages.destroy');
+    Route::get('/pages/{id}/publish', [App\Http\Controllers\Admin\PageController::class, 'publish'])->name('pages.publish');
 
     Route::get('/portfolio', [App\Http\Controllers\Admin\PortfolioController::class, 'index'])->name('portfolio.index');
     Route::get('/portfolio/create', [App\Http\Controllers\Admin\PortfolioController::class, 'create'])->name('portfolio.create');
@@ -60,10 +51,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::put('/users/{id}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update');
     Route::get('/users/{id}/delete', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
 
-    Route::post('/ajax-3', [App\Http\Controllers\Admin\AjaxController::class, 'load_content_img'])->name('ajax');
-    Route::post('/ajax-4', [App\Http\Controllers\Admin\AjaxController::class, 'remove_content_img'])->name('ajax');
-    Route::get('/ajax/toggle_status', [App\Http\Controllers\Admin\AjaxController::class, 'toggle_status'])->name('ajax.toggle_status');
-
     Route::prefix('ajax')->group(function () {
         Route::post('/updateAvatar', [App\Http\Controllers\Admin\AjaxController::class, 'updateAvatar'])->name('ajax.updateAvatar');
         Route::post('/destroyImage', [App\Http\Controllers\Admin\AjaxController::class, 'destroyImage'])->name('ajax.destroyImage');
@@ -72,6 +59,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::post('/saveQuestion', [App\Http\Controllers\Admin\AjaxController::class, 'saveQuestion'])->name('ajax.saveQuestion');
         Route::post('/removeQuestion', [App\Http\Controllers\Admin\AjaxController::class, 'removeQuestion'])->name('ajax.removeQuestion');
     });
+});
+
+Route::post('/flmngr', function () {
+    FlmngrServer::flmngrRequest(array ('dirFiles' => base_path() . '/storage/app/public/upload/files'));
 });
 
 Route::name('user.')->group(function () {

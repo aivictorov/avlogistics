@@ -52,12 +52,12 @@
                                             <td>
                                                 @if ($page['status'] == 1)
                                                     <a
-                                                        href={{ route('admin.ajax.toggle_status', ['id' => $page['id'], 'type' => 'page', 'status' => false]) }}>
+                                                        href={{ route('admin.pages.publish', ['id' => $page['id'], 'published' => false]) }}>
                                                         <i class="fas fa-eye"></i>
                                                     </a>
                                                 @else
                                                     <a
-                                                        href={{ route('admin.ajax.toggle_status', ['id' => $page['id'], 'type' => 'page', 'status' => true]) }}>
+                                                        href={{ route('admin.pages.publish', ['id' => $page['id'], 'published' => true]) }}>
                                                         <i class="fas fa-eye-slash"></i>
                                                     </a>
                                                 @endif

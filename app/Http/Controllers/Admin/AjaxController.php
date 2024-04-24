@@ -136,8 +136,6 @@ class AjaxController extends Controller
         return $result;
     }
 
-
-
     public function removeQuestion()
     {
         $id = file_get_contents('php://input');
@@ -147,48 +145,4 @@ class AjaxController extends Controller
 
         return 'question ' . $id . ' removed';
     }
-
-
-    public function load_content_img(ImageRequest $request)
-    {
-        $validated = $request->validated();
-
-        $file = $validated['file'];
-
-        $image = InterventionImage::make($file);
-
-        Storage::makeDirectory('public/upload/context_images/');
-        $original_image_path = storage_path('app/public/upload/context_images/' . $file->getClientOriginalName());
-        $image->save($original_image_path);
-
-        return 'load_content_img OK';
-    }
-
-    public function remove_content_img()
-    {
-        $filename = file_get_contents('php://input');
-        Storage::delete('public/upload/context_images/' . $filename);
-
-        return 'remove_content_img OK';
-    }
-
-    public function toggle_status(Request $request)
-    {
-        $id = $request->get('id');
-        $type = $request->get('type');
-        $status = $request->get('status');
-
-        if ($type == 'page') {
-            Page::find($id)->update([
-                'status' => $status,
-                'update_date' => Carbon::now()->toDateTimeString(),
-            ]);
-        }
-
-        return redirect()->back();
-    }
-
-
-
-
 }

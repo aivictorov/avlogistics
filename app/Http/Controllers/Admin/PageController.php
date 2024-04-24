@@ -21,7 +21,9 @@ use App\Actions\SEO\GetSeoAction;
 use App\Actions\SEO\UpdateSeoAction;
 use App\Actions\SEO\UpdateSeoData;
 use App\Http\Controllers\Controller;
+use App\Models\Page;
 use App\Requests\PageRequest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -176,5 +178,17 @@ class PageController extends Controller
 
             return redirect(route('admin.pages.index'));
         }
+    }
+
+    public function publish($id, Request $request)
+    {
+        $status = $request->get('published');
+
+        Page::find($id)->update([
+            'status' => $status,
+            'update_date' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        return redirect()->back();
     }
 }
