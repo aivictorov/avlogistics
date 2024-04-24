@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('/flmngr', function () {
     FlmngrServer::flmngrRequest(
         array (
-            'dirFiles' => base_path() . '/public/files'
+            // 'dirFiles' => base_path() . '/public/files'
+            'dirFiles' => base_path() . '/storage/upload/files'
         )
     );
 });

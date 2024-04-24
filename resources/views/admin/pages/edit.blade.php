@@ -59,17 +59,17 @@
                                     tinymce.init({
                                         selector: "#editor",
                                         plugins: "file-manager table link lists code fullscreen",
-
                                         // Flmngr: {
-                                        //     urlFileManager: "http://your-website.com/flmngr/flmngr.php",
-                                        //     urlFiles: "http://your-website.com/files/"
+                                        //     apiKey: "FLMNFLMN",
+                                        //     urlFileManager: '/flmngr',
+                                        //     urlFiles: '/files'
                                         // },
 
                                         Flmngr: {
-                                            urlFileManager: "http://avlogistics.test/flmngr/flmngr.php",
-                                            urlFiles: "http://avlogistics.test/files/"
+                                            apiKey: "FLMNFLMN",
+                                            urlFileManager: '/flmngr',
+                                            urlFiles: '/storage/upload/files'
                                         },
-
 
                                         relative_urls: false,
                                         extended_valid_elements: "*[*]",
