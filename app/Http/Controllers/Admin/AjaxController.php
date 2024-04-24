@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\FAQ\saveQuestionAction;
+use App\Actions\FAQ\saveQuestionData;
 use App\Actions\Image\CreateImageAction;
 use App\Actions\Image\CreateImageData;
 use App\Actions\Image\DestroyImageAction;
@@ -11,10 +13,12 @@ use App\Actions\Image\ReplaceImageData;
 use App\Actions\Image\UpdateImageAction;
 use App\Actions\Image\UpdateImageData;
 use App\Http\Controllers\Controller;
+use App\Models\FAQ_Questions;
 use App\Models\Image;
 use App\Models\Page;
 use App\Requests\ImageRequest;
 use App\Requests\ImagesRequest;
+use App\Requests\QuestionRequest;
 use App\Requests\UpdateAvatarRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -109,15 +113,40 @@ class AjaxController extends Controller
                 )
             );
 
-            array_push($result, $image);
+            array_push($result, Image::path($image, "small"));
         }
+
+        return $result;
+    }
+
+    public function saveQuestion(QuestionRequest $request)
+    {
+        $validated = $request->validated();
+
+        $result = (new saveQuestionAction)->run(
+            new saveQuestionData(
+                id: $validated['id'],
+                name: $validated['name'],
+                answer: $validated['answer'],
+                sort: $validated['sort'],
+                faq_id: $validated['faq_id'],
+            )
+        );
 
         return $result;
     }
 
 
 
+    public function removeQuestion()
+    {
+        $id = file_get_contents('php://input');
 
+        $question = FAQ_Questions::find($id);
+        $question->delete();
+
+        return 'question ' . $id . ' removed';
+    }
 
 
     public function load_content_img(ImageRequest $request)

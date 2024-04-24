@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AjaxController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\FAQController;
@@ -8,7 +9,18 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\PortfolioSectionController;
 use App\Http\Controllers\UserController;
+use EdSDK\FlmngrServer\FlmngrServer;
 use Illuminate\Support\Facades\Route;
+
+
+
+Route::post('/flmngr', function () {
+    FlmngrServer::flmngrRequest(
+        array (
+            'dirFiles' => base_path() . '/public/files'
+        )
+    );
+});
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', App\Http\Controllers\Admin\HomeController::class)->name('home');
@@ -57,6 +69,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::post('/destroyImage', [App\Http\Controllers\Admin\AjaxController::class, 'destroyImage'])->name('ajax.destroyImage');
         Route::post('/saveGallerySort', [App\Http\Controllers\Admin\AjaxController::class, 'saveGallerySort'])->name('ajax.saveGallerySort');
         Route::post('/addImagesToPortfolio', [App\Http\Controllers\Admin\AjaxController::class, 'addImagesToPortfolio'])->name('ajax.addImagesToPortfolio');
+        Route::post('/saveQuestion', [App\Http\Controllers\Admin\AjaxController::class, 'saveQuestion'])->name('ajax.saveQuestion');
+        Route::post('/removeQuestion', [App\Http\Controllers\Admin\AjaxController::class, 'removeQuestion'])->name('ajax.removeQuestion');
     });
 });
 

@@ -3,14 +3,13 @@ document.addEventListener('DOMContentLoaded', function () {
     initDestroyImageButtons();
     initSortPortfolioGallery();
     addImagesToPortfolio()
-
-
-
     search();
-    questions();
-    // sendRequest()
-    dragQuestions()
+    initQuestions();
+    addNewQuestion();
 })
+
+
+
 
 $(document).ready(function () {
     bsCustomFileInput.init();
@@ -139,8 +138,12 @@ function initSortPortfolioGallery() {
 
     let gallery = document.getElementById('portfolio-gallery');
 
-    let initialGallery = gallery.cloneNode(true);
-    console.log('init:', initialGallery);
+    if (gallery) {
+        let initialGallery = gallery.cloneNode(true);
+        console.log('init:', initialGallery);
+    } else {
+        return;
+    }
 
     const buttons = document.getElementById('portfolio-gallery-buttons');
     const sortButton = buttons.querySelector('[data-action="sort"]');
@@ -277,8 +280,6 @@ function initSortPortfolioGallery() {
     };
 };
 
-
-
 function addImagesToPortfolio() {
     const button = document.querySelector('[data-action="addImagesToPortfolio"]');
 
@@ -322,93 +323,38 @@ function addImagesToPortfolio() {
                             body: form,
                         }).then(response => {
                             response.text().then(responseText => {
+                                const galleryPreview = document.getElementById('portfolio-gallery');
+                                console.log(galleryPreview);
 
-                                // images = JSON.parse(responseText);
+                                if (galleryPreview) {
+                                    imagePaths = JSON.parse(responseText);
 
-                                console.log('Ajax:', JSON.parse(responseText));
+                                    imagePaths.forEach((imagePath) => {
+                                        const image = document.createElement('img');
+                                        image.src = imagePath;
+                                        image.setAttribute('width', '152px')
+                                        image.setAttribute('height', 'auto')
+                                        image.setAttribute('data-function', 'destroy')
+                                        addDestroyImageButton(image);
 
+                                        const item = document.createElement('div');
+                                        item.classList.add("portfolio-gallery-image", "mr-2", "mt-1", "mb-1", "d-block", "position-relative")
+                                        item.append(image);
 
-                                // var rand = Math.floor(Math.random() * 9999);
-                                // console.log(rand);
+                                        galleryPreview.append(item);
+                                    });
+                                }
 
-                                // images.forEach((image) => {
-                                //     gallery_html.insertAdjacentHTML('afterbegin', `
-                                //         <div class="portfolio-gallery__item new_${rand} mb-2 mr-2 position-relative" data-id="${image.id}">
-                                //             <button class="delBtn" type="button" data-action="image" data-id="${image.id}">
-                                //                 <i class="fas fa-trash"></i>
-                                //             </button>
-                                //             <img src="http://avlogistics.test/storage/upload/portfolio_image/${image.parent_id}/${image.id}/sizes/small_${image.image}" width="152px" style="pointer-events: none"/>
-                                //         </div>
-                                //     `);
-                                // })
-
-                                // const avatarPreview = document.querySelector('.avatar');
-
-                                // if (avatarPreview) {
-                                //     avatarPreview.innerHTML = "";
-
-                                //     const image = document.createElement('img');
-                                //     image.src = responseText;
-                                //     avatarPreview.append(image);
-
-                                //     addDestroyImageButton(image);
-                                // }
-
-                                // input.value = "";
-                                // if (label) label.innerText = "Файл не выбран";
-
-
+                                input.value = "";
+                                if (label) label.innerText = "Файлы не выбраны";
                             })
                         });
                     }
                 }
             });
-
-
         }
     }
-
-
-
-
-
-
-
-
 }
-
-function callbackForm() {
-    const form = document.querySelector('#form')
-    const answer = document.querySelector('#answer')
-
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        const formData = new FormData(form);
-
-        fetch('./../php/mail.php', {
-            method: 'POST',
-            body: formData
-        }).then(response => {
-            response.text().then(responseText => {
-                form.classList.add('none')
-                answer.innerText = responseText;
-                const closeBtn = event.target.closest('[modal-window]').querySelector('[close-modal-button]');
-
-                if (closeBtn) {
-                    closeBtn.classList.remove('none');
-
-                    closeBtn.addEventListener('click', function (event) {
-                        form.classList.remove('none');
-                        answer.innerText = "";
-                        grecaptcha.reset();
-                        closeBtn.classList.add('none');
-                    });
-                };
-            });
-        });
-    });
-};
 
 function search() {
     const searchField = document.getElementById('search');
@@ -428,133 +374,162 @@ function search() {
     }
 };
 
-function questions() {
-    const block = document.getElementById('questions');
-    const btn = document.getElementById('questions_btn');
+function initQuestions() {
+    const questions = document.querySelectorAll('.question');
+
+    if (questions.length > 0) {
+        questions.forEach((question) => {
+            initQuestion(question);
+        })
+    }
+}
+
+function initQuestion(question) {
+    console.log(question)
+
+    const saveButton = question.querySelector('[data-action="saveQuestion"]')
+    saveButton.addEventListener('click', saveQuestionHandle)
+
+    const removeButton = question.querySelector('[data-action="removeQuestion"]')
+    removeButton.addEventListener('click', removeQuestionHandle)
+
+    function saveQuestionHandle() {
+        console.log('saveQuestionHandle')
+
+        const confirmation = confirm("Сохранить вопрос?");
+        if (!confirmation) return;
+
+        const form = new FormData();
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        const id = saveButton.dataset.id;
+        const name = question.querySelector('[data-name="name"]').value
+        const answer = question.querySelector('[data-name="answer"]').value
+        const sort = question.querySelector('[data-name="sort"]').value
+        const faq = saveButton.dataset.faq;
+
+        if (name && answer && sort) {
+            form.append('id', id);
+            form.append('name', name);
+            form.append('answer', answer);
+            form.append('sort', sort);
+            form.append('faq_id', faq);
+
+            fetch('/admin/ajax/saveQuestion', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                body: form,
+            }).then(response => {
+                response.text().then(responseText => {
+                    console.log('Ajax:', JSON.parse(responseText));
+                })
+            });
+        }
+    }
+
+    function removeQuestionHandle() {
+        console.log('removeQuestionHandle')
+
+        const confirmation = confirm("Удалить вопрос?");
+        if (!confirmation) return;
+
+        // const form = new FormData();
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        const id = removeButton.dataset.id;
+
+        if (id) {
+            fetch('/admin/ajax/removeQuestion', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                body: id,
+            }).then(response => {
+                response.text().then(responseText => {
+                    console.log('Ajax:', responseText);
+                })
+            });
+        }
+    }
+
+    function deleteQuestion() {
+        const buttons = document.querySelectorAll('[data-action="removeQuestion"]');
+
+        delete_buttons.forEach(function (button) {
+            button.addEventListener('click', () => {
+                button.closest('.question').remove();
+            })
+        })
+    }
+}
+
+function addNewQuestion() {
+    console.log('addNewQuestion init')
+    const block = document.querySelector('.questions');
+    const btn = document.querySelector('button[data-action="addNewQuestion"]');
 
     if (block && btn) {
-        deleteQuestion();
-
-        block.querySelectorAll('.col-md-6')
-
-        let id = Math.floor(Math.random() * 9999);
+        let faq_id = btn.dataset.faq;
 
         btn.addEventListener('click', function () {
-            block.insertAdjacentHTML('beforeend', `
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="question_name[${id}]">Название</label>
-                                <input type="text" class="form-control" id="question_name[${id}]"
-                                    name="questions[${id}][name]">
-                            </div>
-                            <div class="form-group">
-                                <label for="question_answer[${id}]">Ответ</label>
-                                <textarea id="question_answer[${id}]" class="form-control" rows="3" name="questions[${id}][answer]"></textarea>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="form-group">
-                                        <label for="questions[${id}][sort]">Ключ сортировки</label>
-                                        <input type="text" class="form-control"
-                                            id="questions[${id}][sort]" name="questions[${id}][sort]">
-                                    </div>
+            let id = Math.floor(Math.random() * 9999);
+
+            let question = document.createElement('div')
+            question.classList.add('question', 'col-md-6')
+
+            question.innerHTML = `
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="question_name[${id}]">Название</label>
+                            <input type="text" class="form-control" id="question_name[${id}]"
+                                name="questions[${id}][name]" data-name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="question_answer[${id}]">Ответ</label>
+                            <textarea id="question_answer[${id}]" class="form-control" rows="3" name="questions[${id}][answer]" data-name="answer"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="questions[${id}][sort]">Ключ сортировки</label>
+                                    <input type="text" class="form-control"
+                                        id="questions[${id}][sort]" name="questions[${id}][sort]" data-name="sort">
                                 </div>
-                                <div class="col-md-4 d-flex align-items-end">
-                                    <div class="form-group w-100">
-                                        <button type="button" class="btn btn-block btn-outline-danger" data-action="remove_question_btn">
-                                            Удалить
-                                        </button>
-                                    </div>
+                            </div>
+                            <div class="col-md-5 d-flex align-items-end">
+                                <div class="form-group w-100">
+                                    <button type="button" class="btn btn-block btn-primary"
+                                        data-action="saveQuestion"
+                                        data-id="0"
+                                        data-faq="${faq_id}">
+                                        Сохранить
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-2 d-flex align-items-end">
+                                <div class="form-group w-100">
+                                    <button type="button"
+                                        class="btn btn-block btn-outline-danger"
+                                        data-action="removeQuestion">
+                                        Удалить
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            `);
+            `;
 
-            id++;
+            block.append(question)
 
-            deleteQuestion();
-        })
-    }
-
-    function deleteQuestion() {
-        const delete_buttons = document.querySelectorAll('[data-action="remove_question_btn"]');
-
-        delete_buttons.forEach(function (btn) {
-            btn.addEventListener('click', () => {
-                btn.closest('.col-md-6').remove();
-            })
+            initQuestion(question)
         })
     }
 };
-
-function dragQuestions() {
-    const questions = document.querySelector('#questions');
-
-    if (questions) {
-        const elements = questions.querySelectorAll('.col-md-6');
-
-        if (elements) {
-            for (const element of elements) {
-                element.draggable = true;
-
-                // test
-                element.querySelectorAll('input').forEach((input) => {
-                    input.draggable = false;
-                    input.style.pointerEvents = 'none';
-                })
-
-                element.querySelectorAll('label').forEach((label) => {
-                    label.draggable = false;
-                    label.style.pointerEvents = 'none';
-                })
-
-                element.querySelectorAll('textarea').forEach((textarea) => {
-                    textarea.draggable = false;
-                    textarea.style.pointerEvents = 'none';
-                })
-
-                element.querySelectorAll('button').forEach((button) => {
-                    button.draggable = false;
-                })
-
-                element.addEventListener('dragstart', (event) => {
-                    event.target.classList.add('selected');
-                    console.log('drag start');
-                })
-
-                element.addEventListener('dragend', (event) => {
-                    event.target.classList.remove('selected');
-                    console.log('drag end');
-                });
-
-                element.addEventListener('dragover', (event) => {
-                    event.preventDefault();
-
-                    console.log('drag over');
-
-                    const activeElement = questions.querySelector('.selected');
-                    const currentElement = event.target;
-
-                    const isMoveable = activeElement !== currentElement &&
-                        currentElement.classList.contains('col-md-6');
-
-                    if (!isMoveable) return;
-
-                    const nextElement = (currentElement === activeElement.nextElementSibling) ?
-                        currentElement.nextElementSibling :
-                        currentElement;
-
-                    questions.insertBefore(activeElement, nextElement);
-                });
-            };
-        }
-    }
-};
-
 
 function trix() {
     var HOST = '/admin/ajax-3'

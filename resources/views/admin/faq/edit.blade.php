@@ -46,49 +46,48 @@
                                 <span class="card-tools badge badge-danger">Сохранение без перезагрузки</span>
                             </div>
                             <div class="card-body">
-                                <div class="row" id="questions">
-
+                                <div class="questions row">
                                     @foreach ($questions as $question)
-                                        <div class="col-md-6">
+                                        <div class="question col-md-6">
                                             <div class="card">
                                                 <div class="card-body">
                                                     <div class="form-group">
                                                         <label for="question_name">Название</label>
-                                                        <input type="text" class="form-control" id="question_name"
+                                                        <input type="text" class="form-control" data-name="name"
                                                             name="questions[{{ $question['id'] }}][name]"
                                                             value="{{ $question['name'] }}">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="questions[{{ $question['id'] }}][answer]">Ответ</label>
-                                                        <textarea id="questions[{{ $question['id'] }}][answer]" class="form-control" rows="3"
+                                                        <textarea id="questions[{{ $question['id'] }}][answer]" data-name="answer" class="form-control" rows="3"
                                                             name="questions[{{ $question['id'] }}][answer]">{!! $question['answer'] !!}</textarea>
                                                     </div>
                                                     <div class="row">
-
                                                         <div class="col-md-5">
                                                             <div class="form-group">
                                                                 <label for="sort">Ключ сортировки</label>
                                                                 <input type="text" class="form-control"
                                                                     id="questions[{{ $question['id'] }}][sort]"
                                                                     name="questions[{{ $question['id'] }}][sort]"
-                                                                    value="{{ $question['sort'] }}">
+                                                                    value="{{ $question['sort'] }}" data-name="sort">
                                                             </div>
                                                         </div>
-
                                                         <div class="col-md-5 d-flex align-items-end">
                                                             <div class="form-group w-100">
                                                                 <button type="button" class="btn btn-block btn-primary"
-                                                                    data-action="remove_question_btn">
+                                                                    data-action="saveQuestion"
+                                                                    data-id="{{ $question['id'] }}"
+                                                                    data-faq="{{ $faq['id'] }}">
                                                                     Сохранить
                                                                 </button>
                                                             </div>
                                                         </div>
-
                                                         <div class="col-md-2 d-flex align-items-end">
                                                             <div class="form-group w-100">
                                                                 <button type="button"
                                                                     class="btn btn-block btn-outline-danger"
-                                                                    data-action="remove_question_btn">
+                                                                    data-action="removeQuestion"
+                                                                    data-id="{{ $question['id'] }}">
                                                                     Удалить
                                                                 </button>
                                                             </div>
@@ -103,8 +102,8 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <button type="button" id="questions_btn"
-                                                class="btn btn-block btn-outline-primary">
+                                            <button type="button" class="btn btn-block btn-outline-primary"
+                                                data-action="addNewQuestion" data-faq="{{ $faq['id'] }}">
                                                 Добавить вопрос
                                             </button>
                                         </div>

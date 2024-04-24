@@ -48,6 +48,42 @@
                                     <trix-editor input="text"></trix-editor>
                                     <input id="text" value="{{ $page['text'] }}" type="hidden" name="text">
                                 </div>
+
+                                <div id="editor">
+                                    Hello world!
+                                </div>
+
+
+                                <script src="/admin_panel/tinymce/tinymce/tinymce.min.js"></script>
+                                <script>
+                                    tinymce.init({
+                                        selector: "#editor",
+                                        plugins: "file-manager table link lists code fullscreen",
+
+                                        // Flmngr: {
+                                        //     urlFileManager: "http://your-website.com/flmngr/flmngr.php",
+                                        //     urlFiles: "http://your-website.com/files/"
+                                        // },
+
+                                        Flmngr: {
+                                            urlFileManager: "http://avlogistics.test/flmngr/flmngr.php",
+                                            urlFiles: "http://avlogistics.test/files/"
+                                        },
+
+
+                                        relative_urls: false,
+                                        extended_valid_elements: "*[*]",
+                                        height: "600px",
+                                        toolbar: [
+                                            "cut copy | undo redo | searchreplace | bold italic strikethrough | forecolor backcolor | blockquote | removeformat | code",
+                                            "formatselect | link | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent"
+                                        ],
+                                        promotion: false
+                                    });
+                                </script>
+
+
+
                             </div>
                         </div>
                     </div>
