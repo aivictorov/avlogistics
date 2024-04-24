@@ -56,6 +56,7 @@
                         <div class="card card-primary card-outline">
                             <div class="card-header">
                                 <h3 class="card-title">Основное изображение</h3>
+                                <span class="card-tools badge badge-danger">Сохранение без перезагрузки</span>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -101,6 +102,7 @@
                         <div class="card card-primary card-outline">
                             <div class="card-header">
                                 <h3 class="card-title">Галерея изображений</h3>
+                                <span class="card-tools badge badge-danger">Сохранение без перезагрузки</span>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -116,8 +118,8 @@
                                                 </div>
                                                 <div class="input-group-append">
                                                     <button type="button" class="btn btn-primary"
-                                                        data-action="addImagesToPortfolioGallery"
-                                                        data-id="{{ $portfolio['id'] }}" data-type="portfolio">
+                                                        data-action="addImagesToPortfolio" data-id="{{ $portfolio['id'] }}"
+                                                        data-type="portfolio">
                                                         Загрузить
                                                     </button>
                                                 </div>
@@ -127,20 +129,20 @@
                                 </div>
 
                                 <div id="portfolio-gallery" class="d-flex mb-3">
-                                    <div class="portfolio-gallery-image mr-2"
+                                    {{-- <div class="portfolio-gallery-image mr-2"
                                         style="width:152px; height:100px; background-color: blue"></div>
                                     <div class="portfolio-gallery-image mr-2"
                                         style="width:152px; height:100px; background-color: red"></div>
                                     <div class="portfolio-gallery-image mr-2"
-                                        style="width:152px; height:100px; background-color: green"></div>
-                                    {{-- @if (isset($images) && count($images) > 0)
+                                        style="width:152px; height:100px; background-color: green"></div> --}}
+                                    @if (isset($images) && count($images) > 0)
                                         @foreach ($images as $key => $image)
                                             <div class="portfolio-gallery-image mr-2 mt-1 mb-1 d-block position-relative">
                                                 <img src={{ Image::path($image, 'small') }} width="152px" height="auto"
                                                     data-function="destroy" />
                                             </div>
                                         @endforeach
-                                    @endif --}}
+                                    @endif
                                 </div>
                                 <div id="portfolio-gallery-buttons">
                                     <div class="row">

@@ -61,7 +61,6 @@ class AjaxController extends Controller
         return Image::path($result);
     }
 
-
     public function destroyImage()
     {
         $result = json_decode(file_get_contents('php://input'));
@@ -72,15 +71,7 @@ class AjaxController extends Controller
         return $image->image;
     }
 
-
-
-
-
-
-
-
-
-    public function drag_and_drop()
+    public function saveGallerySort()
     {
         $result = json_decode(file_get_contents('php://input'));
 
@@ -98,37 +89,36 @@ class AjaxController extends Controller
         return $result;
     }
 
-
-
-
-
-
-
-    public function load_img(ImagesRequest $request)
+    public function addImagesToPortfolio(ImagesRequest $request)
     {
         $validated = $request->validated();
 
-        if ($request->has('images')) {
-            $images = $validated['images'];
+        $page_id = $validated['page_id'];
+        $page_type = $validated['page_type'];
+        $image_files = $validated['images'];
 
-            $result = [];
+        $result = [];
 
-            foreach ($images as $image_file) {
-                $image = (new CreateImageAction)->run(
-                    $image_file,
-                    new CreateImageData(
-                        image: $image_file->getClientOriginalName(),
-                        parent_type: 'portfolio_image',
-                        parent_id: $_POST['page_id'],
-                    )
-                );
+        foreach ($image_files as $image_file) {
+            $image = (new CreateImageAction)->run(
+                $image_file,
+                new CreateImageData(
+                    image: $image_file->getClientOriginalName(),
+                    parent_type: $page_type . '_image',
+                    parent_id: $page_id,
+                )
+            );
 
-                array_push($result, $image);
-            }
+            array_push($result, $image);
         }
 
         return $result;
     }
+
+
+
+
+
 
     public function load_content_img(ImageRequest $request)
     {

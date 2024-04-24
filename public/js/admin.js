@@ -2,11 +2,13 @@ document.addEventListener('DOMContentLoaded', function () {
     initUpdateAvatar();
     initDestroyImageButtons();
     initSortPortfolioGallery();
+    addImagesToPortfolio()
+
+
 
     search();
     questions();
     // sendRequest()
-    ajaxImgLoad()
     dragQuestions()
 })
 
@@ -24,11 +26,12 @@ function initUpdateAvatar() {
 
         if (input) {
             button.addEventListener('click', () => {
-
                 if (input.files.length == 0) alert('Выберите файл')
 
                 if (input.files.length > 0) {
-                    const result = confirm("Будет загружено новое изображение. Продолжить?");
+
+                    const confirmation = confirm("Будет загружено новое изображение. Продолжить?");
+                    if (!confirmation) return;
 
                     const form = new FormData();
                     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -92,48 +95,54 @@ function addDestroyImageButton(image) {
     button.dataset.id = id;
     button.innerHTML = `<i class="fas fa-trash"></i>`;
 
+    if (image.nextElementSibling
+        && image.nextElementSibling.tagName == 'BUTTON'
+        && image.nextElementSibling.classList.contains('destroy-image-btn')
+    ) {
+        image.nextElementSibling.remove();
+    }
+
     image.after(button)
 
     button.addEventListener('click', (event) => {
         event.preventDefault;
         destroyImageHandle(id, button);
     });
-};
 
-function destroyImageHandle(id, button) {
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    const result = confirm("Удалить изображение?");
+    function destroyImageHandle(id, button) {
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        const result = confirm("Удалить изображение?");
 
-    if (result) {
-        fetch('/admin/ajax/destroyImage', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8',
-                'X-CSRF-TOKEN': csrfToken
-            },
-            body: JSON.stringify({ id: id }),
-        }).then(response => {
-            response.text().then(responseText => {
-                console.log('Ajax:', responseText);
+        if (result) {
+            fetch('/admin/ajax/destroyImage', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8',
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                body: JSON.stringify({ id: id }),
+            }).then(response => {
+                response.text().then(responseText => {
+                    console.log('Ajax:', responseText);
+                });
+
+                // button.parentElement.remove();
+                button.parentElement.querySelector('img').remove();
+                button.remove();
             });
-
-            // button.parentElement.remove();
-            button.parentElement.querySelector('img').remove();
-            button.remove();
-        });
+        };
     };
 };
 
-
 function initSortPortfolioGallery() {
-    console.log('init');
+    // console.log('global init');
 
-    const gallery = document.getElementById('portfolio-gallery');
+    let gallery = document.getElementById('portfolio-gallery');
+
+    let initialGallery = gallery.cloneNode(true);
+    console.log('init:', initialGallery);
+
     const buttons = document.getElementById('portfolio-gallery-buttons');
-
-    initialGallery = gallery.cloneNode(true);
-    console.log('when init:', initialGallery);
-
     const sortButton = buttons.querySelector('[data-action="sort"]');
     const saveButton = buttons.querySelector('[data-action="save"]');
     const cancelButton = buttons.querySelector('[data-action="cancel"]');
@@ -142,15 +151,22 @@ function initSortPortfolioGallery() {
     saveButton.addEventListener('click', saveHandle);
     cancelButton.addEventListener('click', () => { cancelHandle(initialGallery) });
 
+    function reInitGallery() {
+        console.log('reInitGallery');
+        gallery = document.getElementById('portfolio-gallery');
+        initialGallery = gallery.cloneNode(true);
+        console.log('REinit:', initialGallery);
+    }
+
     function sortStartHandle() {
         console.log('--- sortStartHandle ---');
 
         gallery.querySelectorAll('.portfolio-gallery-image').forEach((image) => {
             image.draggable = true;
 
-            // image.querySelectorAll('img').forEach((element) => {
-            //     element.style.pointerEvents = 'none';
-            // });
+            image.querySelectorAll('img').forEach((img) => {
+                img.style.pointerEvents = 'none';
+            });
 
             image.addEventListener('dragstart', dragStartHandle)
             image.addEventListener('dragover', dragOverHandle);
@@ -163,11 +179,18 @@ function initSortPortfolioGallery() {
     }
 
     function cancelHandle(old) {
-        console.log('cancelHandle');
+        // console.log('cancelHandle');
         gallery.replaceWith(old);
-        sortEndHandle();
 
-        // initSortPortfolioGallery();
+        sortEndHandle();
+        reInitGallery();
+
+        gallery.querySelectorAll('.portfolio-gallery-image').forEach((item) => {
+            item.querySelectorAll('img').forEach((img) => {
+                console.log(img)
+                addDestroyImageButton(img);
+            });
+        });
     };
 
     function sortEndHandle() {
@@ -175,7 +198,10 @@ function initSortPortfolioGallery() {
 
         gallery.querySelectorAll('.portfolio-gallery-image').forEach((image) => {
             image.removeAttribute('draggable');
-            // image.removeAttribute('style');
+
+            image.querySelectorAll('img').forEach((img) => {
+                img.style.pointerEvents = 'auto';
+            });
 
             image.removeEventListener('dragstart', dragStartHandle)
             image.removeEventListener('dragover', dragOverHandle);
@@ -188,17 +214,17 @@ function initSortPortfolioGallery() {
     }
 
     function dragStartHandle(event) {
-        console.log('dragStart')
+        // console.log('dragStart')
         event.target.classList.add('selected');
     };
 
     function dragEndHandle(event) {
-        console.log('dragEnd')
+        // console.log('dragEnd')
         event.target.classList.remove('selected');
     };
 
     function dragOverHandle(event) {
-        console.log('dragOver')
+        // console.log('dragOver')
         event.preventDefault();
 
         const activeElement = gallery.querySelector('.selected');
@@ -219,266 +245,136 @@ function initSortPortfolioGallery() {
     function saveHandle() {
         console.log('saveHandle');
 
-        // let data = [];
+        let data = [];
 
-        // gallery.querySelectorAll('.portfolio-gallery-image').forEach((item, id) => {
-        //     const image_id = item.querySelector('img').src.split('/')[7];
+        gallery.querySelectorAll('.portfolio-gallery-image').forEach((item, id) => {
+            const image_id = item.querySelector('img').src.split('/')[7];
 
-        //     data.push({
-        //         id: image_id,
-        //         sort: id
-        //     });
-        // })
+            data.push({
+                id: image_id,
+                sort: id
+            });
+        })
 
-        // const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-        // fetch('/admin/ajax-1', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json;charset=utf-8',
-        //         'X-CSRF-TOKEN': csrfToken
-        //     },
-        //     body: JSON.stringify(data),
-        // }).then(response => {
-        //     response.text().then(responseText => {
-        //         console.log('Ajax:', responseText);
-        //     });
-        // });
-
-        sortEndHandle();
-    };
-
-
-};
-
-
-function trix() {
-    var HOST = '/admin/ajax-3'
-
-
-
-
-    addEventListener("trix-attachment-remove", function (event) {
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-        fetch('/admin/ajax-4', {
+        fetch('/admin/ajax/saveGallerySort', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
                 'X-CSRF-TOKEN': csrfToken
             },
-            body: event.attachment.file.name,
+            body: JSON.stringify(data),
         }).then(response => {
             response.text().then(responseText => {
                 console.log('Ajax:', responseText);
             });
         });
 
+        sortEndHandle();
 
-    })
+        reInitGallery();
+    };
+};
 
 
-    addEventListener("trix-attachment-add", function (event) {
-        if (event.attachment.file) {
-            uploadFileAttachment(event.attachment)
-        }
-    })
 
-    function uploadFileAttachment(attachment) {
-        uploadFile(attachment.file, setProgress, setAttributes)
+function addImagesToPortfolio() {
+    const button = document.querySelector('[data-action="addImagesToPortfolio"]');
 
-        function setProgress(progress) {
-            attachment.setUploadProgress(progress)
-        }
+    if (button) {
+        const input = button.closest('.input-group').querySelector('.custom-file-input');
+        const label = button.closest('.input-group').querySelector('.custom-file-label');
 
-        function setAttributes(attributes) {
-            attachment.setAttributes(attributes)
-        }
-    }
+        // const input = document.querySelector('[data-js="img-input"]');
+        // const gallery_html = document.querySelector('.portfolio-gallery');
 
-    function uploadFile(file, progressCallback, successCallback) {
-        var key = createStorageKey(file)
-        var formData = createFormData(key, file)
-        var xhr = new XMLHttpRequest()
+        if (input) {
+            button.addEventListener('click', () => {
+                console.log('addImagesToPortfolio -- click')
 
-        xhr.open("POST", HOST, true)
+                if (input.files.length == 0) alert('Выберите файлы')
 
-        var sid = $("meta[name='csrf-token']").attr("content");
-        xhr.setRequestHeader("X-CSRF-Token", sid);
+                if (input.files.length > 0) {
 
-        xhr.upload.addEventListener("progress", function (event) {
-            var progress = event.loaded / event.total * 100
-            progressCallback(progress)
-        })
+                    const confirmation = confirm("Продолжить?");
+                    if (!confirmation) return;
 
-        xhr.addEventListener("load", function (event) {
-            if (xhr.status == 204) {
-                var attributes = {
-                    url: HOST + key,
-                    href: HOST + key + "?content-disposition=attachment"
+                    const form = new FormData();
+                    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+                    const page_id = button.dataset.id;
+                    const page_type = button.dataset.type;
+                    const image_files = input.files;
+
+                    if (page_id && page_type && image_files) {
+                        form.append('page_id', page_id);
+                        form.append('page_type', page_type);
+                        for (var i = 0; i < image_files.length; i++) {
+                            form.append(`images[${i}]`, image_files[i]);
+                        }
+
+                        fetch('/admin/ajax/addImagesToPortfolio', {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': csrfToken
+                            },
+                            body: form,
+                        }).then(response => {
+                            response.text().then(responseText => {
+
+                                // images = JSON.parse(responseText);
+
+                                console.log('Ajax:', JSON.parse(responseText));
+
+
+                                // var rand = Math.floor(Math.random() * 9999);
+                                // console.log(rand);
+
+                                // images.forEach((image) => {
+                                //     gallery_html.insertAdjacentHTML('afterbegin', `
+                                //         <div class="portfolio-gallery__item new_${rand} mb-2 mr-2 position-relative" data-id="${image.id}">
+                                //             <button class="delBtn" type="button" data-action="image" data-id="${image.id}">
+                                //                 <i class="fas fa-trash"></i>
+                                //             </button>
+                                //             <img src="http://avlogistics.test/storage/upload/portfolio_image/${image.parent_id}/${image.id}/sizes/small_${image.image}" width="152px" style="pointer-events: none"/>
+                                //         </div>
+                                //     `);
+                                // })
+
+                                // const avatarPreview = document.querySelector('.avatar');
+
+                                // if (avatarPreview) {
+                                //     avatarPreview.innerHTML = "";
+
+                                //     const image = document.createElement('img');
+                                //     image.src = responseText;
+                                //     avatarPreview.append(image);
+
+                                //     addDestroyImageButton(image);
+                                // }
+
+                                // input.value = "";
+                                // if (label) label.innerText = "Файл не выбран";
+
+
+                            })
+                        });
+                    }
                 }
-                successCallback(attributes)
-            }
-        })
-
-        xhr.send(formData)
-
-        xhr.onreadystatechange = function () { // подписываемся на событие изменения состояния запроса
-            if (xhr.readyState === 4) { // если запрос завершен
-                console.log(xhr.responseText);
-                // if (xhr.status === 200) { // если статус код ответа 200 OK
-                //     console.log(xhr.responseText); // выводим ответ сервера
-                // } else {
-                //     console.error(xhr.statusText); // выводим текст ошибки
-                // }
-            }
-        };
-
-        // fetch('/admin/ajax-3', {
-        //     method: 'POST',
-        //     headers: {
-        //         'X-CSRF-TOKEN': csrfToken
-        //     },
-        //     body: form,
-        // }).then(response => {
-        //     response.text().then(responseText => {
-        //         images = JSON.parse(responseText);
-        //     })
-        // })
-
-        return public_path();
-    }
-
-    function createStorageKey(file) {
-        var date = new Date()
-        var day = date.toISOString().slice(0, 10)
-        var name = date.getTime() + "-" + file.name
-        return ["tmp", day, name].join("/")
-    }
-
-    function createFormData(key, file) {
-        var data = new FormData()
-        data.append("key", key)
-        data.append("Content-Type", file.type)
-        data.append("file", file)
-        return data;
-    }
-}
-
-function ajaxImgLoad() {
-
-    const input = document.querySelector('[data-js="img-input"]');
-    const btn = document.querySelector('[data-js="img-input-btn"]');
-    const gallery_html = document.querySelector('.portfolio-gallery');
-
-    if (btn) {
-        btn.addEventListener('click', () => {
-            var files = input.files;
-
-            var form = new FormData();
-            console.log(form);
-
-            var page_id = btn.dataset.page;
-            form.append('page_id', page_id);
-
-            for (var i = 0; i < files.length; i++) {
-                form.append(`images[${i}]`, files[i]);
-            }
-
-            // console.log(form.get('page_id'));
-            // console.log(form.get('images[0]'));
-
-            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-            fetch('/admin/ajax-2', {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': csrfToken
-                },
-                body: form,
-            }).then(response => {
-                response.text().then(responseText => {
-                    images = JSON.parse(responseText);
-
-                    console.log('Ajax:', images);
-
-
-                    var rand = Math.floor(Math.random() * 9999);
-                    console.log(rand);
-
-                    images.forEach((image) => {
-                        gallery_html.insertAdjacentHTML('afterbegin', `
-                            <div class="portfolio-gallery__item new_${rand} mb-2 mr-2 position-relative" data-id="${image.id}">
-                                <button class="delBtn" type="button" data-action="image" data-id="${image.id}">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                                <img src="http://avlogistics.test/storage/upload/portfolio_image/${image.parent_id}/${image.id}/sizes/small_${image.image}" width="152px" style="pointer-events: none"/>
-                            </div>
-                        `);
-                    })
-
-                    var testGallery = document.querySelector('.portfolio-gallery');
-
-                    const newElements = document.querySelectorAll(`.portfolio-gallery__item.new_${rand}`);
-
-                    for (const element of newElements) {
-                        element.draggable = true;
-
-                        // test
-                        element.querySelectorAll('img').forEach((img) => {
-                            img.draggable = false;
-
-                            img.style.pointerEvents = 'none';
-
-                            // img.ondragstart = function () {
-                            //     return false;
-                            // };
-                        })
-
-
-                        element.querySelectorAll('button').forEach((button) => {
-                            button.draggable = false;
-                            // button.style.pointerEvents = 'none';
-                        })
-
-
-                        element.addEventListener('dragstart', (event) => {
-                            event.target.classList.add('selected');
-                            console.log('drag start');
-                        })
-
-                        element.addEventListener('dragend', (event) => {
-                            event.target.classList.remove('selected');
-                            console.log('drag end');
-                        });
-
-                        element.addEventListener('dragover', (event) => {
-                            event.preventDefault();
-
-                            console.log('drag over');
-
-                            const activeElement = document.querySelector('.selected');
-                            const currentElement = event.target;
-
-                            const isMoveable = activeElement !== currentElement &&
-                                currentElement.classList.contains('portfolio-gallery__item');
-
-                            if (!isMoveable) return;
-
-                            const nextElement = (currentElement === activeElement.nextElementSibling) ?
-                                currentElement.nextElementSibling :
-                                currentElement;
-
-                            console.log(testGallery);
-                            testGallery.insertBefore(activeElement, nextElement);
-                        });
-                    };
-
-
-                });
             });
-        });
+
+
+        }
     }
+
+
+
+
+
+
+
+
 }
 
 function callbackForm() {
@@ -659,3 +555,116 @@ function dragQuestions() {
     }
 };
 
+
+function trix() {
+    var HOST = '/admin/ajax-3'
+
+
+
+
+    addEventListener("trix-attachment-remove", function (event) {
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        fetch('/admin/ajax-4', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+                'X-CSRF-TOKEN': csrfToken
+            },
+            body: event.attachment.file.name,
+        }).then(response => {
+            response.text().then(responseText => {
+                console.log('Ajax:', responseText);
+            });
+        });
+
+
+    })
+
+
+    addEventListener("trix-attachment-add", function (event) {
+        if (event.attachment.file) {
+            uploadFileAttachment(event.attachment)
+        }
+    })
+
+    function uploadFileAttachment(attachment) {
+        uploadFile(attachment.file, setProgress, setAttributes)
+
+        function setProgress(progress) {
+            attachment.setUploadProgress(progress)
+        }
+
+        function setAttributes(attributes) {
+            attachment.setAttributes(attributes)
+        }
+    }
+
+    function uploadFile(file, progressCallback, successCallback) {
+        var key = createStorageKey(file)
+        var formData = createFormData(key, file)
+        var xhr = new XMLHttpRequest()
+
+        xhr.open("POST", HOST, true)
+
+        var sid = $("meta[name='csrf-token']").attr("content");
+        xhr.setRequestHeader("X-CSRF-Token", sid);
+
+        xhr.upload.addEventListener("progress", function (event) {
+            var progress = event.loaded / event.total * 100
+            progressCallback(progress)
+        })
+
+        xhr.addEventListener("load", function (event) {
+            if (xhr.status == 204) {
+                var attributes = {
+                    url: HOST + key,
+                    href: HOST + key + "?content-disposition=attachment"
+                }
+                successCallback(attributes)
+            }
+        })
+
+        xhr.send(formData)
+
+        xhr.onreadystatechange = function () { // подписываемся на событие изменения состояния запроса
+            if (xhr.readyState === 4) { // если запрос завершен
+                console.log(xhr.responseText);
+                // if (xhr.status === 200) { // если статус код ответа 200 OK
+                //     console.log(xhr.responseText); // выводим ответ сервера
+                // } else {
+                //     console.error(xhr.statusText); // выводим текст ошибки
+                // }
+            }
+        };
+
+        // fetch('/admin/ajax-3', {
+        //     method: 'POST',
+        //     headers: {
+        //         'X-CSRF-TOKEN': csrfToken
+        //     },
+        //     body: form,
+        // }).then(response => {
+        //     response.text().then(responseText => {
+        //         images = JSON.parse(responseText);
+        //     })
+        // })
+
+        return public_path();
+    }
+
+    function createStorageKey(file) {
+        var date = new Date()
+        var day = date.toISOString().slice(0, 10)
+        var name = date.getTime() + "-" + file.name
+        return ["tmp", day, name].join("/")
+    }
+
+    function createFormData(key, file) {
+        var data = new FormData()
+        data.append("key", key)
+        data.append("Content-Type", file.type)
+        data.append("file", file)
+        return data;
+    }
+}

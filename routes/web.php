@@ -48,8 +48,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::put('/users/{id}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update');
     Route::get('/users/{id}/delete', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
 
-    Route::post('/ajax-1', [App\Http\Controllers\Admin\AjaxController::class, 'drag_and_drop'])->name('ajax');
-    Route::post('/ajax-2', [App\Http\Controllers\Admin\AjaxController::class, 'load_img'])->name('ajax');
     Route::post('/ajax-3', [App\Http\Controllers\Admin\AjaxController::class, 'load_content_img'])->name('ajax');
     Route::post('/ajax-4', [App\Http\Controllers\Admin\AjaxController::class, 'remove_content_img'])->name('ajax');
     Route::get('/ajax/toggle_status', [App\Http\Controllers\Admin\AjaxController::class, 'toggle_status'])->name('ajax.toggle_status');
@@ -57,6 +55,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::prefix('ajax')->group(function () {
         Route::post('/updateAvatar', [App\Http\Controllers\Admin\AjaxController::class, 'updateAvatar'])->name('ajax.updateAvatar');
         Route::post('/destroyImage', [App\Http\Controllers\Admin\AjaxController::class, 'destroyImage'])->name('ajax.destroyImage');
+        Route::post('/saveGallerySort', [App\Http\Controllers\Admin\AjaxController::class, 'saveGallerySort'])->name('ajax.saveGallerySort');
+        Route::post('/addImagesToPortfolio', [App\Http\Controllers\Admin\AjaxController::class, 'addImagesToPortfolio'])->name('ajax.addImagesToPortfolio');
     });
 });
 
