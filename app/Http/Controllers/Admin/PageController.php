@@ -101,6 +101,8 @@ class PageController extends Controller
         $seo = (new GetSeoAction)->run($page['seo_id']);
         $validated = $request->validated();
 
+        dd($validated);
+
         DB::transaction(function () use ($page, $seo, $validated, $request) {
 
             (new UpdatePageAction)->run(

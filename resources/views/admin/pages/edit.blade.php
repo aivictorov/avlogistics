@@ -45,16 +45,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Текст</label>
-                                    <trix-editor input="text"></trix-editor>
-                                    <input id="text" value="{{ $page['text'] }}" type="hidden" name="text">
+                                    <x-textarea class="editor" name="text">{{ $page['text'] }}</x-textarea>
                                 </div>
-
-                                <div class="form-group">
-                                    <label>Текст</label>
-                                    {{-- <trix-editor input="text"></trix-editor> --}}
-                                    <input value="{{ $page['text'] }}" type="hidden" name="text" class="editor">
-                                </div>
-
                             </div>
                         </div>
                     </div>

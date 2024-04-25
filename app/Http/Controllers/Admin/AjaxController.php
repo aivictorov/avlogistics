@@ -37,14 +37,16 @@ class AjaxController extends Controller
         $page_type = $validated['page_type'];
         $avatar_file = $validated['avatar_file'];
 
-        $avatar = (new GetImageAction)->run($page_id);
+        $parent_type = $page_type . '_avatar';
+
+        $avatar = (new GetImageAction)->run($page_id, $parent_type);
 
         if ($avatar) {
             $result = (new ReplaceImageAction)->run(
                 $avatar,
                 $avatar_file,
                 new ReplaceImageData(
-                    image: $avatar_file->getClientOriginalName(),
+                    image: str_replace(' ', '-', $avatar_file->getClientOriginalName()),
                     parent_type: $page_type . '_avatar',
                     parent_id: $page_id,
                 )
@@ -55,7 +57,7 @@ class AjaxController extends Controller
             $result = (new CreateImageAction)->run(
                 $avatar_file,
                 new CreateImageData(
-                    image: $avatar_file->getClientOriginalName(),
+                    image: str_replace(' ', '-', $avatar_file->getClientOriginalName()),
                     parent_type: $page_type . '_avatar',
                     parent_id: $page_id,
                 )
@@ -107,7 +109,7 @@ class AjaxController extends Controller
             $image = (new CreateImageAction)->run(
                 $image_file,
                 new CreateImageData(
-                    image: $image_file->getClientOriginalName(),
+                    image: str_replace(' ', '-', $image_file->getClientOriginalName()),
                     parent_type: $page_type . '_image',
                     parent_id: $page_id,
                 )

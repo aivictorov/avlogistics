@@ -13,7 +13,7 @@ class PageRequest extends FormRequest
             'name' => ['required', 'string', 'min:3', 'max:50'],
             'h1' => ['required', 'string', 'min:3', 'max:100'],
             'parent_id' => ['required', 'integer', 'min:0'],
-            'text' => ['required', 'string', 'min:20'],
+            'text' => ['required', 'string', 'min:12'],
             'url' => ['required', 'min:3', 'max:50'],
             'menu_sort' => ['required', 'integer', 'min:0', 'max:100'],
             'menu_show' => ['required', 'boolean'],
@@ -29,6 +29,9 @@ class PageRequest extends FormRequest
 
     protected function prepareForValidation()
     {
+        $this['text'] = str_replace('<script src="//cdn.public.flmngr.com/FLMNFLMN/widgets.js"></script>', '', $this['text']);
+        // $this['text'] = strip_tags($this['text']);
+
         if (!$this->filled('url')) {
             $this->merge([
                 'url' => Str::slug($this->input('name')),

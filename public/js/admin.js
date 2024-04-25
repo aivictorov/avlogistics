@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function initTinymce() {
     tinymce.init({
         selector: ".editor",
-        plugins: "file-manager table link lists code fullscreen",
+        plugins: "file-manager table link lists code fullscreen contextmenu",
         Flmngr: {
             apiKey: "FLMNFLMN",
             urlFileManager: '/flmngr',
@@ -24,12 +24,19 @@ function initTinymce() {
         relative_urls: false,
         extended_valid_elements: "*[*]",
         height: "600px",
+        // toolbar: [
+        //     "cut copy | undo redo | searchreplace | bold italic strikethrough | forecolor backcolor | blockquote | removeformat | code",
+        //     "formatselect | link | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent"
+        // ],
+
         toolbar: [
-            "cut copy | undo redo | searchreplace | bold italic strikethrough | forecolor backcolor | blockquote | removeformat | code",
-            "formatselect | link | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent"
+            "bold italic underline | alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent | link blockquote table | code ",
         ],
         promotion: false,
-        language: "ru"
+        language: "ru",
+
+
+        contextmenu: "undo redo | cut copy paste | inserttable",
     });
 
     tinymce.init({
@@ -50,7 +57,6 @@ function initTinymce() {
         language: "ru"
     });
 };
-
 
 function initUpdateAvatar() {
     const button = document.querySelector('[data-action="updateAvatar"]');
@@ -88,17 +94,7 @@ function initUpdateAvatar() {
                             body: form,
                         }).then(response => {
                             response.text().then(responseText => {
-                                const avatarPreview = document.querySelector('.avatar');
-
-                                if (avatarPreview) {
-                                    avatarPreview.innerHTML = "";
-
-                                    const image = document.createElement('img');
-                                    image.src = responseText;
-                                    avatarPreview.append(image);
-
-                                    addDestroyImageButton(image);
-                                }
+                                renderAvatar(responseText);
 
                                 input.value = "";
                                 if (label) label.innerText = "Файл не выбран";
@@ -110,6 +106,20 @@ function initUpdateAvatar() {
         }
     }
 };
+
+function renderAvatar(path) {
+    const avatarPreview = document.querySelector('.avatar');
+
+    if (avatarPreview) {
+        avatarPreview.innerHTML = "";
+
+        const image = document.createElement('img');
+        image.src = path;
+        avatarPreview.append(image);
+
+        addDestroyImageButton(image);
+    }
+}
 
 function initDestroyImageButtons() {
     const images = document.querySelectorAll('img[data-function="destroy"]');
@@ -137,7 +147,7 @@ function addDestroyImageButton(image) {
         image.nextElementSibling.remove();
     }
 
-    image.after(button)
+    image.after(button);
 
     button.addEventListener('click', (event) => {
         event.preventDefault;
@@ -161,8 +171,12 @@ function addDestroyImageButton(image) {
                     console.log('Ajax:', responseText);
                 });
 
-                // button.parentElement.remove();
-                button.parentElement.querySelector('img').remove();
+                if (button.parentElement.classList.contains('portfolio-gallery-image')) {
+                    button.parentElement.remove();
+                } else {
+                    button.parentElement.querySelector('img').remove();
+                }
+
                 button.remove();
             });
         };
@@ -323,9 +337,6 @@ function addImagesToPortfolio() {
         const input = button.closest('.input-group').querySelector('.custom-file-input');
         const label = button.closest('.input-group').querySelector('.custom-file-label');
 
-        // const input = document.querySelector('[data-js="img-input"]');
-        // const gallery_html = document.querySelector('.portfolio-gallery');
-
         if (input) {
             button.addEventListener('click', () => {
                 console.log('addImagesToPortfolio -- click')
@@ -359,27 +370,7 @@ function addImagesToPortfolio() {
                             body: form,
                         }).then(response => {
                             response.text().then(responseText => {
-                                const galleryPreview = document.getElementById('portfolio-gallery');
-                                console.log(galleryPreview);
-
-                                if (galleryPreview) {
-                                    imagePaths = JSON.parse(responseText);
-
-                                    imagePaths.forEach((imagePath) => {
-                                        const image = document.createElement('img');
-                                        image.src = imagePath;
-                                        image.setAttribute('width', '152px')
-                                        image.setAttribute('height', 'auto')
-                                        image.setAttribute('data-function', 'destroy')
-                                        addDestroyImageButton(image);
-
-                                        const item = document.createElement('div');
-                                        item.classList.add("portfolio-gallery-image", "mr-2", "mt-1", "mb-1", "d-block", "position-relative")
-                                        item.append(image);
-
-                                        galleryPreview.append(item);
-                                    });
-                                }
+                                renderGalleryImages(JSON.parse(responseText));
 
                                 input.value = "";
                                 if (label) label.innerText = "Файлы не выбраны";
@@ -389,6 +380,29 @@ function addImagesToPortfolio() {
                 }
             });
         }
+    }
+}
+
+function renderGalleryImages(paths) {
+    const galleryPreview = document.getElementById('portfolio-gallery');
+    console.log(galleryPreview);
+
+    if (galleryPreview) {
+
+        paths.forEach((path) => {
+            const image = document.createElement('img');
+            image.src = path;
+            image.setAttribute('width', '152px')
+            image.setAttribute('height', 'auto')
+            image.setAttribute('data-function', 'destroy')
+
+            const item = document.createElement('div');
+            item.classList.add("portfolio-gallery-image", "mr-2", "mt-1", "mb-1", "d-block", "position-relative");
+            item.append(image);
+
+            galleryPreview.append(item);
+            addDestroyImageButton(image);
+        });
     }
 }
 
@@ -574,3 +588,67 @@ function addNewQuestion() {
         })
     }
 };
+
+
+
+(function () {
+    var HOST = "http://avlogistics.test/"
+
+    addEventListener("trix-attachment-add", function (event) {
+        if (event.attachment.file) {
+            uploadFileAttachment(event.attachment)
+        }
+    })
+
+    function uploadFileAttachment(attachment) {
+        uploadFile(attachment.file, setProgress, setAttributes)
+
+        function setProgress(progress) {
+            attachment.setUploadProgress(progress)
+        }
+
+        function setAttributes(attributes) {
+            attachment.setAttributes(attributes)
+        }
+    }
+
+    function uploadFile(file, progressCallback, successCallback) {
+        var key = createStorageKey(file)
+        var formData = createFormData(key, file)
+        var xhr = new XMLHttpRequest()
+
+        xhr.open("POST", HOST, true)
+
+        xhr.upload.addEventListener("progress", function (event) {
+            var progress = event.loaded / event.total * 100
+            progressCallback(progress)
+        })
+
+        xhr.addEventListener("load", function (event) {
+            if (xhr.status == 204) {
+                var attributes = {
+                    url: HOST + key,
+                    href: HOST + key + "?content-disposition=attachment"
+                }
+                successCallback(attributes)
+            }
+        })
+
+        xhr.send(formData)
+    }
+
+    function createStorageKey(file) {
+        var date = new Date()
+        var day = date.toISOString().slice(0, 10)
+        var name = date.getTime() + "-" + file.name
+        return ["tmp", day, name].join("/")
+    }
+
+    function createFormData(key, file) {
+        var data = new FormData()
+        data.append("key", key)
+        data.append("Content-Type", file.type)
+        data.append("file", file)
+        return data
+    }
+})();

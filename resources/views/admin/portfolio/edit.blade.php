@@ -128,13 +128,7 @@
                                     </div>
                                 </div>
 
-                                <div id="portfolio-gallery" class="d-flex mb-3">
-                                    {{-- <div class="portfolio-gallery-image mr-2"
-                                        style="width:152px; height:100px; background-color: blue"></div>
-                                    <div class="portfolio-gallery-image mr-2"
-                                        style="width:152px; height:100px; background-color: red"></div>
-                                    <div class="portfolio-gallery-image mr-2"
-                                        style="width:152px; height:100px; background-color: green"></div> --}}
+                                <div id="portfolio-gallery" class="d-flex mb-3 flex-wrap">
                                     @if (isset($images) && count($images) > 0)
                                         @foreach ($images as $key => $image)
                                             <div class="portfolio-gallery-image mr-2 mt-1 mb-1 d-block position-relative">
