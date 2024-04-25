@@ -40,7 +40,7 @@ class PageRequest extends FormRequest
 
         if (!$this->filled('menu_sort')) {
             $this->merge([
-                'menu_sort' => 1,
+                'menu_sort' => 0,
             ]);
         }
     }

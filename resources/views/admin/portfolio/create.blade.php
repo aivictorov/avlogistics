@@ -26,17 +26,21 @@
                                     <x-input type="text" class="form-control" id="h1" name="h1" />
                                 </div>
                                 <div class="form-group">
-                                    <label>Категория</label>
-                                    <select class="form-control" name="portfolio_section_id">
+                                    <label for="portfolio_section_id">Категория</label>
+                                    <select class="form-control" id="portfolio_section_id" name="portfolio_section_id">
                                         @foreach ($sections as $section)
                                             <option value={{ $section['id'] }}>{{ $section['name'] }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label>Текст</label>
                                     <trix-editor input="text"></trix-editor>
                                     <x-input id="text" type="hidden" name="text" />
+                                </div> --}}
+                                <div class="form-group">
+                                    <label for="text">Текст</label>
+                                    <x-textarea class="editor" id="text" name="text"></x-textarea>
                                 </div>
                             </div>
                         </div>

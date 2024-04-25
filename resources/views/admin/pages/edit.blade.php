@@ -44,8 +44,9 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Текст</label>
-                                    <x-textarea class="editor" name="text">{{ $page['text'] }}</x-textarea>
+                                    <label for="text">Текст</label>
+                                    <x-textarea id="text" class="editor"
+                                        name="text">{{ $page['text'] }}</x-textarea>
                                 </div>
                             </div>
                         </div>

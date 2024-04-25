@@ -29,10 +29,9 @@
                                         value="{{ $faq['h1'] }}" />
                                 </div>
                                 <div class="form-group">
-                                    <label>Анонс</label>
-                                    <trix-editor input="announce"></trix-editor>
-                                    <x-input id="announce" type="hidden" name="announce"
-                                        value="{!! $faq['announce'] !!}" />
+                                    <label for="announce">Анонс</label>
+                                    <x-textarea class="form-control" id="announce"
+                                        name="announce">{!! $faq['announce'] !!}</x-textarea>
                                 </div>
                             </div>
                         </div>
@@ -52,24 +51,31 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <div class="form-group">
-                                                        <label for="question_name">Название</label>
-                                                        <input type="text" class="form-control" data-name="name"
+                                                        <label for="questions[{{ $question['id'] }}][name]">Название</label>
+                                                        <x-input type="text" class="form-control" data-name="name"
+                                                            id="questions[{{ $question['id'] }}][name]"
                                                             name="questions[{{ $question['id'] }}][name]"
-                                                            value="{{ $question['name'] }}">
+                                                            value="{{ $question['name'] }}" />
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="questions[{{ $question['id'] }}][answer]">Ответ</label>
-                                                        <textarea id="questions[{{ $question['id'] }}][answer]" data-name="answer" class="form-control mini-editor"
-                                                            rows="3" name="questions[{{ $question['id'] }}][answer]">{!! $question['answer'] !!}</textarea>
+                                                        <div class="form-group">
+                                                            <label
+                                                                for="questions[{{ $question['id'] }}][answer]">Ответ</label>
+                                                            <x-textarea class="form-control" rows="3"
+                                                                data-name="answer"
+                                                                id="questions[{{ $question['id'] }}][answer]"
+                                                                name="questions[{{ $question['id'] }}][answer]">{!! $question['answer'] !!}</x-textarea>
+                                                        </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-5">
                                                             <div class="form-group">
-                                                                <label for="sort">Ключ сортировки</label>
-                                                                <input type="text" class="form-control"
+                                                                <label for="questions[{{ $question['id'] }}][sort]">Ключ
+                                                                    сортировки</label>
+                                                                <x-input type="text" class="form-control"
                                                                     id="questions[{{ $question['id'] }}][sort]"
                                                                     name="questions[{{ $question['id'] }}][sort]"
-                                                                    value="{{ $question['sort'] }}" data-name="sort">
+                                                                    value="{{ $question['sort'] }}" data-name="sort" />
                                                             </div>
                                                         </div>
                                                         <div class="col-md-5 d-flex align-items-end">
@@ -84,8 +90,7 @@
                                                         </div>
                                                         <div class="col-md-2 d-flex align-items-end">
                                                             <div class="form-group w-100">
-                                                                <button type="button"
-                                                                    class="btn btn-block btn-outline-danger"
+                                                                <button type="button" class="btn btn-block btn-danger"
                                                                     data-action="removeQuestion"
                                                                     data-id="{{ $question['id'] }}">
                                                                     Удалить
@@ -97,7 +102,6 @@
                                             </div>
                                         </div>
                                     @endforeach
-
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">

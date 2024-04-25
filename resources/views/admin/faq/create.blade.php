@@ -19,16 +19,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Название</label>
-                                    <input type="text" class="form-control" id="name" name="name">
+                                    <x-input type="text" class="form-control" id="name" name="name" />
                                 </div>
                                 <div class="form-group">
                                     <label for="h1">Заголовок</label>
-                                    <input type="text" class="form-control" id="h1" name="h1">
+                                    <x-input type="text" class="form-control" id="h1" name="h1" />
                                 </div>
                                 <div class="form-group">
-                                    <label>Анонс</label>
-                                    <trix-editor input="announce"></trix-editor>
-                                    <x-input id="announce" type="hidden" name="announce" />
+                                    <label for="announce">Анонс</label>
+                                    <x-textarea class="form-control" id="announce" name="announce"></x-textarea>
                                 </div>
                             </div>
                         </div>
@@ -43,48 +42,7 @@
                             <div class="card-body">
                                 <div class="row" id="questions">
                                     Добавление вопросов станет возможным после сохранения темы.
-                                    {{-- <div class="col-md-6">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <div class="form-group">
-                                                    <label for="question_name">Название</label>
-                                                    <input type="text" class="form-control" id="question_name"
-                                                        name="questions[0][name]">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="questions[0][answer]">Ответ</label>
-                                                    <textarea id="questions[0][answer]" class="form-control" rows="3" name="questions[0][answer]"></textarea>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-8">
-                                                        <div class="form-group">
-                                                            <label for="sort">Ключ сортировки</label>
-                                                            <input type="text" class="form-control"
-                                                                id="questions[0][sort]" name="questions[0][sort]">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 d-flex align-items-end">
-                                                        <div class="form-group w-100">
-                                                            <button type="button" class="btn btn-block btn-outline-danger">
-                                                                Удалить
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> --}}
                                 </div>
-                                {{-- <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <button type="button" id="questions_btn"
-                                                class="btn btn-block btn-outline-primary">
-                                                Добавить вопрос
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div> --}}
                             </div>
                         </div>
                     </div>

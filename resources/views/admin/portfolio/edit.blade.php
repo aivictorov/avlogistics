@@ -35,17 +35,17 @@
                                         value="{{ $portfolio['h1'] }}" />
                                 </div>
                                 <div class="form-group">
-                                    <label>Категория</label>
-                                    <select class="form-control" name="portfolio_section_id">
+                                    <label for="portfolio_section_id">Категория</label>
+                                    <select class="form-control" id="portfolio_section_id" name="portfolio_section_id">
                                         @foreach ($sections as $section)
                                             <option value={{ $section['id'] }}>{{ $section['name'] }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Текст</label>
-                                    <trix-editor input="text"></trix-editor>
-                                    <input id="text" value="{{ $portfolio['text'] }}" type="hidden" name="text">
+                                    <label for="text">Текст</label>
+                                    <x-textarea class="editor" id="text"
+                                        name="text">{{ $portfolio['text'] }}</x-textarea>
                                 </div>
                             </div>
                         </div>
@@ -142,7 +142,7 @@
                                     <div class="row">
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <button type="button" class="btn btn-block btn-outline-success"
+                                                <button type="button" class="btn btn-block btn-success"
                                                     data-action="sort">
                                                     Сортировка
                                                 </button>
@@ -150,7 +150,7 @@
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <button type="button" class="btn btn-block btn-outline-primary"
+                                                <button type="button" class="btn btn-block btn-primary"
                                                     data-action="save" disabled>
                                                     Сохранить
                                                 </button>
@@ -158,7 +158,7 @@
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <button type="button" class="btn btn-block btn-outline-danger"
+                                                <button type="button" class="btn btn-block btn-danger"
                                                     data-action="cancel" disabled>
                                                     Отмена
                                                 </button>

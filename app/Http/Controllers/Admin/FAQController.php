@@ -20,7 +20,8 @@ use App\Actions\SEO\UpdateSeoAction;
 use App\Actions\SEO\UpdateSeoData;
 use App\Http\Controllers\Controller;
 use App\Models\FAQ_Questions;
-use App\Requests\FaqRequest;
+use App\Requests\FaqCreateRequest;
+use App\Requests\FaqEditRequest;
 use Illuminate\Support\Facades\DB;
 
 class FAQController extends Controller
@@ -37,7 +38,7 @@ class FAQController extends Controller
         return view('admin.faq.create', compact('sections'));
     }
 
-    public function store(FaqRequest $request)
+    public function store(FaqCreateRequest $request)
     {
         $validated = $request->validated();
 
@@ -63,16 +64,16 @@ class FAQController extends Controller
                 )
             );
 
-            foreach ($validated['questions'] as $key => $question) {
-                $question = (new CreateQuestionAction)->run(
-                    new CreateQuestionData(
-                        name: $question['name'],
-                        answer: $question['answer'],
-                        sort: $question['sort'],
-                        faq_id: $faq->id,
-                    )
-                );
-            };
+            // foreach ($validated['questions'] as $key => $question) {
+            //     $question = (new CreateQuestionAction)->run(
+            //         new CreateQuestionData(
+            //             name: $question['name'],
+            //             answer: $question['answer'],
+            //             sort: $question['sort'],
+            //             faq_id: $faq->id,
+            //         )
+            //     );
+            // };
         }, 3);
         return redirect(route('admin.faq.index'));
     }
@@ -86,9 +87,9 @@ class FAQController extends Controller
         return view('admin.faq.edit', compact('faq', 'seo', 'questions'));
     }
 
-    public function update(FaqRequest $request, $id)
+    public function update(FaqEditRequest $request, $id)
     {
-        // dd($request);
+        dd($request);
 
         $faq = (new GetFaqAction)->run($id);
         $seo = (new GetSeoAction)->run($faq['seo_id']);
@@ -103,7 +104,7 @@ class FAQController extends Controller
 
         $validated = $request->validated();
 
-        dd($validated['questions']);
+        // dd($validated['questions']);
 
         DB::transaction(function () use ($faq, $seo, $validated, $questions) {
 

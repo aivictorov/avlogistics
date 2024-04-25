@@ -6,16 +6,14 @@ document.addEventListener('DOMContentLoaded', function () {
     search();
     initQuestions();
     addNewQuestion();
-
     initTinymce();
-
     bsCustomFileInput.init();
-})
+});
 
 function initTinymce() {
     tinymce.init({
         selector: ".editor",
-        plugins: "file-manager table link lists code fullscreen contextmenu",
+        plugins: "file-manager table link lists code fullscreen",
         Flmngr: {
             apiKey: "FLMNFLMN",
             urlFileManager: '/flmngr',
@@ -24,37 +22,12 @@ function initTinymce() {
         relative_urls: false,
         extended_valid_elements: "*[*]",
         height: "600px",
-        // toolbar: [
-        //     "cut copy | undo redo | searchreplace | bold italic strikethrough | forecolor backcolor | blockquote | removeformat | code",
-        //     "formatselect | link | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent"
-        // ],
-
         toolbar: [
             "bold italic underline | alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent | link blockquote table | code ",
         ],
+        contextmenu: "undo redo | cut copy paste | inserttable",
         promotion: false,
         language: "ru",
-
-
-        contextmenu: "undo redo | cut copy paste | inserttable",
-    });
-
-    tinymce.init({
-        selector: ".mini-editor",
-        plugins: "link lists code",
-        // menubar: 'file edit view',
-        menubar: false,
-        relative_urls: false,
-        extended_valid_elements: "*[*]",
-        height: "300px",
-        toolbar: [
-            "undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | link",
-        ],
-        // mode: "textareas",
-        // theme: "simple",
-        hidden_input: false,
-        promotion: false,
-        language: "ru"
     });
 };
 
@@ -455,16 +428,13 @@ function initQuestion(question) {
         const id = saveButton.dataset.id;
         const name = question.querySelector('[data-name="name"]').value
         const answer = question.querySelector('[data-name="answer"]').value
-        const sort = question.querySelector('[data-name="sort"]').value
+        let sort = question.querySelector('[data-name="sort"]').value
         const faq = saveButton.dataset.faq;
 
-
-
-        console.log(question.querySelector('[data-name="answer"]'));
-        console.log(tinymce.get('questions[34][answer]').save());
-        // console.log(tinymce.get('questions[34][answer]').save());
-
-
+        if (!sort) {
+            sort = 1;
+            question.querySelector('[data-name="sort"]').value = sort;
+        }
 
         if (name && answer && sort) {
             form.append('id', id);
@@ -482,6 +452,9 @@ function initQuestion(question) {
             }).then(response => {
                 response.text().then(responseText => {
                     console.log('Ajax:', JSON.parse(responseText));
+
+                    removeButton.dataset.id = JSON.parse(responseText).id;
+                    console.log(removeButton);
                 })
             });
         }
@@ -493,7 +466,6 @@ function initQuestion(question) {
         const confirmation = confirm("Удалить вопрос?");
         if (!confirmation) return;
 
-        // const form = new FormData();
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
         const id = removeButton.dataset.id;
@@ -508,19 +480,12 @@ function initQuestion(question) {
             }).then(response => {
                 response.text().then(responseText => {
                     console.log('Ajax:', responseText);
+
+                    const question = removeButton.closest('.question');
+                    if (question) question.remove();
                 })
             });
         }
-    }
-
-    function deleteQuestion() {
-        const buttons = document.querySelectorAll('[data-action="removeQuestion"]');
-
-        delete_buttons.forEach(function (button) {
-            button.addEventListener('click', () => {
-                button.closest('.question').remove();
-            })
-        })
     }
 }
 
@@ -570,9 +535,9 @@ function addNewQuestion() {
                             </div>
                             <div class="col-md-2 d-flex align-items-end">
                                 <div class="form-group w-100">
-                                    <button type="button"
-                                        class="btn btn-block btn-outline-danger"
-                                        data-action="removeQuestion">
+                                    <button type="button" class="btn btn-block btn-danger"
+                                        data-action="removeQuestion"
+                                        data-id="{${id}}">
                                         Удалить
                                     </button>
                                 </div>

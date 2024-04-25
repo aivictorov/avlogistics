@@ -5,7 +5,7 @@ namespace App\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
 
-class FaqRequest extends FormRequest
+class FaqEditRequest extends FormRequest
 {
     public function rules()
     {
@@ -29,9 +29,34 @@ class FaqRequest extends FormRequest
 
     protected function prepareForValidation()
     {
+
+        $questons = [];
+
+        foreach ($this->input('questions.*') as $question) {
+            array_push($questons, $question);
+        }
+
+        foreach ($questons as &$item) {
+            $item['sort'] = 1;
+        }
+
+        $this->merge([
+            'questions' => $questons,
+        ]);
+
+        // dd($this->questions);
+
+
+
         if (!$this->filled('url')) {
             $this->merge([
                 'url' => Str::slug($this->input('name')),
+            ]);
+        }
+
+        if (!$this->filled('sort_key')) {
+            $this->merge([
+                'sort_key' => 0,
             ]);
         }
     }

@@ -35,10 +35,10 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Текст</label>
-                                    <trix-editor input="text"></trix-editor>
-                                    <x-input id="text" type="hidden" name="text" />
+                                    <label for="text">Текст</label>
+                                    <x-textarea id="text" class="editor" name="text"></x-textarea>
                                 </div>
+
                             </div>
                         </div>
                     </div>

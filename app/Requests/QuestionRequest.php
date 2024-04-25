@@ -16,4 +16,13 @@ class QuestionRequest extends FormRequest
             'faq_id' => ['required', 'integer', 'min:0'],
         ];
     }
+
+    protected function prepareForValidation()
+    {
+        if (!$this->filled('sort')) {
+            $this->merge([
+                'sort' => 0,
+            ]);
+        }
+    }
 }

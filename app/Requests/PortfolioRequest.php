@@ -13,7 +13,7 @@ class PortfolioRequest extends FormRequest
             'name' => ['required', 'string', 'min:3', 'max:50'],
             'h1' => ['required', 'string', 'min:3', 'max:100'],
             'portfolio_section_id' => ['required', 'integer', 'min:0'],
-            'text' => ['required', 'string', 'min:20'],
+            'text' => ['required', 'string', 'min:12'],
             'url' => ['required', 'min:3', 'max:50'],
             'sort_key' => ['required', 'integer', 'min:0', 'max:100'],
             'status' => ['required', 'boolean'],
@@ -31,9 +31,18 @@ class PortfolioRequest extends FormRequest
 
     protected function prepareForValidation()
     {
+        $this['text'] = str_replace('<script src="//cdn.public.flmngr.com/FLMNFLMN/widgets.js"></script>', '', $this['text']);
+        // $this['text'] = strip_tags($this['text']);
+
         if (!$this->filled('url')) {
             $this->merge([
                 'url' => Str::slug($this->input('name')),
+            ]);
+        }
+
+        if (!$this->filled('sort_key')) {
+            $this->merge([
+                'sort_key' => 0,
             ]);
         }
     }
