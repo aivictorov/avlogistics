@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
     initDestroyImageButtons();
     initSortPortfolioGallery();
     addImagesToPortfolio();
-    search();
     initQuestions();
     addNewQuestion();
     bsCustomFileInput.init();
@@ -369,24 +368,6 @@ function renderGalleryImages(paths) {
         });
     }
 }
-
-function search() {
-    const searchField = document.getElementById('search');
-
-    if (searchField) table = searchField.closest('table');
-    if (searchField && table) links = table.querySelectorAll('a');
-    if (searchField && table && links) {
-        searchField.addEventListener('input', function () {
-            links.forEach(function (link) {
-                if (link.innerText != '' && !link.innerText.toLowerCase().includes(searchField.value.toLowerCase())) {
-                    link.closest('tr').classList.add('d-none');
-                } else {
-                    link.closest('tr').classList.remove('d-none');
-                }
-            });
-        });
-    }
-};
 
 function initQuestions() {
     const questions = document.querySelectorAll('.question');
