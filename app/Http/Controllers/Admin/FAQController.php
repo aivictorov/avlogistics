@@ -19,16 +19,27 @@ use App\Actions\SEO\GetSeoAction;
 use App\Actions\SEO\UpdateSeoAction;
 use App\Actions\SEO\UpdateSeoData;
 use App\Http\Controllers\Controller;
+use App\Models\FAQ_Categories;
 use App\Models\FAQ_Questions;
 use App\Requests\FaqCreateRequest;
 use App\Requests\FaqEditRequest;
+use App\Requests\SearchRequest;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class FAQController extends Controller
 {
-    public function index()
+    public function index(SearchRequest $request)
     {
-        $faq_categories = (new GetFaqSectionsAction)->run();
+        if ($search = $request->validated('search')) {
+            $faq_categories = FAQ_Categories::where('name', 'like', '%' . $search . '%')->paginate(15);
+            $faq_categories->appends(['search' => $search]);
+        } else {
+            $faq_categories = FAQ_Categories::paginate(15);
+        }
+
+        // $faq_categories = (new GetFaqSectionsAction)->run();
         return view('admin.faq.index', compact('faq_categories'));
     }
 
@@ -169,5 +180,17 @@ class FAQController extends Controller
         }, 3);
 
         return redirect(route('admin.faq.index'));
+    }
+
+    public function publish($id, Request $request)
+    {
+        $status = $request->get('published');
+
+        FAQ_Categories::find($id)->update([
+            'status' => $status,
+            'update_date' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        return redirect()->back();
     }
 }
