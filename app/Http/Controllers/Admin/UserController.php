@@ -10,15 +10,25 @@ use App\Actions\User\UpdateUserAction;
 use App\Actions\User\UpdateUserData;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Requests\SearchRequest;
 use App\Requests\UserCreateRequest;
 use App\Requests\UserEditRequest;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(SearchRequest $request)
     {
-        $users = (new GetUsersAction)->run();
+        if ($search = $request->validated('search')) {
+            $users = User::where('name', 'like', '%' . $search . '%')->paginate(15);
+            $users->appends(['search' => $search]);
+        } else {
+            $users = User::paginate(15);
+        }
+
+        // $users = (new GetUsersAction)->run();
         return view('admin.users.index', compact('users'));
     }
 
@@ -75,5 +85,17 @@ class UserController extends Controller
             Session::flash('danger', 'Нельзя удалить единственного пользователя');
             return redirect()->back();
         }
+    }
+
+    public function publish($id, Request $request)
+    {
+        $status = $request->get('published');
+
+        User::find($id)->update([
+            'status' => $status,
+            'update_date' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        return redirect()->back();
     }
 }

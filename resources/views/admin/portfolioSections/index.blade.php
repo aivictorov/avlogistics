@@ -49,9 +49,15 @@
                                         <td>{{ $section['update_date']->format('Y-m-d') }}</td>
                                         <td>
                                             @if ($section['status'] == 1)
-                                                <i class="fas fa-eye"></i>
+                                                <a href={{ route('admin.portfolioSections.publish', ['id' => $section['id'], 'published' => false]) }}
+                                                    onclick="return check()">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
                                             @else
-                                                <i class="fas fa-eye-slash"></i>
+                                                <a href={{ route('admin.portfolioSections.publish', ['id' => $section['id'], 'published' => true]) }}
+                                                    onclick="return check()">
+                                                    <i class="fas fa-eye-slash"></i>
+                                                </a>
                                             @endif
 
                                             <a class="d-inline-block ml-2"
@@ -65,6 +71,11 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-center">
+                    {{ $sections->links() }}
                 </div>
             </div>
         </div>

@@ -11,20 +11,8 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="/admin_panel/plugins/fontawesome-free/css/all.min.css">
-
-
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.8/dist/trix.css">
-
-
-    <link rel="stylesheet" href="/admin_panel/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="/admin_panel/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="/admin_panel/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-
     <link rel="stylesheet" href="/admin_panel/dist/css/adminlte.min.css">
-
-
     <link rel="stylesheet" href="/admin_panel/custom.css">
-
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -59,20 +47,10 @@
     <script src="/admin_panel/plugins/jquery/jquery.js"></script>
     <script src="/admin_panel/plugins/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="/admin_panel/plugins/bs-custom-file-input/bs-custom-file-input.js"></script>
+    <script src="/admin_panel/plugins/tinymce/tinymce/tinymce.min.js"></script>
     <script src="/admin_panel/dist/js/adminlte.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/trix@2.0.8/dist/trix.umd.min.js"></script>
-
-    <script src="/admin_panel/tinymce/tinymce/tinymce.min.js"></script>
-
-    <script src="/admin_panel/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="/admin_panel/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="/admin_panel/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="/admin_panel/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="/admin_panel/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="/admin_panel/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
 
     <script src="/js/admin.js"></script>
-
 </body>
 
 </html>

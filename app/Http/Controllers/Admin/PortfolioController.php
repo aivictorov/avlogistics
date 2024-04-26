@@ -28,15 +28,26 @@ use App\Actions\SEO\UpdateSeoAction;
 use App\Actions\SEO\UpdateSeoData;
 use App\Http\Controllers\Controller;
 use App\Models\Image;
+use App\Models\Portfolio;
 use App\Requests\PortfolioRequest;
+use App\Requests\SearchRequest;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class PortfolioController extends Controller
 {
-    public function index()
+    public function index(SearchRequest $request)
     {
-        $portfolioItems = (new GetPortfolioItemsAction)->run();
+        if ($search = $request->validated('search')) {
+            $portfolioItems = Portfolio::where('name', 'like', '%' . $search . '%')->paginate(15);
+            $portfolioItems->appends(['search' => $search]);
+        } else {
+            $portfolioItems = Portfolio::paginate(15);
+        }
+
+        // $portfolioItems = (new GetPortfolioItemsAction)->run();
         return view('admin.portfolio.index', compact('portfolioItems'));
     }
 
@@ -226,5 +237,17 @@ class PortfolioController extends Controller
         }, 3);
 
         return redirect(route('admin.portfolio.index'));
+    }
+
+    public function publish($id, Request $request)
+    {
+        $status = $request->get('published');
+
+        Portfolio::find($id)->update([
+            'status' => $status,
+            'update_date' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        return redirect()->back();
     }
 }

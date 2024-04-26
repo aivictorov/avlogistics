@@ -29,6 +29,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/portfolio/{id}/edit', [App\Http\Controllers\Admin\PortfolioController::class, 'edit'])->name('portfolio.edit');
     Route::put('/portfolio/{id}', [App\Http\Controllers\Admin\PortfolioController::class, 'update'])->name('portfolio.update');
     Route::get('/portfolio/{id}/delete', [App\Http\Controllers\Admin\PortfolioController::class, 'destroy'])->name('portfolio.destroy');
+    Route::get('/portfolio/{id}/publish', [App\Http\Controllers\Admin\PortfolioController::class, 'publish'])->name('portfolio.publish');
 
     Route::get('/portfolioSections', [App\Http\Controllers\Admin\PortfolioSectionController::class, 'index'])->name('portfolioSections.index');
     Route::get('/portfolioSections/create', [App\Http\Controllers\Admin\PortfolioSectionController::class, 'create'])->name('portfolioSections.create');
@@ -36,6 +37,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/portfolioSections/{id}/edit', [App\Http\Controllers\Admin\PortfolioSectionController::class, 'edit'])->name('portfolioSections.edit');
     Route::put('/portfolioSections/{id}', [App\Http\Controllers\Admin\PortfolioSectionController::class, 'update'])->name('portfolioSections.update');
     Route::get('/portfolioSections/{id}/delete', [App\Http\Controllers\Admin\PortfolioSectionController::class, 'destroy'])->name('portfolioSections.destroy');
+    Route::get('/portfolioSections/{id}/publish', [App\Http\Controllers\Admin\PortfolioSectionController::class, 'publish'])->name('portfolioSections.publish');
 
     Route::get('/faq', [App\Http\Controllers\Admin\FAQController::class, 'index'])->name('faq.index');
     Route::get('/faq/create', [App\Http\Controllers\Admin\FAQController::class, 'create'])->name('faq.create');
@@ -43,6 +45,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/faq/{id}/edit', [App\Http\Controllers\Admin\FAQController::class, 'edit'])->name('faq.edit');
     Route::put('/faq/{id}', [App\Http\Controllers\Admin\FAQController::class, 'update'])->name('faq.update');
     Route::get('/faq/{id}/delete', [App\Http\Controllers\Admin\FAQController::class, 'destroy'])->name('faq.destroy');
+    Route::get('/faq/{id}/publish', [App\Http\Controllers\Admin\FAQController::class, 'publish'])->name('faq.publish');
 
     Route::get('/users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
     Route::get('/users/create', [App\Http\Controllers\Admin\UserController::class, 'create'])->name('users.create');
@@ -50,6 +53,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/users/{id}/edit', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{id}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update');
     Route::get('/users/{id}/delete', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
+    Route::get('/users/{id}/publish', [App\Http\Controllers\Admin\UserController::class, 'publish'])->name('users.publish');
 
     Route::prefix('ajax')->group(function () {
         Route::post('/updateAvatar', [App\Http\Controllers\Admin\AjaxController::class, 'updateAvatar'])->name('ajax.updateAvatar');

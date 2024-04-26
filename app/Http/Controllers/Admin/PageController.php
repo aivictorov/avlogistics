@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Actions\Image\BuildImagePathAction;
 use App\Actions\Image\CreateImageAction;
 use App\Actions\Image\CreateImageData;
 use App\Actions\Image\DestroyImageAction;
@@ -27,25 +26,23 @@ use App\Requests\SearchRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
 
 class PageController extends Controller
 {
-    public function index(Request $req)
+    public function index(SearchRequest $request)
     {
-        $search = $req->query('search');
-
-        if ($search) {
+        if ($search = $request->validated('search')) {
             $pages = Page::where('name', 'like', '%' . $search . '%')->paginate(15);
             $pages->appends(['search' => $search]);
         } else {
             $pages = Page::paginate(15);
+
         }
 
         return view('admin.pages.index', compact('pages'));
     }
 
-    public function create(Request $request)
+    public function create()
     {
         $pages = (new GetPagesAction)->run();
         return view('admin.pages.create', compact('pages'));

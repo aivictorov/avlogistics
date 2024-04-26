@@ -7,6 +7,7 @@ use App\Actions\PortfolioSection\GetPortfolioSectionsAction;
 use App\Http\Controllers\Controller;
 use App\Models\Portfolio;
 use App\Models\PortfolioSection;
+use App\Requests\SearchRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -14,9 +15,16 @@ use Illuminate\Support\Facades\Session;
 
 class PortfolioSectionController extends Controller
 {
-    public function index()
+    public function index(SearchRequest $request)
     {
-        $sections = (new GetPortfolioSectionsAction)->run();
+        if ($search = $request->validated('search')) {
+            $sections = PortfolioSection::where('name', 'like', '%' . $search . '%')->paginate(15);
+            $sections->appends(['search' => $search]);
+        } else {
+            $sections = PortfolioSection::paginate(15);
+        }
+
+        // $sections = (new GetPortfolioSectionsAction)->run();
         return view('admin.portfolioSections.index', compact('sections'));
     }
 
@@ -72,5 +80,17 @@ class PortfolioSectionController extends Controller
             $section->delete();
             return redirect(route('admin.portfolioSections.index'));
         }
+    }
+
+    public function publish($id, Request $request)
+    {
+        $status = $request->get('published');
+
+        PortfolioSection::find($id)->update([
+            'status' => $status,
+            'update_date' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        return redirect()->back();
     }
 }
