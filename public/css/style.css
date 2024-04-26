@@ -1281,6 +1281,15 @@ h6 {
   height: 1px;
 }
 
+.announce {
+  color: #414040;
+  font-family: "Tahoma", "PT Sans", sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.02em;
+  text-align: justify;
+}
+
 .main-section--index-map {
   background: url("/images/main_map.png") no-repeat 50% -80px;
 }

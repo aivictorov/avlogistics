@@ -21,27 +21,27 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Имя пользователя</label>
-                                    <input type="text" class="form-control" id="name" name="name"
-                                        value="{{ $user['name'] }}">
+                                    <x-input type="text" class="form-control" id="name" name="name"
+                                        value="{{ $user['name'] }}" />
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Электронная почта</label>
-                                    <input type="text" class="form-control" id="email" name="email"
-                                        value="{{ $user['email'] }}">
+                                    <x-input type="text" class="form-control" id="email" name="email"
+                                        value="{{ $user['email'] }}" />
                                 </div>
                                 <div class="form-group">
                                     <label for="current_password">Текущий пароль</label>
-                                    <input id="current_password" class="form-control" type="password"
-                                        name="current_password">
+                                    <x-input id="current_password" class="form-control" type="password"
+                                        name="current_password" />
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Новый пароль</label>
-                                    <input id="password" class="form-control" type="password" name="password">
+                                    <x-input id="password" class="form-control" type="password" name="password" />
                                 </div>
                                 <div class="form-group">
                                     <label for="password_confirmation">Подтверждение пароля</label>
-                                    <input id="password_confirmation" class="form-control" type="password"
-                                        name="password_confirmation">
+                                    <x-input id="password_confirmation" class="form-control" type="password"
+                                        name="password_confirmation" />
                                 </div>
                             </div>
                         </div>
@@ -59,14 +59,14 @@
                                         <div class="form-group">
                                             <label>Роль</label>
                                             <select class="form-control" disabled>
-                                                <option>Администратор</option>
+                                                <option value="admin" selected>Администратор</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Статус</label>
-                                            <select class="form-control" name="status">
+                                            <select class="form-control" name="status" disabled>
                                                 <option value="1" selected>Включено</option>
                                                 <option value="0">Выключено</option>
                                             </select>

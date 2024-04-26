@@ -43,5 +43,17 @@ class PageRequest extends FormRequest
                 'menu_sort' => 0,
             ]);
         }
+
+        if (!$this->filled('menu_show')) {
+            $this->merge([
+                'menu_show' => 1,
+            ]);
+        }
+
+        if (!$this->filled('status')) {
+            $this->merge([
+                'status' => 1,
+            ]);
+        }
     }
 }

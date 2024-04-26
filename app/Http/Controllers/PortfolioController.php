@@ -28,7 +28,10 @@ class PortfolioController extends Controller
         $sections = (new GetPortfolioSectionsAction)->run(sort: 'sort_key', active: true);
 
         foreach ($sections as $key => $section) {
-            $sections[$key]['items'] = Portfolio::where('portfolio_section_id', $section['id'])->orderBy('sort_key')->get(['id', 'name', 'url']);
+            $sections[$key]['items'] = Portfolio::where('portfolio_section_id', $section['id'])
+                ->where('status', 1)
+                ->orderBy('sort_key')
+                ->get(['id', 'name', 'url']);
 
             foreach ($sections[$key]['items'] as $key2 => $item) {
                 $sections[$key]['items'][$key2]['image'] = Image::where([

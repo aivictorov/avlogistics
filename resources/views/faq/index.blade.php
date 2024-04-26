@@ -23,7 +23,7 @@
                         <a class="faq-header-name" href="/faq/gabarity-pogruzki/">{{ $category['name'] }}</a>
                         <div class="announce">
                             <p>
-                                {{ $category['announce'] }}
+                                {!! $category['announce'] !!}
                             </p>
                         </div>
                         <ul>

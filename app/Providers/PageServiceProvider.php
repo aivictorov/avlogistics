@@ -32,7 +32,7 @@ class PageServiceProvider extends ServiceProvider
 
     public function menu()
     {
-        $res = Page::select('id', 'name', 'parent_id', 'url')->where('menu_show', 1)->orWhere('id', 1)->orderBy('menu_sort')->get()->toArray();
+        $res = Page::select('id', 'name', 'parent_id', 'url')->where('status', 1)->where('menu_show', 1)->orWhere('id', 1)->orderBy('menu_sort')->get()->toArray();
 
         $dataset = array();
 

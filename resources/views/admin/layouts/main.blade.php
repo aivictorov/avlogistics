@@ -48,9 +48,14 @@
     <script src="/assets/adminlte/dist/js/adminlte.js"></script>
     <script src="/assets/adminlte/plugins/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="/assets/adminlte/plugins/bs-custom-file-input/bs-custom-file-input.js"></script>
-    <script src="/assets/adminlte/plugins/tinymce/tinymce/tinymce.min.js"></script>
+    <script src="/assets/tinymce/tinymce/tinymce.min.js"></script>
 
     <script src="/js/admin.js"></script>
+    <script>
+        function check($message = "Продолжить?") {
+            return confirm($message);
+        }
+    </script>
 </body>
 
 </html>

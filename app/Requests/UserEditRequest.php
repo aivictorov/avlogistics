@@ -13,6 +13,23 @@ class UserEditRequest extends FormRequest
             'email' => ['required'],
             'current_password' => ['current_password'],
             'password' => ['confirmed'],
+            'role' => ['required'],
+            'status' => ['required'],
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        if (!$this->filled('role')) {
+            $this->merge([
+                'role' => 'admin',
+            ]);
+        }
+
+        if (!$this->filled('status')) {
+            $this->merge([
+                'status' => 1,
+            ]);
+        }
     }
 }

@@ -149,23 +149,45 @@
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="menu_show">Отображение в меню</label>
-                                            <select class="form-control" id="menu_show" name="menu_show">
-                                                <option value="1" {{ $page['menu_show'] == 1 ? 'selected' : '' }}>
-                                                    Включено</option>
-                                                <option value="0" {{ $page['menu_show'] == 0 ? 'selected' : '' }}>
-                                                    Отключено</option>
-                                            </select>
+                                            @if ($page['system_page'] != 0)
+                                                <select class="form-control" id="menu_show" name="menu_show" disabled>
+                                                    <option value="1"
+                                                        {{ $page['menu_show'] == 1 ? 'selected' : '' }}>
+                                                        Включено</option>
+                                                    <option value="0"
+                                                        {{ $page['menu_show'] == 0 ? 'selected' : '' }}>
+                                                        Отключено</option>
+                                                </select>
+                                            @else
+                                                <select class="form-control" id="menu_show" name="menu_show">
+                                                    <option value="1"
+                                                        {{ $page['menu_show'] == 1 ? 'selected' : '' }}>
+                                                        Включено</option>
+                                                    <option value="0"
+                                                        {{ $page['menu_show'] == 0 ? 'selected' : '' }}>
+                                                        Отключено</option>
+                                                </select>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="status">Статус</label>
-                                            <select class="form-control" id="status" name="status">
-                                                <option value="1" {{ $page['status'] == 1 ? 'selected' : '' }}>
-                                                    Включено</option>
-                                                <option value="0" {{ $page['status'] == 0 ? 'selected' : '' }}>
-                                                    Отключено</option>
-                                            </select>
+                                            @if ($page['system_page'] != 0)
+                                                <select class="form-control" id="status" name="status" disabled>
+                                                    <option value="1" {{ $page['status'] == 1 ? 'selected' : '' }}>
+                                                        Включено</option>
+                                                    <option value="0" {{ $page['status'] == 0 ? 'selected' : '' }}>
+                                                        Отключено</option>
+                                                </select>
+                                            @else
+                                                <select class="form-control" id="status" name="status">
+                                                    <option value="1" {{ $page['status'] == 1 ? 'selected' : '' }}>
+                                                        Включено</option>
+                                                    <option value="0" {{ $page['status'] == 0 ? 'selected' : '' }}>
+                                                        Отключено</option>
+                                                </select>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-3">
