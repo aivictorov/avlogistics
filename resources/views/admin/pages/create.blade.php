@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="text">Текст</label>
-                                    <x-textarea id="text" class="editor" name="text"></x-textarea>
+                                    <x-textarea id="text" class="editor form-control" name="text"></x-textarea>
                                 </div>
 
                             </div>

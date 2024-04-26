@@ -18,9 +18,9 @@ class PortfolioRequest extends FormRequest
             'sort_key' => ['required', 'integer', 'min:0', 'max:100'],
             'status' => ['required', 'boolean'],
 
-            'title' => ['nullable', 'string', 'min:3', 'max:100'],
-            'description' => ['nullable', 'string', 'min:3', 'max:250'],
-            'keywords' => ['nullable', 'string', 'min:3', 'max:250'],
+            'title' => ['required', 'string', 'min:3', 'max:100'],
+            'description' => ['required', 'string', 'min:3', 'max:250'],
+            'keywords' => ['required', 'string', 'min:3', 'max:250'],
 
             'avatar' => ['sometimes', 'mimes:jpg,jpeg', 'dimensions:min_width=670,min_height=270',],
             'images.*' => ['sometimes', 'mimes:jpg,jpeg', 'dimensions:min_width=670,min_height=350',],

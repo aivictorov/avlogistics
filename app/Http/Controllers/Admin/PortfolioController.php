@@ -210,8 +210,8 @@ class PortfolioController extends Controller
         }, 3);
 
         Session::flash('notice', 'Изменения сохранены');
-        return redirect(route('admin.portfolio.edit', ['id' => $id]));
-        // return redirect(route('admin.portfolio.index'));
+        // return redirect(route('admin.portfolio.edit', ['id' => $id]));
+        return redirect(route('admin.portfolio.index'));
     }
 
     public function destroy($id)

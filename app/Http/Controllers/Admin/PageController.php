@@ -31,7 +31,15 @@ class PageController extends Controller
 {
     public function index()
     {
-        $pages = (new GetPagesAction)->run();
+        // $pages = (new GetPagesAction)->run();
+
+        $pages = Page::paginate(15);
+
+        // foreach ($pages as $key => $page) {
+        //     $pages[$key]['create_date'] = Carbon::parse($page['create_date'])->toDateString();
+        //     $pages[$key]['update_date'] = Carbon::parse($page['update_date'])->toDateString();
+        // }
+
         return view('admin.pages.index', compact('pages'));
     }
 
@@ -100,8 +108,6 @@ class PageController extends Controller
         $page = (new GetPageAction)->run($id);
         $seo = (new GetSeoAction)->run($page['seo_id']);
         $validated = $request->validated();
-
-        dd($validated);
 
         DB::transaction(function () use ($page, $seo, $validated, $request) {
 

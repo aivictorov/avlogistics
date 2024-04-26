@@ -19,9 +19,9 @@ class PageRequest extends FormRequest
             'menu_show' => ['required', 'boolean'],
             'status' => ['required', 'boolean'],
 
-            'title' => ['nullable', 'string', 'min:3', 'max:100'],
-            'description' => ['nullable', 'string', 'min:3', 'max:500'],
-            'keywords' => ['nullable', 'string', 'min:3', 'max:500'],
+            'title' => ['required', 'string', 'min:3', 'max:100'],
+            'description' => ['required', 'string', 'min:3', 'max:500'],
+            'keywords' => ['required', 'string', 'min:3', 'max:500'],
 
             'avatar' => ['nullable', 'mimes:jpg,jpeg', 'dimensions:min_width=670,min_height=270',],
         ];

@@ -42,7 +42,7 @@
                         <div class="card card-primary card-outline">
                             <div class="card-header">
                                 <h3 class="card-title">Вопросы</h3>
-                                <span class="card-tools badge badge-danger">Сохранение без перезагрузки</span>
+                                <x-ajaxBadge />
                             </div>
                             <div class="card-body">
                                 <div class="questions row">
@@ -131,11 +131,13 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="description">meta:Description</label>
-                                    <textarea id="description" class="form-control" name="description" rows="3">{{ $seo['description'] }}</textarea>
+                                    <x-textarea id="description" class="form-control" name="description"
+                                        rows="3">{{ $seo['description'] }}</x-textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="keywords">meta:Keywords</label>
-                                    <textarea id="keywords" class="form-control" name="keywords" rows="3">{{ $seo['keywords'] }}</textarea>
+                                    <x-textarea id="keywords" class="form-control" name="keywords"
+                                        rows="3">{{ $seo['keywords'] }}</x-textarea>
                                 </div>
                             </div>
                         </div>

@@ -5,27 +5,43 @@
 @section('content')
     <section class="content">
         <div class="container-fluid">
-
             <div class="row">
-                <div class="col-md-2">
-                    <div class="card">
-                        <div class="card-body table-responsive p-0">
-                            <a href={{ route('admin.portfolio.create') }} type="button"
-                                class="btn btn-block btn-primary btn-lg">
-                                Добавить страницу
-                            </a>
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
+                <div class="col-md-12">
+                    <x-errors />
+                    <x-notice />
                 </div>
             </div>
-            <!-- /.row -->
+            {{-- <div class="row">
+                <div class="col-md-2">
+                    <div class="card">
+                        <a href={{ route('admin.portfolio.create') }} type="button" class="btn btn-block btn-primary btn-lg">
+                            Добавить страницу
+                        </a>
+                    </div>
+                </div>
+            </div> --}}
 
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-body table-responsive p-0">
 
+                        <div class="card-header">
+                            <a href={{ route('admin.portfolio.create') }} type="button" class="btn btn-primary">
+                                Добавить страницу
+                            </a>
+                            <div class="card-tools">
+                                <ul class="pagination pagination-sm float-right">
+                                    <li class="page-item"><a class="page-link" href="#">«</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">»</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        <div class="card-body table-responsive p-0">
                             <table class="table table-hover text-nowrap">
                                 <thead>
                                     <tr>

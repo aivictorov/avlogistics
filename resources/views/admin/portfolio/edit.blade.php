@@ -18,12 +18,8 @@
                                 <h3 class="card-title">Основные данные</h3>
                             </div>
                             <div class="card-body">
-                                <div class="form-group">
-                                    <x-errors />
-                                </div>
-                                <div class="form-group">
-                                    <x-notice />
-                                </div>
+                                <x-errors />
+                                <x-notice />
                                 <div class="form-group">
                                     <label for="name">Название</label>
                                     <x-input type="text" class="form-control" id="name" name="name"
@@ -44,7 +40,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="text">Текст</label>
-                                    <x-textarea class="editor" id="text"
+                                    <x-textarea class="editor form-control" id="text"
                                         name="text">{{ $portfolio['text'] }}</x-textarea>
                                 </div>
                             </div>
@@ -56,7 +52,7 @@
                         <div class="card card-primary card-outline">
                             <div class="card-header">
                                 <h3 class="card-title">Основное изображение</h3>
-                                <span class="card-tools badge badge-danger">Сохранение без перезагрузки</span>
+
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -102,7 +98,7 @@
                         <div class="card card-primary card-outline">
                             <div class="card-header">
                                 <h3 class="card-title">Галерея изображений</h3>
-                                <span class="card-tools badge badge-danger">Сохранение без перезагрузки</span>
+                                <x-ajaxBadge />
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -185,11 +181,13 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="description">meta:Description</label>
-                                    <textarea id="description" class="form-control" rows="3" name="description">{{ $seo['description'] }}</textarea>
+                                    <x-textarea id="description" class="form-control" rows="3"
+                                        name="description">{{ $seo['description'] }}</x-textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="keywords">meta:Keywords</label>
-                                    <textarea id="keywords" class="form-control" rows="3" name="keywords">{{ $seo['keywords'] }}</textarea>
+                                    <x-textarea id="keywords" class="form-control" rows="3"
+                                        name="keywords">{{ $seo['keywords'] }}</x-textarea>
                                 </div>
                             </div>
                         </div>

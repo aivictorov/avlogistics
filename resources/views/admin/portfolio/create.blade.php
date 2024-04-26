@@ -14,9 +14,8 @@
                                 <h3 class="card-title">Основные данные</h3>
                             </div>
                             <div class="card-body">
-                                <div class="form-group">
-                                    <x-errors />
-                                </div>
+                                <x-errors />
+                                <x-notice />
                                 <div class="form-group">
                                     <label for="name">Название</label>
                                     <x-input type="text" class="form-control" id="name" name="name" />

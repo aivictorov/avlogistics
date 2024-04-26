@@ -6,7 +6,7 @@
         @foreach ($sections as $section)
             <li>
                 <a href="/portfolio#type-{{ $section['url'] }}">{{ $section['name'] }}</a>
-                <span class="aside-section-count">(1)</span>
+                <span class="aside-section-count">({{ count($section['items']) }})</span>
             </li>
         @endforeach
     </ul>

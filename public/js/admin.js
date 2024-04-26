@@ -2,12 +2,12 @@ document.addEventListener('DOMContentLoaded', function () {
     initUpdateAvatar();
     initDestroyImageButtons();
     initSortPortfolioGallery();
-    addImagesToPortfolio()
+    addImagesToPortfolio();
     search();
     initQuestions();
     addNewQuestion();
-    initTinymce();
     bsCustomFileInput.init();
+    initTinymce();
 });
 
 function initTinymce() {
@@ -157,16 +157,10 @@ function addDestroyImageButton(image) {
 };
 
 function initSortPortfolioGallery() {
-    // console.log('global init');
+    if (!document.getElementById('portfolio-gallery')) return
 
     let gallery = document.getElementById('portfolio-gallery');
-
-    if (gallery) {
-        let initialGallery = gallery.cloneNode(true);
-        console.log('init:', initialGallery);
-    } else {
-        return;
-    }
+    let initialGallery = gallery.cloneNode(true);
 
     const buttons = document.getElementById('portfolio-gallery-buttons');
     const sortButton = buttons.querySelector('[data-action="sort"]');
@@ -181,7 +175,6 @@ function initSortPortfolioGallery() {
         console.log('reInitGallery');
         gallery = document.getElementById('portfolio-gallery');
         initialGallery = gallery.cloneNode(true);
-        console.log('REinit:', initialGallery);
     }
 
     function sortStartHandle() {
@@ -192,6 +185,10 @@ function initSortPortfolioGallery() {
 
             image.querySelectorAll('img').forEach((img) => {
                 img.style.pointerEvents = 'none';
+            });
+
+            image.querySelectorAll('button').forEach((button) => {
+                button.style.display = 'none';
             });
 
             image.addEventListener('dragstart', dragStartHandle)
@@ -205,7 +202,6 @@ function initSortPortfolioGallery() {
     }
 
     function cancelHandle(old) {
-        // console.log('cancelHandle');
         gallery.replaceWith(old);
 
         sortEndHandle();
@@ -213,7 +209,7 @@ function initSortPortfolioGallery() {
 
         gallery.querySelectorAll('.portfolio-gallery-image').forEach((item) => {
             item.querySelectorAll('img').forEach((img) => {
-                console.log(img)
+                // console.log(img)
                 addDestroyImageButton(img);
             });
         });
@@ -226,7 +222,12 @@ function initSortPortfolioGallery() {
             image.removeAttribute('draggable');
 
             image.querySelectorAll('img').forEach((img) => {
-                img.style.pointerEvents = 'auto';
+                // img.style.pointerEvents = 'auto';
+                img.removeAttribute('style')
+            });
+
+            image.querySelectorAll('button').forEach((button) => {
+                button.removeAttribute('style')
             });
 
             image.removeEventListener('dragstart', dragStartHandle)
