@@ -10,9 +10,9 @@
 
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <link rel="stylesheet" href="/admin_panel/plugins/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="/admin_panel/dist/css/adminlte.min.css">
-    <link rel="stylesheet" href="/admin_panel/custom.css">
+    <link rel="stylesheet" href="/assets/adminlte/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/assets/adminlte/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="/assets/adminlte/custom.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -44,11 +44,11 @@
 
     </div>
 
-    <script src="/admin_panel/plugins/jquery/jquery.js"></script>
-    <script src="/admin_panel/plugins/bootstrap/js/bootstrap.bundle.js"></script>
-    <script src="/admin_panel/plugins/bs-custom-file-input/bs-custom-file-input.js"></script>
-    <script src="/admin_panel/plugins/tinymce/tinymce/tinymce.min.js"></script>
-    <script src="/admin_panel/dist/js/adminlte.js"></script>
+    <script src="/assets/jquery/jquery.js"></script>
+    <script src="/assets/adminlte/dist/js/adminlte.js"></script>
+    <script src="/assets/adminlte/plugins/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="/assets/adminlte/plugins/bs-custom-file-input/bs-custom-file-input.js"></script>
+    <script src="/assets/adminlte/plugins/tinymce/tinymce/tinymce.min.js"></script>
 
     <script src="/js/admin.js"></script>
 </body>
