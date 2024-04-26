@@ -9,7 +9,7 @@ class GetUsersAction
 {
     public function run($sort = 'id')
     {
-        $users = User::select('id', 'name', 'email', 'updated_at')
+        $users = User::select('id', 'name', 'email', 'created_at', 'updated_at')
             ->orderBy($sort)
             ->get();
 

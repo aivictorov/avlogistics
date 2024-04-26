@@ -10,6 +10,7 @@ use App\Models\PortfolioSection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class PortfolioSectionController extends Controller
 {
@@ -64,8 +65,8 @@ class PortfolioSectionController extends Controller
     public function destroy($id)
     {
         if (Portfolio::where('portfolio_section_id', $id)->count() > 0) {
-            return 'Нельзя удалить категорию, в которой есть элементы';
-
+            Session::flash('danger', 'Нельзя удалить категорию, в которой есть элементы.');
+            return redirect()->back();
         } else {
             $section = (new GetPortfolioSectionAction)->run($id);
             $section->delete();

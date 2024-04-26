@@ -29,7 +29,6 @@ class FaqEditRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-
         $questons = [];
 
         foreach ($this->input('questions.*') as $question) {
@@ -43,10 +42,6 @@ class FaqEditRequest extends FormRequest
         $this->merge([
             'questions' => $questons,
         ]);
-
-        // dd($this->questions);
-
-
 
         if (!$this->filled('url')) {
             $this->merge([

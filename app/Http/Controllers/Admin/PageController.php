@@ -36,7 +36,6 @@ class PageController extends Controller
         $search = $req->query('search');
 
         if ($search) {
-            Session::flash('info', $search);
             $pages = Page::where('name', 'like', '%' . $search . '%')->paginate(15);
             $pages->appends(['search' => $search]);
         } else {

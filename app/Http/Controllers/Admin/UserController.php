@@ -10,8 +10,9 @@ use App\Actions\User\UpdateUserAction;
 use App\Actions\User\UpdateUserData;
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Requests\UserEditRequest;
 use App\Requests\UserCreateRequest;
+use App\Requests\UserEditRequest;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -71,7 +72,8 @@ class UserController extends Controller
             $user->delete();
             return redirect(route('admin.users.index'));
         } else {
-            return 'Нельзя удалить единственного пользователя';
+            Session::flash('danger', 'Нельзя удалить единственного пользователя');
+            return redirect()->back();
         }
     }
 }

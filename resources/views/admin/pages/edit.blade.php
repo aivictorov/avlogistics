@@ -7,6 +7,9 @@
 @section('content')
     <section class="content">
         <div class="container-fluid">
+            <x-errors />
+            <x-notice />
+
             <form action={{ route('admin.pages.update', ['id' => $page['id']]) }} method="post"
                 enctype="multipart/form-data">
                 @method('PUT')
@@ -18,9 +21,6 @@
                                 <h3 class="card-title">Основные данные</h3>
                             </div>
                             <div class="card-body">
-                                <div class="form-group">
-                                    <x-errors />
-                                </div>
                                 <div class="form-group">
                                     <label for="name">Название</label>
                                     <x-input type="text" class="form-control" id="name" name="name"

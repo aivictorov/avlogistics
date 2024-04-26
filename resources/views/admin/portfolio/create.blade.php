@@ -5,6 +5,9 @@
 @section('content')
     <section class="content">
         <div class="container-fluid">
+            <x-errors />
+            <x-notice />
+
             <form action={{ route('admin.portfolio.store') }} method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
@@ -14,8 +17,6 @@
                                 <h3 class="card-title">Основные данные</h3>
                             </div>
                             <div class="card-body">
-                                <x-errors />
-                                <x-notice />
                                 <div class="form-group">
                                     <label for="name">Название</label>
                                     <x-input type="text" class="form-control" id="name" name="name" />
@@ -32,11 +33,6 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                {{-- <div class="form-group">
-                                    <label>Текст</label>
-                                    <trix-editor input="text"></trix-editor>
-                                    <x-input id="text" type="hidden" name="text" />
-                                </div> --}}
                                 <div class="form-group">
                                     <label for="text">Текст</label>
                                     <x-textarea class="editor" id="text" name="text"></x-textarea>

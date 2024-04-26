@@ -5,20 +5,13 @@
 @section('content')
     <section class="content">
         <div class="container-fluid">
+            <x-errors />
+            <x-notice />
 
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body table-responsive p-0">
-                            <a href={{ route('admin.users.create') }} type="button" class="btn btn-block btn-primary btn-lg">
-                                Добавить пользователя
-                            </a>
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
+            <a href={{ route('admin.users.create') }} class="btn btn-primary btn-lg mb-3">
+                Добавить пользователя
+            </a>
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -28,16 +21,20 @@
                                     <tr>
                                         <th>ID</th>
                                         <th class="w-50">Имя пользователя</th>
-                                        <th class="w-50">Электронная почта</th>
+                                        <th class="w-25">Электронная почта</th>
+                                        <th>Дата создания</th>
                                         <th>Дата изменения</th>
-                                        <th>Статус</th>
                                         <th>Действия</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td></td>
-                                        <td><input id="search" class="form-control float-right" placeholder="Поиск"></td>
+                                        <td>
+                                            <form>
+                                                <input class="form-control float-right" name="search" placeholder="Поиск">
+                                            </form>
+                                        </td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
@@ -51,20 +48,20 @@
                                                     {{ $user['name'] }}
                                                 </a>
                                             </td>
+                                            <td>{{ $user['email'] }}</td>
+                                            <td>{{ $user['created_at']->format('Y-m-d') }}</td>
+                                            <td>{{ $user['updated_at']->format('Y-m-d') }}</td>
+
                                             <td>
-                                                {{ $user['email'] }}
-                                            </td>
-                                            <td>{{ $user['updated_at'] }}</td>
-                                            <td>
-                                                {{-- @if ($user['status'] == 1) --}}
-                                                <i class="fas fa-eye"></i>
-                                                {{-- @else --}}
-                                                {{-- <i class="fas fa-eye-slash"></i> --}}
-                                                {{-- @endif --}}
-                                            </td>
-                                            <td>
-                                                <a href={{ route('admin.users.destroy', ['id' => $user['id']]) }}
-                                                    rel="nofollow">
+                                                @if ($user['status'] == 1)
+                                                    <i class="fas fa-eye"></i>
+                                                @else
+                                                    <i class="fas fa-eye-slash"></i>
+                                                @endif
+
+                                                <a class="d-inline-block ml-2"
+                                                    href={{ route('admin.users.destroy', ['id' => $user['id']]) }}
+                                                    onclick="return check()">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </td>
@@ -73,11 +70,9 @@
                                 </tbody>
                             </table>
                         </div>
-                        <!-- /.card-body -->
                     </div>
                 </div>
             </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
 @endsection

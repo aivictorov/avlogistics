@@ -89,8 +89,6 @@ class FAQController extends Controller
 
     public function update(FaqEditRequest $request, $id)
     {
-        dd($request);
-
         $faq = (new GetFaqAction)->run($id);
         $seo = (new GetSeoAction)->run($faq['seo_id']);
 
@@ -100,11 +98,7 @@ class FAQController extends Controller
             unset($questions[$key]['url']);
         }
 
-        // dd($questions);
-
         $validated = $request->validated();
-
-        // dd($validated['questions']);
 
         DB::transaction(function () use ($faq, $seo, $validated, $questions) {
 

@@ -5,23 +5,13 @@
 @section('content')
     <section class="content">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <x-errors />
-                    <x-notice />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2">
-                    <div class="card">
-                        <div class="card-body table-responsive p-0">
-                            <a href={{ route('admin.pages.create') }} type="button" class="btn btn-block btn-primary btn-lg">
-                                Добавить страницу
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <x-errors />
+            <x-notice />
+
+            <a href={{ route('admin.pages.create') }} class="btn btn-primary btn-lg mb-3">
+                Добавить страницу
+            </a>
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -40,7 +30,7 @@
                                     <tr>
                                         <td></td>
                                         <td>
-                                            <form action="">
+                                            <form>
                                                 <input class="form-control float-right" name="search" placeholder="Поиск">
                                             </form>
                                         </td>
@@ -60,22 +50,23 @@
                                             <td>{{ $page['create_date']->format('Y-m-d') }}</td>
                                             <td>{{ $page['update_date']->format('Y-m-d') }}</td>
 
-                                            <td class="text-center">
+                                            <td>
                                                 @if ($page['system_page'] == 0)
                                                     @if ($page['status'] == 1)
-                                                        <a
-                                                            href={{ route('admin.pages.publish', ['id' => $page['id'], 'published' => false]) }}>
+                                                        <a href={{ route('admin.pages.publish', ['id' => $page['id'], 'published' => false]) }}
+                                                            onclick="return check()">
                                                             <i class="fas fa-eye"></i>
                                                         </a>
                                                     @else
-                                                        <a
-                                                            href={{ route('admin.pages.publish', ['id' => $page['id'], 'published' => true]) }}>
+                                                        <a href={{ route('admin.pages.publish', ['id' => $page['id'], 'published' => true]) }}
+                                                            onclick="return check()">
                                                             <i class="fas fa-eye-slash"></i>
                                                         </a>
                                                     @endif
+
                                                     <a class="d-inline-block ml-2"
                                                         href={{ route('admin.pages.destroy', ['id' => $page['id']]) }}
-                                                        rel="nofollow">
+                                                        onclick="return check()">
                                                         <i class="fas fa-trash"></i>
                                                     </a>
                                                 @else

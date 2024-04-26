@@ -10,6 +10,10 @@ document.addEventListener('DOMContentLoaded', function () {
     initTinymce();
 });
 
+function check($message = "Продолжить?") {
+    return confirm($message)
+}
+
 function initTinymce() {
     tinymce.init({
         selector: ".editor",
@@ -21,7 +25,7 @@ function initTinymce() {
         },
         relative_urls: false,
         extended_valid_elements: "*[*]",
-        height: "600px",
+        height: "500px",
         toolbar: [
             "bold italic underline | alignleft aligncenter alignright alignjustify |  bullist numlist outdent indent | link blockquote table | code ",
         ],
@@ -141,7 +145,7 @@ function addDestroyImageButton(image) {
                 body: JSON.stringify({ id: id }),
             }).then(response => {
                 response.text().then(responseText => {
-                    console.log('Ajax:', responseText);
+                    console.log('result:', responseText);
                 });
 
                 if (button.parentElement.classList.contains('portfolio-gallery-image')) {
@@ -172,14 +176,11 @@ function initSortPortfolioGallery() {
     cancelButton.addEventListener('click', () => { cancelHandle(initialGallery) });
 
     function reInitGallery() {
-        console.log('reInitGallery');
         gallery = document.getElementById('portfolio-gallery');
         initialGallery = gallery.cloneNode(true);
     }
 
     function sortStartHandle() {
-        console.log('--- sortStartHandle ---');
-
         gallery.querySelectorAll('.portfolio-gallery-image').forEach((image) => {
             image.draggable = true;
 
@@ -209,15 +210,12 @@ function initSortPortfolioGallery() {
 
         gallery.querySelectorAll('.portfolio-gallery-image').forEach((item) => {
             item.querySelectorAll('img').forEach((img) => {
-                // console.log(img)
                 addDestroyImageButton(img);
             });
         });
     };
 
     function sortEndHandle() {
-        console.log('*** sortEndHandle ***');
-
         gallery.querySelectorAll('.portfolio-gallery-image').forEach((image) => {
             image.removeAttribute('draggable');
 
@@ -241,17 +239,14 @@ function initSortPortfolioGallery() {
     }
 
     function dragStartHandle(event) {
-        // console.log('dragStart')
         event.target.classList.add('selected');
     };
 
     function dragEndHandle(event) {
-        // console.log('dragEnd')
         event.target.classList.remove('selected');
     };
 
     function dragOverHandle(event) {
-        // console.log('dragOver')
         event.preventDefault();
 
         const activeElement = gallery.querySelector('.selected');
@@ -270,8 +265,6 @@ function initSortPortfolioGallery() {
     };
 
     function saveHandle() {
-        console.log('saveHandle');
-
         let data = [];
 
         gallery.querySelectorAll('.portfolio-gallery-image').forEach((item, id) => {
@@ -294,7 +287,7 @@ function initSortPortfolioGallery() {
             body: JSON.stringify(data),
         }).then(response => {
             response.text().then(responseText => {
-                console.log('Ajax:', responseText);
+                console.log('result:', responseText);
             });
         });
 
@@ -313,8 +306,6 @@ function addImagesToPortfolio() {
 
         if (input) {
             button.addEventListener('click', () => {
-                console.log('addImagesToPortfolio -- click')
-
                 if (input.files.length == 0) alert('Выберите файлы')
 
                 if (input.files.length > 0) {
@@ -359,7 +350,6 @@ function addImagesToPortfolio() {
 
 function renderGalleryImages(paths) {
     const galleryPreview = document.getElementById('portfolio-gallery');
-    console.log(galleryPreview);
 
     if (galleryPreview) {
 
@@ -409,8 +399,6 @@ function initQuestions() {
 }
 
 function initQuestion(question) {
-    console.log(question)
-
     const saveButton = question.querySelector('[data-action="saveQuestion"]')
     saveButton.addEventListener('click', saveQuestionHandle)
 
@@ -418,8 +406,6 @@ function initQuestion(question) {
     removeButton.addEventListener('click', removeQuestionHandle)
 
     function saveQuestionHandle() {
-        console.log('saveQuestionHandle')
-
         const confirmation = confirm("Сохранить вопрос?");
         if (!confirmation) return;
 
@@ -452,18 +438,14 @@ function initQuestion(question) {
                 body: form,
             }).then(response => {
                 response.text().then(responseText => {
-                    console.log('Ajax:', JSON.parse(responseText));
-
+                    console.log('result:', JSON.parse(responseText));
                     removeButton.dataset.id = JSON.parse(responseText).id;
-                    console.log(removeButton);
                 })
             });
         }
     }
 
     function removeQuestionHandle() {
-        console.log('removeQuestionHandle')
-
         const confirmation = confirm("Удалить вопрос?");
         if (!confirmation) return;
 
@@ -480,7 +462,7 @@ function initQuestion(question) {
                 body: id,
             }).then(response => {
                 response.text().then(responseText => {
-                    console.log('Ajax:', responseText);
+                    console.log('result:', responseText);
 
                     const question = removeButton.closest('.question');
                     if (question) question.remove();
@@ -491,7 +473,6 @@ function initQuestion(question) {
 }
 
 function addNewQuestion() {
-    console.log('addNewQuestion init')
     const block = document.querySelector('.questions');
     const btn = document.querySelector('button[data-action="addNewQuestion"]');
 
