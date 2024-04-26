@@ -46,7 +46,7 @@
                                                     {{ $faq_category['name'] }}
                                                 </a>
                                             </td>
-                                            <td>{{ $faq_category['update_date'] }}</td>
+                                            <td>{{ $faq_category['update_date']->format('Y-m-d') }}</td>
                                             <td>
                                                 @if ($faq_category['status'] == 1)
                                                     <i class="fas fa-eye"></i>

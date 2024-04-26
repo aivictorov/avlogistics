@@ -49,7 +49,7 @@
                                                 {{ $section['name'] }}
                                             </a>
                                         </td>
-                                        <td>{{ $section['update_date'] }}</td>
+                                        <td>{{ $section['update_date']->format('Y-m-d') }}</td>
                                         <td>
                                             @if ($section['status'] == 1)
                                                 <i class="fas fa-eye"></i>

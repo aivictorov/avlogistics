@@ -26,7 +26,7 @@ class FAQController extends Controller
         $faq_categories = (new GetFaqSectionsAction)->run(sort: 'sort_key', active: true);
 
         foreach ($faq_categories as $key => $category) {
-            $faq_categories[$key]['items'] = FAQ_Questions::select('name', 'answer')->where('faq_id', $category['id'])->orderBy('sort')->get()->toArray();
+            $faq_categories[$key]['items'] = FAQ_Questions::select('name', 'answer')->where('faq_id', $category['id'])->orderBy('sort')->get();
 
             foreach ($faq_categories[$key]['items'] as $key2 => $item) {
                 $faq_categories[$key]['items'][$key2]['url'] = Str::slug($item['name']);

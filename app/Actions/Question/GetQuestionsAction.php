@@ -12,7 +12,6 @@ class GetQuestionsAction
         $faq_questions = FAQ_Questions::where('faq_id', $id)
             ->orderBy('sort')
             ->get();
-        // ->toArray();
 
         foreach ($faq_questions as $key => $question) {
             $faq_questions[$key]['url'] = Str::slug($question['name']);

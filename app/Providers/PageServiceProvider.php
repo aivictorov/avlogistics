@@ -50,7 +50,7 @@ class PageServiceProvider extends ServiceProvider
                 $dataset[$node['parent_id']]['children'][$id] = &$node;
             }
         }
-    
+
         return $tree;
     }
 }

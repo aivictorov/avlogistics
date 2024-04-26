@@ -23,22 +23,25 @@ use App\Actions\SEO\UpdateSeoData;
 use App\Http\Controllers\Controller;
 use App\Models\Page;
 use App\Requests\PageRequest;
+use App\Requests\SearchRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class PageController extends Controller
 {
-    public function index()
+    public function index(Request $req)
     {
-        // $pages = (new GetPagesAction)->run();
+        $search = $req->query('search');
 
-        $pages = Page::paginate(15);
-
-        // foreach ($pages as $key => $page) {
-        //     $pages[$key]['create_date'] = Carbon::parse($page['create_date'])->toDateString();
-        //     $pages[$key]['update_date'] = Carbon::parse($page['update_date'])->toDateString();
-        // }
+        if ($search) {
+            Session::flash('info', $search);
+            $pages = Page::where('name', 'like', '%' . $search . '%')->paginate(15);
+            $pages->appends(['search' => $search]);
+        } else {
+            $pages = Page::paginate(15);
+        }
 
         return view('admin.pages.index', compact('pages'));
     }

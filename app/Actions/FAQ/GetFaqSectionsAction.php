@@ -13,18 +13,12 @@ class GetFaqSectionsAction
             $faq_categories = FAQ_Categories::select('id', 'name', 'url', 'h1', 'announce', 'update_date', 'status')
                 ->where('status', 1)
                 ->orderBy($sort)
-                ->get()
-                ->toArray();
+                ->get();
         } else {
             $faq_categories = FAQ_Categories::select('id', 'name', 'url', 'h1', 'announce', 'update_date', 'status')
                 // ->where('status', 1)
                 ->orderBy($sort)
-                ->get()
-                ->toArray();
-        }
-
-        foreach ($faq_categories as $key => $category) {
-            $faq_categories[$key]['update_date'] = Carbon::parse($category['update_date'])->toDateString();
+                ->get();
         }
 
         return $faq_categories;

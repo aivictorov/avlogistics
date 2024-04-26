@@ -68,7 +68,7 @@
                                                     {{ $item['name'] }}
                                                 </a>
                                             </td>
-                                            <td>{{ $item['update_date'] }}</td>
+                                            <td>{{ $item['update_date']->format('Y-m-d') }}</td>
                                             <td>
                                                 @if ($item['status'] == 1)
                                                     <i class="fas fa-eye"></i>

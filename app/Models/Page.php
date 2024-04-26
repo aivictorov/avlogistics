@@ -31,7 +31,7 @@ class Page extends Model
     ];
 
     protected $casts = [
-        // 'status' => 'boolean',
+        // 
     ];
 
     protected $dates = [

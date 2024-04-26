@@ -13,10 +13,6 @@ class GetUsersAction
             ->orderBy($sort)
             ->get();
 
-        foreach ($users as $key => $user) {
-            $users[$key]['updated_at'] = Carbon::parse($user['updated_at'])->toDateString();
-        }
-
         return $users;
     }
 }

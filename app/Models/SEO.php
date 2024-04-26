@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SEO extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'SEO';
 
     protected $fillable = [
@@ -19,9 +19,11 @@ class SEO extends Model
     ];
 
     protected $casts = [
+        // 
     ];
 
     protected $dates = [
+        // 
     ];
 
     public $timestamps = false;

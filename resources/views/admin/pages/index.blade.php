@@ -6,6 +6,12 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
+                <div class="col-md-12">
+                    <x-errors />
+                    <x-notice />
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-2">
                     <div class="card">
                         <div class="card-body table-responsive p-0">
@@ -27,17 +33,20 @@
                                         <th class="w-50">Наименование</th>
                                         <th>Дата создания</th>
                                         <th>Дата изменения</th>
-                                        {{-- <th>Защита</th> --}}
                                         <th>Действия</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td></td>
-                                        <td><input id="search" class="form-control float-right" placeholder="Поиск"></td>
+                                        <td>
+                                            <form action="">
+                                                <input class="form-control float-right" name="search" placeholder="Поиск">
+                                            </form>
+                                        </td>
+
                                         <td></td>
                                         <td></td>
-                                        {{-- <td></td> --}}
                                         <td></td>
                                     </tr>
                                     @foreach ($pages as $page)
@@ -48,15 +57,9 @@
                                                     {{ $page['name'] }}
                                                 </a>
                                             </td>
-                                            <td>{{ $page['create_date'] }}</td>
-                                            <td>{{ $page['update_date'] }}</td>
-                                            {{-- <td>
-                                                @if ($page['system_page'] == 0)
-                                                    <i class="fas fa-lock-open"></i>
-                                                @else
-                                                    <i class="fas fa-lock"></i>
-                                                @endif
-                                            </td> --}}
+                                            <td>{{ $page['create_date']->format('Y-m-d') }}</td>
+                                            <td>{{ $page['update_date']->format('Y-m-d') }}</td>
+
                                             <td class="text-center">
                                                 @if ($page['system_page'] == 0)
                                                     @if ($page['status'] == 1)

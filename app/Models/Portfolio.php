@@ -27,7 +27,7 @@ class Portfolio extends Model
     ];
 
     protected $casts = [
-        // 'status' => 'boolean',
+        //
     ];
 
     protected $dates = [
