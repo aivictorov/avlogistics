@@ -1746,16 +1746,39 @@ a.logo img {
   position: relative;
   margin-top: -30px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+}
+@media screen and (max-width: 1000px) {
+  .sixbox {
+    overflow-x: hidden;
+  }
+  .sixbox .sixbox__block {
+    transform: translateX(-52px);
+  }
+  .sixbox .sixbox__block--blog {
+    display: none;
+  }
+}
+@media screen and (max-width: 700px) {
+  .sixbox {
+    flex-direction: column-reverse;
+  }
+  .sixbox .sixbox__block--question {
+    transform: translateX(-26px);
+  }
+  .sixbox .sixbox__block--form {
+    transform: translateX(0px);
+  }
 }
 
 .sixbox__block {
+  flex-shrink: 0;
   height: 330px;
   position: relative;
 }
 .sixbox__block--question {
+  transform: translateX(10px);
   width: 363px;
   height: 330px;
   background: url("/images/sixbox_question.png") no-repeat 10px 20px;

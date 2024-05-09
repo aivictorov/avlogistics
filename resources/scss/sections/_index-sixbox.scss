@@ -4,17 +4,48 @@
     margin-top: -30px;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+
+    @include bp(1000px) {
+        overflow-x: hidden;
+
+        .sixbox__block {
+            transform: translateX(-52px);
+
+            &--blog {
+                display: none;
+            }
+        }
+    }
+
+    @include bp(700px) {
+        flex-direction: column-reverse;
+
+        .sixbox__block {
+            &--question {
+                transform: translateX(-26px);
+            }
+
+            &--form {
+                transform: translateX(0px);
+            }
+        }
+    }
 }
 
 .sixbox__block {
+    // border: 1px solid #000;
+    flex-shrink: 0;
+
     height: 330px;
     position: relative;
     // top: 0px;
 
     &--question {
+        transform: translateX(10px);
+
+
         width: 363px;
         height: 330px;
         background: url('/images/sixbox_question.png') no-repeat 10px 20px;
