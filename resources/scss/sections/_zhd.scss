@@ -1,9 +1,12 @@
 .zhd {
     height: 310px;
     // position: relative;
-
+    font-family: 'robofanregular';
+    line-height: 1;
+    text-align: center;
 
     display: flex;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
 
@@ -14,34 +17,63 @@
 .zhd__big {
     display: block;
     padding: 0;
-    margin-top: 85px;
+    margin-top: -20px;
+
     font-size: 88px;
-    font-family: 'robofanregular';
+    color: #000000;
+
+    @include bp(800px) {
+        font-size: 76px;
+    }
+
+    @include bp(700px) {
+        font-size: 62px;
+    }
+
+    @include bp(600px) {
+        font-size: 48px;
+    }
+
+    @include bp(500px) {
+        font-size: 42px;
+    }
+
+    @include bp(400px) {
+        font-size: 36px;
+    }
+
     // width: 700px;
-    height: 86px;
+    // height: 86px;
     // position: absolute;
     // left: 152px;
     // top: 85px;
-    color: #000000;
 }
 
 .zhd__row {
     display: block;
     margin-top: 9px;
+    font-size: 25px;
+
+    @include bp(800px) {
+        font-size: 22px;
+    }
+
+    @include bp(600px) {
+        font-size: 18px;
+    }
 }
 
 .zhd__neg {
+    color: #f14214;
+    text-decoration: none;
     // position: absolute;
-    top: 180px;
+    // top: 180px;
     // left: 150px;
     /* text-indent: -9999px; */
     /* background: url("/images/zhd_n.png") no-repeat; */
     // width: 265px;
-    height: 24px;
-    font-family: 'robofanregular';
-    font-size: 25px;
-    color: #f14214;
-    text-decoration: none;
+    // height: 24px;
+    // font-family: 'robofanregular';
 
     &:hover {
         border-bottom: 2px solid #f14214;
@@ -49,14 +81,12 @@
 }
 
 .zhd__rf {
+    color: #afafaf;
     // position: absolute;
     // top: 180px;
     // left: 416px;
     /* text-indent: -9999px; */
     /* background: url("/images/zhd_rf.png") no-repeat; */
     // width: 374px;
-    height: 24px;
-    font-family: 'robofanregular';
-    font-size: 25px;
-    color: #afafaf;
+    // height: 24px;
 }

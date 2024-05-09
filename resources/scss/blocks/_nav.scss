@@ -1,25 +1,23 @@
 .main-nav {
-    position: absolute;
-    top: 87px;
-    right: 30px;
+    @include bp(800px) {
+        display: none;
+    }
 }
-
 
 .main-nav ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 20px;
 
-.main-nav ul li {
-    display: block;
-    float: left;
+    @include bp(900px) {
+        column-gap: 10px;
+    }
 }
-
 
 .main-nav ul li a {
     text-decoration: none;
-    padding: 5px 0 26px 20px;
+    padding: 5px 0;
     color: #505050;
     font-size: 16px;
     position: relative;
@@ -29,7 +27,7 @@
     content: '';
     position: absolute;
     left: 50%;
-    bottom: 0px;
+    bottom: -20px;
     margin-left: 3px;
     border: 9px solid transparent;
     border-bottom: 9px solid #f14214;
@@ -41,73 +39,4 @@
 
 .main-nav ul li a:hover {
     color: #f14214;
-}
-
-/*
-.main-nav__phones {
-	position: absolute;
-	top: 32px;
-	right: 80px;
-	color: #bdbdbd;
-	font-size: 14px;
-	font-family: 'PT Sans', sans-serif;
-	text-align: right;
-	line-height: 24px;
-}*/
-
-.main-nav__phones {
-    position: absolute;
-    top: 40px;
-    right: 60px;
-    color: #bdbdbd;
-    font-size: 14px;
-    font-family: 'PT Sans', sans-serif;
-}
-
-.main-nav__soc {
-    position: absolute;
-    top: 40px;
-    right: 32px;
-    color: #bdbdbd;
-    font-size: 14px;
-    font-family: 'PT Sans', sans-serif;
-}
-
-.main-nav__soc-icon {
-    width: 21px;
-    height: 21px;
-    display: block;
-    float: left;
-    margin-left: 5px;
-    color: transparent;
-    font-size: 0;
-    text-indent: -1000px;
-    content: "";
-    opacity: 0.6;
-}
-
-
-.main-nav__soc-icon:hover {
-    opacity: 1;
-}
-
-.main-nav__soc-icon--vk {
-    background: url('/images/icon_soc_vk.png');
-}
-
-.main-nav__soc-icon--fb {
-    background: url('/images/icon_soc_fb.png');
-}
-
-.main-nav__soc-icon--tw {
-    background: url('/images/icon_soc_tw.png');
-}
-
-.main-nav__soc-icon--at {
-    background: url('/images/icon_soc_at.png');
-}
-
-
-.main-nav__phones span {
-    color: #6b6b6b;
 }

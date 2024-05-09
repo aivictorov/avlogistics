@@ -6,7 +6,7 @@
 
 @section('content')
     <section class="main-section main-section--index-map">
-        <div class="main-section__container">
+        <div class="container">
             <div class="zhd">
                 <h1 class="zhd__big">ЖД перевозки</h1>
                 <div class="zhd__row">
@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <div class="main-section__container main-section__container--inhider js-index-content" data-opened="false">
+        <div class="container main-section__container--inhider js-index-content" data-opened="false">
             <div class="index-content__main-text">
                 ООО <strong>«Авангард Лоджистикс»</strong> осуществляет железнодорожные перевозки любых негабаритных,
                 тяжеловесных и длинномерных грузов с собственных терминалов в Санкт-Петербурге. Наша компания обладает
@@ -79,7 +79,7 @@
         </div>
         <div class="index-submap js-index-submap"></div>
 
-        <div class="main-section__container">
+        <div class="container">
             <div class="sixbox">
                 <div class="sixbox__block js-sixbox__block sixbox__block--question">
                     <a href="/faq/" class="sixbox__text js-sixbox__text">Вопросы <span>и ответы</span></a>

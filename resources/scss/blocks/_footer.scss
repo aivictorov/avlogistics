@@ -3,37 +3,3 @@
     margin-top: auto;
     border-top: 1px solid #cbcbcb;
 }
-
-.main-footer__container {
-    width: 940px;
-    padding: 0;
-    margin: 0 auto;
-    position: relative;
-    height: 84px;
-    font-size: 13px;
-    color: #929292;
-}
-
-.main-footer__container_left {
-    position: absolute;
-    top: 20px;
-    left: 0;
-    text-align: left;
-}
-
-.main-footer__container_right {
-    position: absolute;
-    top: 20px;
-    right: 0;
-    text-align: right;
-}
-
-.main-footer__container span {
-    color: #6a6a6a;
-}
-
-
-.main-footer__container a {
-    color: #6a6a6a;
-    text-decoration: none;
-}

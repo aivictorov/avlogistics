@@ -1,5 +1,5 @@
 .aside-page {
-    width: 670px;
+    // max-width: 670px;
     float: left;
     margin-bottom: 50px;
 }
@@ -7,8 +7,13 @@
 .main-aside {
     float: right;
     width: 215px;
+    flex-shrink: 0;
     padding-top: 20px;
     padding-bottom: 30px;
+
+    @include bp(900px) {
+        display: none;
+    }
 }
 
 .main-aside__send-form {
@@ -43,6 +48,10 @@
     line-height: 20px;
     letter-spacing: 0.02em;
     margin-bottom: 30px;
+
+    p+p {
+        margin-top: 12px;
+    }
 }
 
 .page-content h1,

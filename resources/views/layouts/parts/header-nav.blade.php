@@ -1,7 +1,6 @@
 <nav class="{{ $type }}-nav">
     <ul>
         @foreach ($tree[array_key_first($tree)]['children'] as $key => $item)
-
             <?php
             $class = '';
             
@@ -16,7 +15,7 @@
             if ($item['url'] === 'shemy-pogruzki') {
                 $class = '-scheme';
             }
-
+            
             if ($item['url'] === 'kontakty') {
                 $class = '-contacts';
             }

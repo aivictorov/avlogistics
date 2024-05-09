@@ -1,43 +1,49 @@
 .sixbox {
     position: relative;
-    height: 380px;
+    // height: 380px;
     margin-top: -30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .sixbox__block {
     height: 330px;
-    position: absolute;
-    top: 0px;
+    position: relative;
+    // top: 0px;
+
+    &--question {
+        width: 363px;
+        height: 330px;
+        background: url('/images/sixbox_question.png') no-repeat 10px 20px;
+        // left: 0;
+    }
+
+    &--form {
+        width: 213px;
+        height: 330px;
+        background: url('/images/sixbox_form.png') no-repeat;
+        // left: 363px;
+    }
+
+    &--form.hovered {
+        width: 213px;
+        background-position: 100% 100%;
+    }
+
+    &--blog {
+        width: 361px;
+        height: 330px;
+        background: url('/images/sixbox_blog.png') no-repeat 10px -10px;
+        // left: 576px;
+    }
 }
 
-.sixbox__block--question {
-    width: 363px;
-    height: 330px;
-    background: url('/images/sixbox_question.png') no-repeat 10px 20px;
-    left: 0;
-}
 
-.sixbox__block--form {
-    width: 213px;
-    height: 330px;
-    background: url('/images/sixbox_form.png') no-repeat;
-    left: 363px;
-}
-
-.sixbox__block--form.hovered {
-    width: 213px;
-    background-position: 100% 100%;
-}
-
-.sixbox__block--blog {
-    width: 361px;
-    height: 330px;
-    background: url('/images/sixbox_blog.png') no-repeat 10px -10px;
-    left: 576px;
-}
-
-
-.sixbox__text {
+.sixbox__text,
+a.sixbox__text {
     position: absolute;
     color: #ffffff;
     font-size: 26px;
