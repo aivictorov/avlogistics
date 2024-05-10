@@ -1,22 +1,24 @@
 <section class="mobile-subnav js-mobile-subnav">
+    <div class="mobile-subnav-block js-mobile-subnav-block">
+        <div class="container">
+            <a class="mobile-subnav-block__close js-mobile-subnav-block__close" href="#">закрыть</a>
 
-    @for ($i = 2; $i < 6; $i++)
-        <div class="mobile-subnav-block js-mobile-subnav-block">
-            <div class="container">
-                <a class="mobile-subnav-block__close js-mobile-subnav-block__close" href="#">закрыть</a>
 
-                <div class="mobile-subnav-block__header">
-                    <a href={{ route('pages.show', $tree[array_key_first($tree)]['children'][$i]['url']) }}>
-                        <h2>{{ $tree[array_key_first($tree)]['children'][$i]['name'] }}</h2>
-                    </a>
-                </div>
+            <div class="mobile-subnav-block__columns">
 
-                @if (isset($tree[array_key_first($tree)]['children'][$i]['children']))
-                    <div class="mobile-subnav-block__columns">
 
-                        @foreach ($tree[array_key_first($tree)]['children'][$i]['children'] as $header)
-                            <div class="mobile-subnav-column">
 
+
+                @for ($i = 2; $i < 6; $i++)
+                    <div class="mobile-subnav-column">
+                        <div class="mobile-subnav-block__header">
+                            <a href={{ route('pages.show', $tree[array_key_first($tree)]['children'][$i]['url']) }}>
+                                <h2>{{ $tree[array_key_first($tree)]['children'][$i]['name'] }}</h2>
+                            </a>
+                        </div>
+
+                        @if (isset($tree[array_key_first($tree)]['children'][$i]['children']))
+                            @foreach ($tree[array_key_first($tree)]['children'][$i]['children'] as $header)
                                 <div class="mobile-subnav-column__header">
                                     <a href={{ route('pages.show', $header['url']) }}>{{ $header['name'] }}</a>
                                     @if (isset($header['children']))
@@ -33,14 +35,13 @@
                                         @endforeach
                                     </ul>
                                 @endif
-                            </div>
-                        @endforeach
-
+                            @endforeach
+                        @endif
                     </div>
-                @endif
 
-
+                @endfor
             </div>
+
         </div>
-    @endfor
+    </div>
 </section>

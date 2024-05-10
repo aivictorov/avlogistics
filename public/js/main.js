@@ -6,7 +6,7 @@ var __webpack_exports__ = {};
 document.addEventListener('DOMContentLoaded', function () {
   subnav();
   mobileNav();
-  slider();
+  if (document.querySelector('.js-portfolio-slider')) slider();
 
   // old();
 
@@ -113,19 +113,20 @@ function mobileNav() {
 }
 ;
 function subnav() {
-  var btnAbout = document.querySelector('.js-subnav-opener-about');
-  btnAbout.addEventListener('click', function (event) {
+  var btnZhd = document.querySelector('.js-subnav-opener-zhd');
+  btnZhd.addEventListener('click', function (event) {
     event.preventDefault();
     var blockSubnav = document.querySelector('.js-subnav-blocks');
-    var blockAbout = document.querySelector('.js-subnav-blocks__block--about');
-    if (blockAbout.classList.contains('opened')) {
+    var blockZhd = document.querySelector('.js-subnav-blocks__block--zhd');
+    console.log(blockSubnav, blockZhd);
+    if (blockZhd.classList.contains('opened')) {
       blockSubnav.classList.remove('opened');
-      blockAbout.classList.remove('opened');
-      btnAbout.classList.remove('opened');
+      blockZhd.classList.remove('opened');
+      btnZhd.classList.remove('opened');
     } else {
       blockSubnav.classList.add('opened');
-      blockAbout.classList.add('opened');
-      btnAbout.classList.add('opened');
+      blockZhd.classList.add('opened');
+      btnZhd.classList.add('opened');
     }
 
     // if (blockAbout.hasClass('opened')) {

@@ -32,7 +32,8 @@
         </div>
     </div>
 
-    {{-- @include('layouts.parts.header-subnav') --}}
+    @include('layouts.parts.header-subnav')
+
     @include('layouts.parts.mobile-subnav')
 </header>
 

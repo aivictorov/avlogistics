@@ -251,16 +251,26 @@
 }
 
 .portfolio-miniimages {
-    width: 692px;
+    // max-width: 692px;
     overflow: hidden;
+
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    row-gap: 14px;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .portfolio-gallerey-miniimage {
-    margin: 10px 0 7px 20px;
+    flex-shrink: 1;
+    // margin: 10px 0 7px 20px;
     border-bottom: 3px solid #ffffff;
     position: relative;
-    left: -20px;
-    float: left;
+    // left: -20px;
+    // float: left;
     cursor: pointer;
 }
 

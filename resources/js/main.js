@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 	subnav();
 	mobileNav();
-	slider();
+	if (document.querySelector('.js-portfolio-slider')) slider();
 
 	// old();
 
@@ -142,21 +142,23 @@ function mobileNav() {
 };
 
 function subnav() {
-	const btnAbout = document.querySelector('.js-subnav-opener-about');
+	const btnZhd = document.querySelector('.js-subnav-opener-zhd');
 
-	btnAbout.addEventListener('click', (event) => {
+	btnZhd.addEventListener('click', (event) => {
 		event.preventDefault();
 		const blockSubnav = document.querySelector('.js-subnav-blocks');
-		const blockAbout = document.querySelector('.js-subnav-blocks__block--about');
+		const blockZhd = document.querySelector('.js-subnav-blocks__block--zhd');
 
-		if (blockAbout.classList.contains('opened')) {
+		console.log(blockSubnav, blockZhd)
+
+		if (blockZhd.classList.contains('opened')) {
 			blockSubnav.classList.remove('opened');
-			blockAbout.classList.remove('opened');
-			btnAbout.classList.remove('opened');
+			blockZhd.classList.remove('opened');
+			btnZhd.classList.remove('opened');
 		} else {
 			blockSubnav.classList.add('opened');
-			blockAbout.classList.add('opened')
-			btnAbout.classList.add('opened');
+			blockZhd.classList.add('opened')
+			btnZhd.classList.add('opened');
 		}
 
 		// if (blockAbout.hasClass('opened')) {
@@ -586,8 +588,6 @@ function arrowbaranimate() {
 			}, 100);
 		}, 150);
 	}, 100);
-
-
 	setTimeout(arrowbaranimate, 3000);
 }
 

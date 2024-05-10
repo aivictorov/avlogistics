@@ -1,20 +1,117 @@
-.upform {
-    width: 680px;
-    padding-bottom: 30px;
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: 12px;
+    max-width: 680px;
 }
 
-.upform-header {
+.form-header {
     color: #f14214;
     font-size: 30px;
     font-family: "Roboto", sans-serif;
     font-weight: lighter;
 }
 
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 30px;
+
+    @include bp(600px) {
+        flex-direction: column;
+        row-gap: 12px;
+    }
+}
+
+.form-column {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+}
+
+.form-control {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: 5px;
+}
+
+.form-column,
+.form-control {
+    width: 100%;
+
+    &--25 {
+        width: 25%;
+    }
+
+    &--33 {
+        width: 33%;
+    }
+
+    &--50 {
+        width: 50%;
+    }
+
+    &--67 {
+        width: 67%;
+    }
+
+    &--75 {
+        width: 75%;
+    }
+
+    &--25,
+    &--33,
+    &--50,
+    &--67,
+    &--75 {
+        @include bp(600px) {
+            width: 100%;
+        }
+    }
+}
+
+.form-label {
+    font-family: "Tahoma", sans-serif;
+    font-size: 12px;
+    color: #414040;
+}
+
+.form-input {
+    display: block;
+    width: 100%;
+    padding: 7px 10px;
+    border: 1px solid #cacaca;
+}
+
+.form-textarea {
+    display: block;
+    padding: 7px 10px;
+    width: 100%;
+    height: 100px;
+    border: 1px solid #cacaca;
+    resize: vertical;
+}
+
+.has-error .form-input {
+    border: 1px solid #ef4012;
+}
+
+.has-error .help-block {
+    display: none;
+}
 
 
-.upform-close {
-    position: absolute;
-    top: 20px;
+
+
+
+
+
+
+.form-close {
+    // position: absolute;
+    // top: 20px;
     right: 20px;
     background: url('/images/icon_subnav_x.png') no-repeat;
     width: 15px;
@@ -26,19 +123,11 @@
     opacity: 0.5;
 }
 
-.upform-close:hover {
+.form-close:hover {
     opacity: 1;
 }
 
-
-.upform-label {
-    position: absolute;
-    font-size: 12px;
-    color: #414040;
-    font-family: "Tahoma", sans-serif;
-}
-
-.upform-info {
+.form-info {
     border: 1px solid #dedede;
     padding: 20px 25px;
     color: #737373;
@@ -48,167 +137,31 @@
     margin: 30px auto;
 }
 
-.upform-info2 {
+// .form-info2 {
+//     margin: 30px auto;
+// }
 
-    margin: 30px auto;
-}
+// .form-fieldarea {
+//     // position: relative;
 
-.upform-fieldarea {
-    position: relative;
-    height: 420px;
-}
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     flex-wrap: wrap;
+//     column-gap: 70px;
+//     row-gap: 20px;
+// }
 
-
-.upform-masthave {
+.form-musthave {
     color: #cc0000;
     margin-left: 5px;
     font-family: "Tahoma", sans-serif;
 }
 
-.upform-input {
-    top: -100px;
-    position: absolute;
-    padding: 7px 10px;
-    border: 1px solid #cacaca;
-    width: 180px;
-    margin-top: -2px;
-}
-
-
-.upform-label {
-    top: -100px;
-    position: absolute;
-}
-
-.upform-firm_label {
-    top: 0;
-    left: 0;
-}
-
-
-.upform-firm {
-    width: 180px;
-    top: 25px;
-    left: 0;
-}
-
-.upform-gruz_label {
-    top: 0;
-    left: 240px;
-}
-
-.upform-gruz {
-    top: 25px;
-    left: 240px;
-    width: 420px;
-}
-
-.upform-name_label {
-    top: 70px;
-    left: 0;
-}
-
-.upform-name {
-    top: 95px;
-    left: 0;
-}
-
-.upform-phone_label {
-    top: 140px;
-    left: 0;
-}
-
-.upform-phone {
-    top: 165px;
-    left: 0;
-}
-
-.upform-email_label {
-    top: 210px;
-    left: 0;
-}
-
-.upform-email {
-    top: 235px;
-    left: 0;
-}
-
-.upform-size_label {
-    top: 70px;
-    left: 240px;
-}
-
-.upform-size {
-    top: 95px;
-    left: 240px;
-}
-
-.upform-massa_label {
-    top: 70px;
-    left: 480px;
-}
-
-.upform-massa {
-    top: 95px;
-    left: 480px;
-}
-
-.upform-pack_label {
-    top: 140px;
-    left: 240px;
-}
-
-.upform-pack {
-    TOP: 165px;
-    left: 240px;
-}
-
-.upform-place_label {
-    top: 140px;
-    left: 480px;
-}
-
-.upform-place {
-    top: 165px;
-    left: 480px;
-}
-
-.upform-from_label {
-    top: 210px;
-    left: 240px;
-}
-
-.upform-from {
-    top: 235px;
-    left: 240px;
-}
-
-.upform-to_label {
-    top: 210px;
-    left: 480px;
-}
-
-.upform-to {
-    top: 235px;
-    left: 480px;
-}
-
-.upform-dopinfo_label {
-    top: 280px;
-    left: 0;
-}
-
-.upform-dopinfo {
-    top: 315px;
-    left: 0;
-    width: 418px;
-    height: 60px;
-}
-
-.upform-submit {
-    top: 315px;
-    left: 480px;
-    position: absolute;
+.form-submit {
+    // top: 315px;
+    // left: 480px;
+    // position: absolute;
     background-color: #ef4012;
     padding: 10px 20px;
     border-radius: 10px;
@@ -216,12 +169,4 @@
     color: #ffffff;
     font-size: 14px;
     cursor: pointer;
-}
-
-.has-error .upform-input {
-    border: 1px solid #ef4012;
-}
-
-.has-error .help-block {
-    display: none;
 }
