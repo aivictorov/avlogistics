@@ -38,6 +38,10 @@
     font-family: "Roboto", sans-serif;
     font-weight: lighter;
     margin-bottom: 20px;
+
+    @include bp(600px) {
+        font-size: 25px;
+    }
 }
 
 
@@ -156,6 +160,10 @@
     font-size: 11px;
     font-family: 'Tahoma', "PT Sans", sans-serif;
     color: #a9a9a9;
+
+    @include bp(600px) {
+        display: none;
+    }
 }
 
 .page-breadcrumbs a {

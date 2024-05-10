@@ -40,6 +40,10 @@ h6 {
     padding: 0 30px;
     width: 100%;
     max-width: 1000px;
+
+    @include bp(600px) {
+        padding: 0 25px;
+    }
 }
 
 

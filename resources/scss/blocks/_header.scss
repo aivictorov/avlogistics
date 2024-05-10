@@ -1,10 +1,13 @@
 .header {
+    position: relative;
     flex-shrink: 0;
-    padding-top: 41px;
-    padding-bottom: 19px;
+    padding-top: 40px;
+    padding-bottom: 20px;
     border-bottom: 3px solid #f14214;
 
-    position: relative;
+    @include bp(600px) {
+        padding-top: 23px;
+    }
 
     &.vh {
         visibility: hidden;
@@ -14,13 +17,34 @@
 .header__row {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
+
+.header__logo {
+    padding-bottom: 10px;
+
+    @include bp(600px) {
+        padding-bottom: 0;
+    }
+}
+
+.header__right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    row-gap: 20px;
+}
+
 
 .header__contacts {
     display: flex;
     align-items: flex-start;
     justify-content: flex-end;
     column-gap: 7px;
+
+    @include bp(600px) {
+        display: none;
+    }
 }
 
 
@@ -72,10 +96,6 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-
-    @include bp(400px) {
-        display: none;
-    }
 }
 
 .header__phone-main,
@@ -86,7 +106,7 @@
 }
 
 .header__phone-add {
-    @include bp(600px) {
+    @include bp(800px) {
         display: none;
     }
 }
@@ -94,5 +114,16 @@
 .header__nav {
     display: flex;
     justify-content: flex-end;
-    margin-top: 20px;
+
+    @include bp(800px) {
+        display: none;
+    }
+}
+
+.header__mobile-nav {
+    display: none;
+
+    @include bp(800px) {
+        display: block;
+    }
 }

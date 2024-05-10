@@ -25,7 +25,7 @@ class PageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(['layouts.parts.header-nav', 'layouts.parts.header-subnav', 'site.parts.aside-page'], function ($view) {
+        View::composer(['layouts.parts.header-nav', 'layouts.parts.header-subnav', 'layouts.parts.mobile-subnav', 'site.parts.aside-page'], function ($view) {
             $view->with('tree', $this->menu());
         });
     }

@@ -1,21 +1,18 @@
 $line-width: 30px;
-$line-height: 4px;
-$color: #6b6b6b;
+$line-height: 3px;
+$color: #f14214;
 
 $width: $line-width;
-$height: $line-height * 5;
+$spacer: 8px;
+$height: 2 * $spacer + 3 * $line-height;
 
 .mobile-nav-icon {
     width: $width;
     height: $height;
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-
-    @include bp(800px) {
-        display: flex;
-    }
 }
 
 .mobile-nav-icon__middle {
@@ -33,23 +30,24 @@ $height: $line-height * 5;
         width: $line-width;
         height: $line-height;
         background-color: $color;
-        transition: transform .2s ease-in, top .2s linear .2s;
+        transition: transform .2s ease-in,
+            top .2s linear .2s;
     }
 
     &::before {
-        top: -($line-height * 2);
+        top: -$spacer ;
     }
 
     &::after {
-        top: $line-height * 2;
+        top: $spacer;
     }
 }
 
-.mobile-nav-icon.mobile-nav-icon--active {
-    position: fixed;
-    top: 41px;
-    right: 15px;
-}
+// .mobile-nav-icon.mobile-nav-icon--active {
+//     position: fixed;
+//     top: 41px;
+//     right: 15px;
+// }
 
 .mobile-nav-icon.mobile-nav-icon--active .mobile-nav-icon__middle {
     background-color: transparent;
@@ -58,7 +56,8 @@ $height: $line-height * 5;
     &::after {
         top: 0;
         background-color: #FFF;
-        transition: top .2s linear, transform .2s ease-in .2s;
+        transition: top .2s linear,
+            transform .2s ease-in .2s;
     }
 
     &::before {

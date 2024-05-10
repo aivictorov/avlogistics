@@ -16,9 +16,8 @@
 
 .zhd__big {
     display: block;
-    padding: 0;
     margin-top: -20px;
-
+    padding: 0;
     font-size: 88px;
     color: #000000;
 
@@ -26,33 +25,20 @@
         font-size: 76px;
     }
 
-    @include bp(700px) {
-        font-size: 62px;
-    }
-
     @include bp(600px) {
-        font-size: 48px;
+        font-size: 64px;
     }
 
-    @include bp(500px) {
-        font-size: 42px;
+    @include bp(380px) {
+        font-size: 52px;
     }
-
-    @include bp(400px) {
-        font-size: 36px;
-    }
-
-    // width: 700px;
-    // height: 86px;
-    // position: absolute;
-    // left: 152px;
-    // top: 85px;
 }
 
 .zhd__row {
     display: block;
     margin-top: 9px;
-    font-size: 25px;
+    font-size: 24px;
+    line-height: 1.08;
 
     @include bp(800px) {
         font-size: 22px;
@@ -63,30 +49,24 @@
     }
 }
 
-.zhd__neg {
+.zhd__accent {
     color: #f14214;
     text-decoration: none;
-    // position: absolute;
-    // top: 180px;
-    // left: 150px;
-    /* text-indent: -9999px; */
-    /* background: url("/images/zhd_n.png") no-repeat; */
-    // width: 265px;
-    // height: 24px;
-    // font-family: 'robofanregular';
 
     &:hover {
         border-bottom: 2px solid #f14214;
     }
 }
 
-.zhd__rf {
+.zhd__main {
     color: #afafaf;
-    // position: absolute;
-    // top: 180px;
-    // left: 416px;
-    /* text-indent: -9999px; */
-    /* background: url("/images/zhd_rf.png") no-repeat; */
-    // width: 374px;
-    // height: 24px;
+}
+
+.zhd__add {
+    display: block;
+    color: #afafaf;
+
+    @include bp(600px) {
+        display: inline;
+    }
 }

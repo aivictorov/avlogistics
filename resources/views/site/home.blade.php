@@ -10,8 +10,9 @@
             <div class="zhd">
                 <h1 class="zhd__big">ЖД перевозки</h1>
                 <div class="zhd__row">
-                    <a class="zhd__neg" href="#!">грузов любой сложности </a>
-                    <span class="zhd__rf">в вагонах и контейнерах</span>
+                    <a class="zhd__accent" href="#!">грузов любой сложности </a>
+                    <span class="zhd__main">в вагонах и контейнерах</span>
+                    <span class="zhd__add">по России и СНГ, импорт из Китая, экспорт, транзит</span>
                 </div>
             </div>
         </div>
@@ -29,8 +30,8 @@
             <hr class="super-hr" />
 
             <h2 class="index-content__h2">
-                Мы осуществляем железнодорожные перевозки негабаритных и тяжеловесных грузов,
-                <br>перевозки техники и оборудования
+                Мы осуществляем железнодорожные перевозки негабаритных и тяжеловесных грузов, перевозки техники и
+                оборудования
             </h2>
             <div class="index-content-columns">
                 <ul class="index-content-columns__left">
@@ -66,7 +67,7 @@
                 </ul>
             </div>
             <div class="index-content-simple">
-                Более десяти лет мы перевозим по железной дороге самые сложные грузы.<br>В нашем <a
+                Более десяти лет мы перевозим по железной дороге самые сложные грузы. В нашем <a
                     href="http://www.zhd.su/portfolio/">портфолио</a> сотни успешно выполненных проектов, поэтому с нами Вы
                 можете быть уверены, что Ваш груз будет доставлен в сохранности и точно в срок. Доверьте доставку
                 негабаритных грузов профессионалам.
@@ -81,14 +82,20 @@
 
         <div class="container">
             <div class="sixbox">
-                <div class="sixbox__block js-sixbox__block sixbox__block--question">
-                    <a href="/faq/" class="sixbox__text js-sixbox__text">Вопросы <span>и ответы</span></a>
+                <div class="sixbox-wrapper">
+                    <div class="sixbox__block js-sixbox__block sixbox__block--question">
+                        <a href="/faq/" class="sixbox__text js-sixbox__text">Вопросы <span>и ответы</span></a>
+                    </div>
                 </div>
-                <div class="sixbox__block js-sixbox__block sixbox__block--form">
-                    <a href="/contact/" class="sixbox__text js-sixbox__text">Рассчитать <span>стоимость</span></a>
+                <div class="sixbox-wrapper">
+                    <div class="sixbox__block js-sixbox__block sixbox__block--form">
+                        <a href="/contact/" class="sixbox__text js-sixbox__text">Рассчитать <span>стоимость</span></a>
+                    </div>
                 </div>
-                <div class="sixbox__block js-sixbox__block sixbox__block--blog">
-                    <a href="/blog/" class="sixbox__text js-sixbox__text">Блог <span>компании</span></a>
+                <div class="sixbox-wrapper">
+                    <div class="sixbox__block js-sixbox__block sixbox__block--blog">
+                        <a href="/blog/" class="sixbox__text js-sixbox__text">Блог <span>компании</span></a>
+                    </div>
                 </div>
             </div>
         </div>

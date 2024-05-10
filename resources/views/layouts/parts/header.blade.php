@@ -2,7 +2,9 @@
     <div class="container">
         <div class="header__row">
             <div class="header__left">
-                <a href="/" class="logo"><img src="/images/logo@2x.png"></a>
+                <div class="header__logo">
+                    <a href="/" class="logo"><img src="/images/logo@2x.png"></a>
+                </div>
             </div>
             <div class="header__right">
                 <div class="header__contacts">
@@ -22,13 +24,16 @@
                 </div>
                 <div class="header__nav">
                     @include('layouts.parts.header-nav', ['type' => 'main'])
+                </div>
+                <div class="header__mobile-nav">
                     @include('layouts.parts.mobile-nav')
                 </div>
             </div>
         </div>
     </div>
 
-    @include('layouts.parts.header-subnav')
+    {{-- @include('layouts.parts.header-subnav') --}}
+    @include('layouts.parts.mobile-subnav')
 </header>
 
 <div class="top-header js-top-header">

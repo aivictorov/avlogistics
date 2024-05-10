@@ -4,6 +4,11 @@
     font-size: 24px;
     text-align: center;
     padding: 40px 10px;
+
+    @include bp(600px) {
+        padding: 40px 0px;
+        font-size: 18px;
+    }
 }
 
 .index-content__h2 {
@@ -11,6 +16,11 @@
     font-family: 'Roboto', sans-serif;
     font-weight: lighter;
     text-align: center;
+
+    @include bp(600px) {
+        font-size: 22px;
+
+    }
 }
 
 .index-content-wedo {
@@ -89,29 +99,25 @@
 }
 
 .index-content-columns {
-    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    column-gap: 100px;
     margin-top: 50px;
+    overflow: hidden;
+
+    @include bp(600px) {
+        flex-direction: column;
+    }
 }
 
-.index-content-columns__left {
-    display: block;
-    margin: 0;
-    padding: 0 50px 0 0;
-    width: 420px;
-    float: left;
-    list-style: none;
-}
-
-
+.index-content-columns__left,
 .index-content-columns__right {
-    display: block;
-    margin: 0;
-    padding: 0 0 0 50px;
-    width: 420px;
-    float: left;
-    list-style: none;
-}
+    width: 50%;
 
+    @include bp(600px) {
+        width: 100%;
+    }
+}
 
 .index-content-columns__item {
     list-style: none;
@@ -122,14 +128,26 @@
     font-family: 'Roboto', sans-serif;
     font-weight: lighter;
     font-size: 18px;
-    line-height: 29px;
+    line-height: 1.6;
+
+    @include bp(600px) {
+        font-size: 16px;
+        line-height: 1.4;
+        background-size: 30px;
+
+    }
 }
 
 .index-content-simple {
-    padding: 30px 40px 30px 40px;
+    padding: 30px 40px;
     font-family: 'Roboto', sans-serif;
     font-weight: lighter;
     text-align: center;
     font-size: 24px;
     margin: 20px 0 70px 0;
+
+    @include bp(600px) {
+        padding: 30px 0px;
+        font-size: 20px;
+    }
 }

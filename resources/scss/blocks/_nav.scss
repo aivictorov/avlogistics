@@ -1,8 +1,4 @@
-.main-nav {
-    @include bp(800px) {
-        display: none;
-    }
-}
+.main-nav {}
 
 .main-nav ul {
     display: flex;
