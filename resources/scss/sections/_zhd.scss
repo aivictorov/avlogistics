@@ -64,6 +64,8 @@
 
 .zhd__add {
     display: block;
+    margin: 0 auto;
+    max-width: 80%;
     color: #afafaf;
 
     @include bp(600px) {

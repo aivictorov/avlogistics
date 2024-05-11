@@ -678,10 +678,11 @@ a.logo img {
 }
 
 .mobile-subnav-column + .mobile-subnav-column {
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .mobile-subnav-column__header {
+  margin-top: 8px;
   font-family: "Roboto", sans-serif;
   font-size: 14px;
 }
@@ -746,6 +747,22 @@ a.logo img {
   line-height: 18px;
   padding-top: 10px;
   margin-bottom: 10px;
+}
+
+.mobile-subnav-contacts {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.mobile-subnav__phones {
+  border-top: 1px solid lightgray;
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
 }
 
 .pagination {
@@ -2023,46 +2040,46 @@ a.sixbox__text {
   background-color: rgba(255, 255, 255, 0.4);
   border-bottom: 3px solid #ffffff;
 }
+.portfolio-slider-arrow:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+  transition: 300ms;
+}
 
 .portfolio-slider-arrow__left {
   left: 0;
 }
-
-.portfolio-slider-arrow__right {
-  right: 0;
-}
-
 .portfolio-slider-arrow__left:before {
   content: "";
-  display: block;
-  top: 110px;
-  height: 40px;
-  width: 30px;
   position: absolute;
+  display: block;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  display: block;
+  width: 30px;
+  height: 40px;
   background-image: url("/images/arrow_portfolio_slider_left.png");
-  left: 25px;
   background-color: rgba(255, 255, 255, 0.6);
   background-repeat: no-repeat;
   background-position: 10px 13px;
 }
 
+.portfolio-slider-arrow__right {
+  right: 0;
+}
 .portfolio-slider-arrow__right:before {
-  background-image: url("/images/arrow_portfolio_slider_right.png");
-  right: 25px;
   content: "";
-  display: block;
-  top: 110px;
-  height: 40px;
-  width: 30px;
   position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  display: block;
+  width: 30px;
+  height: 40px;
+  background-image: url("/images/arrow_portfolio_slider_right.png");
   background-color: rgba(255, 255, 255, 0.6);
   background-repeat: no-repeat;
   background-position: 13px 13px;
-}
-
-.portfolio-slider-arrow:hover {
-  background-color: rgba(255, 255, 255, 0.6);
-  transition: 300ms;
 }
 
 .gallery-slider {
@@ -2442,6 +2459,8 @@ a.sixbox__text {
 
 .zhd__add {
   display: block;
+  margin: 0 auto;
+  max-width: 80%;
   color: #afafaf;
 }
 @media screen and (max-width: 600px) {

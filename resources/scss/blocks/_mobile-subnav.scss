@@ -84,10 +84,11 @@
 }
 
 .mobile-subnav-column+.mobile-subnav-column {
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .mobile-subnav-column__header {
+    margin-top: 8px;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
 
@@ -163,4 +164,20 @@
         padding-top: 10px;
         margin-bottom: 10px;
     }
+}
+
+.mobile-subnav-contacts {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.mobile-subnav__phones {
+    border-top: 1px solid lightgray;
+    padding-top: 10px;
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    column-gap: 10px;
 }

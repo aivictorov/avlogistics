@@ -12,15 +12,17 @@
                 <div class="zhd__row">
                     <a class="zhd__accent" href="#!">грузов любой сложности </a>
                     <span class="zhd__main">в вагонах и контейнерах</span>
-                    <span class="zhd__add">по России и СНГ, импорт из Китая, экспорт, транзит</span>
+                    <span class="zhd__add">по всей террритории России, международные перевозки, импорт и доставка товаров из
+                        Китая</span>
                 </div>
             </div>
         </div>
 
         <div class="container main-section__container--inhider js-index-content" data-opened="false">
             <div class="index-content__main-text">
-                ООО <strong>«Авангард Лоджистикс»</strong> осуществляет железнодорожные перевозки любых негабаритных,
-                тяжеловесных и длинномерных грузов с собственных терминалов в Санкт-Петербурге. Наша компания обладает
+                ООО <strong>"Авангард Логистика"</strong> осуществляет железнодорожные перевозки по всей трерриторрии РФ
+                стран СНГ, включая повагнные отправки, контейнерные перевозки, перевозки негабаритных,
+                тяжеловесных и длинномерных грузов. Наша компания обладает
                 уникальным опытом перевозки техники ведущих мировых производителей (Caterpillar, Doosan, Grove, John Deere,
                 Hitachi, Komatsu, Liebherr, Ponsse, Sandvik, Shantui, Terex, Volvo), оборудования для энергетической,
                 нефтеперерабатывающей, горнодобывающей и других отраслей промышленности, металлических конструкций и
@@ -84,7 +86,7 @@
             <div class="sixbox">
                 <div class="sixbox-wrapper">
                     <div class="sixbox__block js-sixbox__block sixbox__block--question">
-                        <a href="/faq/" class="sixbox__text js-sixbox__text">Вопросы <span>и ответы</span></a>
+                        <a href="/faq/" class="sixbox__text js-sixbox__text">Услуги <span>компании</span></a>
                     </div>
                 </div>
                 <div class="sixbox-wrapper">
@@ -94,7 +96,7 @@
                 </div>
                 <div class="sixbox-wrapper">
                     <div class="sixbox__block js-sixbox__block sixbox__block--blog">
-                        <a href="/blog/" class="sixbox__text js-sixbox__text">Блог <span>компании</span></a>
+                        <a href="/blog/" class="sixbox__text js-sixbox__text">Вопросы <span>и ответы</span></a>
                     </div>
                 </div>
             </div>
