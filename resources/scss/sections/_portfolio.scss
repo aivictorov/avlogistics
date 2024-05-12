@@ -43,7 +43,7 @@
             display: block;
             width: 30px;
             height: 40px;
-            background-image: url('/images/arrow_portfolio_slider_left.png');
+            background-image: url('/images/icons/arrow_portfolio_slider_left.png');
             background-color: rgba(255, 255, 255, 0.6);
             background-repeat: no-repeat;
             background-position: 10px 13px;
@@ -62,7 +62,7 @@
             display: block;
             width: 30px;
             height: 40px;
-            background-image: url('/images/arrow_portfolio_slider_right.png');
+            background-image: url('/images/icons/arrow_portfolio_slider_right.png');
             background-color: rgba(255, 255, 255, 0.6);
             background-repeat: no-repeat;
             background-position: 13px 13px;
@@ -120,7 +120,7 @@
     height: 40px;
     width: 30px;
     position: absolute;
-    background-image: url('/images/arrow_portfolio_slider_left.png');
+    background-image: url('/images/icons/arrow_portfolio_slider_left.png');
     left: 25px;
     background-color: rgba(255, 255, 255, 0.6);
     background-repeat: no-repeat;
@@ -130,7 +130,7 @@
 
 
 .gallery-slider-arrow__right:before {
-    background-image: url('/images/arrow_portfolio_slider_right.png');
+    background-image: url('/images/icons/arrow_portfolio_slider_right.png');
     right: 25px;
     content: "";
     display: block;

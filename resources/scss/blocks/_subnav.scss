@@ -2,7 +2,7 @@
     position: absolute;
     top: calc(100% + 3px);
     width: 100%;
-    background: url('/images/shadow_six.png') top center no-repeat #FFF;
+    background: url('/images/sixbox/shadow_six.png') top center no-repeat #FFF;
     z-index: 220;
 
     &.opened {
@@ -33,7 +33,7 @@
     position: absolute;
     top: 30px;
     right: 30px;
-    background: url('/images/icon_subnav_x.png') no-repeat;
+    background: url('/images/icons/icon_subnav_x.png') no-repeat;
     width: 15px;
     height: 15px;
     color: transparent;
@@ -95,14 +95,14 @@
     }
 
     // &--blog {
-    //     background: url('/images/icon_blog.png') no-repeat top left;
+    //     background: url('/images/icons/icon_blog.png') no-repeat top left;
     //     padding: 10px 0 10px 36px;
     //     border-bottom: 1px solid #dedede;
     //     margin: 0 0 10px 0;
     // }
 
     // &--portfolio {
-    //     background: url('/images/icon_portfolio.png') no-repeat 0 3px;
+    //     background: url('/images/icons/icon_portfolio.png') no-repeat 0 3px;
     //     padding: 10px 0 10px 36px;
     //     border-bottom: 1px solid #dedede;
     //     margin: 0 0 10px 0;
@@ -248,7 +248,7 @@
 .subnav-column__porfolio-arrows_left {
     width: 8px;
     height: 16px;
-    background: url('/images/arrow_small_red_left.png') no-repeat;
+    background: url('/images/icons/arrow_small_red_left.png') no-repeat;
     background-position: 50% 50%;
     padding: 5px 10px;
     content: "";
@@ -264,7 +264,7 @@
 .subnav-column__porfolio-arrows_right {
     width: 8px;
     height: 16px;
-    background: url('/images/arrow_small_red_right.png') no-repeat;
+    background: url('/images/icons/arrow_small_red_right.png') no-repeat;
     background-position: 50% 50%;
     padding: 5px 10px;
     content: "";

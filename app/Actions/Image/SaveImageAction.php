@@ -41,10 +41,10 @@ class SaveImageAction
         }
 
         if ($watermark) {
-            $watermark = InterventionImage::make(public_path('images/watermark.png'));
+            $watermark = InterventionImage::make(public_path('images/watermarks/watermark.png'));
             $image->insert($watermark, 'center');
 
-            $mini_watermark = InterventionImage::make(public_path('images/mini-watermark.png'));
+            $mini_watermark = InterventionImage::make(public_path('images/watermarks/mini-watermark.png'));
             $image->insert($mini_watermark, 'bottom-right');
         }
 

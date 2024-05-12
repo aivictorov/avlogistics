@@ -3,7 +3,7 @@
         <div class="header__row">
             <div class="header__left">
                 <div class="header__logo">
-                    <a href="/" class="logo"><img src="/images/logo@2x.png"></a>
+                    <a href="/" class="logo"><img src="/images/logo/logo@2x.png"></a>
                 </div>
             </div>
             <div class="header__right">
@@ -39,7 +39,7 @@
 
 <div class="top-header js-top-header">
     <div class="top-header__in">
-        <a href="/" class="top-logo"><img src="/images/logo_min.png"></a>
+        <a href="/" class="top-logo"><img src="/images/logo/logo_min.png"></a>
 
         @include('layouts.parts.header-nav', ['type' => 'top'])
 
