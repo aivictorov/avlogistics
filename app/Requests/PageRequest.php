@@ -10,11 +10,11 @@ class PageRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'min:3', 'max:50'],
+            'name' => ['required', 'string', 'min:3', 'max:100'],
             'h1' => ['required', 'string', 'min:3', 'max:100'],
             'parent_id' => ['required', 'integer', 'min:0'],
             'text' => ['required', 'string', 'min:12'],
-            'url' => ['required', 'min:3', 'max:50'],
+            'url' => ['required', 'min:3', 'max:100'],
             'menu_sort' => ['required', 'integer', 'min:0', 'max:100'],
             'menu_show' => ['required', 'boolean'],
             'status' => ['required', 'boolean'],

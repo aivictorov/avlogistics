@@ -132,3 +132,26 @@ h6 {
     color: #6a6a6a;
     text-decoration: none;
 }
+
+
+
+.services-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    row-gap: 20px;
+}
+
+.services-list__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: 30%;
+    height: 200px;
+    color: #FFF;
+    background-color: cadetblue;
+    font-weight: 500;
+    font-size: 20px;
+}

@@ -2,37 +2,6 @@ export default function old() {
     console.log('old imported');
 
 
-    $('.js-form-open').click(function () {
-
-        $("html, body").animate({ scrollTop: 200 }, "slow");
-        $('.js-blackback').fadeIn(300);
-
-        var upflash = $('.js-apply-form');
-        upflash.appendTo('.js-upflash');
-        upflash.show();
-
-        $('.js-upflash').fadeIn(300);
-        return false;
-    });
-
-    $('.js-upform-close, .js-blackback').click(function () {
-        $('.js-blackback').fadeOut(300);
-
-        var upform = $('.js-upflash');
-        var upflash = upform.find('.js-apply-form');
-        var slider = upform.find('.gallery-slider');
-
-        upform.fadeOut(300, function () {
-
-            upform.removeClass('upflash-bigimage')
-            slider.remove();
-            upflash.hide();
-            upflash.prependTo('body');
-        });
-        return false;
-    });
-
-
 
     $('.js-subnav-blocks__close').click(function () {
         $('.js-subnav-blocks__block').removeClass('opened').fadeOut(300);
@@ -74,6 +43,13 @@ export default function old() {
             subnav_porfolio_slider.animate({ left: "+=279" }, { duration: 400, queue: false, complete: function () { $(this).stop() } });
         }
     });
+
+
+
+
+
+
+
 
     var ginmove = false;
 
@@ -220,31 +196,7 @@ export default function old() {
     setTimeout(arrowbaranimate, 2000);
 }
 
-function arrowbaranimate() {
-    $(".arrow-bar__arrow").css({ backgroundPosition: "0 -48px" });
-    setTimeout(function () {
-        $(".arrow-bar__arrow").css({ backgroundPosition: "0 -96px" });
-        setTimeout(function () {
-            $(".arrow-bar__arrow").css({ backgroundPosition: "0 -48px" });
-            setTimeout(function () {
-                $(".arrow-bar__arrow").css({ backgroundPosition: "0 0" });
-                setTimeout(function () {
-                    $(".arrow-bar__arrow").css({ backgroundPosition: "0 -48px" });
-                    setTimeout(function () {
-                        $(".arrow-bar__arrow").css({ backgroundPosition: "0 -96px" });
-                        setTimeout(function () {
-                            $(".arrow-bar__arrow").css({ backgroundPosition: "0 -48px" });
-                            setTimeout(function () {
-                                $(".arrow-bar__arrow").css({ backgroundPosition: "0 0" });
-                            }, 100);
-                        }, 150);
-                    }, 100);
-                }, 150);
-            }, 100);
-        }, 150);
-    }, 100);
-    setTimeout(arrowbaranimate, 3000);
-}
+
 
 
 

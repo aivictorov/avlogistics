@@ -252,6 +252,28 @@ h6 {
   text-decoration: none;
 }
 
+.services-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+  row-gap: 20px;
+}
+
+.services-list__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 30%;
+  height: 200px;
+  color: #FFF;
+  background-color: cadetblue;
+  font-weight: 500;
+  font-size: 20px;
+}
+
 .more-link {
   font-size: 12px;
   color: #999999;
@@ -2044,7 +2066,6 @@ a.sixbox__text {
   background-color: rgba(255, 255, 255, 0.6);
   transition: 300ms;
 }
-
 .portfolio-slider-arrow__left {
   left: 0;
 }
@@ -2063,7 +2084,6 @@ a.sixbox__text {
   background-repeat: no-repeat;
   background-position: 10px 13px;
 }
-
 .portfolio-slider-arrow__right {
   right: 0;
 }
@@ -2248,7 +2268,6 @@ a.sixbox__text {
 .portfolio-miniimages {
   overflow: hidden;
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
   -moz-column-gap: 20px;
        column-gap: 20px;
@@ -2285,46 +2304,45 @@ a.sixbox__text {
   -webkit-user-select: none;
   user-select: none;
 }
-
+.portfolio-gallerey-arrow:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+  transition: 300ms;
+}
 .portfolio-gallerey-arrow__left {
   left: 0;
 }
-
-.portfolio-gallerey-arrow__right {
-  right: 0;
-}
-
 .portfolio-gallerey-arrow__left:before {
   content: "";
-  display: block;
-  top: 160px;
-  height: 40px;
-  width: 30px;
   position: absolute;
+  display: block;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  display: block;
+  width: 30px;
+  height: 40px;
   background-image: url("/images/arrow_portfolio_slider_left.png");
-  left: 25px;
   background-color: rgba(255, 255, 255, 0.6);
   background-repeat: no-repeat;
   background-position: 10px 13px;
 }
-
+.portfolio-gallerey-arrow__right {
+  right: 0;
+}
 .portfolio-gallerey-arrow__right:before {
-  background-image: url("/images/arrow_portfolio_slider_right.png");
-  right: 25px;
   content: "";
-  display: block;
-  top: 160px;
-  height: 40px;
-  width: 30px;
   position: absolute;
+  display: block;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  display: block;
+  width: 30px;
+  height: 40px;
+  background-image: url("/images/arrow_portfolio_slider_right.png");
   background-color: rgba(255, 255, 255, 0.6);
   background-repeat: no-repeat;
-  background-position: 13px 13px;
-}
-
-.portfolio-gallerey-arrow:hover {
-  background-color: rgba(255, 255, 255, 0.6);
-  transition: 300ms;
+  background-position: 10px 13px;
 }
 
 .content-miniimages {

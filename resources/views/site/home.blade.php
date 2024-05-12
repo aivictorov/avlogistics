@@ -86,7 +86,7 @@
             <div class="sixbox">
                 <div class="sixbox-wrapper">
                     <div class="sixbox__block js-sixbox__block sixbox__block--question">
-                        <a href="/faq/" class="sixbox__text js-sixbox__text">Услуги <span>компании</span></a>
+                        <a href="/blog/" class="sixbox__text js-sixbox__text">Услуги <span>компании</span></a>
                     </div>
                 </div>
                 <div class="sixbox-wrapper">
@@ -96,7 +96,7 @@
                 </div>
                 <div class="sixbox-wrapper">
                     <div class="sixbox__block js-sixbox__block sixbox__block--blog">
-                        <a href="/blog/" class="sixbox__text js-sixbox__text">Вопросы <span>и ответы</span></a>
+                        <a href="/faq/" class="sixbox__text js-sixbox__text">Вопросы <span>и ответы</span></a>
                     </div>
                 </div>
             </div>
