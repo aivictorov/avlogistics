@@ -21,12 +21,14 @@
                 <div class="faq-list">
                     @foreach ($faq_categories as $category)
                         <a class="faq-header-name" href="/faq/gabarity-pogruzki/">{{ $category['name'] }}</a>
-                        <div class="announce">
-                            <p>
+
+                        @if ($category['announce'])
+                            <div class="faq-announce">
                                 {!! $category['announce'] !!}
-                            </p>
-                        </div>
-                        <ul>
+                            </div>
+                        @endif
+
+                        <ul class="faq-list">
                             @foreach ($category['items'] as $item)
                                 <li>
                                     <a href="/faq/{{ $category['url'] }}/#{{ $item['url'] }}">

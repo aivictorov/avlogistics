@@ -3,7 +3,7 @@
     font-weight: lighter;
     color: #919191;
     font-size: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     text-decoration: none;
 }
 
@@ -28,7 +28,8 @@
     height: 1px;
 }
 
-.announce {
+.faq-announce {
+    margin-bottom: 10px;
     color: #414040;
     font-family: "Tahoma", "PT Sans", sans-serif;
     font-size: 12px;
@@ -36,4 +37,8 @@
     letter-spacing: 0.02em;
     // margin-bottom: 30px;
     text-align: justify;
+}
+
+.faq-list:not(:last-child) {
+    padding-bottom: 20px;
 }

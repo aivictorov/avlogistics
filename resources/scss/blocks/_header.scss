@@ -36,6 +36,8 @@
 }
 
 
+
+
 .header__contacts {
     display: flex;
     align-items: flex-start;
@@ -46,7 +48,6 @@
         display: none;
     }
 }
-
 
 .header__phones {
     color: #bdbdbd;
@@ -94,12 +95,6 @@
 .header__phone-add {
     span {
         color: #6b6b6b;
-    }
-}
-
-.header__phone-add {
-    @include bp(800px) {
-        display: none;
     }
 }
 

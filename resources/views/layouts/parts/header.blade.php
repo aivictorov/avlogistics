@@ -1,3 +1,23 @@
+<div class="header__test">
+    <div class="container">
+        <div class="header__test-contacts">
+            <div class="header__phones">
+                <div class="header__phone-main">
+                    +7 (812) <span>642-26-40</span>
+                </div>
+                <div class="header__phone-add">
+                    , +7 (812) <span>951-29-84</span>
+                </div>
+            </div>
+            <div class="header__social">
+                <a href="mailto:info@zhd.su">
+                    info@zhd.su
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <header class="header js-main-header">
     <div class="container">
         <div class="header__row">

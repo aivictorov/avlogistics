@@ -1,7 +1,6 @@
 .mobile-subnav {
     position: absolute;
     top: calc(100% + 3px);
-    // height: 100vh;
     width: 100%;
     background: url('/images/sixbox/shadow_six.png') top center no-repeat #FFF;
     z-index: 220;
@@ -107,17 +106,11 @@
 }
 
 .mobile-subnav-column__list-menu {
-    display: none;
-
     padding: 0 0 0 13px;
     margin-top: 10px;
     margin-bottom: 10px;
     border-left: 1px solid #dedede;
     list-style: none;
-
-    &.opened {
-        display: block;
-    }
 
     & li {
         top: -2px;

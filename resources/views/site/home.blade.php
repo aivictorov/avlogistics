@@ -77,7 +77,7 @@
         </div>
 
         <div class="arrow-bar">
-            <div class="arrow-bar__arrow js-index-content-opener index-submap__arrow--up"
+            <div class="arrow-bar__arrow js-index-content-opener index-submap__arrow--down"
                 style="background-position: 0px -48px;"></div>
         </div>
         <div class="index-submap js-index-submap"></div>

@@ -12,8 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	// old();
 });
 
-
-
 function mainContent() {
 	$('.js-index-content-opener').click(function () {
 		var indexContent = $('.js-index-content');
@@ -164,14 +162,14 @@ function mobileNav() {
 	const blockSubnav = document.querySelector('.js-mobile-subnav');
 	const blocks = blockSubnav.querySelectorAll('.js-mobile-subnav-block');
 
-	const forwardBtns = blockSubnav.querySelectorAll('.js-forward-button');
+	// const forwardBtns = blockSubnav.querySelectorAll('.js-forward-button');
 
-	forwardBtns.forEach((button) => {
-		button.addEventListener('click', () => {
-			button.parentElement.nextElementSibling.classList.toggle('opened');
-			// button.closest('.mobile-subnav-column').querySelector('.mobile-subnav-column__list-menu').classList.toggle('opened');
-		})
-	});
+	// forwardBtns.forEach((button) => {
+	// 	button.addEventListener('click', () => {
+	// 		button.parentElement.nextElementSibling.classList.toggle('opened');
+	// 		// button.closest('.mobile-subnav-column').querySelector('.mobile-subnav-column__list-menu').classList.toggle('opened');
+	// 	})
+	// });
 
 	btn.addEventListener('click', (event) => {
 		event.preventDefault();
@@ -203,22 +201,27 @@ function subnav() {
 			blockZhd.classList.add('opened')
 			btnZhd.classList.add('opened');
 		}
-
-		// if (blockAbout.hasClass('opened')) {
-		// 	openBlocks.removeClass('opened').fadeOut(300);
-		// 	$('.js-subnav-opener-about').removeClass('opened');
-		// }
-
-		// else {
-		// 	openBlocks.removeClass('opened').delay(300).fadeOut(10);
-		// 	blockAbout.addClass('opened').fadeIn(300);
-		// 	$('.js-subnav-opener').removeClass('opened')
-		// 	$('.js-subnav-opener-about').addClass('opened');
-		// }
-
 	});
 
+	const btnAbout = document.querySelector('.js-subnav-opener-about');
 
+	btnAbout.addEventListener('click', (event) => {
+		event.preventDefault();
+		const blockSubnav = document.querySelector('.js-subnav-blocks');
+		const blockAbout = document.querySelector('.js-subnav-blocks__block--about');
+
+		console.log(blockSubnav, blockAbout)
+
+		if (blockAbout.classList.contains('opened')) {
+			blockSubnav.classList.remove('opened');
+			blockAbout.classList.remove('opened');
+			btnAbout.classList.remove('opened');
+		} else {
+			blockSubnav.classList.add('opened');
+			blockAbout.classList.add('opened')
+			btnAbout.classList.add('opened');
+		}
+	});
 
 	// $('.js-subnav-opener-zhd').click(function () {
 	// 	var blockZhd = $('.js-subnav-blocks__block--zhd');

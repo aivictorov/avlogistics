@@ -127,13 +127,16 @@ function mobileNav() {
   var btn = document.querySelector('.mobile-nav-icon');
   var blockSubnav = document.querySelector('.js-mobile-subnav');
   var blocks = blockSubnav.querySelectorAll('.js-mobile-subnav-block');
-  var forwardBtns = blockSubnav.querySelectorAll('.js-forward-button');
-  forwardBtns.forEach(function (button) {
-    button.addEventListener('click', function () {
-      button.parentElement.nextElementSibling.classList.toggle('opened');
-      // button.closest('.mobile-subnav-column').querySelector('.mobile-subnav-column__list-menu').classList.toggle('opened');
-    });
-  });
+
+  // const forwardBtns = blockSubnav.querySelectorAll('.js-forward-button');
+
+  // forwardBtns.forEach((button) => {
+  // 	button.addEventListener('click', () => {
+  // 		button.parentElement.nextElementSibling.classList.toggle('opened');
+  // 		// button.closest('.mobile-subnav-column').querySelector('.mobile-subnav-column__list-menu').classList.toggle('opened');
+  // 	})
+  // });
+
   btn.addEventListener('click', function (event) {
     event.preventDefault();
     console.log('mobile-nav-icon click');
@@ -160,18 +163,22 @@ function subnav() {
       blockZhd.classList.add('opened');
       btnZhd.classList.add('opened');
     }
-
-    // if (blockAbout.hasClass('opened')) {
-    // 	openBlocks.removeClass('opened').fadeOut(300);
-    // 	$('.js-subnav-opener-about').removeClass('opened');
-    // }
-
-    // else {
-    // 	openBlocks.removeClass('opened').delay(300).fadeOut(10);
-    // 	blockAbout.addClass('opened').fadeIn(300);
-    // 	$('.js-subnav-opener').removeClass('opened')
-    // 	$('.js-subnav-opener-about').addClass('opened');
-    // }
+  });
+  var btnAbout = document.querySelector('.js-subnav-opener-about');
+  btnAbout.addEventListener('click', function (event) {
+    event.preventDefault();
+    var blockSubnav = document.querySelector('.js-subnav-blocks');
+    var blockAbout = document.querySelector('.js-subnav-blocks__block--about');
+    console.log(blockSubnav, blockAbout);
+    if (blockAbout.classList.contains('opened')) {
+      blockSubnav.classList.remove('opened');
+      blockAbout.classList.remove('opened');
+      btnAbout.classList.remove('opened');
+    } else {
+      blockSubnav.classList.add('opened');
+      blockAbout.classList.add('opened');
+      btnAbout.classList.add('opened');
+    }
   });
 
   // $('.js-subnav-opener-zhd').click(function () {

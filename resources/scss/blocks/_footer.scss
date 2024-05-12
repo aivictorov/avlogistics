@@ -15,6 +15,11 @@
 .footer__row {
     display: flex;
     justify-content: space-between;
+
+    @include bp(600px) {
+        flex-direction: column;
+        row-gap: 5px;
+    }
 }
 
 .footer__left {
@@ -23,4 +28,8 @@
 
 .footer__right {
     text-align: right;
+
+    @include bp(600px) {
+        text-align: left;
+    }
 }
