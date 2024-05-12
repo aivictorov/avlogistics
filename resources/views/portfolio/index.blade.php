@@ -5,8 +5,8 @@
 @section('keywords', $seo->keywords)
 
 @section('content')
-    <section class="main-section main-section__container--page">
-        <div class="main-section__container main-section__container--aside">
+    <main class="main">
+        <div class="container container--aside">
             <div class="aside-page">
 
                 @include('site.parts.breadcrumbs')
@@ -26,9 +26,9 @@
                         <div class="portfolio-slider js-portfolio-slider" id="slider-container_17" data-count="1">
                             <div class="inslider" style="width: 2000px;">
                                 @foreach ($section['items'] as $item)
-                                    <a class="portfolio-slide"
-                                        href="/portfolio/{{ $item['url'] }}">
-                                        <img src="/storage/upload/portfolio_avatar/{{ $item['id'] }}/{{ $item['image']['id'] }}/sizes/page_{{ $item['image']['image'] }}">
+                                    <a class="portfolio-slide" href="/portfolio/{{ $item['url'] }}">
+                                        <img
+                                            src="/storage/upload/portfolio_avatar/{{ $item['id'] }}/{{ $item['image']['id'] }}/sizes/page_{{ $item['image']['image'] }}">
                                         <span class="portfolio-slide-name">{{ $item['name'] }}</span>
                                         <span class="portfolio-slide-more">Подробнее</span>
                                     </a>
@@ -44,5 +44,5 @@
             </div>
             @include('portfolio.parts.aside')
         </div>
-    </section>
+    </main>
 @endsection

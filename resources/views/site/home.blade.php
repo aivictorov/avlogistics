@@ -5,7 +5,7 @@
 @section('keywords', $seo->keywords)
 
 @section('content')
-    <section class="main-section main-section--index-map">
+    <main class="main main--map">
         <div class="container">
             <div class="zhd">
                 <h1 class="zhd__big">ЖД перевозки</h1>
@@ -104,5 +104,5 @@
 
         @include('site.parts.section-portfolio')
 
-    </section>
+    </main>
 @endsection

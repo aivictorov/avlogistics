@@ -1,5 +1,26 @@
-.main-footer {
-    // Sticky footer
+.footer {
     margin-top: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
     border-top: 1px solid #cbcbcb;
+    font-size: 13px;
+    color: #929292;
+
+    & a {
+        color: #6a6a6a;
+        text-decoration: none;
+    }
+}
+
+.footer__row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer__left {
+    text-align: left;
+}
+
+.footer__right {
+    text-align: right;
 }

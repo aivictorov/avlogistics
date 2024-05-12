@@ -4,7 +4,7 @@
     <div class="form-row">
         <div class="form-column form-column--33">
             <label class="form-control form-label">
-                <span>Наименование организации</span>
+                <span>Наименование организации (*)</span>
                 <input class="form-input" type="text" id="contactform-firm" name="ContactForm[firm]">
             </label>
             <label class="form-control form-label">

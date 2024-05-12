@@ -1,17 +1,14 @@
 .aside-page {
-    // max-width: 670px;
-    float: left;
-    margin-bottom: 50px;
+    max-width: 670px;
 }
 
 .main-aside {
-    float: right;
-    width: 215px;
     flex-shrink: 0;
     padding-top: 20px;
     padding-bottom: 30px;
+    width: 215px;
 
-    @include bp(900px) {
+    @include bp(800px) {
         display: none;
     }
 }

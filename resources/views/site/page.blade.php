@@ -5,8 +5,8 @@
 @section('keywords', $seo->keywords)
 
 @section('content')
-    <section class="main-section main-section__container--page">
-        <div class="main-section__container main-section__container--aside">
+    <main class="main">
+        <div class="container container--aside">
             <article class="aside-page">
 
                 @include('site.parts.breadcrumbs')
@@ -28,5 +28,5 @@
             @include('site.parts.aside-page')
 
         </div>
-    </section>
+    </main>
 @endsection
