@@ -1,4 +1,4 @@
-<div class="header__test">
+{{-- <div class="header__test">
     <div class="container">
         <div class="header__test-contacts">
             <div class="header__phones">
@@ -16,7 +16,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <header class="header js-main-header">
     <div class="container">
