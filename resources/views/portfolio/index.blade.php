@@ -23,7 +23,8 @@
                     <div class="portfolio-list-item">
                         <a class="portfolio-anchor" name="type-{{ $section['url'] }}"></a>
                         <h2 class="portfolio-list-item-header">{{ $section['name'] }}</h2>
-                        <div class="portfolio-slider js-portfolio-slider" id="slider-container_17" data-count="1">
+
+                        <div class="portfolio-slider js-portfolio-slider">
                             <div class="inslider" style="width: 2000px;">
                                 @foreach ($section['items'] as $item)
                                     <a class="portfolio-slide" href="/portfolio/{{ $item['url'] }}">

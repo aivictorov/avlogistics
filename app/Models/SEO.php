@@ -9,7 +9,7 @@ class SEO extends Model
 {
     use HasFactory;
 
-    protected $table = 'SEO';
+    protected $table = 'seo';
 
     protected $fillable = [
         'id',

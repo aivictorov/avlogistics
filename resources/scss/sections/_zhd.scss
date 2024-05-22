@@ -50,10 +50,12 @@
 }
 
 .zhd__accent {
+    border-bottom: 2px solid transparent;
     color: #f14214;
     text-decoration: none;
 
     &:hover {
+        color: #f14214;
         border-bottom: 2px solid #f14214;
     }
 }

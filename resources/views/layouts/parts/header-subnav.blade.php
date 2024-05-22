@@ -1,7 +1,7 @@
-<section class="subnav js-subnav-blocks">
-    <div class="subnav-block subnav-block--about js-subnav-blocks__block js-subnav-blocks__block--about">
+<section class="subnav js-subnav">
+    <div class="subnav-block subnav-block--about js-subnav-block" data-subnav="about">
         <div class="container">
-            <a class="subnav-block__close js-subnav-blocks__close" href="#">закрыть</a>
+            <a class="subnav-block__close js-subnav-close" href="#">закрыть</a>
 
             <div class="subnav-block__header">
                 <h2>{{ $tree[array_key_first($tree)]['children'][2]['name'] }}</h2>
@@ -28,9 +28,9 @@
     </div>
 
 
-    <div class="subnav-block subnav-block--zhd js-subnav-blocks__block js-subnav-blocks__block--zhd">
+    <div class="subnav-block subnav-block--zhd js-subnav-block" data-subnav="zhd">
         <div class="container">
-            <a class="subnav-block__close js-subnav-blocks__close" href="#">закрыть</a>
+            <a class="subnav-block__close js-subnav-close" href="#">закрыть</a>
             <div class="subnav-block__header">
                 <h2>{{ $tree[array_key_first($tree)]['children'][3]['name'] }}</h2>
                 <a href={{ route('pages.show', $tree[array_key_first($tree)]['children'][3]['url']) }}>В раздел</a>
@@ -54,9 +54,9 @@
         </div>
     </div>
 
-    <div class="subnav-block subnav-block--scheme js-subnav-blocks__block js-subnav-blocks__block--scheme">
+    <div class="subnav-block subnav-block--scheme js-subnav-block" data-subnav="scheme">
         <div class="container">
-            <a class="subnav-block__close js-subnav-blocks__close" href="#">закрыть</a>
+            <a class="subnav-block__close js-subnav-close" href="#">закрыть</a>
             <div class="subnav-block__header">
                 <h2>{{ $tree[array_key_first($tree)]['children'][4]['name'] }}</h2>
                 <a href={{ route('pages.show', $tree[array_key_first($tree)]['children'][4]['url']) }}>В раздел</a>
@@ -80,9 +80,9 @@
         </div>
     </div>
 
-    <div class="subnav-block subnav-block--contacts js-subnav-blocks__block js-subnav-blocks__block--contacts">
+    <div class="subnav-block subnav-block--contacts js-subnav-block"data-subnav="contacts">
         <div class="container">
-            <a class="subnav-block__close js-subnav-blocks__close" href="#">закрыть</a>
+            <a class="subnav-block__close js-subnav-close" href="#">закрыть</a>
             <div class="subnav-block__header">
                 <h2>{{ $tree[array_key_first($tree)]['children'][5]['name'] }}</h2>
                 <a href={{ route('pages.show', $tree[array_key_first($tree)]['children'][5]['url']) }}>В раздел</a>

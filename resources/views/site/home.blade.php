@@ -10,10 +10,9 @@
             <div class="zhd">
                 <h1 class="zhd__big">ЖД перевозки</h1>
                 <div class="zhd__row">
-                    <a class="zhd__accent" href="#!">грузов любой сложности </a>
-                    <span class="zhd__main">в вагонах и контейнерах</span>
-                    <span class="zhd__add">по всей террритории России, международные перевозки, импорт и доставка товаров из
-                        Китая</span>
+                    <a class="zhd__accent" href="#!">грузов в вагонах и контейнерах </a>
+                    <span class="zhd__main">из любой точки России, СНГ, Китая</span>
+                    {{-- <span class="zhd__add">по всей террритории России</span> --}}
                 </div>
             </div>
         </div>
@@ -84,7 +83,7 @@
 
         <div class="container">
             <div class="sixbox">
-                <div class="sixbox-wrapper">
+                {{-- <div class="sixbox-wrapper">
                     <div class="sixbox__block js-sixbox__block sixbox__block--question">
                         <a href="/blog/" class="sixbox__text js-sixbox__text">Услуги <span>компании</span></a>
                     </div>
@@ -98,11 +97,9 @@
                     <div class="sixbox__block js-sixbox__block sixbox__block--blog">
                         <a href="/faq/" class="sixbox__text js-sixbox__text">Вопросы <span>и ответы</span></a>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
-
-        @include('site.parts.section-portfolio')
 
     </main>
 @endsection

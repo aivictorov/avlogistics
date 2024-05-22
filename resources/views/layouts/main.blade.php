@@ -17,6 +17,8 @@
 
     @yield('content')
 
+    @include('site.parts.section-portfolio')
+
     @include('layouts.parts.footer')
 
     <script src="/assets/jquery/jquery.js"></script>

@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.service')
 
 @section('title', $seo->title)
 @section('description', $seo->description)
@@ -9,7 +9,7 @@
         <div class="container container--aside">
             <article class="aside-page">
 
-                @include('site.parts.breadcrumbs')
+                {{-- @include('site.parts.breadcrumbs') --}}
 
                 <form id="login-form" class="login-form" action={{ route('user.auth') }} method="post">
                     @csrf

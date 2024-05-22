@@ -180,8 +180,8 @@ h6 {
 .container--aside {
   display: flex;
   justify-content: space-between;
-  -moz-column-gap: 20px;
-       column-gap: 20px;
+  -moz-column-gap: 55px;
+       column-gap: 55px;
 }
 
 .main {
@@ -887,7 +887,7 @@ a.logo img {
 .subnav-column__list-menu {
   padding: 0 0 0 13px;
   margin-top: 10px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   border-left: 1px solid #dedede;
   list-style: none;
 }
@@ -1386,7 +1386,7 @@ a.logo img {
 }
 
 .aside-page {
-  max-width: 670px;
+  max-width: 930px;
 }
 
 .main-aside {
@@ -1965,6 +1965,7 @@ a.sixbox__text {
 
 .portfolio-slider {
   width: 100%;
+  max-width: 670px;
   height: 330px;
   overflow: hidden;
   position: relative;
@@ -2390,10 +2391,12 @@ a.sixbox__text {
 }
 
 .zhd__accent {
+  border-bottom: 2px solid transparent;
   color: #f14214;
   text-decoration: none;
 }
 .zhd__accent:hover {
+  color: #f14214;
   border-bottom: 2px solid #f14214;
 }
 

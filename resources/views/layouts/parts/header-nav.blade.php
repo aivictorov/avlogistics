@@ -2,27 +2,27 @@
     <ul>
         @foreach ($tree[array_key_first($tree)]['children'] as $key => $item)
             <?php
-            $class = '';
+            $subnav = '';
             
             if ($item['url'] === 'o-kompanii') {
-                $class = '-about';
+                $subnav = 'about';
             }
             
             if ($item['url'] === 'zhd-perevozki') {
-                $class = '-zhd';
+                $subnav = 'zhd';
             }
             
             if ($item['url'] === 'shemy-pogruzki') {
-                $class = '-scheme';
+                $subnav = 'scheme';
             }
             
             if ($item['url'] === 'kontakty') {
-                $class = '-contacts';
+                $subnav = 'contacts';
             }
             ?>
 
             <li>
-                <a class="js-subnav-opener js-subnav-opener{{ $class }}"
+                <a class="js-subnav-opener" data-subnav="{{ $subnav }}"
                     href="{{ route('pages.show', $item['url']) }}">{{ $item['name'] }}</a>
             </li>
         @endforeach
