@@ -247,6 +247,22 @@ h6 {
   font-size: 20px;
 }
 
+.swiper {
+  width: 100%;
+  height: auto;
+}
+
+.swiper-wrapper {
+  width: 100%;
+}
+
+.swiper-slide {
+  width: 100%;
+}
+.swiper-slide img {
+  width: 100%;
+}
+
 .more-link {
   font-size: 12px;
   color: #999999;
@@ -1387,6 +1403,7 @@ a.logo img {
 
 .aside-page {
   max-width: 930px;
+  width: 100%;
 }
 
 .main-aside {

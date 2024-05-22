@@ -35,6 +35,39 @@
                         @endforeach
                     </div>
                 </div>
+
+
+                <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper mySwiper2">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src={{ Image::path($avatar, 'big') }} class="portfolio-gallerey-bigimage" />
+                        </div>
+
+                        @foreach ($images as $image)
+                            <div class="swiper-slide">
+                                <img src={{ Image::path($image, 'big') }} class="portfolio-gallerey-bigimage" />
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+                <div thumbsSlider="" class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src={{ Image::path($avatar, 'small') }}
+                                class="portfolio-gallerey-miniimage js-miniimage" />
+                        </div>
+                        @foreach ($images as $image)
+                            <div class="swiper-slide">
+                                <img src={{ Image::path($image, 'small') }}
+                                    class="portfolio-gallerey-miniimage js-miniimage" />
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+
                 <div class="page-content">{!! $page['text'] !!}
                 </div>
             </article>
