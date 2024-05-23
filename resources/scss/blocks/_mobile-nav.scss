@@ -44,9 +44,14 @@ $height: 2 * $spacer + 3 * $line-height;
 }
 
 .mobile-nav-icon.opened {
-    position: fixed;
-    top: 35px;
-    right: 25px;
+    @include bp(1000px) {}
+
+    @include bp(600px) {
+        // position: fixed;
+        // top: 35px;
+        // right: 25px;
+    }
+
 }
 
 .mobile-nav-icon.opened .mobile-nav-icon__middle {

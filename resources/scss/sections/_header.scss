@@ -102,7 +102,7 @@
     display: flex;
     justify-content: flex-end;
 
-    @include bp(800px) {
+    @include bp(1000px) {
         display: none;
     }
 }
@@ -110,7 +110,7 @@
 .header__mobile-nav {
     display: none;
 
-    @include bp(800px) {
+    @include bp(1000px) {
         display: block;
     }
 }

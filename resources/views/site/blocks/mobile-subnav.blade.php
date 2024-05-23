@@ -1,9 +1,6 @@
 <div class="mobile-subnav js-mobile-subnav">
-
     <div class="container">
         {{-- <a class="mobile-subnav-block__close js-mobile-subnav-block__close" href="#">закрыть</a> --}}
-
-
 
         <div class="mobile-subnav-block__columns">
             @for ($i = 2; $i <= 3; $i++)
@@ -92,13 +89,17 @@
                 <div class="header__phone-main">
                     +7 (921) <span>951-29-84</span>
                 </div>
+            </div>
+            <div class="mobile-subnav__email">
+                <span>e-mail: </span>
                 <a href="mailto:info@zhd.su">
                     info@zhd.su
                 </a>
-                <button class="button">
-                    Перезвоните мне
-                </button>
             </div>
+
+            {{-- <button class="button">
+                Перезвоните мне
+            </button> --}}
         </div>
     </div>
 </div>

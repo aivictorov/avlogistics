@@ -348,6 +348,11 @@ a:visited {
   background: url("/images/sixbox/shadow_six.png") top center no-repeat #FFF;
   z-index: 220;
 }
+@media screen and (max-width: 1000px) {
+  .subnav {
+    display: none;
+  }
+}
 .subnav.opened {
   border-bottom: 3px solid #e6e6e6;
   box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.1);
@@ -683,12 +688,6 @@ a.logo img {
   top: 8px;
 }
 
-.mobile-nav-icon.opened {
-  position: fixed;
-  top: 35px;
-  right: 25px;
-}
-
 .mobile-nav-icon.opened .mobile-nav-icon__middle {
   background-color: transparent;
 }
@@ -705,6 +704,7 @@ a.logo img {
 
 .mobile-subnav {
   position: absolute;
+  display: none;
   top: calc(100% + 3px);
   width: 100%;
   background: url("/images/sixbox/shadow_six.png") top center no-repeat #FFF;
@@ -713,34 +713,38 @@ a.logo img {
   padding-top: 20px;
   width: 100%;
 }
-.mobile-subnav.opened {
-  position: fixed;
-  top: 92px;
-  left: 0;
-  right: 0;
-  bottom: 150px;
-  overflow-y: auto;
-  display: block;
-  padding-bottom: 20px;
-  overflow-y: scroll;
-  z-index: 230;
+@media screen and (max-width: 1000px) {
+  .mobile-subnav.opened {
+    position: fixed;
+    top: 154px;
+    left: 0;
+    right: 0;
+    bottom: 100px;
+    overflow-y: auto;
+    display: block;
+    padding-bottom: 20px;
+    overflow-y: scroll;
+    z-index: 230;
+  }
 }
-.mobile-subnav.opened .mobile-subnav-contacts {
-  position: fixed;
-  bottom: 0;
-  height: 150px;
-  left: 0;
-  right: 0;
-  background-color: #fff;
-  box-shadow: 0 10px 20px 20px rgba(0, 0, 0, 0.15);
-  border-bottom: 3px solid #e6e6e6;
-  padding: 5px 30px;
-  border-top: 1px solid lightgray;
+@media screen and (max-width: 1000px) and (max-width: 600px) {
+  .mobile-subnav.opened {
+    top: 92.5px;
+  }
 }
-.mobile-subnav.opened .mobile-subnav-contacts .mobile-subnav__phones {
-  display: flex;
-  flex-direction: column;
-  row-gap: 5px;
+@media screen and (max-width: 1000px) {
+  .mobile-subnav.opened .mobile-subnav-contacts {
+    position: fixed;
+    bottom: 0;
+    height: 100px;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 10px 20px 20px rgba(0, 0, 0, 0.15);
+    border-bottom: 3px solid #e6e6e6;
+    padding: 10px 30px;
+    border-top: 1px solid lightgray;
+  }
 }
 .mobile-subnav.sl {
   top: 73px;
@@ -864,15 +868,16 @@ a.logo img {
 }
 
 .mobile-subnav-contacts {
-  margin-top: 15px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   row-gap: 10px;
 }
 
 .mobile-subnav__phones {
-  padding-top: 10px;
   display: flex;
+  justify-content: center;
   align-items: center;
   -moz-column-gap: 10px;
        column-gap: 10px;
@@ -1741,7 +1746,7 @@ a.faq__block-header {
   display: flex;
   justify-content: flex-end;
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
   .header__nav {
     display: none;
   }
@@ -1750,7 +1755,7 @@ a.faq__block-header {
 .header__mobile-nav {
   display: none;
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
   .header__mobile-nav {
     display: block;
   }
