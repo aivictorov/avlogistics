@@ -186,6 +186,16 @@ body {
   overflow: hidden;
 }
 
+.visually-hidden {
+  opacity: 0;
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
+  display: block;
+  background: transparent;
+  font-size: 0;
+}
+
 a {
   color: #f14214;
   text-decoration: underline;
@@ -1166,6 +1176,38 @@ a.logo img {
   width: 100%;
 }
 
+.input-file__label {
+  display: flex;
+  align-items: flex-start;
+}
+
+.input-file__icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border: 1px solid #cacaca;
+}
+
+.input-file__text {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.input-file__info {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.input-file__notice {
+  font-size: 12px;
+  line-height: 1.2;
+}
+
 .blackback {
   background: rgba(0, 0, 0, 0.7);
   position: fixed;
@@ -1281,6 +1323,12 @@ a.faq__block-header {
   --swiper-navigation-top-offset: 22px;
   --swiper-navigation-sides-offset: 0;
 }
+@media screen and (max-width: 600px) {
+  .portfolio-section__slider .swiper {
+    --swiper-navigation-top-offset: 15px;
+    --swiper-navigation-size: 30px;
+  }
+}
 .portfolio-section__slider .swiper-slide {
   width: 100%;
   height: auto;
@@ -1328,12 +1376,23 @@ a.faq__block-header {
   width: 100%;
   height: auto;
 }
+@media screen and (max-width: 600px) {
+  .portfolio__slider {
+    margin-bottom: 10px;
+  }
+}
 .portfolio__slider .swiper {
   width: 100%;
   height: auto;
   --swiper-theme-color: #fff;
   --swiper-navigation-top-offset: 22px;
   --swiper-navigation-sides-offset: 0;
+}
+@media screen and (max-width: 600px) {
+  .portfolio__slider .swiper {
+    --swiper-navigation-top-offset: 15px;
+    --swiper-navigation-size: 30px;
+  }
 }
 .portfolio__slider .swiper-slide {
   width: 100%;
@@ -1365,19 +1424,23 @@ a.faq__block-header {
   --swiper-navigation-sides-offset: 0;
 }
 .portfolio__thumbs .swiper-slide {
-  width: 152px;
-  height: 83px;
+  max-width: 152px;
+  height: auto;
   border-bottom: 3px solid transparent;
+  opacity: 0.9;
 }
 .portfolio__thumbs .swiper-slide:hover {
   border-bottom: 3px solid #f14214;
 }
 .portfolio__thumbs .swiper-slide img {
-  width: 152px;
-  height: 80px;
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .portfolio__thumbs .swiper-slide-thumb-active {
   border-bottom: 3px solid #f14214;
+  opacity: 1;
 }
 
 .article {

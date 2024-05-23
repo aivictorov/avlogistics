@@ -4,8 +4,7 @@ import { arrowBarInit } from "./components/arrowBar";
 import { mobileNavInit } from "./components/mobileNav";
 import { mainContent } from "./components/mainContent";
 import { swipers } from "./components/swipers";
-// import { slider } from "./components/slider";
-// import { gallery } from "./components/gallery";
+import { captcha } from "./components/grecaptcha"
 
 document.addEventListener('DOMContentLoaded', () => {
 	subnavInit();
@@ -13,9 +12,26 @@ document.addEventListener('DOMContentLoaded', () => {
 	mainContent();
 	upform();
 	swipers();
-
+	captcha();
 	if (document.querySelector('.arrow-bar__arrow')) setTimeout(arrowBarInit, 2000);
-
-	// if (document.querySelector('.js-portfolio-slider')) slider();
-	// if (document.querySelector('.js-portfoio-gallerey')) gallery();
 });
+
+
+// window.addEventListener('load', () => {
+// 	loader();
+// 	modalWindows();
+// 	mobileNav();
+// 	metrika();
+// });
+
+// document.addEventListener('click', function () {
+// 	callbackForm();
+// 	inputFile();
+// 	oversizeForm();
+// 	captcha();
+// }, { once: true });
+
+// document.addEventListener('scroll', function () {
+// 	faq();
+// 	scrollup();
+// }, { once: true });

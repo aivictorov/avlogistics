@@ -81,14 +81,40 @@
             </div>
         </div>
     </div>
-
     <div class="form-row">
         <label class="form-control form-label">
             Дополнительная информация
             <textarea class="form-textarea form-dopinfo" id="contactform-dopinfo" name="ContactForm[dopinfo]"></textarea>
         </label>
     </div>
-
+    <div class="form__row">
+        <div class="form__item">
+            <div class="input-file">
+                <label class="input-file__label">
+                    <input class="input-file__hidden visually-hidden" name="file[]" type="file"
+                        accept="application/pdf, image/jpeg, image/png" multiple>
+                    <div class="input-file__icon">
+                        <svg class="icon icon--plus">
+                            <use xlink:href="./img/icons/sprite.svg#plus"></use>
+                        </svg>
+                    </div>
+                    <div class="input-file__text">
+                        <div class="input-file__info">Прикрепить файл</div>
+                        <div class="input-file__notice">Вы можете прикрепить не более 3 файлов формата PDF, JPG, PNG
+                            размером до 5 мб каждый.</div>
+                    </div>
+                </label>
+                <span class="input-notify"></span>
+            </div>
+        </div>
+    </div>
+    <div class="form__row">
+        <div class="captcha">
+            <div id="captcha_id"></div>
+            {{-- <div class="g-recaptcha" data-sitekey="6LcXOZkpAAAAAKMYw8hzWcIoRbcvHp4BBlgZCUVs"></div> --}}
+            <span class="input__notify"></span>
+        </div>
+    </div>
     <div class="form-row">
         <button class="form-submit" type="button">Отправить заявку</button>
     </div>

@@ -14,10 +14,20 @@ function swipers() {
 
     const portfolioThumbs = new Swiper('.portfolio__thumbs .swiper', {
         loop: true,
-        spaceBetween: 20,
         slidesPerView: "auto",
         freeMode: true,
         watchSlidesProgress: true,
+
+        breakpoints: {
+            0: {
+                slidesPerView: 3,
+                spaceBetween: 10,
+            },
+            600: {
+                slidesPerView: 4,
+                spaceBetween: 20,
+            },
+        },
     });
 
     const portfolioSlider = new Swiper('.portfolio__slider .swiper', {
