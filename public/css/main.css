@@ -150,12 +150,7 @@ body {
   margin: 0 auto;
   padding: 0 30px;
   width: 100%;
-  max-width: 1260px;
-}
-@media screen and (max-width: 800px) {
-  .container {
-    max-width: 730px;
-  }
+  max-width: 1000px;
 }
 @media screen and (max-width: 600px) {
   .container {
@@ -1254,68 +1249,11 @@ a.faq__block-header {
   border-left: 3px solid #eeeeee;
 }
 
-:root {
-  --swiper-theme-color: #fff;
-}
-:root .portfolio-slider {
-  --swiper-navigation-top-offset: calc(50% - 46px / 2);
+.portfolio-section {
+  margin-top: 30px;
 }
 
-.portfolio-slider .swiper-slide-prev,
-.portfolio-slider .swiper-slide-next {
-  pointer-events: none;
-  opacity: 0.75;
-}
-
-.swiper {
-  width: 100%;
-  height: auto;
-}
-
-.swiper-wrapper {
-  width: 100%;
-}
-
-.swiper-slide {
-  width: 100%;
-}
-.swiper-slide img {
-  width: 100%;
-}
-
-.portfolio-slide__label {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -46px;
-}
-
-a .portfolio-slide-name {
-  text-decoration: none;
-}
-
-a .portfolio-slide-more:hover {
-  color: #f14214;
-}
-
-.portfolio-slide {
-  width: 80%;
-}
-@media screen and (max-width: 1000px) {
-  .portfolio-slide {
-    width: 100%;
-  }
-}
-
-.portfolio-list-item-header {
-  font-family: "Roboto", sans-serif;
-  font-weight: lighter;
-  color: #919191;
-  font-size: 20px;
-  margin-bottom: 20px;
-}
-
-.portfolio-anchor {
+.portfolio-section__anchor {
   position: relative;
   top: -100px;
   content: " ";
@@ -1324,98 +1262,7 @@ a .portfolio-slide-more:hover {
   height: 1px;
 }
 
-:root {
-  --swiper-theme-color: #fff;
-}
-:root .portfolio-slider {
-  --swiper-navigation-top-offset: calc(50% - 46px / 2);
-}
-
-.portfolio-slider .swiper-slide-prev,
-.portfolio-slider .swiper-slide-next {
-  pointer-events: none;
-  opacity: 0.75;
-}
-
-.swiper {
-  width: 100%;
-  height: auto;
-}
-
-.swiper-wrapper {
-  width: 100%;
-}
-
-.portfolio-slide__label {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -46px;
-}
-
-a .portfolio-slide-name {
-  text-decoration: none;
-}
-
-a .portfolio-slide-more:hover {
-  color: #f14214;
-}
-
-.portfolio-slide-name {
-  display: block;
-  text-align: center;
-  color: #414040;
-  font-family: "Tahoma", "PT Sans", sans-serif;
-  font-size: 12px;
-  padding-top: 10px;
-  border-top: 3px solid #f14214;
-}
-
-.portfolio-slide-more {
-  display: block;
-  text-align: center;
-  font-family: "Tahoma", "PT Sans", sans-serif;
-  text-decoration: underline;
-  font-size: 12px;
-  margin-top: 5px;
-}
-
-.portfolio-list-item {
-  margin-top: 30px;
-}
-
-.mySwiper2 {
-  margin-bottom: 20px;
-}
-
-.portfolio-slide-name {
-  display: block;
-  text-align: center;
-  color: #414040;
-  font-family: "Tahoma", "PT Sans", sans-serif;
-  font-size: 12px;
-  padding-top: 10px;
-  border-top: 3px solid #f14214;
-}
-
-.portfolio-slide-more {
-  display: block;
-  text-align: center;
-  font-family: "Tahoma", "PT Sans", sans-serif;
-  text-decoration: underline;
-  font-size: 12px;
-  margin-top: 5px;
-}
-
-.portfolio-list-item {
-  margin-top: 30px;
-}
-
-.mySwiper2 {
-  margin-bottom: 20px;
-}
-
-.portfolio-list-item-header {
+.portfolio-section__header {
   font-family: "Roboto", sans-serif;
   font-weight: lighter;
   color: #919191;
@@ -1423,13 +1270,114 @@ a .portfolio-slide-more:hover {
   margin-bottom: 20px;
 }
 
-.portfolio-anchor {
-  position: relative;
-  top: -100px;
-  content: " ";
+.portfolio-section__slider {
+  width: 100%;
+  height: auto;
+}
+.portfolio-section__slider .swiper {
+  width: 100%;
+  height: auto;
+  --swiper-theme-color: #fff;
+  --swiper-navigation-top-offset: 22px;
+  --swiper-navigation-sides-offset: 0;
+}
+.portfolio-section__slider .swiper-slide {
+  width: 100%;
+  height: auto;
+}
+.portfolio-section__slider .swiper-slide img {
+  width: 100%;
+}
+.portfolio-section__slider a.swiper-slide {
+  line-height: 14px;
+  text-decoration: none;
+}
+.portfolio-section__slider .swiper-slide-label {
+  height: 46px;
+}
+.portfolio-section__slider .swiper-slide-label .swiper-slide-label__name {
   display: block;
-  width: 1px;
-  height: 1px;
+  padding-top: 10px;
+  border-top: 3px solid #f14214;
+  font-family: "Tahoma", "PT Sans", sans-serif;
+  font-size: 12px;
+  color: #414040;
+  text-align: center;
+  white-space: nowrap;
+}
+.portfolio-section__slider .swiper-slide-label .swiper-slide-label__more {
+  display: block;
+  margin-top: 5px;
+  font-family: "Tahoma", "PT Sans", sans-serif;
+  font-size: 12px;
+  text-align: center;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+.portfolio-section__slider .swiper-button-prev,
+.portfolio-section__slider .swiper-button-next {
+  padding: 26.1194029851% 30px;
+}
+.portfolio-section__slider .swiper-button-prev:hover,
+.portfolio-section__slider .swiper-button-next:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.portfolio__slider {
+  margin-bottom: 20px;
+  width: 100%;
+  height: auto;
+}
+.portfolio__slider .swiper {
+  width: 100%;
+  height: auto;
+  --swiper-theme-color: #fff;
+  --swiper-navigation-top-offset: 22px;
+  --swiper-navigation-sides-offset: 0;
+}
+.portfolio__slider .swiper-slide {
+  width: 100%;
+  height: auto;
+  border-bottom: 3px solid #f14214;
+}
+.portfolio__slider .swiper-slide img {
+  width: 100%;
+}
+.portfolio__slider .swiper-button-prev,
+.portfolio__slider .swiper-button-next {
+  padding: 26.1194029851% 30px;
+}
+.portfolio__slider .swiper-button-prev:hover,
+.portfolio__slider .swiper-button-next:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.portfolio__thumbs {
+  margin-bottom: 20px;
+  width: 100%;
+  height: auto;
+}
+.portfolio__thumbs .swiper {
+  width: 100%;
+  height: auto;
+  --swiper-theme-color: #fff;
+  --swiper-navigation-top-offset: 22px;
+  --swiper-navigation-sides-offset: 0;
+}
+.portfolio__thumbs .swiper-slide {
+  width: 152px;
+  height: 83px;
+  border-bottom: 3px solid transparent;
+}
+.portfolio__thumbs .swiper-slide:hover {
+  border-bottom: 3px solid #f14214;
+}
+.portfolio__thumbs .swiper-slide img {
+  width: 152px;
+  height: 80px;
+}
+.portfolio__thumbs .swiper-slide-thumb-active {
+  border-bottom: 3px solid #f14214;
 }
 
 .article {

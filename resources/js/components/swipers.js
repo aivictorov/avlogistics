@@ -1,9 +1,9 @@
+import { initial } from "lodash";
+
 function swipers() {
 
-    const swiper3 = new Swiper('.swiper', {
-        slidesPerView: "auto",
-        centeredSlides: true,
-        spaceBetween: 0,
+    const portfolioSectionSlider = new Swiper('.portfolio-section__slider .swiper', {
+        slidesPerView: 1,
         loop: true,
 
         navigation: {
@@ -12,27 +12,25 @@ function swipers() {
         }
     });
 
-    var swiper2 = new Swiper(".mySwiper2", {
-        // spaceBetween: 10,
+    const portfolioThumbs = new Swiper('.portfolio__thumbs .swiper', {
         loop: true,
+        spaceBetween: 20,
+        slidesPerView: "auto",
+        freeMode: true,
         watchSlidesProgress: true,
+    });
 
+    const portfolioSlider = new Swiper('.portfolio__slider .swiper', {
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 10,
         navigation: {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
         },
-
         thumbs: {
-            swiper: swiper,
+            swiper: portfolioThumbs,
         },
-    });
-
-    var swiper = new Swiper(".mySwiper", {
-        // spaceBetween: 10,
-        slidesPerView: 5,
-        loop: true,
-        freeMode: true,
-        watchSlidesProgress: true,
     });
 }
 

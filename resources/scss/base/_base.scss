@@ -19,11 +19,7 @@ body {
     margin: 0 auto;
     padding: 0 30px;
     width: 100%;
-    max-width: 1260px;
-
-    @include bp(800px) {
-        max-width: 730px;
-    }
+    max-width: 1000px;
 
     @include bp(600px) {
         padding: 0 25px;
