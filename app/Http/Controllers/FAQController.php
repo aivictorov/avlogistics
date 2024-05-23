@@ -33,7 +33,7 @@ class FAQController extends Controller
             }
         }
 
-        return view('faq.index', compact('page', 'parents', 'seo', 'faq_categories'));
+        return view('site.pages.faq.index', compact('page', 'parents', 'seo', 'faq_categories'));
     }
 
     public function show($url)
@@ -47,7 +47,7 @@ class FAQController extends Controller
             $faq_categories = (new GetFaqSectionsAction)->run(sort: 'sort_key', active: true);
             $faq_questions = (new GetQuestionsAction)->run($id);
 
-            return view('faq.show', compact('page', 'parents', 'seo', 'faq_questions', 'faq_categories'));
+            return view('site.pages.faq.show', compact('page', 'parents', 'seo', 'faq_questions', 'faq_categories'));
         } else {
             return view('site.404');
         }

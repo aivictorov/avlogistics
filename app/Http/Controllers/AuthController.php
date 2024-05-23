@@ -24,7 +24,7 @@ class AuthController extends Controller
             $seo = (new GetSeoAction)->run($page['seo_id']);
             $parents = (new GetPageParentsAction)->run($id);
 
-            return view('site.login', compact('page', 'parents', 'seo'));
+            return view('site.pages.login', compact('page', 'parents', 'seo'));
         }
     }
 

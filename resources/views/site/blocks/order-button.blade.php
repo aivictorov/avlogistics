@@ -1,4 +1,4 @@
-<button type="button" class="js-form-open main-aside__send-form">
+<button type="button" class="order-button js-form-open">
     Рассчитать стоимость
 </button>
 

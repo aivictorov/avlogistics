@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('site.layouts.main')
 
 @section('title', $seo->title)
 @section('description', $seo->description)
@@ -6,43 +6,46 @@
 
 @section('content')
     <main class="main">
-        <div class="container container--aside">
+        <div class="container container--flex">
             <div class="column column--main">
-                @include('site.parts.breadcrumbs')
+                <article class="article">
+                    @include('site.blocks.breadcrumbs')
 
-                <h1 class="page-h1">
-                    {{ $page->name }}
-                </h1>
+                    <div class="article__title">
+                        <h1 class="h1">
+                            {{ $page->name }}
+                        </h1>
+                    </div>
+                    <div class="article__content">
+                        {!! $page->text !!}
+                    </div>
 
-                <div class="page-content">
-                    {!! $page->text !!}
-                </div>
+                    <section class="faq">
+                        @foreach ($faq_categories as $category)
+                            <a class="faq__block-header" href="/faq/gabarity-pogruzki/">{{ $category['name'] }}</a>
 
-                <div class="faq-list">
-                    @foreach ($faq_categories as $category)
-                        <a class="faq-header-name" href="/faq/gabarity-pogruzki/">{{ $category['name'] }}</a>
+                            @if ($category['announce'])
+                                <div class="faq__block-announce">
+                                    {!! $category['announce'] !!}
+                                </div>
+                            @endif
 
-                        @if ($category['announce'])
-                            <div class="faq-announce">
-                                {!! $category['announce'] !!}
-                            </div>
-                        @endif
-
-                        <ul class="faq-list">
-                            @foreach ($category['items'] as $item)
-                                <li>
-                                    <a href="/faq/{{ $category['url'] }}/#{{ $item['url'] }}">
-                                        {{ $item['name'] }}
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    @endforeach
-                </div>
+                            <ul class="faq__block-list">
+                                @foreach ($category['items'] as $item)
+                                    <li>
+                                        <a href="/faq/{{ $category['url'] }}/#{{ $item['url'] }}">
+                                            {{ $item['name'] }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endforeach
+                    </section>
+                </article>
             </div>
-
-            @include('faq.parts.aside')
-
+            <div class="column column--aside">
+                @include('site.sections.faq-aside')
+            </div>
         </div>
     </main>
 @endsection

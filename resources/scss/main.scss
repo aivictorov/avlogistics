@@ -16,6 +16,7 @@
 @import "./blocks/logo";
 @import "./blocks/mobile-nav";
 @import "./blocks/mobile-subnav";
+@import "./blocks/order-button";
 @import "./blocks/top-nav";
 
 // Forms
@@ -24,18 +25,19 @@
 // Modals
 @import "./modals/modal";
 
+// Pages
+@import "./pages/faq";
+@import "./pages/portfolio";
+
 // Sections
 @import "./sections/article";
 @import "./sections/aside";
-@import "./sections/faq";
 @import "./sections/footer";
 @import "./sections/header";
 @import "./sections/main-content";
 @import "./sections/main-map";
 @import "./sections/main-portfolio";
 @import "./sections/main-submap";
-@import "./sections/portfolio-index";
-@import "./sections/portfolio";
 
 // Utils
 // @import "./utils/corrections";

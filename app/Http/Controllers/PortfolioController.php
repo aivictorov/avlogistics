@@ -41,7 +41,7 @@ class PortfolioController extends Controller
             }
         }
 
-        return view('portfolio.index', compact('page', 'parents', 'sections', 'seo'));
+        return view('site.pages.portfolio.index', compact('page', 'parents', 'sections', 'seo'));
     }
 
     public function show($url)
@@ -66,7 +66,7 @@ class PortfolioController extends Controller
                 }
             }
 
-            return view('portfolio.show', compact('page', 'parents', 'seo', 'sections', 'avatar', 'images'));
+            return view('site.pages.portfolio.show', compact('page', 'parents', 'seo', 'sections', 'avatar', 'images'));
         } else {
             return view('site.404');
         }

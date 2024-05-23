@@ -10,18 +10,15 @@
             <div class="column column--main">
                 <article class="article">
                     @include('site.blocks.breadcrumbs')
-
                     <div class="article__title">
                         <h1 class="h1">{{ $page->name }}</h1>
                     </div>
-
                     @if ($image_path)
                         <div class="article__avatar">
                             <img src={{ $image_path }} />
                         </div>
                     @endif
-
-                    <div class="page-content">
+                    <div class="article__content article__content--min-height">
                         {!! $page->text !!}
                     </div>
                 </article>
@@ -29,7 +26,6 @@
             <div class="column column--aside">
                 @include('site.sections.aside')
             </div>
-
         </div>
 
         @include('site.sections.main-portfolio')

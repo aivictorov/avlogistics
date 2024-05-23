@@ -6,6 +6,7 @@
 .h6 {
     font-family: "Roboto", sans-serif;
     font-weight: lighter;
+    line-height: 1.23;
 }
 
 .h1 {
@@ -33,10 +34,6 @@
     font-size: 15px;
 }
 
-
-
-
-
 .potfolio-index-h2 {
     font-family: 'robofanregular';
     font-weight: normal;
@@ -49,4 +46,22 @@
     @include bp(600px) {
         font-size: 25px;
     }
+}
+
+.alert {
+    border: 1px solid #cccccc;
+    padding: 20px;
+    margin: 10px auto;
+}
+
+.alert-danger {
+    border: 1px solid #f14214;
+}
+
+.blockquote {
+    padding: 15px 25px;
+    border: 1px solid #dedede;
+    font-size: 11px;
+    line-height: 20px;
+    color: #626262;
 }

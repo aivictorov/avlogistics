@@ -1,182 +1,74 @@
 .aside {
-    width: 215px;
     padding-top: 30px;
     padding-bottom: 30px;
+    width: 215px;
 }
 
-
-
-
-.main-aside__send-form {
-    background: url('/images/icons/aside_form.png');
-    background-repeat: no-repeat;
-    background-position: 20px 20px;
-    padding: 20px 20px 20px 80px;
+.aside__header {
+    margin-top: 20px;
+    margin-bottom: 20px;
     font-size: 18px;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-weight: lighter;
-    text-decoration: none;
-    border: 3px solid #f14214;
-    display: block;
-    margin-top: 50px;
-    margin-bottom: 50px;
-
+    line-height: 20px;
+    color: #474846;
 }
 
-.page-content {
-    color: #414040;
-    font-family: "Tahoma", "PT Sans", sans-serif;
-    font-size: 12px;
-    line-height: 20px;
-    letter-spacing: 0.02em;
-    margin-bottom: 30px;
+.aside__block-header {
+    margin: 10px auto 5px auto;
 
-    p+p {
-        margin-top: 12px;
+    & a {
+        font-family: "Roboto", sans-serif;
+        font-size: 12px;
+        color: #f04113;
+        text-decoration: none;
     }
 }
 
-
-.page-content ul {
-    padding-left: 25px;
-}
-
-.page-content ul li {
-    position: relative;
-    list-style: none;
-}
-
-.page-content ul li:before {
-    content: "";
-    width: 5px;
-    height: 5px;
-    position: absolute;
-    left: -20px;
-    top: 10px;
-    background-color: #f14214;
-    border-radius: 5px;
-}
-
-.page-content ol {
-    counter-reset: list_item;
-    margin: 30px auto;
-}
-
-.page-content ol li {
-    position: relative;
-    display: block;
-    padding-left: 20px;
-    min-height: 42px;
-    margin-bottom: 15px;
-    line-height: 20px;
-}
-
-.page-content ol li:before {
-    content: counter(list_item);
-    counter-increment: list_item;
-    position: absolute;
-    width: 31px;
-    height: 37px;
-    left: -31px;
-    top: -5px;
-    z-index: -1;
-    font-size: 17px;
-    color: #ffffff;
-    line-height: 37px;
-    vertical-align: middle;
-    font-family: "Roboto", sans-serif;
-    font-weight: lighter;
-    text-align: center;
-    background: url('/images/icons/list_item_bg.png') no-repeat 0 0;
-}
-
-.page-content blockquote {
-    border: 1px solid #dedede;
-    padding: 15px 25px;
-    margin: 20px auto;
-    color: #626262;
-    line-height: 20px;
-    font-size: 11px;
-}
-
-.page-nav {
-    color: #414040;
-    font-family: 'Tahoma', "PT Sans", sans-serif;
-    font-size: 12px;
-    margin-bottom: 50px;
-    margin-top: 30px;
-}
-
-
-.aside-header {
-    color: #474846;
-    font-size: 18px;
-    font-family: "Roboto", sans-serif;
-    font-weight: lighter;
-    margin-bottom: 20px;
-    line-height: 20px;
-    margin-top: 20px;
-}
-
-.aside-block-header {
-    margin: 10px auto 5px auto;
-
-}
-
-.aside-block-header a {
-    font-family: "Roboto", sans-serif;
-    font-size: 12px;
-    color: #f04113;
-    text-decoration: none;
-
-}
-
-.aside-block-list-menu {
-    list-style: none;
-    padding-left: 20px;
+.aside__block-list {
     margin: 5px auto 10px auto;
+    padding-left: 20px;
     line-height: 14px;
+    list-style: none;
+
+    & li {
+        margin-bottom: 5px;
+    }
+
+    & a {
+        font-family: "Roboto", sans-serif;
+        font-size: 11px;
+        font-weight: lighter;
+        text-decoration: none;
+        color: #808080;
+    }
+
+    & a.cur {
+        color: #f04113;
+    }
 }
 
-
-.aside-block-list-menu li {
-    margin-bottom: 5px;
-}
-
-.aside-block-list-menu a {
-    font-family: "Roboto", sans-serif;
-    font-size: 11px;
-    color: #808080;
-    font-weight: lighter;
-    text-decoration: none;
-}
-
-.aside-block-list-menu a.cur {
-    color: #f04113;
-}
-
-.aside-sections {
+.aside__blocks-list {
     list-style: none;
     padding-left: 0;
     margin: 5px auto 10px auto;
     line-height: 14px;
+
+    & li {
+        margin-bottom: 15px;
+        position: relative;
+        padding-right: 30px;
+    }
+
+    & a {
+        font-family: "Roboto", sans-serif;
+        font-size: 12px;
+        color: #f04113;
+        text-decoration: none;
+    }
 }
 
-
-.aside-sections li {
-    margin-bottom: 15px;
-    position: relative;
-    padding-right: 30px;
-}
-
-.aside-sections a {
-    font-family: "Roboto", sans-serif;
-    font-size: 12px;
-    color: #f04113;
-    text-decoration: none;
-}
-
-.aside-sections .aside-section-count {
+.aside__blocks-count {
     font-family: "Roboto", sans-serif;
     font-size: 12px;
     color: #808080;

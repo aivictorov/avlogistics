@@ -1,4 +1,14 @@
 a {
     color: #f14214;
     text-decoration: underline;
+
+    &:hover {
+        color: #f14214;
+        text-decoration: underline;
+    }
+
+    &:visited {
+        color: #f14214;
+        text-decoration: underline;
+    }
 }

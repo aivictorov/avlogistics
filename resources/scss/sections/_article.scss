@@ -1,6 +1,11 @@
 .article {
     padding-top: 30px;
     padding-bottom: 30px;
+    font-family: "Tahoma", "PT Sans", sans-serif;
+    font-size: 12px;
+    line-height: 1.67;
+    letter-spacing: 0.02em;
+    color: #414040;
 }
 
 .article__title {
@@ -23,30 +28,65 @@
     }
 }
 
+.article__content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
 
+    &--min-height {
+        min-height: 400px;
+    }
 
+    ul {
+        padding-left: 25px;
 
-// .post-list-item {
-//     margin: 20px auto 30px;
-// }
+        li {
+            position: relative;
+            list-style: none;
 
-// .post-list-announce {
-//     margin: 10px auto;
-//     text-align: justify;
-// }
+            &:before {
+                content: "";
+                width: 5px;
+                height: 5px;
+                position: absolute;
+                left: -20px;
+                top: 10px;
+                background-color: #f14214;
+                border-radius: 5px;
+            }
+        }
+    }
 
-// .post-list-header-link {
-//     font-size: 20px;
-//     font-family: "Roboto", sans-serif;
-//     font-weight: lighter;
-//     text-decoration: none;
-// }
+    ol {
+        counter-reset: list_item;
+        margin: 30px auto;
 
-// .post-list-image {
-//     margin: 20px 0;
-//     border-bottom: 3px solid #f14214;
-// }
+        li {
+            position: relative;
+            display: block;
+            padding-left: 20px;
+            min-height: 42px;
+            margin-bottom: 15px;
+            line-height: 20px;
 
-// .post-list-image img {
-//     vertical-align: bottom;
-// }
+            &:before {
+                content: counter(list_item);
+                counter-increment: list_item;
+                position: absolute;
+                width: 31px;
+                height: 37px;
+                left: -31px;
+                top: -5px;
+                z-index: -1;
+                font-size: 17px;
+                color: #ffffff;
+                line-height: 37px;
+                vertical-align: middle;
+                font-family: "Roboto", sans-serif;
+                font-weight: lighter;
+                text-align: center;
+                background: url('/images/icons/list_item_bg.png') no-repeat 0 0;
+            }
+        }
+    }
+}
