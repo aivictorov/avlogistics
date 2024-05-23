@@ -3,10 +3,6 @@
     font-size: 11px;
     font-family: 'Tahoma', "PT Sans", sans-serif;
     color: #a9a9a9;
-
-    @include bp(600px) {
-        display: none;
-    }
 }
 
 .breadcrumbs a {

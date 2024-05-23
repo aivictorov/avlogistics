@@ -30,7 +30,7 @@
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
                     </div>
-                    <div thumbsSlider="" class="swiper mySwiper">
+                    {{-- <div thumbsSlider="" class="swiper mySwiper">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <img src={{ Image::path($avatar, 'small') }}
@@ -43,7 +43,7 @@
                                 </div>
                             @endforeach
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="page-content">
                         {!! $page['text'] !!}

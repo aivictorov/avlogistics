@@ -4,34 +4,47 @@
     width: 100%;
     background: url('/images/sixbox/shadow_six.png') top center no-repeat #FFF;
     z-index: 220;
-
+    display: none;
+    padding-top: 20px;
+    width: 100%;
 
     &.opened {
-        border-bottom: 3px solid #e6e6e6;
-        box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.10);
+        position: fixed;
+        top: 92px;
+        left: 0;
+        right: 0;
+        bottom: 150px;
+        overflow-y: auto;
+        display: block;
         padding-bottom: 20px;
-        height: 100vh;
+        // box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.10);
         overflow-y: scroll;
+        z-index: 230;
+
+        .mobile-subnav-contacts {
+            position: fixed;
+            bottom: 0;
+            height: 150px;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            box-shadow: 0 10px 20px 20px rgba(0, 0, 0, 0.15);
+            border-bottom: 3px solid #e6e6e6;
+            padding: 5px 30px;
+            border-top: 1px solid lightgray;
+
+            .mobile-subnav__phones {
+                display: flex;
+                flex-direction: column;
+                row-gap: 5px;
+            }
+        }
     }
 
     &.sl {
         top: 73px;
         position: fixed;
     }
-}
-
-.mobile-subnav-block {
-    display: none;
-    padding-top: 20px;
-    // padding-bottom: 30px;
-    width: 100%;
-    // z-index: 225;
-
-    &.opened {
-        display: block;
-        z-index: 230;
-    }
-
 }
 
 .mobile-subnav-block__close {
@@ -164,10 +177,12 @@
     display: flex;
     flex-direction: column;
     row-gap: 10px;
+
+
+
 }
 
 .mobile-subnav__phones {
-    border-top: 1px solid lightgray;
     padding-top: 10px;
     display: flex;
     // justify-content: center;

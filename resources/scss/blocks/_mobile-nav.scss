@@ -43,19 +43,19 @@ $height: 2 * $spacer + 3 * $line-height;
     }
 }
 
-// .mobile-nav-icon.mobile-nav-icon--active {
-//     position: fixed;
-//     top: 41px;
-//     right: 15px;
-// }
+.mobile-nav-icon.opened {
+    position: fixed;
+    top: 35px;
+    right: 25px;
+}
 
-.mobile-nav-icon.mobile-nav-icon--active .mobile-nav-icon__middle {
+.mobile-nav-icon.opened .mobile-nav-icon__middle {
     background-color: transparent;
 
     &::before,
     &::after {
         top: 0;
-        background-color: #FFF;
+        // background-color: #FFF;
         transition: top .2s linear,
             transform .2s ease-in .2s;
     }
