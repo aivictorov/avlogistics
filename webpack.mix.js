@@ -2,8 +2,8 @@ let mix = require('laravel-mix');
 
 mix.webpackConfig({ devtool: 'source-map' })
 
-mix.sass('resources/scss/admin.scss', 'public/css')
-    .sass('resources/scss/style.scss', 'public/css')
+mix.sass('resources/scss/main.scss', 'public/css')
+    .sass('resources/scss/admin.scss', 'public/css')
     .sourceMaps();
 
 mix.js('resources/js/admin.js', 'public/js')
@@ -11,6 +11,7 @@ mix.js('resources/js/admin.js', 'public/js')
 
 mix.browserSync('127.0.0.1:8000');
 
-// mix.disableSuccessNotifications();
+mix.disableSuccessNotifications();
+
 // mix.disableNotifications();
 // mix.setPublicPath('dist');

@@ -9,37 +9,16 @@ html {
 body {
     margin: 0;
     padding: 0;
-    // min-width: 1000px;
-
-    // Sticky footer
     display: flex;
     flex-direction: column;
-    // justify-content: space-between;
     min-height: 100vh;
-}
-
-a {
-    color: #f14214;
-    text-decoration: underline;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: 'robofanregular';
-    font-weight: normal;
-    margin: 0;
-    padding: 0;
 }
 
 .container {
     margin: 0 auto;
     padding: 0 30px;
     width: 100%;
-    max-width: 1000px;
+    max-width: 1260px;
 
     @include bp(800px) {
         max-width: 730px;
@@ -49,89 +28,28 @@ h6 {
         padding: 0 25px;
     }
 
-    &--aside {
+    &--flex {
         display: flex;
         justify-content: space-between;
         column-gap: 55px;
     }
 }
 
+.column {
+    &--main {
+        max-width: 930px;
+        width: calc(100% - 215px - 55px);
 
-.main {
-    padding-top: 30px;
-    padding-bottom: 30px;
-}
-
-.main--map {
-    padding-top: 0;
-    padding-bottom: 0;
-    background: url('/images/main/main_map.png') no-repeat 50% -80px;
-}
-
-.main-section__container--inhider {
-    display: none;
-}
-
-.subnav-blocks__block_in {
-    margin: 0 auto;
-    width: 940px;
-    padding: 0 0 30px 0;
-    position: relative;
-}
-
-.header__test {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-bottom: 1px dotted lightgray;
-
-    display: none;
-
-    @include bp(600px) {
-        display: block;
+        @include bp(800px) {
+            width: 100%;
+        }
     }
-}
 
-.header__test-contacts {
-    display: flex;
-    justify-content: space-between;
-    column-gap: 7px;
-}
+    &--aside {
+        flex-shrink: 0;
 
-
-.services-list {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    column-gap: 20px;
-    row-gap: 20px;
-}
-
-.services-list__item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    width: 30%;
-    height: 200px;
-    color: #FFF;
-    background-color: cadetblue;
-    font-weight: 500;
-    font-size: 20px;
-}
-
-.swiper {
-    width: 100%;
-    height: auto;
-}
-
-.swiper-wrapper {
-    width: 100%;
-}
-
-.swiper-slide {
-    width: 100%;
-
-    img {
-        width: 100%;
+        @include bp(800px) {
+            display: none;
+        }
     }
 }

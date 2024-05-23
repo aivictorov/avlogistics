@@ -418,31 +418,19 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelector('.arrow-bar__arrow')) setTimeout(_components_arrowBar__WEBPACK_IMPORTED_MODULE_2__.arrowBarInit, 2000);
 });
 var swiper3 = new Swiper('.swiper', {
-  // Optional parameters
-  direction: 'horizontal',
+  slidesPerView: "auto",
+  centeredSlides: true,
+  spaceBetween: 0,
   loop: true,
-  // If we need pagination
-  pagination: {
-    el: '.swiper-pagination'
-  },
-  // Navigation arrows
   navigation: {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev'
-  },
-  // And if we need scrollbar
-  scrollbar: {
-    el: '.swiper-scrollbar'
   }
 });
-var swiper = new Swiper(".mySwiper", {
-  spaceBetween: 10,
-  slidesPerView: 4,
-  freeMode: true,
-  watchSlidesProgress: true
-});
 var swiper2 = new Swiper(".mySwiper2", {
-  spaceBetween: 10,
+  // spaceBetween: 10,
+  loop: true,
+  watchSlidesProgress: true,
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev"
@@ -450,6 +438,13 @@ var swiper2 = new Swiper(".mySwiper2", {
   thumbs: {
     swiper: swiper
   }
+});
+var swiper = new Swiper(".mySwiper", {
+  // spaceBetween: 10,
+  slidesPerView: 5,
+  loop: true,
+  freeMode: true,
+  watchSlidesProgress: true
 });
 })();
 

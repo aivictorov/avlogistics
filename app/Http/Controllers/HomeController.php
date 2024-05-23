@@ -15,6 +15,6 @@ class HomeController extends Controller
         $page = (new GetPageAction)->run($id);
         $seo = (new GetSeoAction)->run($page['seo_id']);
 
-        return view('site.home', compact('seo'));
+        return view('site.pages.home', compact('seo'));
     }
 }

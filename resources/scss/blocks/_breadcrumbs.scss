@@ -1,0 +1,27 @@
+.breadcrumbs {
+    margin-bottom: 20px;
+    font-size: 11px;
+    font-family: 'Tahoma', "PT Sans", sans-serif;
+    color: #a9a9a9;
+
+    @include bp(600px) {
+        display: none;
+    }
+}
+
+.breadcrumbs a {
+    color: #a9a9a9;
+    text-decoration: none;
+
+    &:hover {
+        color: #f14214;
+    }
+}
+
+.breadcrumbs span.no-url {
+    color: #f14214;
+}
+
+.breadcrumbs span.divider {
+    margin: auto 8px;
+}

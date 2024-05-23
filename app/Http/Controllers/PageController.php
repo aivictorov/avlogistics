@@ -22,9 +22,9 @@ class PageController extends Controller
             $image = (new GetImageAction)->run($id);
             $image_path = (new BuildImagePathAction)->run($image);
 
-            return view('site.page', compact('page', 'parents', 'image_path', 'seo'));
+            return view('site.pages.page', compact('page', 'parents', 'image_path', 'seo'));
         } else {
-            return view('site.404');
+            return view('site.pages.error');
         }
     }
 }
