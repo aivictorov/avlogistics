@@ -46,6 +46,8 @@ class UserController extends Controller
                 name: $validated['name'],
                 email: $validated['email'],
                 password: $validated['password'],
+                role: $validated['role'],
+                status: $validated['status'],
             )
         );
 

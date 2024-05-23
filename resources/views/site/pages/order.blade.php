@@ -6,22 +6,28 @@
 
 @section('content')
     <main class="main">
-        <div class="container container--aside">
-            <div class="aside-page">
-                @include('site.parts.breadcrumbs')
+        <div class="container container--flex">
+            <div class="column column--main">
+                <article class="article">
+                    @include('site.blocks.breadcrumbs')
 
-                <h1 class="page-h1">
-                    {{ $page->name }}
-                </h1>
+                    <div class="article__title">
+                        <h1 class="h1">{{ $page->name }}</h1>
+                    </div>
 
-                <div class="page-content">
-                    {{-- {!! $page->text !!} --}}
-                    Благодарим Вас за интерес, проявленный к нашей компании. Пожалуйста, заполните форму заявки на перевозку
-                    груза. Наши специалисты в кратчайшие сроки произведут расчет стоимости услуги и предоставят Вам всю
-                    необходимую информацию.
-                </div>
+                    <div class="article__content">
+                        {!! $page->text !!}
+                        <p>
+                            Благодарим Вас за интерес, проявленный к нашей компании. Пожалуйста, заполните форму заявки на
+                            перевозку груза. Наши специалисты в кратчайшие сроки произведут расчет стоимости услуги и
+                            предоставят Вам всю необходимую информацию.
+                        </p>
+                        <p></p>
+                    </div>
 
-                @include('layouts.parts.form')
+                    @include('site.forms.form')
+                </article>
+
             </div>
         </div>
     </main>

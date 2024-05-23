@@ -14,6 +14,8 @@ class CreateUserAction
             'name' => $data->name,
             'email' => $data->email,
             'password' => $data->password,
+            'role' => $data->role,
+            'status' => $data->status,
 
             'created_at' => Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon::now()->toDateTimeString(),

@@ -5,9 +5,11 @@ namespace App\Actions\User;
 class CreateUserData
 {
     public function __construct(
-        public string $name,
-        public string $email,
-        public string $password,
+        public $name,
+        public $email,
+        public $password,
+        public $role,
+        public $status,
     ) {
         //
     }
