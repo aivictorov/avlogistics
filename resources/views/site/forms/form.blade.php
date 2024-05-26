@@ -95,7 +95,7 @@
                         accept="application/pdf, image/jpeg, image/png" multiple>
                     <div class="input-file__icon">
                         <svg class="icon icon--plus">
-                            <use xlink:href="./img/icons/sprite.svg#plus"></use>
+                            <use xlink:href="/images/icons/sprite.svg#plus"></use>
                         </svg>
                     </div>
                     <div class="input-file__text">

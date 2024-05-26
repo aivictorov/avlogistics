@@ -22,7 +22,7 @@ body {
     max-width: 1000px;
 
     @include bp(600px) {
-        padding: 0 25px;
+        padding: 0 20px;
     }
 
     &--flex {

@@ -1,0 +1,52 @@
+.icon {
+    display: block;
+    flex-shrink: 0;
+
+    &--phone,
+    &--email {
+        width: 32px;
+        height: 32px;
+        // fill: #bdbdbd;
+        fill: #dadada;
+
+        &:hover {
+            fill: #f14214;
+        }
+    }
+
+    // &--arrow-next {
+    //     width: 8px;
+    //     height: 12px;
+    // }
+
+    // &--arrow-up {
+    //     width: 24px;
+    //     height: 12px;
+    //     stroke: #f14214;
+
+    //     @include bp(768px) {
+    //         width: 12px;
+    //         height: 6px;
+    //     }
+    // }
+
+    &--arrow-right {
+        width: 10px;
+        height: 10px;
+        stroke: #f14214;
+        stroke-width: 3px;
+    }
+
+    &--arrow-down {
+        width: 14px;
+        height: 8px;
+        stroke: #f14214;
+        stroke-width: 3px;
+    }
+
+    &--plus {
+        width: 12px;
+        height: 12px;
+        stroke: #f14214;
+    }
+}

@@ -101,6 +101,10 @@
 }
 
 .mobile-subnav-column__header {
+    display: flex;
+    align-items: baseline;
+    column-gap: 5px;
+
     margin-top: 8px;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
@@ -118,6 +122,14 @@
         padding: 10px 0 10px 0;
     }
 }
+
+
+.mobile-subnav-column__header-arrow {
+    padding-left: 20px;
+    margin-left: -20px;
+    // background-color: aquamarine;
+}
+
 
 .mobile-subnav-column__list-menu {
     padding: 0 0 0 13px;

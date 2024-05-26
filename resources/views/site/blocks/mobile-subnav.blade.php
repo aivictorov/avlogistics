@@ -14,6 +14,21 @@
                         @foreach ($tree[array_key_first($tree)]['children'][$i]['children'] as $header)
                             <div class="mobile-subnav-column__header">
                                 <a href={{ route('pages.show', $header['url']) }}>{{ $header['name'] }}</a>
+                                @if (isset($header['children']))
+                                    <div class="mobile-subnav-column__header-arrow">
+                                        <svg class="icon icon--arrow-down">
+                                            <use xlink:href="/images/icons/sprite.svg#arrow-down"></use>
+                                        </svg>
+                                    </div>
+
+                                    {{-- <svg class="icon icon--arrow-right">
+                                        <use xlink:href="/images/icons/sprite.svg#arrow-right"></use>
+                                    </svg> --}}
+                                    {{-- <a class="mobile-subnav-column__header-link"
+                                        href={{ route('pages.show', $header['url']) }}>
+                                        В раздел
+                                    </a> --}}
+                                @endif
                             </div>
 
                             @if (isset($header['children']))

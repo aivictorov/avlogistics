@@ -154,7 +154,7 @@ body {
 }
 @media screen and (max-width: 600px) {
   .container {
-    padding: 0 25px;
+    padding: 0 20px;
   }
 }
 .container--flex {
@@ -194,6 +194,36 @@ body {
   display: block;
   background: transparent;
   font-size: 0;
+}
+
+.icon {
+  display: block;
+  flex-shrink: 0;
+}
+.icon--phone, .icon--email {
+  width: 32px;
+  height: 32px;
+  fill: #dadada;
+}
+.icon--phone:hover, .icon--email:hover {
+  fill: #f14214;
+}
+.icon--arrow-right {
+  width: 10px;
+  height: 10px;
+  stroke: #f14214;
+  stroke-width: 3px;
+}
+.icon--arrow-down {
+  width: 14px;
+  height: 8px;
+  stroke: #f14214;
+  stroke-width: 3px;
+}
+.icon--plus {
+  width: 12px;
+  height: 12px;
+  stroke: #f14214;
 }
 
 a {
@@ -804,6 +834,10 @@ a.logo img {
 }
 
 .mobile-subnav-column__header {
+  display: flex;
+  align-items: baseline;
+  -moz-column-gap: 5px;
+       column-gap: 5px;
   margin-top: 8px;
   font-family: "Roboto", sans-serif;
   font-size: 14px;
@@ -817,6 +851,11 @@ a.logo img {
 }
 .mobile-subnav-column__header--gray {
   padding: 10px 0 10px 0;
+}
+
+.mobile-subnav-column__header-arrow {
+  padding-left: 20px;
+  margin-left: -20px;
 }
 
 .mobile-subnav-column__list-menu {
@@ -1684,37 +1723,60 @@ a.faq__block-header {
   align-items: flex-end;
   row-gap: 20px;
 }
+@media screen and (max-width: 1000px) {
+  .header__right {
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    -moz-column-gap: 12px;
+         column-gap: 12px;
+    row-gap: unset;
+  }
+}
 
 .header__contacts {
   display: flex;
-  align-items: flex-start;
   justify-content: flex-end;
+  align-items: center;
   -moz-column-gap: 7px;
        column-gap: 7px;
 }
+
+.header__phones {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: #bdbdbd;
+  font-size: 14px;
+  font-family: "PT Sans", sans-serif;
+}
 @media screen and (max-width: 600px) {
-  .header__contacts {
+  .header__phones {
     display: none;
   }
 }
 
-.header__phones {
-  color: #bdbdbd;
-  font-size: 14px;
-  font-family: "PT Sans", sans-serif;
+.header__phone-main span,
+.header__phone-add span {
+  color: #6b6b6b;
 }
 
-.header__social {
+.header__icons-desktop {
   color: #bdbdbd;
   font-size: 14px;
   font-family: "PT Sans", sans-serif;
+  font-size: 0;
+}
+@media screen and (max-width: 600px) {
+  .header__icons-desktop {
+    display: none;
+  }
 }
 
 .header__social-icon {
   width: 21px;
   height: 21px;
   display: block;
-  float: left;
   color: transparent;
   font-size: 0;
   text-indent: -1000px;
@@ -1731,15 +1793,17 @@ a.faq__block-header {
   background: url("/images/icons/icon_soc_vk.png");
 }
 
-.header__phones {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+.header__icons-mobile {
+  display: none;
+  font-size: 0;
 }
-
-.header__phone-main span,
-.header__phone-add span {
-  color: #6b6b6b;
+@media screen and (max-width: 600px) {
+  .header__icons-mobile {
+    display: flex;
+    align-items: center;
+    -moz-column-gap: 6px;
+         column-gap: 6px;
+  }
 }
 
 .header__nav {
@@ -1891,57 +1955,62 @@ a.faq__block-header {
   padding: 0;
 }
 
-.main-map__title {
+.main-map__title-primary {
   display: block;
   margin-top: -20px;
+  margin-bottom: 9px;
   padding: 0;
   font-size: 88px;
   color: #000000;
 }
 @media screen and (max-width: 800px) {
-  .main-map__title {
+  .main-map__title-primary {
     font-size: 76px;
   }
 }
 @media screen and (max-width: 600px) {
-  .main-map__title {
+  .main-map__title-primary {
     font-size: 64px;
   }
 }
 @media screen and (max-width: 450px) {
-  .main-map__title {
-    font-size: 46px;
+  .main-map__title-primary {
+    font-size: 40px;
   }
 }
 
-.main-map__subtitle {
-  display: block;
-  margin-top: 9px;
+.main-map__title-secondary {
+  display: inline;
   font-size: 24px;
   line-height: 1.08;
+  color: #afafaf;
 }
 @media screen and (max-width: 800px) {
-  .main-map__subtitle {
+  .main-map__title-secondary {
     font-size: 22px;
   }
 }
 @media screen and (max-width: 600px) {
-  .main-map__subtitle {
-    font-size: 18px;
+  .main-map__title-secondary {
+    font-size: 17px;
   }
 }
-
-.main-map__subtitle-primary {
+.main-map__title-secondary--accent {
+  display: inline;
   border-bottom: 2px solid transparent;
   color: #f14214;
   text-decoration: none;
 }
-.main-map__subtitle-primary:hover {
+.main-map__title-secondary--accent:hover {
   color: #f14214;
 }
-
-.main-map__subtitle-secondary {
-  color: #afafaf;
+.main-map__title-secondary--add {
+  white-space: nowrap;
+}
+@media screen and (max-width: 450px) {
+  .main-map__title-secondary--add {
+    white-space: unset;
+  }
 }
 
 .main-section__portfolio-index {
