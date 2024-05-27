@@ -1,5 +1,8 @@
+import { gallery } from "./components/gallery";
+
 import { subnavInit } from "./components/subnav";
-import { upform } from "./components/upform";
+// import { upform } from "./components/upform";
+import { modalWindows } from "./components/modals";
 import { arrowBarInit } from "./components/arrowBar";
 import { mobileNavInit } from "./components/mobileNav";
 import { mainContent } from "./components/mainContent";
@@ -7,13 +10,20 @@ import { swipers } from "./components/swipers";
 import { captcha } from "./components/grecaptcha"
 
 document.addEventListener('DOMContentLoaded', () => {
+	gallery();
+
 	subnavInit();
 	mobileNavInit();
 	mainContent();
-	upform();
-	swipers();
+	// upform();
+
 	captcha();
+
 	if (document.querySelector('.arrow-bar__arrow')) setTimeout(arrowBarInit, 2000);
+
+	setTimeout(modalWindows, 5000);
+	setTimeout(swipers, 5100);
+
 });
 
 

@@ -1,0 +1,29 @@
+.content-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.content-gallery__item {
+    width: 100%;
+    height: auto;
+    border-bottom: 3px solid #ffffff;
+    cursor: pointer;
+
+    &:hover {
+        border-bottom: 3px solid #f14214;
+    }
+
+    &.cur {
+        border-bottom: 3px solid #f14214;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}

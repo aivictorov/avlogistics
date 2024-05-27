@@ -29,10 +29,10 @@ class Image extends Model
 
     public $timestamps = false;
 
-    public static function path($image, $prefix = "page")
+    public static function path($image, $prefix = "page_")
     {
         if ($image) {
-            return Storage::disk('public')->url('/upload/' . $image->parent_type . '/' . $image->parent_id . '/' . $image->id . '/sizes/' . $prefix . '_' . $image->image);
+            return Storage::disk('public')->url('/upload/' . $image->parent_type . '/' . $image->parent_id . '/' . $image->id . '/sizes/' . $prefix . $image->image);
 
         } else {
             return '';

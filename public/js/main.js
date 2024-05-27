@@ -41,6 +41,62 @@ function arrowBarInit() {
 
 /***/ }),
 
+/***/ "./resources/js/components/gallery.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/gallery.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   gallery: () => (/* binding */ gallery)
+/* harmony export */ });
+function gallery() {
+  var content = document.querySelector('.article__content');
+  if (content) {
+    content.innerHTML.match(/\[gallery\-\d+\]/gi).forEach(function (el) {
+      content.innerHTML = content.innerHTML.replace(el, "<p data-gallery-id=\"".concat(parseInt(el.match(/\d+/)), "\"></p>"));
+    });
+    var elements = content.querySelectorAll('[data-gallery-id]');
+    if (elements) {
+      var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+      elements.forEach(function (element) {
+        var id = parseInt(element.dataset.galleryId);
+        if (id) {
+          fetch('/loadGallery', {
+            method: 'POST',
+            headers: {
+              'X-CSRF-TOKEN': csrfToken
+            },
+            body: id
+          }).then(function (response) {
+            response.text().then(function (responseText) {
+              var arr = JSON.parse(responseText);
+              var contentGallery = document.createElement('div');
+              contentGallery.classList.add('content-gallery');
+              element.replaceWith(contentGallery);
+              var imagesHtml = "";
+              var slidesHtml = "";
+              arr.forEach(function (item) {
+                imagesHtml = imagesHtml + "\n                                    <a href=\"".concat(item.image.path, "\" class=\"content-gallery__item\" modal-button=\"gallery\" title=\"").concat(item.text, "\">\n                                        <img src=\"").concat(item.image.path, "\" alt=\"").concat(item.text, "\">\n                                    </a>\n                                ");
+                slidesHtml = slidesHtml + "\n                                    <div class=\"swiper-slide\">\n                                        <img src=\"https://rail-projects.ru".concat(item.image.path.replace('1_4', 'big'), "\" />\n                                    </div>\n                                ");
+              });
+              contentGallery.innerHTML = imagesHtml;
+              var modal = document.createElement('div');
+              modal.classList.add = 'modals';
+              modal.innerHTML = "\n                                <div class=\"modals\">\n                                    <div class=\"modal\" modal-window=\"gallery\">\n                                        <div class=\"modal__content modal__content--center\">\n\n                                            <div class=\"content__slider\">\n                                                <div class=\"swiper\">\n                                                    <div class=\"swiper-wrapper\">\n                                                        ".concat(slidesHtml, "\n                                                    </div>\n                                                    <div class=\"swiper-button-next\"></div>\n                                                    <div class=\"swiper-button-prev\"></div>\n                                                </div>\n                                            </div>\n\n                                        </div>\n                                    </div>\n                                </div>\n                            ");
+              contentGallery.after(modal);
+            });
+          });
+        }
+      });
+    }
+  }
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/grecaptcha.js":
 /*!***********************************************!*\
   !*** ./resources/js/components/grecaptcha.js ***!
@@ -166,6 +222,79 @@ function mobileNavInit() {
 
 /***/ }),
 
+/***/ "./resources/js/components/modals.js":
+/*!*******************************************!*\
+  !*** ./resources/js/components/modals.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   modalWindows: () => (/* binding */ modalWindows)
+/* harmony export */ });
+function modalWindows() {
+  document.querySelectorAll('[modal-button]').forEach(function (button) {
+    var modal = document.querySelector("div[modal-window=\"".concat(button.getAttribute('modal-button'), "\"]"));
+    if (modal) {
+      var content = modal.querySelector('.modal__content');
+      var closeBtns = modal.querySelectorAll("[close-modal-button=\"".concat(button.getAttribute('modal-button'), "\"]"));
+      // const nav = document.querySelector('.menu');
+      // const navIcon = document.querySelector('.nav-icon');
+      var header = document.querySelector('.header');
+      button.addEventListener('click', function (event) {
+        event.preventDefault();
+        document.querySelectorAll('[modal-window]').forEach(function (window) {
+          window.classList.remove('active');
+        });
+        // navIcon.classList.remove('nav-icon--active');
+        // nav.classList.remove('menu--active');
+        modal.classList.add('active');
+        document.body.classList.add('noscroll');
+        header.classList.add('noscroll');
+        modal.scrollTo(0, 0);
+      });
+      content.addEventListener('mousedown', function (event) {
+        event.stopPropagation();
+      });
+      modal.addEventListener('mousedown', function () {
+        modal.classList.remove('active');
+        document.body.classList.remove('noscroll');
+        header.classList.remove('noscroll');
+      });
+      if (closeBtns) {
+        closeBtns.forEach(function (closeBtn) {
+          closeBtn.addEventListener('click', function () {
+            modal.classList.remove('active');
+            document.body.classList.remove('noscroll');
+            header.classList.remove('noscroll');
+          });
+        });
+      }
+      ;
+    }
+    ;
+  });
+
+  // alignModalWindows();
+
+  // window.addEventListener('resize', alignModalWindows);
+
+  // function alignModalWindows() {
+  // 	document.querySelectorAll('div[modal-window]').forEach((modal) => {
+  // 		const content = modal.querySelector('.modal__content');
+  // 		if (content.clientHeight >= window.innerHeight - 100) {
+  // 			content.classList.remove('modal__content--center');
+  // 		} else {
+  // 			content.classList.add('modal__content--center');
+  // 		};
+  // 	});
+  // };
+}
+;
+
+/***/ }),
+
 /***/ "./resources/js/components/subnav.js":
 /*!*******************************************!*\
   !*** ./resources/js/components/subnav.js ***!
@@ -278,48 +407,17 @@ function swipers() {
       swiper: portfolioThumbs
     }
   });
-}
-
-
-/***/ }),
-
-/***/ "./resources/js/components/upform.js":
-/*!*******************************************!*\
-  !*** ./resources/js/components/upform.js ***!
-  \*******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   upform: () => (/* binding */ upform)
-/* harmony export */ });
-function upform() {
-  $('.js-form-open').click(function () {
-    $("html, body").animate({
-      scrollTop: 200
-    }, "slow");
-    $('.js-blackback').fadeIn(300);
-    var upflash = $('.js-apply-form');
-    upflash.appendTo('.js-upflash');
-    upflash.show();
-    $('.js-upflash').fadeIn(300);
-    return false;
-  });
-  $('.js-upform-close, .js-blackback').click(function () {
-    $('.js-blackback').fadeOut(300);
-    var upform = $('.js-upflash');
-    var upflash = upform.find('.js-apply-form');
-    var slider = upform.find('.gallery-slider');
-    upform.fadeOut(300, function () {
-      upform.removeClass('upflash-bigimage');
-      slider.remove();
-      upflash.hide();
-      upflash.prependTo('body');
-    });
-    return false;
+  var contentSlider = new Swiper('.content__slider .swiper', {
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 10,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev"
+    }
   });
 }
+
 
 /***/ }),
 
@@ -17635,14 +17733,17 @@ var __webpack_exports__ = {};
   !*** ./resources/js/main.js ***!
   \******************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_subnav__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/subnav */ "./resources/js/components/subnav.js");
-/* harmony import */ var _components_upform__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/upform */ "./resources/js/components/upform.js");
-/* harmony import */ var _components_arrowBar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/arrowBar */ "./resources/js/components/arrowBar.js");
-/* harmony import */ var _components_mobileNav__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/mobileNav */ "./resources/js/components/mobileNav.js");
-/* harmony import */ var _components_mainContent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/mainContent */ "./resources/js/components/mainContent.js");
-/* harmony import */ var _components_swipers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/swipers */ "./resources/js/components/swipers.js");
-/* harmony import */ var _components_grecaptcha__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/grecaptcha */ "./resources/js/components/grecaptcha.js");
+/* harmony import */ var _components_gallery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/gallery */ "./resources/js/components/gallery.js");
+/* harmony import */ var _components_subnav__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/subnav */ "./resources/js/components/subnav.js");
+/* harmony import */ var _components_modals__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/modals */ "./resources/js/components/modals.js");
+/* harmony import */ var _components_arrowBar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/arrowBar */ "./resources/js/components/arrowBar.js");
+/* harmony import */ var _components_mobileNav__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/mobileNav */ "./resources/js/components/mobileNav.js");
+/* harmony import */ var _components_mainContent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/mainContent */ "./resources/js/components/mainContent.js");
+/* harmony import */ var _components_swipers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/swipers */ "./resources/js/components/swipers.js");
+/* harmony import */ var _components_grecaptcha__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/grecaptcha */ "./resources/js/components/grecaptcha.js");
 
+
+// import { upform } from "./components/upform";
 
 
 
@@ -17650,13 +17751,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 document.addEventListener('DOMContentLoaded', function () {
-  (0,_components_subnav__WEBPACK_IMPORTED_MODULE_0__.subnavInit)();
-  (0,_components_mobileNav__WEBPACK_IMPORTED_MODULE_3__.mobileNavInit)();
-  (0,_components_mainContent__WEBPACK_IMPORTED_MODULE_4__.mainContent)();
-  (0,_components_upform__WEBPACK_IMPORTED_MODULE_1__.upform)();
-  (0,_components_swipers__WEBPACK_IMPORTED_MODULE_5__.swipers)();
-  (0,_components_grecaptcha__WEBPACK_IMPORTED_MODULE_6__.captcha)();
-  if (document.querySelector('.arrow-bar__arrow')) setTimeout(_components_arrowBar__WEBPACK_IMPORTED_MODULE_2__.arrowBarInit, 2000);
+  (0,_components_gallery__WEBPACK_IMPORTED_MODULE_0__.gallery)();
+  (0,_components_subnav__WEBPACK_IMPORTED_MODULE_1__.subnavInit)();
+  (0,_components_mobileNav__WEBPACK_IMPORTED_MODULE_4__.mobileNavInit)();
+  (0,_components_mainContent__WEBPACK_IMPORTED_MODULE_5__.mainContent)();
+  // upform();
+
+  (0,_components_grecaptcha__WEBPACK_IMPORTED_MODULE_7__.captcha)();
+  if (document.querySelector('.arrow-bar__arrow')) setTimeout(_components_arrowBar__WEBPACK_IMPORTED_MODULE_3__.arrowBarInit, 2000);
+  setTimeout(_components_modals__WEBPACK_IMPORTED_MODULE_2__.modalWindows, 5000);
+  setTimeout(_components_swipers__WEBPACK_IMPORTED_MODULE_6__.swipers, 5100);
 });
 
 // window.addEventListener('load', () => {

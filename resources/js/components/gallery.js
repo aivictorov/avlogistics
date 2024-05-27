@@ -1,144 +1,79 @@
-
 export function gallery() {
-    const gallery = document.querySelector('.js-portfoio-gallerey');
-    // const slideWidth = document.querySelector('.aside-page').offsetWidth;
-    const portfolio_inslider = gallery.querySelector('.portfolio-gallerey-in');
-    const bigimages = portfolio_inslider.querySelectorAll('.portfolio-gallerey-bigimage');
-    const miniimages = gallery.querySelectorAll('.js-miniimage');
-    const right = gallery.querySelector('.js-portfolio-gallerey-arrow__right');
-    const left = gallery.querySelector('.js-portfolio-gallerey-arrow__left');
-    let slideWidth, slideHeight;
+    const content = document.querySelector('.article__content');
 
-    let minicounter = 0;
-    let cur_counter = 0;
-    let inmove = false;
-
-    galleryInit();
-
-    window.addEventListener('resize', () => {
-        galleryInit()
-    });
-
-    function galleryInit() {
-        slideWidth = document.querySelector('.aside-page').offsetWidth;
-        slideHeight = Math.floor(350 * slideWidth / 670);
-
-        if (cur_counter) {
-            portfolio_inslider.style.left = "-" + (cur_counter * slideWidth) + "px";
-        } else {
-            portfolio_inslider.style.left = 0 + "px";
-        }
-
-        gallery.querySelector('.portfolio-gallerey').style.height = slideHeight + "px";
-
-        portfolio_inslider.querySelectorAll('img').forEach((img) => {
-            img.style.width = slideWidth + "px";
+    if (content) {
+        content.innerHTML.match(/\[gallery\-\d+\]/gi).forEach((el) => {
+            content.innerHTML = content.innerHTML.replace(el, `<p data-gallery-id="${parseInt(el.match(/\d+/))}"></p>`)
         })
 
-        document.querySelectorAll('.portfolio-gallerey-arrow').forEach((arrow) => {
-            arrow.style.height = slideHeight + "px";
-        })
+        const elements = content.querySelectorAll('[data-gallery-id]');
 
-        miniimages.forEach((image) => {
-            const imgWidth = (slideWidth - 3 * 20) / 4
-            image.style.width = imgWidth + "px";
-        });
-    };
+        if (elements) {
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-    miniimages.forEach((image) => {
-        image.dataset.counter = minicounter;
-        minicounter = minicounter + 1;
-    });
+            elements.forEach((element) => {
+                const id = parseInt(element.dataset.galleryId);
 
-    portfolio_inslider.append(bigimages[0].cloneNode(true));
-    let bigcounter = 1;
+                if (id) {
+                    fetch('/loadGallery', {
+                        method: 'POST',
+                        headers: { 'X-CSRF-TOKEN': csrfToken },
+                        body: id,
+                    }).then(response => {
+                        response.text().then(responseText => {
+                            const arr = JSON.parse(responseText);
 
-    bigimages.forEach((image) => {
-        image.dataset.counter = bigcounter;
-    });
+                            let contentGallery = document.createElement('div');
+                            contentGallery.classList.add('content-gallery');
 
-    portfolio_inslider.style.width = (bigimages.length + 1) * slideWidth + "px";
+                            element.replaceWith(contentGallery);
 
-    miniimages.forEach((image) => {
-        image.classList.remove('cur');
-    });
+                            let imagesHtml = "";
+                            let slidesHtml = "";
 
-    miniimages[cur_counter].classList.add('cur');
+                            arr.forEach(item => {
+                                imagesHtml = imagesHtml + `
+                                    <a href="${item.image.path}" class="content-gallery__item" modal-button="gallery" title="${item.text}">
+                                        <img src="${item.image.path}" alt="${item.text}">
+                                    </a>
+                                `
+                                slidesHtml = slidesHtml + `
+                                    <div class="swiper-slide">
+                                        <img src="https://rail-projects.ru${item.image.path.replace('1_4', 'big')}" />
+                                    </div>
+                                `
+                            });
 
-    right.addEventListener('click', () => {
-        if (!inmove) {
-            const portfolio_count = bigimages.length;
+                            contentGallery.innerHTML = imagesHtml;
 
-            if (cur_counter == portfolio_count - 1) {
-                cur_counter = 1;
-                portfolio_inslider.style.left = 0 + "px";
-            } else {
-                cur_counter = cur_counter + 1;
-            }
+                            let modal = document.createElement('div');
+                            modal.classList.add = 'modals';
 
-            inmove = true;
+                            modal.innerHTML = `
+                                <div class="modals">
+                                    <div class="modal" modal-window="gallery">
+                                        <div class="modal__content modal__content--center">
 
-            if (!portfolio_inslider.style.left) {
-                portfolio_inslider.style.left = 0 + "px"
-            }
+                                            <div class="content__slider">
+                                                <div class="swiper">
+                                                    <div class="swiper-wrapper">
+                                                        ${slidesHtml}
+                                                    </div>
+                                                    <div class="swiper-button-next"></div>
+                                                    <div class="swiper-button-prev"></div>
+                                                </div>
+                                            </div>
 
-            portfolio_inslider.style.left = (parseInt(portfolio_inslider.style.left) - slideWidth) + "px";
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
 
-            inmove = false;
-
-            miniimages.forEach((image) => {
-                image.classList.remove('cur');
-            });
-
-            miniimages[cur_counter % (portfolio_count - 1)].classList.add('cur');
+                            contentGallery.after(modal);
+                        })
+                    });
+                }
+            })
         }
-    })
-
-    left.addEventListener('click', () => {
-        if (!inmove) {
-            const portfolio_count = bigimages.length;
-
-            cur_counter = cur_counter - 1;
-
-            if (cur_counter < 0) {
-                cur_counter = portfolio_count - 2;
-                portfolio_inslider.style.left = ("-" + (portfolio_count - 1) * slideWidth) + "px";
-            }
-
-            inmove = true;
-
-            if (!portfolio_inslider.style.left) {
-                portfolio_inslider.style.left = 0 + "px"
-            }
-
-            portfolio_inslider.style.left = (parseInt(portfolio_inslider.style.left) + slideWidth) + "px";
-
-            inmove = false;
-
-            miniimages.forEach((image) => {
-                image.classList.remove('cur');
-            });
-
-            miniimages[cur_counter].classList.add('cur');
-        }
-    })
-
-    miniimages.forEach((image) => {
-        image.addEventListener('click', () => {
-
-            inmove = true;
-
-            portfolio_inslider.style.left = "-" + (parseInt(image.dataset.counter) * slideWidth) + "px";
-
-            cur_counter = image.dataset.counter;
-
-            inmove = false;
-
-            miniimages.forEach((image) => {
-                image.classList.remove('cur');
-            });
-
-            miniimages[cur_counter].classList.add('cur');
-        })
-    });
+    }
 }

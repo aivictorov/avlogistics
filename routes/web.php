@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AjaxController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FAQController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PortfolioController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\PortfolioSectionController;
 use App\Http\Controllers\UserController;
 use EdSDK\FlmngrServer\FlmngrServer;
 use Illuminate\Support\Facades\Route;
+
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', App\Http\Controllers\Admin\HomeController::class)->name('home');
@@ -47,6 +49,14 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/faq/{id}/delete', [App\Http\Controllers\Admin\FAQController::class, 'destroy'])->name('faq.destroy');
     Route::get('/faq/{id}/publish', [App\Http\Controllers\Admin\FAQController::class, 'publish'])->name('faq.publish');
 
+    Route::get('/galleries', [App\Http\Controllers\Admin\GalleryController::class, 'index'])->name('galleries.index');
+    Route::get('/galleries/create', [App\Http\Controllers\Admin\GalleryController::class, 'create'])->name('galleries.create');
+    Route::post('/galleries', [App\Http\Controllers\Admin\GalleryController::class, 'store'])->name('galleries.store');
+    Route::get('/galleries/{id}/edit', [App\Http\Controllers\Admin\GalleryController::class, 'edit'])->name('galleries.edit');
+    Route::put('/galleries/{id}', [App\Http\Controllers\Admin\GalleryController::class, 'update'])->name('galleries.update');
+    Route::get('/galleries/{id}/delete', [App\Http\Controllers\Admin\GalleryController::class, 'destroy'])->name('galleries.destroy');
+    Route::get('/galleries/{id}/publish', [App\Http\Controllers\Admin\GalleryController::class, 'publish'])->name('galleries.publish');
+
     Route::get('/users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
     Route::get('/users/create', [App\Http\Controllers\Admin\UserController::class, 'create'])->name('users.create');
     Route::post('/users', [App\Http\Controllers\Admin\UserController::class, 'store'])->name('users.store');
@@ -69,6 +79,8 @@ Route::name('user.')->group(function () {
     Route::post('/login', [AuthController::class, 'auth'])->name('auth');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
+
+Route::post('/loadGallery', GalleryController::class)->name('loadGallery');
 
 Route::middleware('auth')->group(function () {
     Route::post('/flmngr', function () {

@@ -42,6 +42,18 @@ function swipers() {
             swiper: portfolioThumbs,
         },
     });
+
+
+    const contentSlider = new Swiper('.content__slider .swiper', {
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 10,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+
 }
 
 export { swipers };

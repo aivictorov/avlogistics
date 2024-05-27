@@ -18,6 +18,16 @@
                         </p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href={{ route('admin.galleries.index') }} class="nav-link">
+                        <i class="nav-icon fas fa-newspaper"></i>
+                        <p>
+                            Контекстные галереи
+                        </p>
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a href={{ route('admin.portfolio.index') }} class="nav-link">
                         <i class="nav-icon fas fa-image"></i>

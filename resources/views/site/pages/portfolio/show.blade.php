@@ -20,11 +20,11 @@
                         <div class="swiper">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <img src={{ Image::path($avatar, 'big') }} class="portfolio-gallerey-bigimage" />
+                                    <img src={{ Image::path($avatar, 'big_') }} class="portfolio-gallerey-bigimage" />
                                 </div>
                                 @foreach ($images as $image)
                                     <div class="swiper-slide">
-                                        <img src={{ Image::path($image, 'big') }} class="portfolio-gallerey-bigimage" />
+                                        <img src={{ Image::path($image, 'big_') }} class="portfolio-gallerey-bigimage" />
                                     </div>
                                 @endforeach
                             </div>
@@ -37,11 +37,11 @@
                         <div class="swiper" thumbsSlider="">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <img src={{ Image::path($avatar, 'small') }} />
+                                    <img src={{ Image::path($avatar, 'small_') }} />
                                 </div>
                                 @foreach ($images as $image)
                                     <div class="swiper-slide">
-                                        <img src={{ Image::path($image, 'small') }} />
+                                        <img src={{ Image::path($image, 'small_') }} />
                                     </div>
                                 @endforeach
                             </div>
