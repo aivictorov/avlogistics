@@ -12,6 +12,10 @@
                 $subnav = 'zhd';
             }
             
+            if ($item['url'] === 'import-eksport') {
+                $subnav = 'import';
+            }
+            
             if ($item['url'] === 'shemy-pogruzki') {
                 $subnav = 'scheme';
             }
