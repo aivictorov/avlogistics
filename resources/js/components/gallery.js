@@ -1,79 +1,30 @@
 export function gallery() {
     const content = document.querySelector('.article__content');
+    console.log(content);
 
-    if (content) {
-        content.innerHTML.match(/\[gallery\-\d+\]/gi).forEach((el) => {
-            content.innerHTML = content.innerHTML.replace(el, `<p data-gallery-id="${parseInt(el.match(/\d+/))}"></p>`)
-        })
+    const contentGallery = document.querySelector('.article__content .content__slider');
+    console.log(contentGallery);
 
-        const elements = content.querySelectorAll('[data-gallery-id]');
-
-        if (elements) {
-            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-            elements.forEach((element) => {
-                const id = parseInt(element.dataset.galleryId);
-
-                if (id) {
-                    fetch('/loadGallery', {
-                        method: 'POST',
-                        headers: { 'X-CSRF-TOKEN': csrfToken },
-                        body: id,
-                    }).then(response => {
-                        response.text().then(responseText => {
-                            const arr = JSON.parse(responseText);
-
-                            let contentGallery = document.createElement('div');
-                            contentGallery.classList.add('content-gallery');
-
-                            element.replaceWith(contentGallery);
-
-                            let imagesHtml = "";
-                            let slidesHtml = "";
-
-                            arr.forEach(item => {
-                                imagesHtml = imagesHtml + `
-                                    <a href="${item.image.path}" class="content-gallery__item" modal-button="gallery" title="${item.text}">
-                                        <img src="${item.image.path}" alt="${item.text}">
-                                    </a>
-                                `
-                                slidesHtml = slidesHtml + `
-                                    <div class="swiper-slide">
-                                        <img src="https://rail-projects.ru${item.image.path.replace('1_4', 'big')}" />
-                                    </div>
-                                `
-                            });
-
-                            contentGallery.innerHTML = imagesHtml;
-
-                            let modal = document.createElement('div');
-                            modal.classList.add = 'modals';
-
-                            modal.innerHTML = `
-                                <div class="modals">
-                                    <div class="modal" modal-window="gallery">
-                                        <div class="modal__content modal__content--center">
-
-                                            <div class="content__slider">
-                                                <div class="swiper">
-                                                    <div class="swiper-wrapper">
-                                                        ${slidesHtml}
-                                                    </div>
-                                                    <div class="swiper-button-next"></div>
-                                                    <div class="swiper-button-prev"></div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            `;
-
-                            contentGallery.after(modal);
-                        })
-                    });
-                }
-            })
-        }
+    if (content && contentGallery) {
+        content.querySelector('p[data-gallery-id="2"]').replaceWith(contentGallery)
     }
+
+
+    // const placeholder2 = content.innerHTML.match(/\<.+\>\[gallery\-\d+\]\<.+\>/i)
+    // const num = parseInt(placeholder2[0].match(/\d+/));
+    // console.log(placeholder2[0], num);
+
+    // content.innerHTML = content.innerHTML.replace(placeholder2[0], `<p data-gallery-id="${num}"></p>`)
+
+    // content.append(contentGallery)
+
+
+    // const placeholder = content.querySelector('p[data-gallery-id]');
+    // console.log(placeholder);
+
+
+    // placeholder.replaceWith(contentGallery)
+
+    // contentGallery.replaceWith("")
+
 }

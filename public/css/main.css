@@ -1613,11 +1613,6 @@ a.faq__block-header {
   width: 100%;
   border-bottom: 3px solid #f14214;
 }
-@media screen and (max-width: 600px) {
-  .article__avatar {
-    border-bottom: 2px solid #f14214;
-  }
-}
 .article__avatar img {
   width: 100%;
   height: 100%;

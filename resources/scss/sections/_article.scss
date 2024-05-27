@@ -17,10 +17,6 @@
     width: 100%;
     border-bottom: 3px solid #f14214;
 
-    @include bp(600px) {
-        border-bottom: 2px solid #f14214;
-    }
-
     & img {
         width: 100%;
         height: 100%;

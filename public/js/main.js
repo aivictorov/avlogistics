@@ -54,45 +54,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 function gallery() {
   var content = document.querySelector('.article__content');
-  if (content) {
-    content.innerHTML.match(/\[gallery\-\d+\]/gi).forEach(function (el) {
-      content.innerHTML = content.innerHTML.replace(el, "<p data-gallery-id=\"".concat(parseInt(el.match(/\d+/)), "\"></p>"));
-    });
-    var elements = content.querySelectorAll('[data-gallery-id]');
-    if (elements) {
-      var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-      elements.forEach(function (element) {
-        var id = parseInt(element.dataset.galleryId);
-        if (id) {
-          fetch('/loadGallery', {
-            method: 'POST',
-            headers: {
-              'X-CSRF-TOKEN': csrfToken
-            },
-            body: id
-          }).then(function (response) {
-            response.text().then(function (responseText) {
-              var arr = JSON.parse(responseText);
-              var contentGallery = document.createElement('div');
-              contentGallery.classList.add('content-gallery');
-              element.replaceWith(contentGallery);
-              var imagesHtml = "";
-              var slidesHtml = "";
-              arr.forEach(function (item) {
-                imagesHtml = imagesHtml + "\n                                    <a href=\"".concat(item.image.path, "\" class=\"content-gallery__item\" modal-button=\"gallery\" title=\"").concat(item.text, "\">\n                                        <img src=\"").concat(item.image.path, "\" alt=\"").concat(item.text, "\">\n                                    </a>\n                                ");
-                slidesHtml = slidesHtml + "\n                                    <div class=\"swiper-slide\">\n                                        <img src=\"https://rail-projects.ru".concat(item.image.path.replace('1_4', 'big'), "\" />\n                                    </div>\n                                ");
-              });
-              contentGallery.innerHTML = imagesHtml;
-              var modal = document.createElement('div');
-              modal.classList.add = 'modals';
-              modal.innerHTML = "\n                                <div class=\"modals\">\n                                    <div class=\"modal\" modal-window=\"gallery\">\n                                        <div class=\"modal__content modal__content--center\">\n\n                                            <div class=\"content__slider\">\n                                                <div class=\"swiper\">\n                                                    <div class=\"swiper-wrapper\">\n                                                        ".concat(slidesHtml, "\n                                                    </div>\n                                                    <div class=\"swiper-button-next\"></div>\n                                                    <div class=\"swiper-button-prev\"></div>\n                                                </div>\n                                            </div>\n\n                                        </div>\n                                    </div>\n                                </div>\n                            ");
-              contentGallery.after(modal);
-            });
-          });
-        }
-      });
-    }
+  console.log(content);
+  var contentGallery = document.querySelector('.article__content .content__slider');
+  console.log(contentGallery);
+  if (content && contentGallery) {
+    content.querySelector('p[data-gallery-id="2"]').replaceWith(contentGallery);
   }
+
+  // const placeholder2 = content.innerHTML.match(/\<.+\>\[gallery\-\d+\]\<.+\>/i)
+  // const num = parseInt(placeholder2[0].match(/\d+/));
+  // console.log(placeholder2[0], num);
+
+  // content.innerHTML = content.innerHTML.replace(placeholder2[0], `<p data-gallery-id="${num}"></p>`)
+
+  // content.append(contentGallery)
+
+  // const placeholder = content.querySelector('p[data-gallery-id]');
+  // console.log(placeholder);
+
+  // placeholder.replaceWith(contentGallery)
+
+  // contentGallery.replaceWith("")
 }
 
 /***/ }),
@@ -17756,11 +17738,10 @@ document.addEventListener('DOMContentLoaded', function () {
   (0,_components_mobileNav__WEBPACK_IMPORTED_MODULE_4__.mobileNavInit)();
   (0,_components_mainContent__WEBPACK_IMPORTED_MODULE_5__.mainContent)();
   // upform();
-
   (0,_components_grecaptcha__WEBPACK_IMPORTED_MODULE_7__.captcha)();
   if (document.querySelector('.arrow-bar__arrow')) setTimeout(_components_arrowBar__WEBPACK_IMPORTED_MODULE_3__.arrowBarInit, 2000);
-  setTimeout(_components_modals__WEBPACK_IMPORTED_MODULE_2__.modalWindows, 5000);
-  setTimeout(_components_swipers__WEBPACK_IMPORTED_MODULE_6__.swipers, 5100);
+  (0,_components_modals__WEBPACK_IMPORTED_MODULE_2__.modalWindows)();
+  (0,_components_swipers__WEBPACK_IMPORTED_MODULE_6__.swipers)();
 });
 
 // window.addEventListener('load', () => {

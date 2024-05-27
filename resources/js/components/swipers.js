@@ -43,7 +43,6 @@ function swipers() {
         },
     });
 
-
     const contentSlider = new Swiper('.content__slider .swiper', {
         loop: true,
         slidesPerView: 1,

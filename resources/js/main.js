@@ -11,19 +11,14 @@ import { captcha } from "./components/grecaptcha"
 
 document.addEventListener('DOMContentLoaded', () => {
 	gallery();
-
 	subnavInit();
 	mobileNavInit();
 	mainContent();
 	// upform();
-
 	captcha();
-
 	if (document.querySelector('.arrow-bar__arrow')) setTimeout(arrowBarInit, 2000);
-
-	setTimeout(modalWindows, 5000);
-	setTimeout(swipers, 5100);
-
+	modalWindows();
+	swipers();
 });
 
 

@@ -1,3 +1,5 @@
+<?php use App\Models\Image; ?>
+
 @extends('site.layouts.main')
 
 @section('title', $seo->title)
@@ -20,6 +22,30 @@
                     @endif
                     <div class="article__content article__content--min-height">
                         {!! $page->text !!}
+
+                        @if ($gallery)
+                            <div class="content-gallery">
+                                @foreach ($gallery['items'] as $item)
+                                    <a href="#!" class="content-gallery__item" title="">
+                                        <img src="{{ Image::path($item['image'], '1_4') }}" alt="">
+                                    </a>
+                                @endforeach
+                            </div>
+
+                            <div class="content__slider">
+                                <div class="swiper">
+                                    <div class="swiper-wrapper">
+                                        @foreach ($gallery['items'] as $item)
+                                            <div class="swiper-slide">
+                                                <img src={{ Image::path($item['image'], 'big') }} />
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <div class="swiper-button-next"></div>
+                                    <div class="swiper-button-prev"></div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </article>
             </div>
