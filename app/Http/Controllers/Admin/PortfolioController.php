@@ -48,13 +48,13 @@ class PortfolioController extends Controller
         }
 
         // $portfolioItems = (new GetPortfolioItemsAction)->run();
-        return view('admin.portfolio.index', compact('portfolioItems'));
+        return view('admin.pages.portfolio.index', compact('portfolioItems'));
     }
 
     public function create()
     {
         $sections = (new GetPortfolioSectionsAction)->run();
-        return view('admin.portfolio.create', compact('sections'));
+        return view('admin.pages.portfolio.create', compact('sections'));
     }
 
     public function store(PortfolioRequest $request)
@@ -111,7 +111,7 @@ class PortfolioController extends Controller
             }
         }, 3);
 
-        return redirect(route('admin.portfolio.index'));
+        return redirect(route('admin.pages.portfolio.index'));
     }
 
     public function edit($id)
@@ -126,7 +126,7 @@ class PortfolioController extends Controller
             $images[$key]['path'] = (new BuildImagePathAction)->run($image);
         }
 
-        return view('admin.portfolio.edit', compact('portfolio', 'sections', 'seo', 'avatar', 'images'));
+        return view('admin.pages.portfolio.edit', compact('portfolio', 'sections', 'seo', 'avatar', 'images'));
     }
 
     public function update(PortfolioRequest $request, $id)
@@ -221,8 +221,8 @@ class PortfolioController extends Controller
         }, 3);
 
         Session::flash('success', 'Изменения сохранены');
-        // return redirect(route('admin.portfolio.edit', ['id' => $id]));
-        return redirect(route('admin.portfolio.index'));
+        // return redirect(route('admin.pages.portfolio.edit', ['id' => $id]));
+        return redirect(route('admin.pages.portfolio.index'));
     }
 
     public function destroy($id)
@@ -236,7 +236,7 @@ class PortfolioController extends Controller
             (new DestroyAllImagesAction)->run($id);
         }, 3);
 
-        return redirect(route('admin.portfolio.index'));
+        return redirect(route('admin.pages.portfolio.index'));
     }
 
     public function publish($id, Request $request)

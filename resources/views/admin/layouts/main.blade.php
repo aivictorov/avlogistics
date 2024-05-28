@@ -18,7 +18,7 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-        @include('admin.layouts.parts.aside')
+        @include('admin.sections.aside')
 
         <div class="content-wrapper">
             <div class="content-header">
@@ -40,7 +40,7 @@
 
         </div>
 
-        @include('admin.layouts.parts.footer')
+        @include('admin.sections.footer')
 
     </div>
 

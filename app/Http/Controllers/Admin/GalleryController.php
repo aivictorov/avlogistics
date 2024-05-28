@@ -50,12 +50,12 @@ class GalleryController extends Controller
         }
 
         // $portfolioItems = (new GetPortfolioItemsAction)->run();
-        return view('admin.galleries.index', compact('galleries'));
+        return view('admin.pages.galleries.index', compact('galleries'));
     }
 
     public function create()
     {
-        return view('admin.galleries.create');
+        return view('admin.pages.galleries.create');
     }
 
     public function store(PortfolioRequest $request)
@@ -129,7 +129,7 @@ class GalleryController extends Controller
             // $items[$key]['image'] = (new BuildImagePathAction)->run($image);
         }
 
-        return view('admin.galleries.edit', compact('gallery', 'items'));
+        return view('admin.pages.galleries.edit', compact('gallery', 'items'));
     }
 
     public function update(PortfolioRequest $request, $id)

@@ -25,12 +25,12 @@ class PortfolioSectionController extends Controller
         }
 
         // $sections = (new GetPortfolioSectionsAction)->run();
-        return view('admin.portfolioSections.index', compact('sections'));
+        return view('admin.pages.portfolioSections.index', compact('sections'));
     }
 
     public function create()
     {
-        return view('admin.portfolioSections.create');
+        return view('admin.pages.portfolioSections.create');
     }
 
     public function store(Request $request)
@@ -45,14 +45,14 @@ class PortfolioSectionController extends Controller
 
         PortfolioSection::create($validated);
 
-        return redirect(route('admin.portfolioSections.index'));
+        return redirect(route('admin.pages.portfolioSections.index'));
     }
 
     public function edit($id)
     {
         $section = (new GetPortfolioSectionAction)->run($id);
 
-        return view('admin.portfolioSections.edit', compact('section'));
+        return view('admin.pages.portfolioSections.edit', compact('section'));
     }
 
     public function update(Request $request, $id)
@@ -67,7 +67,7 @@ class PortfolioSectionController extends Controller
         $section = (new GetPortfolioSectionAction)->run($id);
         $section->update($validated);
 
-        return redirect(route('admin.portfolioSections.index'));
+        return redirect(route('admin.pages.portfolioSections.index'));
     }
 
     public function destroy($id)
@@ -78,7 +78,7 @@ class PortfolioSectionController extends Controller
         } else {
             $section = (new GetPortfolioSectionAction)->run($id);
             $section->delete();
-            return redirect(route('admin.portfolioSections.index'));
+            return redirect(route('admin.pages.portfolioSections.index'));
         }
     }
 

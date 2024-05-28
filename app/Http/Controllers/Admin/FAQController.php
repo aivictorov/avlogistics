@@ -40,13 +40,13 @@ class FAQController extends Controller
         }
 
         // $faq_categories = (new GetFaqSectionsAction)->run();
-        return view('admin.faq.index', compact('faq_categories'));
+        return view('admin.pages.faq.index', compact('faq_categories'));
     }
 
     public function create()
     {
         $sections = (new GetFaqSectionsAction)->run();
-        return view('admin.faq.create', compact('sections'));
+        return view('admin.pages.faq.create', compact('sections'));
     }
 
     public function store(FaqCreateRequest $request)
@@ -86,7 +86,7 @@ class FAQController extends Controller
             //     );
             // };
         }, 3);
-        return redirect(route('admin.faq.index'));
+        return redirect(route('admin.pages.faq.index'));
     }
 
     public function edit($id)
@@ -95,7 +95,7 @@ class FAQController extends Controller
         $seo = (new GetSeoAction)->run($faq['seo_id']);
         $questions = (new GetQuestionsAction)->run($id);
 
-        return view('admin.faq.edit', compact('faq', 'seo', 'questions'));
+        return view('admin.pages.faq.edit', compact('faq', 'seo', 'questions'));
     }
 
     public function update(FaqEditRequest $request, $id)
@@ -162,7 +162,7 @@ class FAQController extends Controller
                 }
             };
         }, 3);
-        return redirect(route('admin.faq.index'));
+        return redirect(route('admin.pages.faq.index'));
     }
 
     public function destroy($id)
@@ -179,7 +179,7 @@ class FAQController extends Controller
             }
         }, 3);
 
-        return redirect(route('admin.faq.index'));
+        return redirect(route('admin.pages.faq.index'));
     }
 
     public function publish($id, Request $request)

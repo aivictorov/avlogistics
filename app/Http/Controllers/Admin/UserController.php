@@ -29,12 +29,12 @@ class UserController extends Controller
         }
 
         // $users = (new GetUsersAction)->run();
-        return view('admin.users.index', compact('users'));
+        return view('admin.pages.users.index', compact('users'));
     }
 
     public function create()
     {
-        return view('admin.users.create');
+        return view('admin.pages.users.create');
     }
 
     public function store(UserCreateRequest $request)
@@ -51,14 +51,14 @@ class UserController extends Controller
             )
         );
 
-        return redirect(route('admin.users.index'));
+        return redirect(route('admin.pages.users.index'));
     }
 
     public function edit($id)
     {
         $user = User::find($id);
 
-        return view('admin.users.edit', compact('user'));
+        return view('admin.pages.users.edit', compact('user'));
     }
 
     public function update($id, UserEditRequest $request)
@@ -75,7 +75,7 @@ class UserController extends Controller
             )
         );
 
-        return redirect(route('admin.users.index'));
+        return redirect(route('admin.pages.users.index'));
     }
 
     public function destroy($id)
@@ -83,7 +83,7 @@ class UserController extends Controller
         if (User::count() > 1) {
             $user = User::find($id);
             $user->delete();
-            return redirect(route('admin.users.index'));
+            return redirect(route('admin.pages.users.index'));
         } else {
             Session::flash('danger', 'Нельзя удалить единственного пользователя');
             return redirect()->back();

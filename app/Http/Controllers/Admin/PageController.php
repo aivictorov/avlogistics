@@ -39,13 +39,13 @@ class PageController extends Controller
 
         }
 
-        return view('admin.pages.index', compact('pages'));
+        return view('admin.pages.pages.index', compact('pages'));
     }
 
     public function create()
     {
         $pages = (new GetPagesAction)->run();
-        return view('admin.pages.create', compact('pages'));
+        return view('admin.pages.pages.create', compact('pages'));
     }
 
     public function store(PageRequest $request)
@@ -89,7 +89,7 @@ class PageController extends Controller
                 );
             }
         }, 3);
-        return redirect(route('admin.pages.index'));
+        return redirect(route('admin.pages.pages.index'));
     }
 
     public function edit($id)
@@ -99,7 +99,7 @@ class PageController extends Controller
         $pages = (new GetPagesAction)->run();
         $avatar = (new GetImageAction)->run($id, parent_type: 'page_avatar');
 
-        return view('admin.pages.edit', compact('page', 'seo', 'pages', 'avatar'));
+        return view('admin.pages.pages.edit', compact('page', 'seo', 'pages', 'avatar'));
     }
 
     public function update(PageRequest $request, $id)
@@ -162,7 +162,7 @@ class PageController extends Controller
             }
         }, 3);
 
-        return redirect(route('admin.pages.index'));
+        return redirect(route('admin.pages.pages.index'));
     }
 
     public function destroy($id)
@@ -183,7 +183,7 @@ class PageController extends Controller
                 (new DestroyImageAction)->run($image);
             }, 3);
 
-            return redirect(route('admin.pages.index'));
+            return redirect(route('admin.pages.pages.index'));
         }
     }
 
