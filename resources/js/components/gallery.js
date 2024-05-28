@@ -1,30 +1,36 @@
 export function gallery() {
     const content = document.querySelector('.article__content');
-    console.log(content);
 
-    const contentGallery = document.querySelector('.article__content .content__slider');
-    console.log(contentGallery);
+    const contentGalleries = document.querySelectorAll('.article__content .content-gallery');
 
-    if (content && contentGallery) {
-        content.querySelector('p[data-gallery-id="2"]').replaceWith(contentGallery)
-    }
+    contentGalleries.forEach((gallery) => {
+        const id = gallery.dataset.id;
 
+        const placeholder = content.querySelector(`p[data-gallery="${id}"]`);
 
-    // const placeholder2 = content.innerHTML.match(/\<.+\>\[gallery\-\d+\]\<.+\>/i)
-    // const num = parseInt(placeholder2[0].match(/\d+/));
-    // console.log(placeholder2[0], num);
+        if (placeholder) {
+            placeholder.replaceWith(gallery)
+        }
+    });
+}
 
-    // content.innerHTML = content.innerHTML.replace(placeholder2[0], `<p data-gallery-id="${num}"></p>`)
+export function gallery2() {
+    const content = document.querySelector('.article__content');
 
-    // content.append(contentGallery)
+    const contentGalleries = document.querySelectorAll('.article__content .content-gallery');
 
+    contentGalleries.forEach((gallery) => {
+        const id = gallery.dataset.id;
 
-    // const placeholder = content.querySelector('p[data-gallery-id]');
-    // console.log(placeholder);
+        const paragraphs = content.querySelectorAll('p');
 
+        paragraphs.forEach((paragraph) => {
+            const regStr = '\\[gallery\\-' + id + '\\]';
+            var regExp = new RegExp(regStr, 'i');
 
-    // placeholder.replaceWith(contentGallery)
-
-    // contentGallery.replaceWith("")
-
+            if (paragraph.innerText.match(regExp)) {
+                paragraph.replaceWith(gallery);
+            }
+        })
+    });
 }

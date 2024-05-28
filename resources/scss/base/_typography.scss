@@ -1,37 +1,37 @@
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
-    font-family: "Roboto", sans-serif;
-    font-weight: lighter;
-    line-height: 1.23;
-}
+.article {
 
-.h1 {
-    font-size: 30px;
-    color: #f14214;
-
-    @include bp(600px) {
-        font-size: 25px;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Roboto", sans-serif;
+        font-weight: lighter;
+        line-height: 1.23;
+        color: #919191;
     }
-}
 
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
-    color: #919191;
-}
+    h1 {
+        font-size: 30px;
+        color: #f14214;
 
-.h2 {
-    font-size: 20px;
-}
+        @include bp(600px) {
+            font-size: 25px;
+        }
+    }
 
-.h3 {
-    font-size: 15px;
+
+    h2 {
+        font-size: 20px;
+    }
+
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-size: 15px;
+    }
 }
 
 .potfolio-index-h2 {

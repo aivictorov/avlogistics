@@ -56,9 +56,6 @@
     margin: 10px 0;
 }
 
-
-
-
 .sixbox {
     display: flex;
     justify-content: center;
@@ -111,15 +108,41 @@
     flex-shrink: 0;
 }
 
+
+.sixbox__icon {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+    pointer-events: none;
+
+    &--services {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, calc(-50% - 40px));
+    }
+
+    &--faq {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, calc(-50% - 40px));
+    }
+}
+
 .sixbox__block {
     position: absolute;
 
-    &--question {
+    &--services {
         top: -50px;
         left: -111px;
         width: 363px;
         height: 330px;
         background: url('/images/main/sixbox/sixbox_question.png') no-repeat 10px 20px;
+
+        & .sixbox__text {
+            top: 50px;
+            left: 110px;
+        }
     }
 
     &--form {
@@ -128,22 +151,32 @@
         width: 213px;
         height: 330px;
         background: url('/images/main/sixbox/sixbox_form.png') no-repeat;
+
+        & .sixbox__text {
+            top: 50px;
+            left: 10px;
+            color: #333333;
+        }
     }
 
 
-    &--blog {
+    &--faq {
         top: -45px;
         left: -60px;
         width: 361px;
         height: 330px;
         background: url('/images/main/sixbox/sixbox_blog.png') no-repeat 10px -10px;
+
+        & .sixbox__text {
+            top: 50px;
+            left: 58px;
+        }
     }
 
-
-    &--form.hovered {
-        // width: 213px;
-        // background-position: 100% 100%;
-    }
+    // &--form.hovered {
+    //     // width: 213px;
+    //     // background-position: 100% 100%;
+    // }
 }
 
 .sixbox__text,
@@ -153,33 +186,14 @@ a.sixbox__text {
     font-size: 26px;
     font-family: 'robofanregular';
     text-align: center;
-    width: 200px;
+    width: 198px;
     display: block;
     text-decoration: none;
     height: 70px;
     padding-top: 130px;
-}
 
-.sixbox__text span {
-    font-size: 14px;
-    display: block;
-}
-
-
-.sixbox__block--question .sixbox__text {
-    top: 50px;
-    left: 110px;
-}
-
-
-.sixbox__block--form .sixbox__text {
-    top: 50px;
-    left: 10px;
-    color: #333333;
-}
-
-
-.sixbox__block--blog .sixbox__text {
-    top: 50px;
-    left: 58px;
+    & span {
+        font-size: 14px;
+        display: block;
+    }
 }

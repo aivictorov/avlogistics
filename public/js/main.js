@@ -41,6 +41,25 @@ function arrowBarInit() {
 
 /***/ }),
 
+/***/ "./resources/js/components/fancybox.js":
+/*!*********************************************!*\
+  !*** ./resources/js/components/fancybox.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   fancybox: () => (/* binding */ fancybox)
+/* harmony export */ });
+function fancybox() {
+  Fancybox.bind("[data-fancybox]", {
+    // Your custom options
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/gallery.js":
 /*!********************************************!*\
   !*** ./resources/js/components/gallery.js ***!
@@ -50,31 +69,34 @@ function arrowBarInit() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   gallery: () => (/* binding */ gallery)
+/* harmony export */   gallery: () => (/* binding */ gallery),
+/* harmony export */   gallery2: () => (/* binding */ gallery2)
 /* harmony export */ });
 function gallery() {
   var content = document.querySelector('.article__content');
-  console.log(content);
-  var contentGallery = document.querySelector('.article__content .content__slider');
-  console.log(contentGallery);
-  if (content && contentGallery) {
-    content.querySelector('p[data-gallery-id="2"]').replaceWith(contentGallery);
-  }
-
-  // const placeholder2 = content.innerHTML.match(/\<.+\>\[gallery\-\d+\]\<.+\>/i)
-  // const num = parseInt(placeholder2[0].match(/\d+/));
-  // console.log(placeholder2[0], num);
-
-  // content.innerHTML = content.innerHTML.replace(placeholder2[0], `<p data-gallery-id="${num}"></p>`)
-
-  // content.append(contentGallery)
-
-  // const placeholder = content.querySelector('p[data-gallery-id]');
-  // console.log(placeholder);
-
-  // placeholder.replaceWith(contentGallery)
-
-  // contentGallery.replaceWith("")
+  var contentGalleries = document.querySelectorAll('.article__content .content-gallery');
+  contentGalleries.forEach(function (gallery) {
+    var id = gallery.dataset.id;
+    var placeholder = content.querySelector("p[data-gallery=\"".concat(id, "\"]"));
+    if (placeholder) {
+      placeholder.replaceWith(gallery);
+    }
+  });
+}
+function gallery2() {
+  var content = document.querySelector('.article__content');
+  var contentGalleries = document.querySelectorAll('.article__content .content-gallery');
+  contentGalleries.forEach(function (gallery) {
+    var id = gallery.dataset.id;
+    var paragraphs = content.querySelectorAll('p');
+    paragraphs.forEach(function (paragraph) {
+      var regStr = '\\[gallery\\-' + id + '\\]';
+      var regExp = new RegExp(regStr, 'i');
+      if (paragraph.innerText.match(regExp)) {
+        paragraph.replaceWith(gallery);
+      }
+    });
+  });
 }
 
 /***/ }),
@@ -91,25 +113,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   captcha: () => (/* binding */ captcha)
 /* harmony export */ });
 function captcha() {
-  var key = '6LfKbeYpAAAAAIPL2XNZxy3YS52yrXRboLB4Sp-r';
-  var script = document.createElement('script');
-  script.src = 'https://www.google.com/recaptcha/api.js';
-  script.async = true;
-  script.onload = function () {
-    grecaptcha.ready(function () {
-      grecaptcha.render('captcha_id', {
-        'sitekey': key,
-        'callback': verifyCallback
+  if (document.querySelector('#captcha_id')) {
+    var verifyCallback = function verifyCallback() {
+      var captcha = form.querySelector('#captcha_id');
+      var notify = captcha.closest('.captcha').querySelector('.input__notify');
+      notify.innerText = "";
+    };
+    var key = '6LfKbeYpAAAAAIPL2XNZxy3YS52yrXRboLB4Sp-r';
+    var script = document.createElement('script');
+    script.src = 'https://www.google.com/recaptcha/api.js';
+    script.async = true;
+    script.onload = function () {
+      grecaptcha.ready(function () {
+        grecaptcha.render('captcha_id', {
+          'sitekey': key,
+          'callback': verifyCallback
+        });
       });
-    });
-  };
-  document.body.appendChild(script);
-  function verifyCallback() {
-    var captcha = form.querySelector('#captcha_id');
-    var notify = captcha.closest('.captcha').querySelector('.input__notify');
-    notify.innerText = "";
+    };
+    document.body.appendChild(script);
+    ;
   }
-  ;
 }
 ;
 
@@ -17723,6 +17747,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_mainContent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/mainContent */ "./resources/js/components/mainContent.js");
 /* harmony import */ var _components_swipers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/swipers */ "./resources/js/components/swipers.js");
 /* harmony import */ var _components_grecaptcha__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/grecaptcha */ "./resources/js/components/grecaptcha.js");
+/* harmony import */ var _components_fancybox__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/fancybox */ "./resources/js/components/fancybox.js");
 
 
 // import { upform } from "./components/upform";
@@ -17732,8 +17757,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 document.addEventListener('DOMContentLoaded', function () {
-  (0,_components_gallery__WEBPACK_IMPORTED_MODULE_0__.gallery)();
+  // gallery();
+  (0,_components_gallery__WEBPACK_IMPORTED_MODULE_0__.gallery2)();
   (0,_components_subnav__WEBPACK_IMPORTED_MODULE_1__.subnavInit)();
   (0,_components_mobileNav__WEBPACK_IMPORTED_MODULE_4__.mobileNavInit)();
   (0,_components_mainContent__WEBPACK_IMPORTED_MODULE_5__.mainContent)();
@@ -17742,6 +17769,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.querySelector('.arrow-bar__arrow')) setTimeout(_components_arrowBar__WEBPACK_IMPORTED_MODULE_3__.arrowBarInit, 2000);
   (0,_components_modals__WEBPACK_IMPORTED_MODULE_2__.modalWindows)();
   (0,_components_swipers__WEBPACK_IMPORTED_MODULE_6__.swipers)();
+  (0,_components_fancybox__WEBPACK_IMPORTED_MODULE_8__.fancybox)();
 });
 
 // window.addEventListener('load', () => {

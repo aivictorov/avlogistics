@@ -22,29 +22,18 @@
                     @endif
                     <div class="article__content article__content--min-height">
                         {!! $page->text !!}
-
-                        @if ($gallery)
-                            <div class="content-gallery">
-                                @foreach ($gallery['items'] as $item)
-                                    <a href="#!" class="content-gallery__item" title="">
-                                        <img src="{{ Image::path($item['image'], '1_4') }}" alt="">
-                                    </a>
-                                @endforeach
-                            </div>
-
-                            <div class="content__slider">
-                                <div class="swiper">
-                                    <div class="swiper-wrapper">
-                                        @foreach ($gallery['items'] as $item)
-                                            <div class="swiper-slide">
-                                                <img src={{ Image::path($item['image'], 'big') }} />
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                    <div class="swiper-button-next"></div>
-                                    <div class="swiper-button-prev"></div>
+                        @if ($galleries)
+                            @foreach ($galleries as $gallery)
+                                <div class="content-gallery" data-id="{{ $gallery->id }}">
+                                    @foreach ($gallery['items'] as $item)
+                                        <a href="{{ Image::path($item['image'], 'big') }}" class="content-gallery__item"
+                                            data-fancybox="gallery-{{ $gallery['id'] }}" title="{{ $item['text'] }}"
+                                            data-caption="{{ $item['text'] }}">
+                                            <img src="{{ Image::path($item['image'], '1_4') }}" alt="">
+                                        </a>
+                                    @endforeach
                                 </div>
-                            </div>
+                            @endforeach
                         @endif
                     </div>
                 </article>

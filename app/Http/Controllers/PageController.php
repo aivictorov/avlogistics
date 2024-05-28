@@ -26,28 +26,29 @@ class PageController extends Controller
             $image = (new GetImageAction)->run($id);
             $image_path = (new BuildImagePathAction)->run($image);
 
-            $gallery = Galleries::where('page_id', $id)->first();
+            $galleries = Galleries::where('page_id', $id)->get();
 
-            if ($gallery) {
-                // $gallery->toArray();
+            if ($galleries) {
 
-                $items = GalleryItems::where('gallery_id', $gallery->id)->get()->sortBy('id');
+                foreach ($galleries as $gallery) {
+                    $items = GalleryItems::where('gallery_id', $gallery->id)->get()->sortBy('id');
 
-                foreach ($items as $key => $item) {
-                    $image = Image::where([
-                        ['parent_type', 'gallery_item'],
-                        ['parent_id', $item['id']],
-                    ])->first();
+                    foreach ($items as $key => $item) {
+                        $image = Image::where([
+                            ['parent_type', 'gallery_item'],
+                            ['parent_id', $item['id']],
+                        ])->first();
 
-                    $items[$key]['image'] = $image;
+                        $items[$key]['image'] = $image;
+                    }
+
+                    $gallery['items'] = $items;
                 }
 
-                $gallery['items'] = $items;
-
-                // dd($gallery);
+                // dd($galleries);
             }
 
-            return view('site.pages.page', compact('page', 'parents', 'image_path', 'seo', 'gallery'));
+            return view('site.pages.page', compact('page', 'parents', 'image_path', 'seo', 'galleries'));
         } else {
             return view('site.pages.error');
         }

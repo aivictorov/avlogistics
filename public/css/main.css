@@ -239,40 +239,33 @@ a:visited {
   text-decoration: underline;
 }
 
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
+.article h1,
+.article h2,
+.article h3,
+.article h4,
+.article h5,
+.article h6 {
   font-family: "Roboto", sans-serif;
   font-weight: lighter;
   line-height: 1.23;
+  color: #919191;
 }
-
-.h1 {
+.article h1 {
   font-size: 30px;
   color: #f14214;
 }
 @media screen and (max-width: 600px) {
-  .h1 {
+  .article h1 {
     font-size: 25px;
   }
 }
-
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
-  color: #919191;
-}
-
-.h2 {
+.article h2 {
   font-size: 20px;
 }
-
-.h3 {
+.article h3,
+.article h4,
+.article h5,
+.article h6 {
   font-size: 15px;
 }
 
@@ -774,7 +767,7 @@ a.logo img {
 @media screen and (max-width: 1000px) {
   .mobile-subnav.opened {
     position: fixed;
-    top: 154px;
+    top: 135px;
     left: 0;
     right: 0;
     bottom: 100px;
@@ -1823,7 +1816,7 @@ a.faq__block-header {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  row-gap: 20px;
+  row-gap: 10px;
 }
 @media screen and (max-width: 1000px) {
   .header__right {
@@ -2316,15 +2309,37 @@ a.faq__block-header {
   flex-shrink: 0;
 }
 
+.sixbox__icon {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  pointer-events: none;
+}
+.sixbox__icon--services {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, calc(-50% - 40px));
+}
+.sixbox__icon--faq {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, calc(-50% - 40px));
+}
+
 .sixbox__block {
   position: absolute;
 }
-.sixbox__block--question {
+.sixbox__block--services {
   top: -50px;
   left: -111px;
   width: 363px;
   height: 330px;
   background: url("/images/main/sixbox/sixbox_question.png") no-repeat 10px 20px;
+}
+.sixbox__block--services .sixbox__text {
+  top: 50px;
+  left: 110px;
 }
 .sixbox__block--form {
   top: -45px;
@@ -2333,13 +2348,23 @@ a.faq__block-header {
   height: 330px;
   background: url("/images/main/sixbox/sixbox_form.png") no-repeat;
 }
-.sixbox__block--blog {
+.sixbox__block--form .sixbox__text {
+  top: 50px;
+  left: 10px;
+  color: #333333;
+}
+.sixbox__block--faq {
   top: -45px;
   left: -60px;
   width: 361px;
   height: 330px;
   background: url("/images/main/sixbox/sixbox_blog.png") no-repeat 10px -10px;
 }
+.sixbox__block--faq .sixbox__text {
+  top: 50px;
+  left: 58px;
+}
+
 .sixbox__text,
 a.sixbox__text {
   position: absolute;
@@ -2347,32 +2372,16 @@ a.sixbox__text {
   font-size: 26px;
   font-family: "robofanregular";
   text-align: center;
-  width: 200px;
+  width: 198px;
   display: block;
   text-decoration: none;
   height: 70px;
   padding-top: 130px;
 }
-
-.sixbox__text span {
+.sixbox__text span,
+a.sixbox__text span {
   font-size: 14px;
   display: block;
-}
-
-.sixbox__block--question .sixbox__text {
-  top: 50px;
-  left: 110px;
-}
-
-.sixbox__block--form .sixbox__text {
-  top: 50px;
-  left: 10px;
-  color: #333333;
-}
-
-.sixbox__block--blog .sixbox__text {
-  top: 50px;
-  left: 58px;
 }
 
 /*# sourceMappingURL=main.css.map*/
