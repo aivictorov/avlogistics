@@ -227,6 +227,8 @@ class PortfolioController extends Controller
 
     public function destroy($id)
     {
+        dd($id);
+
         DB::transaction(function () use ($id) {
             $portfolio = (new GetPortfolioAction)->run($id);
             $seo = (new GetSeoAction)->run($portfolio['seo_id']);

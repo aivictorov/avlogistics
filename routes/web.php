@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\AjaxController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\FAQController;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
@@ -41,13 +41,13 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/portfolioSections/{id}/delete', [App\Http\Controllers\Admin\PortfolioSectionController::class, 'destroy'])->name('portfolioSections.destroy');
     Route::get('/portfolioSections/{id}/publish', [App\Http\Controllers\Admin\PortfolioSectionController::class, 'publish'])->name('portfolioSections.publish');
 
-    Route::get('/faq', [App\Http\Controllers\Admin\FAQController::class, 'index'])->name('faq.index');
-    Route::get('/faq/create', [App\Http\Controllers\Admin\FAQController::class, 'create'])->name('faq.create');
-    Route::post('/faq', [App\Http\Controllers\Admin\FAQController::class, 'store'])->name('faq.store');
-    Route::get('/faq/{id}/edit', [App\Http\Controllers\Admin\FAQController::class, 'edit'])->name('faq.edit');
-    Route::put('/faq/{id}', [App\Http\Controllers\Admin\FAQController::class, 'update'])->name('faq.update');
-    Route::get('/faq/{id}/delete', [App\Http\Controllers\Admin\FAQController::class, 'destroy'])->name('faq.destroy');
-    Route::get('/faq/{id}/publish', [App\Http\Controllers\Admin\FAQController::class, 'publish'])->name('faq.publish');
+    Route::get('/faq', [App\Http\Controllers\Admin\FaqController::class, 'index'])->name('faq.index');
+    Route::get('/faq/create', [App\Http\Controllers\Admin\FaqController::class, 'create'])->name('faq.create');
+    Route::post('/faq', [App\Http\Controllers\Admin\FaqController::class, 'store'])->name('faq.store');
+    Route::get('/faq/{id}/edit', [App\Http\Controllers\Admin\FaqController::class, 'edit'])->name('faq.edit');
+    Route::put('/faq/{id}', [App\Http\Controllers\Admin\FaqController::class, 'update'])->name('faq.update');
+    Route::get('/faq/{id}/delete', [App\Http\Controllers\Admin\FaqController::class, 'destroy'])->name('faq.destroy');
+    Route::get('/faq/{id}/publish', [App\Http\Controllers\Admin\FaqController::class, 'publish'])->name('faq.publish');
 
     Route::get('/galleries', [App\Http\Controllers\Admin\GalleryController::class, 'index'])->name('galleries.index');
     Route::get('/galleries/create', [App\Http\Controllers\Admin\GalleryController::class, 'create'])->name('galleries.create');
@@ -71,6 +71,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::post('/addImagesToPortfolio', [App\Http\Controllers\Admin\AjaxController::class, 'addImagesToPortfolio'])->name('ajax.addImagesToPortfolio');
         Route::post('/saveQuestion', [App\Http\Controllers\Admin\AjaxController::class, 'saveQuestion'])->name('ajax.saveQuestion');
         Route::post('/removeQuestion', [App\Http\Controllers\Admin\AjaxController::class, 'removeQuestion'])->name('ajax.removeQuestion');
+        Route::post('/removeGalleryItem', [App\Http\Controllers\Admin\AjaxController::class, 'removeGalleryItem'])->name('ajax.removeGalleryItem');
     });
 });
 
@@ -93,8 +94,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio.index');
     Route::get('/portfolio/{page}', [PortfolioController::class, 'show'])->where('page', '.+')->name('portfolio.show');
 
-    Route::get('/faq', [FAQController::class, 'index'])->name('faq.index');
-    Route::get('/faq/{page}', [FAQController::class, 'show'])->where('page', '.+')->name('faq.show');
+    Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
+    Route::get('/faq/{page}', [FaqController::class, 'show'])->where('page', '.+')->name('faq.show');
 
     Route::get('/contact', ContactController::class)->name('order');
 

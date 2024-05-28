@@ -19,7 +19,7 @@ class DestroyAllImagesAction
             $item->delete();
         }
 
-        Storage::deleteDirectory('public/upload/page_avatar/' . $id);
+        // Storage::deleteDirectory('public/upload/page_avatar/' . $id);
         Storage::deleteDirectory('public/upload/portfolio_avatar/' . $id);
         Storage::deleteDirectory('public/upload/portfolio_image/' . $id);
     }

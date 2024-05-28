@@ -13,20 +13,26 @@ class SaveImageAction
     {
         if ($type == 'page_avatar') {
             $this->createAndSave($file, [], false, $type, $page_id, $image_id, 'original', '');
-            $this->createAndSave($file, ['width' => 670, 'height' => 270], true, $type, $page_id, $image_id, 'sizes', 'page');
+            $this->createAndSave($file, ['width' => 670, 'height' => 270], true, $type, $page_id, $image_id, 'sizes', 'page_');
         }
 
         if ($type == 'portfolio_avatar') {
             $this->createAndSave($file, [], false, $type, $page_id, $image_id, 'original', '');
-            $this->createAndSave($file, ['width' => 670, 'height' => 350], true, $type, $page_id, $image_id, 'sizes', 'big');
-            $this->createAndSave($file, ['width' => 500, 'height' => 260], true, $type, $page_id, $image_id, 'sizes', 'page');
-            $this->createAndSave($file, ['width' => 152, 'height' => 80], false, $type, $page_id, $image_id, 'sizes', 'small');
+            $this->createAndSave($file, ['width' => 670, 'height' => 350], true, $type, $page_id, $image_id, 'sizes', 'big_');
+            $this->createAndSave($file, ['width' => 500, 'height' => 260], true, $type, $page_id, $image_id, 'sizes', 'page_');
+            $this->createAndSave($file, ['width' => 152, 'height' => 80], false, $type, $page_id, $image_id, 'sizes', 'small_');
         }
 
         if ($type == 'portfolio_image') {
             $this->createAndSave($file, [], false, $type, $page_id, $image_id, 'original', '');
-            $this->createAndSave($file, ['width' => 670, 'height' => 350], true, $type, $page_id, $image_id, 'sizes', 'big');
-            $this->createAndSave($file, ['width' => 152, 'height' => 80], false, $type, $page_id, $image_id, 'sizes', 'small');
+            $this->createAndSave($file, ['width' => 670, 'height' => 350], true, $type, $page_id, $image_id, 'sizes', 'big_');
+            $this->createAndSave($file, ['width' => 152, 'height' => 80], false, $type, $page_id, $image_id, 'sizes', 'small_');
+        }
+
+        if ($type == 'gallery_item') {
+            $this->createAndSave($file, [], false, $type, $page_id, $image_id, 'original', '');
+            $this->createAndSave($file, ['width' => 940, 'height' => 600], true, $type, $page_id, $image_id, 'sizes', 'big');
+            $this->createAndSave($file, ['width' => 152, 'height' => 80], false, $type, $page_id, $image_id, 'sizes', '1_4');
         }
 
         return;
@@ -49,7 +55,7 @@ class SaveImageAction
         }
 
         if ($prefix != "") {
-            $prefix = $prefix . '_';
+            // $prefix = $prefix . '_';
         }
 
         $dirPath = 'public/upload/' . $type . '/' . $page_id . '/' . $image_id . '/' . $folder;

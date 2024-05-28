@@ -28,7 +28,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class FAQController extends Controller
+class FaqController extends Controller
 {
     public function index(SearchRequest $request)
     {

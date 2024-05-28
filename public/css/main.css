@@ -2348,6 +2348,9 @@ a.faq__block-header {
   height: 330px;
   background: url("/images/main/sixbox/sixbox_form.png") no-repeat;
 }
+.sixbox__block--form:hover {
+  background-position: 100% 100%;
+}
 .sixbox__block--form .sixbox__text {
   top: 50px;
   left: 10px;

@@ -89,7 +89,7 @@ class PageController extends Controller
                 );
             }
         }, 3);
-        return redirect(route('admin.pages.pages.index'));
+        return redirect(route('admin.pages.index'));
     }
 
     public function edit($id)
@@ -162,7 +162,7 @@ class PageController extends Controller
             }
         }, 3);
 
-        return redirect(route('admin.pages.pages.index'));
+        return redirect(route('admin.pages.index'));
     }
 
     public function destroy($id)
@@ -183,7 +183,7 @@ class PageController extends Controller
                 (new DestroyImageAction)->run($image);
             }, 3);
 
-            return redirect(route('admin.pages.pages.index'));
+            return redirect(route('admin.pages.index'));
         }
     }
 

@@ -3,15 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Image\BuildImagePathAction;
-use App\Actions\Page\GetPageAction;
-use App\Actions\Page\GetPageIDAction;
-use App\Actions\SEO\GetSeoAction;
 use App\Http\Controllers\Controller;
 use App\Models\Galleries;
 use App\Models\GalleryItems;
 use App\Models\Image;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
 
 class GalleryController extends Controller
 {

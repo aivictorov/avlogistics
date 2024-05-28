@@ -3,7 +3,6 @@
 namespace App\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Str;
 
 class ImagesRequest extends FormRequest
 {

@@ -38,6 +38,17 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="page_id">Отображается на странице</label>
+                                    <select class="form-control" id="page_id" name="page_id">
+                                        @foreach ($pages as $page)
+                                            <option value="{{ $page['id'] }}"
+                                                {{ $page['id'] == $gallery['page_id'] ? 'selected' : '' }}>
+                                                {{ $page['name'] }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -52,24 +63,48 @@
                             </div>
 
                             <div class="card-body">
-                                <div class="questions row">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="images">Добавить изображения</label>
+                                            <div class="input-group">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="images"
+                                                        name="images[]" data-js="img-input" multiple>
+                                                    <label class="custom-file-label" for="images"
+                                                        data-browse="Выберите файлы">Файлы не выбраны</label>
+                                                </div>
+                                                <div class="input-group-append">
+                                                    <button type="button" class="btn btn-primary" {{-- data-action="addImagesToPortfolio" data-id="{{ $portfolio['id'] }}" data-type="portfolio" --}}>
+                                                        Загрузить
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="gallery-items row">
                                     @if (isset($items) && count($items) > 0)
                                         @foreach ($items as $item)
-                                            <div class="question col-md-6">
+                                            <div class="gallery-item col-md-6">
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <div
                                                                     class="portfolio-gallery-image mr-2 mt-1 mb-1 d-block position-relative">
-                                                                    <img src={{ Image::path($item['image'], '1_4') }} />
+                                                                    <img src="{{ Image::path($item['image'], '1_4') }}" />
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <div class="form-group">
-                                                                    <label for="text">Текст</label>
-                                                                    <x-textarea class="form-control" id="text"
-                                                                        name="text">
+                                                                    <label
+                                                                        for="items[{{ $item['id'] }}][text]">Текст</label>
+                                                                    <x-textarea class="form-control"
+                                                                        id="items[{{ $item['id'] }}][text]"
+                                                                        name="items[{{ $item['id'] }}][text]">
                                                                         {{ $item['text'] }}
                                                                     </x-textarea>
                                                                 </div>
@@ -78,9 +113,11 @@
                                                         <div class="row">
                                                             <div class="col-md-5">
                                                                 <div class="form-group">
-                                                                    <label for="sort">Ключ сортировки</label>
+                                                                    <label for="items[{{ $item['id'] }}][sort]">Ключ
+                                                                        сортировки</label>
                                                                     <x-input type="text" class="form-control"
-                                                                        id="sort" name="sort"
+                                                                        id="items[{{ $item['id'] }}][sort]"
+                                                                        name="items[{{ $item['id'] }}][sort]"
                                                                         value="{{ $item['sort'] }}" data-name="sort" />
                                                                 </div>
                                                             </div>
@@ -94,7 +131,9 @@
                                                             </div>
                                                             <div class="col-md-2 d-flex align-items-end">
                                                                 <div class="form-group w-100">
-                                                                    <button type="button" class="btn btn-block btn-danger">
+                                                                    <button type="button" class="btn btn-block btn-danger"
+                                                                        data-action="removeGalleryItem"
+                                                                        data-id="{{ $item['id'] }}">
                                                                         Удалить
                                                                     </button>
                                                                 </div>
@@ -105,16 +144,6 @@
                                             </div>
                                         @endforeach
                                     @endif
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <button type="button" class="btn btn-block btn-outline-primary">
-                                                Добавить изображение
-                                            </button>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -128,20 +157,6 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="url">URL</label>
-                                            <input type="text" class="form-control" id="url" name="url"
-                                                value="{{ $gallery['url'] }}">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="sort_key">Ключ сортировки</label>
-                                            <input type="text" class="form-control" id="sort_key" name="sort_key"
-                                                value="{{ $gallery['sort_key'] }}">
-                                        </div>
-                                    </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="status">Статус</label>
@@ -165,10 +180,10 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        {{-- <div class="form-group">
-                            <a href={{ route('admin.faq.destroy', ['id' => $faq['id']]) }}
+                        <div class="form-group">
+                            <a href={{ route('admin.galleries.destroy', ['id' => $gallery['id']]) }}
                                 class="btn btn-block btn-danger btn-lg">Удалить</a>
-                        </div> --}}
+                        </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">

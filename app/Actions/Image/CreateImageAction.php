@@ -24,6 +24,8 @@ class CreateImageAction
             (new SaveImageAction)->run($image_file, $image->id, $image->parent_id, $image->parent_type);
         } else if ($data->parent_type == 'portfolio_image') {
             (new SaveImageAction)->run($image_file, $image->id, $image->parent_id, $image->parent_type);
+        } else if ($data->parent_type == 'gallery_item') {
+            (new SaveImageAction)->run($image_file, $image->id, $image->parent_id, $image->parent_type);
         }
 
         return $image;

@@ -22,7 +22,7 @@ class HomeController extends Controller
         $users_count = User::all()->count();
 
         return view(
-            'admin.home',
+            'admin.pages.home',
             compact(
                 'pages_count',
                 'portfolio_count',

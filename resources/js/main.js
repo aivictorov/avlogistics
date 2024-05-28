@@ -13,8 +13,6 @@ import { fancybox } from "./components/fancybox"
 document.addEventListener('DOMContentLoaded', () => {
 	// gallery();
 	gallery2();
-
-
 	subnavInit();
 	mobileNavInit();
 	mainContent();

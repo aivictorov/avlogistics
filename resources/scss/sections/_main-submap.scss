@@ -152,6 +152,10 @@
         height: 330px;
         background: url('/images/main/sixbox/sixbox_form.png') no-repeat;
 
+        &:hover {
+            background-position: 100% 100%;
+        }
+
         & .sixbox__text {
             top: 50px;
             left: 10px;
@@ -172,11 +176,6 @@
             left: 58px;
         }
     }
-
-    // &--form.hovered {
-    //     // width: 213px;
-    //     // background-position: 100% 100%;
-    // }
 }
 
 .sixbox__text,

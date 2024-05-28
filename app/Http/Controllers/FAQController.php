@@ -15,7 +15,7 @@ use App\Http\Controllers\Controller;
 use App\Models\FAQ_Questions;
 use Illuminate\Support\Str;
 
-class FAQController extends Controller
+class FaqController extends Controller
 {
     public function index()
     {

@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\Gallery\CreateGalleryAction;
+use App\Actions\Gallery\CreateGalleryData;
+use App\Actions\Gallery\CreateGalleryItemAction;
+use App\Actions\Gallery\CreateGalleryItemData;
 use App\Actions\Image\BuildGalleryImagesPathsAction;
 use App\Actions\Image\BuildImagePathAction;
 use App\Actions\Image\CreateImageAction;
@@ -14,6 +18,7 @@ use App\Actions\Image\ReplaceImageAction;
 use App\Actions\Image\ReplaceImageData;
 use App\Actions\Image\UpdateImageAction;
 use App\Actions\Image\UpdateImageData;
+use App\Actions\Page\GetPagesAction;
 use App\Actions\Portfolio\CreatePortfolioAction;
 use App\Actions\Portfolio\CreatePortfolioData;
 use App\Actions\Portfolio\GetPortfolioAction;
@@ -31,7 +36,7 @@ use App\Models\Galleries;
 use App\Models\GalleryItems;
 use App\Models\Image;
 use App\Models\Portfolio;
-use App\Requests\PortfolioRequest;
+use App\Requests\GalleryRequest;
 use App\Requests\SearchRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -49,74 +54,62 @@ class GalleryController extends Controller
             $galleries = Galleries::paginate(15);
         }
 
-        // $portfolioItems = (new GetPortfolioItemsAction)->run();
         return view('admin.pages.galleries.index', compact('galleries'));
     }
 
     public function create()
     {
-        return view('admin.pages.galleries.create');
+        $pages = (new GetPagesAction)->run();
+
+        return view('admin.pages.galleries.create', compact('pages'));
     }
 
-    public function store(PortfolioRequest $request)
+    public function store(GalleryRequest $request)
     {
-        // $validated = $request->validated();
+        $validated = $request->validated();
 
-        // DB::transaction(function () use ($validated, $request) {
-        //     $seo = (new CreateSeoAction)->run(
-        //         new CreateSeoData(
-        //             title: $validated['title'],
-        //             description: $validated['description'],
-        //             keywords: $validated['keywords'],
-        //         )
-        //     );
+        // dd($validated);
 
-        //     $portfolio = (new CreatePortfolioAction)->run(
-        //         new CreatePortfolioData(
-        //             name: $validated['name'],
-        //             h1: $validated['h1'],
-        //             portfolio_section_id: $validated['portfolio_section_id'],
-        //             text: $validated['text'],
-        //             url: $validated['url'],
-        //             sort_key: $validated['sort_key'],
-        //             status: $validated['status'],
-        //             seo_id: $seo->id,
-        //         )
-        //     );
+        DB::transaction(function () use ($validated, $request) {
 
-        //     if ($request->has('avatar')) {
-        //         $avatar_file = $validated['avatar'];
+            $gallery = (new CreateGalleryAction)->run(
+                new CreateGalleryData(
+                    name: $validated['name'],
+                    page_id: $validated['page_id'],
+                    status: $validated['status'],
+                )
+            );
 
-        //         (new CreateImageAction)->run(
-        //             $avatar_file,
-        //             new CreateImageData(
-        //                 image: $avatar_file->getClientOriginalName(),
-        //                 parent_type: 'portfolio_avatar',
-        //                 parent_id: $portfolio->id,
-        //             )
-        //         );
-        //     }
+            if ($request->has('images')) {
+                foreach ($validated['images'] as $item) {
+                    $galleryItem = (new CreateGalleryItemAction)->run(
+                        new CreateGalleryItemData(
+                            gallery_id: $gallery->id,
+                            text: "...",
+                            sort: 1,
+                            portfolio_id: null,
+                        )
+                    );
 
-        //     if ($request->has('images')) {
-        //         foreach ($validated['images'] as $item) {
-        //             (new CreateImageAction)->run(
-        //                 $item,
-        //                 new CreateImageData(
-        //                     image: $item->getClientOriginalName(),
-        //                     parent_type: 'portfolio_image',
-        //                     parent_id: $portfolio->id,
-        //                 )
-        //             );
-        //         }
-        //     }
-        // }, 3);
+                    (new CreateImageAction)->run(
+                        $item,
+                        new CreateImageData(
+                            image: $item->getClientOriginalName(),
+                            parent_type: 'gallery_item',
+                            parent_id: $galleryItem->id,
+                        )
+                    );
+                }
+            }
+        }, 3);
 
-        // return redirect(route('admin.galleries.index'));
+        return redirect(route('admin.galleries.index'));
     }
 
     public function edit($id)
     {
         $gallery = Galleries::find($id);
+
         $items = GalleryItems::where('gallery_id', $id)->get()->sortBy('id');
 
         foreach ($items as $key => $item) {
@@ -126,18 +119,21 @@ class GalleryController extends Controller
             ])->first();
 
             $items[$key]['image'] = $image;
-            // $items[$key]['image'] = (new BuildImagePathAction)->run($image);
         }
 
-        return view('admin.pages.galleries.edit', compact('gallery', 'items'));
+        $pages = (new GetPagesAction)->run();
+
+        return view('admin.pages.galleries.edit', compact('pages', 'gallery', 'items'));
     }
 
-    public function update(PortfolioRequest $request, $id)
+    public function update(GalleryRequest $request, $id)
     {
-        // $portfolio = (new GetPortfolioAction)->run($id);
-        // $seo = (new GetSeoAction)->run($portfolio['seo_id']);
+        $gallery = Galleries::find($id);
 
-        // $validated = $request->validated();
+        $validated = $request->validated();
+
+        dd($gallery, $validated);
+
 
         // DB::transaction(function () use ($portfolio, $seo, $validated, $request) {
 
@@ -230,16 +226,37 @@ class GalleryController extends Controller
 
     public function destroy($id)
     {
-        // DB::transaction(function () use ($id) {
-        //     $portfolio = (new GetPortfolioAction)->run($id);
-        //     $seo = (new GetSeoAction)->run($portfolio['seo_id']);
+        $gallery = Galleries::find($id);
 
-        //     $portfolio->delete();
-        //     $seo->delete();
-        //     (new DestroyAllImagesAction)->run($id);
-        // }, 3);
+        $items = GalleryItems::where([
+            ['gallery_id', $gallery->id],
+        ])->get();
 
-        // return redirect(route('admin.galleries.index'));
+        $images = [];
+
+        foreach ($items as $item) {
+            $image = Image::where([
+                ['parent_type', 'gallery_item'],
+                ['parent_id', $item->id],
+            ])->first();
+
+            array_push($images, $image);
+        }
+
+        DB::transaction(function () use ($gallery, $items, $images) {
+
+            $gallery->delete();
+
+            foreach ($items as $item) {
+                $item->delete();
+            }
+
+            foreach ($images as $image) {
+                (new DestroyImageAction)->run($image);
+            }
+        }, 3);
+
+        return redirect(route('admin.galleries.index'));
     }
 
     public function publish($id, Request $request)

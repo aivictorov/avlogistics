@@ -14,6 +14,7 @@ use App\Actions\Image\UpdateImageAction;
 use App\Actions\Image\UpdateImageData;
 use App\Http\Controllers\Controller;
 use App\Models\FAQ_Questions;
+use App\Models\GalleryItems;
 use App\Models\Image;
 use App\Models\Page;
 use App\Requests\ImageRequest;
@@ -22,6 +23,7 @@ use App\Requests\QuestionRequest;
 use App\Requests\UpdateAvatarRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as InterventionImage;
 
@@ -146,5 +148,26 @@ class AjaxController extends Controller
         $question->delete();
 
         return 'question ' . $id . ' removed';
+    }
+
+
+    public function removeGalleryItem()
+    {
+        $id = file_get_contents('php://input');
+        $item = GalleryItems::find($id);
+
+        $image = Image::where([
+            ['parent_type', 'gallery_item'],
+            ['parent_id', $id],
+        ])->first();
+
+        $res = $image->id;
+
+        DB::transaction(function () use ($item, $image) {
+            (new DestroyImageAction)->run($image);
+            $item->delete();
+        }, 3);
+
+        return 'gallery item ' . $res . ' removed';
     }
 }
