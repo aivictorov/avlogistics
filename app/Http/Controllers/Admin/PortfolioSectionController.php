@@ -7,7 +7,7 @@ use App\Actions\PortfolioSection\GetPortfolioSectionsAction;
 use App\Http\Controllers\Controller;
 use App\Models\Portfolio;
 use App\Models\PortfolioSection;
-use App\Requests\SearchRequest;
+use App\Http\Requests\SearchRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;

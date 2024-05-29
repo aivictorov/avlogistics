@@ -21,9 +21,9 @@ use App\Actions\SEO\UpdateSeoData;
 use App\Http\Controllers\Controller;
 use App\Models\FAQ_Categories;
 use App\Models\FAQ_Questions;
-use App\Requests\FaqCreateRequest;
-use App\Requests\FaqEditRequest;
-use App\Requests\SearchRequest;
+use App\Http\Requests\FaqCreateRequest;
+use App\Http\Requests\FaqEditRequest;
+use App\Http\Requests\SearchRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -135,7 +135,7 @@ class FaqController extends Controller
             );
 
             foreach ($questions as $question) {
-                if (isset ($validated['questions'][$question->id])) {
+                if (isset($validated['questions'][$question->id])) {
                     (new UpdateQuestionAction)->run(
                         $question,
                         new UpdateQuestionData(

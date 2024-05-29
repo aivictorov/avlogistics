@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Requests;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
 
-class FaqEditRequest extends FormRequest
+class FaqCreateRequest extends FormRequest
 {
     public function rules()
     {
@@ -17,9 +17,9 @@ class FaqEditRequest extends FormRequest
             'sort_key' => ['required'],
             'status' => ['required'],
 
-            'questions.*.name' => ['required'],
-            'questions.*.answer' => ['required'],
-            'questions.*.sort' => ['required', 'integer', 'min:0'],
+            // 'questions.*.name' => ['required'],
+            // 'questions.*.answer' => ['required'],
+            // 'questions.*.sort' => ['required', 'integer', 'min:0'],
 
             'title' => ['required', 'string', 'min:3', 'max:100'],
             'description' => ['required', 'string', 'min:3', 'max:250'],
@@ -29,20 +29,6 @@ class FaqEditRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        $questons = [];
-
-        foreach ($this->input('questions.*') as $question) {
-            array_push($questons, $question);
-        }
-
-        foreach ($questons as &$item) {
-            $item['sort'] = 1;
-        }
-
-        $this->merge([
-            'questions' => $questons,
-        ]);
-
         if (!$this->filled('url')) {
             $this->merge([
                 'url' => Str::slug($this->input('name')),

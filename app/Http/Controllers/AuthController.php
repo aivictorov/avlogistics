@@ -6,7 +6,7 @@ use App\Actions\Page\GetPageAction;
 use App\Actions\Page\GetPageIDAction;
 use App\Actions\Page\GetPageParentsAction;
 use App\Actions\SEO\GetSeoAction;
-use App\Requests\AuthRequest;
+use App\Http\Requests\AuthRequest;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 

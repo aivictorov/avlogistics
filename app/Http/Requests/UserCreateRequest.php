@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Requests;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserEditRequest extends FormRequest
+class UserCreateRequest extends FormRequest
 {
     public function rules()
     {
         return [
             'name' => ['required'],
             'email' => ['required'],
-            'current_password' => ['current_password'],
-            'password' => ['confirmed'],
+            'password' => ['required', 'confirmed'],
             'role' => ['required'],
             'status' => ['required'],
         ];

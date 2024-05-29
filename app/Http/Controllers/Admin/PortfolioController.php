@@ -29,8 +29,8 @@ use App\Actions\SEO\UpdateSeoData;
 use App\Http\Controllers\Controller;
 use App\Models\Image;
 use App\Models\Portfolio;
-use App\Requests\PortfolioRequest;
-use App\Requests\SearchRequest;
+use App\Http\Requests\PortfolioRequest;
+use App\Http\Requests\SearchRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -206,7 +206,7 @@ class PortfolioController extends Controller
                     $id = $key;
                     $image = Image::find($id);
 
-                    if (isset ($item['del']) && $item['del'] == true) {
+                    if (isset($item['del']) && $item['del'] == true) {
                         (new DestroyImageAction())->run($image);
                     } else {
                         (new UpdateImageAction)->run(

@@ -21,8 +21,8 @@ use App\Actions\SEO\UpdateSeoAction;
 use App\Actions\SEO\UpdateSeoData;
 use App\Http\Controllers\Controller;
 use App\Models\Page;
-use App\Requests\PageRequest;
-use App\Requests\SearchRequest;
+use App\Http\Requests\PageRequest;
+use App\Http\Requests\SearchRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -76,7 +76,7 @@ class PageController extends Controller
                 )
             );
 
-            if ($request->has('avatar') && isset ($validated['avatar'])) {
+            if ($request->has('avatar') && isset($validated['avatar'])) {
                 $avatar_file = $validated['avatar'];
 
                 (new CreateImageAction)->run(
@@ -133,7 +133,7 @@ class PageController extends Controller
                 )
             );
 
-            if ($request->has('avatar') && isset ($validated['avatar'])) {
+            if ($request->has('avatar') && isset($validated['avatar'])) {
                 $avatar = (new GetImageAction)->run($page->id);
                 $avatar_file = $validated['avatar'];
 
