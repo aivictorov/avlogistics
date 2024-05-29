@@ -2,12 +2,12 @@
 
 namespace App\Actions\Gallery;
 
-class CreateGalleryData
+class UpdateGalleryData
 {
     public function __construct(
         public $name,
-        public $status,
         public $page_id,
+        public $status,
     ) {
         //
     }

@@ -1,7 +1,5 @@
 <div class="mobile-subnav js-mobile-subnav">
     <div class="container">
-        {{-- <a class="mobile-subnav-block__close js-mobile-subnav-block__close" href="#">закрыть</a> --}}
-
         <div class="mobile-subnav-block__columns">
             @for ($i = 2; $i <= 3; $i++)
                 <div class="mobile-subnav-column">
@@ -20,14 +18,6 @@
                                             <use xlink:href="/images/icons/sprite.svg#arrow-down"></use>
                                         </svg>
                                     </div>
-
-                                    {{-- <svg class="icon icon--arrow-right">
-                                        <use xlink:href="/images/icons/sprite.svg#arrow-right"></use>
-                                    </svg> --}}
-                                    {{-- <a class="mobile-subnav-column__header-link"
-                                        href={{ route('pages.show', $header['url']) }}>
-                                        В раздел
-                                    </a> --}}
                                 @endif
                             </div>
 
@@ -45,13 +35,31 @@
                 </div>
             @endfor
 
-            <div class="mobile-subnav-column">
-                <div class="mobile-subnav-block__header">
-                    <a href={{ route('portfolio.index') }}>
-                        <h2>Доставка из Китая</h2>
-                    </a>
+            @for ($i = 145; $i <= 145; $i++)
+                <div class="mobile-subnav-column">
+                    <div class="mobile-subnav-block__header">
+                        <a href={{ route('pages.show', $tree[array_key_first($tree)]['children'][$i]['url']) }}>
+                            <h2>{{ $tree[array_key_first($tree)]['children'][$i]['name'] }}</h2>
+                        </a>
+                    </div>
+                    @if (isset($tree[array_key_first($tree)]['children'][$i]['children']))
+                        @foreach ($tree[array_key_first($tree)]['children'][$i]['children'] as $header)
+                            <div class="mobile-subnav-column__header">
+                                <a href={{ route('pages.show', $header['url']) }}>{{ $header['name'] }}</a>
+                            </div>
+                            @if (isset($header['children']))
+                                <ul class="mobile-subnav-column__list-menu">
+                                    @foreach ($header['children'] as $child)
+                                        <li>
+                                            <a href={{ route('pages.show', $child['url']) }}>{{ $child['name'] }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                        @endforeach
+                    @endif
                 </div>
-            </div>
+            @endfor
 
             @for ($i = 4; $i <= 4; $i++)
                 <div class="mobile-subnav-column">

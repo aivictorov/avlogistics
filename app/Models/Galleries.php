@@ -19,6 +19,7 @@ class Galleries extends Model
         'update_date',
         'user_id',
         'status',
+        'page_id',
     ];
 
     protected $casts = [];

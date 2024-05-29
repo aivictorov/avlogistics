@@ -26,7 +26,10 @@ class PageController extends Controller
             $image = (new GetImageAction)->run($id);
             $image_path = (new BuildImagePathAction)->run($image);
 
-            $galleries = Galleries::where('page_id', $id)->get();
+            $galleries = Galleries::where([
+                ['page_id', $id],
+                ['status', 1]
+            ])->get();
 
             if ($galleries) {
 

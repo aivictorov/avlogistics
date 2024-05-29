@@ -1,4 +1,8 @@
-export function arrowBarInit() {
+export function arrowBar() {
+    if (document.querySelector('.arrow-bar__arrow')) setTimeout(arrowBarInit, 2000);
+}
+
+function arrowBarInit() {
     const arrowBar = document.querySelector('.arrow-bar__arrow');
 
     arrowBar.style.backgroundPosition = "0 -48px";
@@ -25,4 +29,3 @@ export function arrowBarInit() {
     }, 100);
     setTimeout(arrowBarInit, 3000);
 }
-
