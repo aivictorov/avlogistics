@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\AjaxController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
@@ -12,6 +12,7 @@ use App\Http\Controllers\PortfolioSectionController;
 use App\Http\Controllers\UserController;
 use EdSDK\FlmngrServer\FlmngrServer;
 use Illuminate\Support\Facades\Route;
+
 
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
@@ -85,7 +86,7 @@ Route::post('/loadGallery', GalleryController::class)->name('loadGallery');
 
 Route::middleware('auth')->group(function () {
     Route::post('/flmngr', function () {
-        FlmngrServer::flmngrRequest(array ('dirFiles' => base_path() . '/storage/app/public/upload/files'));
+        FlmngrServer::flmngrRequest(array('dirFiles' => base_path() . '/storage/app/public/upload/files'));
     });
 
     Route::get('/', HomeController::class)->name('home');
@@ -97,7 +98,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
     Route::get('/faq/{page}', [FaqController::class, 'show'])->where('page', '.+')->name('faq.show');
 
-    Route::get('/contact', ContactController::class)->name('order');
+    Route::get('/contact', [ContactFormController::class, 'show'])->name('contactForm.show');
+    Route::post('/contact', [ContactFormController::class, 'send'])->name('contactForm.send');
 
     Route::get('/{page}', [PageController::class, 'show'])->where('page', '.+')->name('pages.show');
 });
