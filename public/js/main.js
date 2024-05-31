@@ -201,15 +201,15 @@ function mobileNavInit() {
   lists.forEach(function (list) {
     list.style.display = "none";
   });
-  var headers = document.querySelectorAll('.mobile-subnav-column__header');
+  var headers = document.querySelectorAll('.js-subnav-header-opener');
   headers.forEach(function (header) {
     header.addEventListener('click', function (event) {
-      if (header.nextElementSibling.classList.contains('mobile-subnav-column__list-menu')) {
+      if (header.closest('.mobile-subnav-column__header').nextElementSibling.classList.contains('mobile-subnav-column__list-menu')) {
         event.preventDefault();
-        if (header.nextElementSibling.style.display === "none") {
-          header.nextElementSibling.removeAttribute('style');
+        if (header.closest('.mobile-subnav-column__header').nextElementSibling.style.display === "none") {
+          header.closest('.mobile-subnav-column__header').nextElementSibling.removeAttribute('style');
         } else {
-          header.nextElementSibling.style.display = "none";
+          header.closest('.mobile-subnav-column__header').nextElementSibling.style.display = "none";
         }
       }
     });

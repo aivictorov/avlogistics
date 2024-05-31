@@ -101,13 +101,13 @@
             </div>
         </div>
     </div> --}}
-    {{-- <div class="form__row"> --}}
-    {{-- <div class="captcha"> --}}
-    {{-- <div id="captcha_id"></div> --}}
-    {{-- <div class="g-recaptcha" data-sitekey="6LcXOZkpAAAAAKMYw8hzWcIoRbcvHp4BBlgZCUVs"></div> --}}
-    {{-- <span class="input__notify"></span> --}}
-    {{-- </div> --}}
-    {{-- </div> --}}
+    <div class="form__row">
+        <div class="captcha">
+            <div id="captcha_id"></div>
+            {{-- <div class="g-recaptcha" data-sitekey="6LcXOZkpAAAAAKMYw8hzWcIoRbcvHp4BBlgZCUVs"></div> --}}
+            <span class="input__notify"></span>
+        </div>
+    </div>
     <div class="form-row">
         <button class="form-submit" type="submit">Отправить заявку</button>
     </div>

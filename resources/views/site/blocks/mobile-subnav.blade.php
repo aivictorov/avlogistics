@@ -13,7 +13,7 @@
                             <div class="mobile-subnav-column__header">
                                 <a href={{ route('pages.show', $header['url']) }}>{{ $header['name'] }}</a>
                                 @if (isset($header['children']))
-                                    <div class="mobile-subnav-column__header-arrow">
+                                    <div class="mobile-subnav-column__header-arrow js-subnav-header-opener">
                                         <svg class="icon icon--arrow-down">
                                             <use xlink:href="/images/icons/sprite.svg#arrow-down"></use>
                                         </svg>

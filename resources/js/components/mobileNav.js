@@ -24,18 +24,17 @@ export function mobileNavInit() {
         list.style.display = "none";
     });
 
-    const headers = document.querySelectorAll('.mobile-subnav-column__header');
+    const headers = document.querySelectorAll('.js-subnav-header-opener');
 
     headers.forEach((header) => {
-
         header.addEventListener('click', (event) => {
-            if (header.nextElementSibling.classList.contains('mobile-subnav-column__list-menu')) {
+            if (header.closest('.mobile-subnav-column__header').nextElementSibling.classList.contains('mobile-subnav-column__list-menu')) {
                 event.preventDefault();
 
-                if (header.nextElementSibling.style.display === "none") {
-                    header.nextElementSibling.removeAttribute('style');
+                if (header.closest('.mobile-subnav-column__header').nextElementSibling.style.display === "none") {
+                    header.closest('.mobile-subnav-column__header').nextElementSibling.removeAttribute('style');
                 } else {
-                    header.nextElementSibling.style.display = "none";
+                    header.closest('.mobile-subnav-column__header').nextElementSibling.style.display = "none";
                 }
             }
         })
