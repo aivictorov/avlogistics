@@ -8,12 +8,8 @@
                 $subnav = 'about';
             }
             
-            if ($item['url'] === 'zhd-perevozki') {
+            if ($item['url'] === 'perevozki-gruzov') {
                 $subnav = 'zhd';
-            }
-            
-            if ($item['url'] === 'import-eksport') {
-                $subnav = 'import';
             }
             
             if ($item['url'] === 'shemy-pogruzki') {

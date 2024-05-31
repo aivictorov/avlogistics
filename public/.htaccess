@@ -18,4 +18,18 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
+
+    
 </IfModule>
+
+Redirect 301 /zhd-perevozki/negabaritnye-perevozki https://zhd.su/negabaritnye-perevozki
+Redirect 301 /zhd-perevozki/zhd-perevozki-negabaritnyh-gruzov https://zhd.su/negabaritnye-perevozki/perevozki-negabaritnyh-gruzov
+Redirect 301 /zhd-perevozki/zhd-perevozki-tyazhelovesnyh-gruzov https://zhd.su/negabaritnye-perevozki/perevozki-tyazhelovesnyh-gruzov
+Redirect 301 /zhd-perevozki/zhd-perevozki-dlinnomernyh-gruzov https://zhd.su/negabaritnye-perevozki/perevozki-dlinnomernyh-gruzov
+
+Redirect 301 /zhd-perevozki/zhd-perevozki-gruzov-v-vagonah https://zhd.su/zhd-perevozki
+Redirect 301 /zhd-perevozki/zhd-perevozki-gruzov https://zhd.su/perevozki-texniki
+Redirect 301 /zhd-perevozki/zhd-perevozki-oborudovaniya https://zhd.su/perevozki-oborudovaniya
+Redirect 301 /zhd-perevozki/zhd-perevozki-metallokonstrukciy https://zhd.su/perevozki-metallokonstrukciy
+Redirect 301 /zhd-perevozki/zhd-perevozki-zhelezobetonnyh-izdeliy https://zhd.su/perevozki-zhelezobetonnyh-izdeliy

@@ -11,8 +11,8 @@ use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\PortfolioSectionController;
 use App\Http\Controllers\UserController;
 use EdSDK\FlmngrServer\FlmngrServer;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
-
 
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
@@ -74,6 +74,14 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::post('/removeQuestion', [App\Http\Controllers\Admin\AjaxController::class, 'removeQuestion'])->name('ajax.removeQuestion');
         Route::post('/removeGalleryItem', [App\Http\Controllers\Admin\AjaxController::class, 'removeGalleryItem'])->name('ajax.removeGalleryItem');
     });
+
+    Route::post('/flmngr', function () {
+        FlmngrServer::flmngrRequest(array('dirFiles' => base_path() . '/storage/app/public/upload/files'));
+    });
+
+    Route::get('/linkStorage', function () {
+        Artisan::call('storage:link');
+    });
 });
 
 Route::name('user.')->group(function () {
@@ -84,23 +92,17 @@ Route::name('user.')->group(function () {
 
 Route::post('/loadGallery', GalleryController::class)->name('loadGallery');
 
-Route::middleware('auth')->group(function () {
-    Route::post('/flmngr', function () {
-        FlmngrServer::flmngrRequest(array('dirFiles' => base_path() . '/storage/app/public/upload/files'));
-    });
+Route::get('/', HomeController::class)->name('home');
+Route::redirect('/index', '/', 301);
 
-    Route::get('/', HomeController::class)->name('home');
-    Route::redirect('/index', '/', 301);
+Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio.index');
+Route::get('/portfolio/{page}', [PortfolioController::class, 'show'])->where('page', '.+')->name('portfolio.show');
 
-    Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio.index');
-    Route::get('/portfolio/{page}', [PortfolioController::class, 'show'])->where('page', '.+')->name('portfolio.show');
+Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
+Route::get('/faq/{page}', [FaqController::class, 'show'])->where('page', '.+')->name('faq.show');
 
-    Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
-    Route::get('/faq/{page}', [FaqController::class, 'show'])->where('page', '.+')->name('faq.show');
+Route::get('/contact', [ContactFormController::class, 'show'])->name('contactForm.show');
+Route::post('/contact', [ContactFormController::class, 'send'])->name('contactForm.send');
 
-    Route::get('/contact', [ContactFormController::class, 'show'])->name('contactForm.show');
-    Route::post('/contact', [ContactFormController::class, 'send'])->name('contactForm.send');
-
-    Route::get('/{page}', [PageController::class, 'show'])->where('page', '.+')->name('pages.show');
-});
+Route::get('/{page}', [PageController::class, 'show'])->where('page', '.+')->name('pages.show');
 

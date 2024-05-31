@@ -56,33 +56,6 @@
         </div>
     </div>
 
-    <div class="subnav-block subnav-block--zhd js-subnav-block" data-subnav="import">
-        <div class="container">
-            <a class="subnav-block__close js-subnav-close" href="#">закрыть</a>
-            <div class="subnav-block__header">
-                <h2>{{ $tree[array_key_first($tree)]['children'][145]['name'] }}</h2>
-                <a href={{ route('pages.show', $tree[array_key_first($tree)]['children'][145]['url']) }}>В раздел</a>
-            </div>
-            <div class="subnav-block__columns">
-                @foreach ($tree[array_key_first($tree)]['children'][145]['children'] as $header)
-                    <div class="subnav-column subnav-column">
-                        <div class="subnav-column__header">
-                            <a href={{ route('pages.show', $header['url']) }}>{{ $header['name'] }}</a>
-                        </div>
-                        @if (isset($header['children']))
-                            <ul class="subnav-column__list-menu">
-                                @foreach ($header['children'] as $child)
-                                    <li><a href={{ route('pages.show', $child['url']) }}>{{ $child['name'] }}</a></li>
-                                @endforeach
-                            </ul>
-                        @endif
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-
-
     <div class="subnav-block subnav-block--scheme js-subnav-block" data-subnav="scheme">
         <div class="container">
             <a class="subnav-block__close js-subnav-close" href="#">закрыть</a>

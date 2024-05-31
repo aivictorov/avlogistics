@@ -9,7 +9,8 @@
     <div class="sixbox">
         <div class="sixbox-wrapper">
             <div class="sixbox__block js-sixbox__block sixbox__block--services">
-                <a href="/blog/" class="sixbox__text js-sixbox__text">Перевозки <span>грузов</span></a>
+                <a href="/perevozki-gruzov" class="sixbox__text js-sixbox__text">Перевозки
+                    <span>грузов</span></a>
             </div>
             <i class="sixbox__icon sixbox__icon--services fa fa-truck fa-4x"></i>
         </div>
@@ -20,7 +21,8 @@
         </div>
         <div class="sixbox-wrapper">
             <div class="sixbox__block js-sixbox__block sixbox__block--faq">
-                <a href="/faq/" class="sixbox__text js-sixbox__text">Вопросы <span>и ответы</span></a>
+                <a href="{{ route('faq.index') }}" class="sixbox__text js-sixbox__text">Вопросы <span>и
+                        ответы</span></a>
             </div>
             <i class="sixbox__icon sixbox__icon--faq fa fa-question fa-5x"></i>
         </div>
