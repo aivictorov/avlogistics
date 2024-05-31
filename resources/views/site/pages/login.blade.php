@@ -14,8 +14,6 @@
                 <form id="login-form" class="login-form" action={{ route('user.auth') }} method="post">
                     @csrf
 
-                    <h1 class="page-h1">Вход</h1>
-
                     @if ($errors->any())
                         <div class="form-group form-errors">
                             <ul>
