@@ -101,8 +101,8 @@ Route::get('/portfolio/{page}', [PortfolioController::class, 'show'])->where('pa
 Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
 Route::get('/faq/{page}', [FaqController::class, 'show'])->where('page', '.+')->name('faq.show');
 
-Route::get('/contact', [ContactFormController::class, 'show'])->name('contactForm.show');
-Route::post('/contact', [ContactFormController::class, 'send'])->name('contactForm.send');
+Route::get('/contact-form', [ContactFormController::class, 'show'])->name('contactForm.show');
+Route::post('/contact-form', [ContactFormController::class, 'send'])->name('contactForm.send');
 
 Route::get('/{page}', [PageController::class, 'show'])->where('page', '.+')->name('pages.show');
 

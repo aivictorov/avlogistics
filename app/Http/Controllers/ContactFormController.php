@@ -10,12 +10,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactFormRequest;
 use App\Mail\SendMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 class ContactFormController extends Controller
 {
     public function show()
     {
-        $id = (new GetPageIDAction)->run('contact');
+        $id = (new GetPageIDAction)->run('contact-form');
         $page = (new GetPageAction)->run($id);
         $seo = (new GetSeoAction)->run($page['seo_id']);
         $parents = (new GetPageParentsAction)->run($id);
@@ -28,9 +29,13 @@ class ContactFormController extends Controller
         $validated = $request->validated();
 
         $message_text = "";
+        $message_text .= "Наименование организации: " . $validated['company'] . "<br>";
         $message_text .= "Контактное лицо: " . $validated['name'] . "<br>";
-        $message_text .= "Адрес электронной почты: " . $validated['email'] . "<br>";
-        $message_text .= "Текст сообщения: " . $validated['message'] . "<br>";
+        $message_text .= "Телефон: " . $validated['phone'] . "<br>";
+        $message_text .= "Электронная почта: " . $validated['email'] . "<br>";
+        $message_text .= "Пункт отправления: " . $validated['from'] . "<br>";
+        $message_text .= "Пункт назначения: " . $validated['to'] . "<br>";
+        $message_text .= "Характеристика груза: " . $validated['message'] . "<br>";
 
         $secret = "6LfKbeYpAAAAABsu2Bp27JHzgfi2FAn20-_DfA2W";
 
@@ -45,17 +50,14 @@ class ContactFormController extends Controller
 
                 Mail::to('shema-pogruzki@yandex.ru')->send(new SendMail($title, $body));
 
-                // Mail::send(['text' => 'mail.mail'], ['name' => 'site zhd'], function ($message) {
-                //     $message->to('shema-pogruzki@yandex.ru', 'to site zhd')->subject('test');
-                //     $message->setBody('<h1>Hi, welcome user!</h1><br> hello world', 'text/html');
-                // });
-
-                // return 'contact form send';
-
-                return "Email sent successfully!";
+                Session::flash('success', 'Заявка успешно отправлена');
+                return redirect()->back();
 
             } else {
-                return "error!";
+                return redirect()->back()->withErrors([
+                    'form' => 'Ошибка отправки формы. Попробуйте еще раз.'
+                ]);
+                ;
             }
         }
     }

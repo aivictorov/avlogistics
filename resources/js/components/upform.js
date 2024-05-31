@@ -17,12 +17,10 @@ export function upform() {
 
         var upform = $('.js-upflash');
         var upflash = upform.find('.js-apply-form');
-        var slider = upform.find('.gallery-slider');
 
         upform.fadeOut(300, function () {
 
             upform.removeClass('upflash-bigimage')
-            slider.remove();
             upflash.hide();
             upflash.prependTo('body');
         });

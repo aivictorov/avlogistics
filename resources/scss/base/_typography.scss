@@ -49,13 +49,25 @@
 }
 
 .alert {
-    border: 1px solid #cccccc;
+    margin: 10px 0;
     padding: 20px;
-    margin: 10px auto;
+    border: 1px solid #cccccc;
 }
 
 .alert-danger {
+    color: #f14214;
     border: 1px solid #f14214;
+}
+
+.alert-success {
+    color: #1db129;
+    border: 1px solid #1db129;
+}
+
+.small.text-danger {
+    margin: 0;
+    font-size: 10px;
+    color: #f14214;
 }
 
 .blockquote {

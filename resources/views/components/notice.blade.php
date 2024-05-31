@@ -1,14 +1,3 @@
-{{-- @if (Session::has('danger') || Session::has('info') || Session::has('warning') || Session::has('success'))
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card card-default">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        Alerts
-                    </h3>
-                </div>
-                <div class="card-body"> --}}
 @if (Session::has('danger'))
     <div class="alert alert-danger alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -37,8 +26,3 @@
         {{ Session::get('success') }}
     </div>
 @endif
-{{-- </div>
-            </div>
-        </div>
-    </div>
-@endif --}}
