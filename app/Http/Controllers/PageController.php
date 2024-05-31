@@ -53,7 +53,7 @@ class PageController extends Controller
 
             return view('site.pages.page', compact('page', 'parents', 'image_path', 'seo', 'galleries'));
         } else {
-            return view('site.pages.error');
+            return response(view('site.pages.error'), 404);
         }
     }
 }

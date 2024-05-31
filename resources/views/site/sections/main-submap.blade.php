@@ -16,7 +16,8 @@
         </div>
         <div class="sixbox-wrapper">
             <div class="sixbox__block js-sixbox__block sixbox__block--form">
-                <a href="/contact/" class="sixbox__text js-sixbox__text">Рассчитать <span>стоимость</span></a>
+                <a href="{{ route('contactForm.show') }}" class="sixbox__text js-sixbox__text">Рассчитать
+                    <span>стоимость</span></a>
             </div>
         </div>
         <div class="sixbox-wrapper">

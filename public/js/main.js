@@ -168,6 +168,53 @@ function mainContent() {
 
 /***/ }),
 
+/***/ "./resources/js/components/metrika.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/metrika.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   metrika: () => (/* binding */ metrika)
+/* harmony export */ });
+function metrika() {
+  (function (d, w, c) {
+    (w[c] = w[c] || []).push(function () {
+      try {
+        w.yaCounter13339072 = new Ya.Metrika({
+          id: 13339072,
+          clickmap: false,
+          trackLinks: false,
+          accurateTrackBounce: true
+        });
+      } catch (e) {}
+    });
+    var n = d.getElementsByTagName("script")[0],
+      x = "https://mc.yandex.ru/metrika/watch.js",
+      s = d.createElement("script"),
+      f = function f() {
+        n.parentNode.insertBefore(s, n);
+      };
+    for (var i = 0; i < document.scripts.length; i++) {
+      if (document.scripts[i].src === x) {
+        return;
+      }
+    }
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = x;
+    if (w.opera == "[object Opera]") {
+      d.addEventListener("DOMContentLoaded", f, false);
+    } else {
+      f();
+    }
+  })(document, window, "yandex_metrika_callbacks");
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/mobileNav.js":
 /*!**********************************************!*\
   !*** ./resources/js/components/mobileNav.js ***!
@@ -17778,6 +17825,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_swipers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/swipers */ "./resources/js/components/swipers.js");
 /* harmony import */ var _components_grecaptcha__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/grecaptcha */ "./resources/js/components/grecaptcha.js");
 /* harmony import */ var _components_fancybox__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/fancybox */ "./resources/js/components/fancybox.js");
+/* harmony import */ var _components_metrika__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/metrika */ "./resources/js/components/metrika.js");
+
 
 
 
@@ -17789,6 +17838,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 document.addEventListener('DOMContentLoaded', function () {
+  (0,_components_metrika__WEBPACK_IMPORTED_MODULE_10__.metrika)();
   (0,_components_gallery__WEBPACK_IMPORTED_MODULE_0__.gallery)();
   (0,_components_subnav__WEBPACK_IMPORTED_MODULE_1__.subnavInit)();
   (0,_components_mobileNav__WEBPACK_IMPORTED_MODULE_5__.mobileNavInit)();

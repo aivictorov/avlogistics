@@ -9,8 +9,10 @@ import { mainContent } from "./components/mainContent";
 import { swipers } from "./components/swipers";
 import { captcha } from "./components/grecaptcha"
 import { fancybox } from "./components/fancybox"
+import { metrika } from "./components/metrika"
 
 document.addEventListener('DOMContentLoaded', () => {
+	metrika();
 	gallery();
 	subnavInit();
 	mobileNavInit();
