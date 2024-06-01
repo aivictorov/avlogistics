@@ -23,6 +23,8 @@
     RewriteRule ^ index.php [L]
 </IfModule>
 
+Redirect 301 /contact https://zhd.su/contact-form
+
 Redirect 301 /zhd-perevozki/negabaritnye-perevozki https://zhd.su/negabaritnye-perevozki
 Redirect 301 /zhd-perevozki/zhd-perevozki-negabaritnyh-gruzov https://zhd.su/negabaritnye-perevozki/perevozki-negabaritnyh-gruzov
 Redirect 301 /zhd-perevozki/zhd-perevozki-tyazhelovesnyh-gruzov https://zhd.su/negabaritnye-perevozki/perevozki-tyazhelovesnyh-gruzov
