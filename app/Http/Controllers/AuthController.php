@@ -16,9 +16,7 @@ class AuthController extends Controller
     public function login()
     {
         if (Auth::check()) {
-            return redirect(route('home'));
-            // return redirect(route('admin.home'));
-
+            return redirect(route('admin.home'));
         } else {
             $id = (new GetPageIDAction)->run('login');
             $page = (new GetPageAction)->run($id);
@@ -44,8 +42,7 @@ class AuthController extends Controller
         if (!Auth::check()) {
 
             if (Auth::attempt($validated)) {
-                return redirect()->intended(route('home'));
-                // return redirect()->intended(route('admin.home'));
+                return redirect()->intended(route('admin.home'));
             } else {
                 return redirect(route('user.login'))->withErrors([
                     'form' => 'Не удалось авторизоваться, введен неверный e-mail либо пароль.'
