@@ -47,8 +47,6 @@ class PageController extends Controller
 
                     $gallery['items'] = $items;
                 }
-
-                // dd($galleries);
             }
 
             return view('site.pages.page', compact('page', 'parents', 'image_path', 'seo', 'galleries'));

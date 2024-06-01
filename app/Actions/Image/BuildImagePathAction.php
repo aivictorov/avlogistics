@@ -2,6 +2,8 @@
 
 namespace App\Actions\Image;
 
+use Illuminate\Support\Facades\Storage;
+
 class BuildImagePathAction
 {
     public function run($image)
@@ -15,7 +17,8 @@ class BuildImagePathAction
                 $prefix = '1_4';
             }
 
-            return '\\storage\\upload\\' . $image->parent_type . '\\' . $image->parent_id . '\\' . $image->id . '\\sizes\\' . $prefix . $image->image;
+            return Storage::disk('public')->url('/upload/' . $image->parent_type . '/' . $image->parent_id . '/' . $image->id . '/sizes/' . $prefix . $image->image);
+
         } else {
             return '';
         }
