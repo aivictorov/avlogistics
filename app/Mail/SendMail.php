@@ -16,7 +16,7 @@ class SendMail extends Mailable
 
     public function __construct(
         private string $title,
-        private string $body,
+        private array $data,
         private $files
     ) {
         //
@@ -35,7 +35,7 @@ class SendMail extends Mailable
             view: 'mail.mail',
             with: [
                 'title' => $this->title,
-                'body' => $this->body,
+                'data' => $this->data,
             ]
         );
     }
@@ -47,7 +47,6 @@ class SendMail extends Mailable
         if (!empty($this->files)) {
             foreach ($this->files as $file) {
                 $attachments[] = Attachment::fromPath($file->getRealPath())
-                    // $attachments[] = Attachment::fromPath(storage_path('app/' . $file["file_path"]))
                     ->as($file->getClientOriginalName())
                     ->withMime($file->getMimeType());
             }

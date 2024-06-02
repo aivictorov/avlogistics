@@ -23,60 +23,55 @@ class ContactFormController extends Controller
 
         return view('site.pages.contactForm', compact('page', 'parents', 'seo'));
     }
-
     public function send(ContactFormRequest $request)
     {
         $validated = $request->validated();
 
-        $message_text = "";
-        $message_text .= "Наименование организации: " . $validated['company'] . "<br>";
-        $message_text .= "Контактное лицо: " . $validated['name'] . "<br>";
-        $message_text .= "Телефон: " . $validated['phone'] . "<br>";
-        $message_text .= "Электронная почта: " . $validated['email'] . "<br>";
-        $message_text .= "Пункт отправления: " . $validated['from'] . "<br>";
-        $message_text .= "Пункт назначения: " . $validated['to'] . "<br>";
-        $message_text .= "Характеристика груза: " . $validated['message'] . "<br>";
+        $title = 'Запрос стоимости перевозки';
 
-        // $secret = "6LfKbeYpAAAAABsu2Bp27JHzgfi2FAn20-_DfA2W";
+        $data = [];
+        $data['company'] = $validated['company'];
+        $data['name'] = $validated['name'];
+        $data['phone'] = $validated['phone'];
+        $data['email'] = $validated['email'];
+        $data['from'] = $validated['from'];
+        $data['to'] = $validated['to'];
+        $data['message'] = $validated['message'];
+        $data['files'] = "";
 
-        // if (!empty($validated['g-recaptcha-response'])) {
-        //     $out = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
-        //     $out = json_decode($out);
-
-        //     if ($out->success == true) {
-
-        $title = 'Заявка с сайта';
         $files = [];
 
         if ($request->has('files') && isset($validated['files'])) {
             $files = $validated['files'];
 
-            $message_text .= "Прикрепленные файлы: ";
-
             foreach ($files as $key => $file) {
                 if ($key === 0) {
-                    $message_text .= $file->getClientOriginalName() . "(" . $file->getMimeType() . ")";
+                    $data['files'] .= $file->getClientOriginalName() . "(" . $file->getMimeType() . ")";
                 } else {
-                    $message_text .= ", " . $file->getClientOriginalName() . "(" . $file->getMimeType() . ")";
+                    $data['files'] .= ", " . $file->getClientOriginalName() . "(" . $file->getMimeType() . ")";
                 }
             }
-
-            $message_text .= " (см. вложения)<br>";
         }
 
-        $body = $message_text;
+        $secret = "6LfKbeYpAAAAABsu2Bp27JHzgfi2FAn20-_DfA2W";
 
-        Mail::to('shema-pogruzki@yandex.ru')->send(new SendMail($title, $body, $files));
+        if (!empty($validated['g-recaptcha-response'])) {
+            $out = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
+            $out = json_decode($out);
 
-        Session::flash('success', 'Заявка успешно отправлена');
-        return redirect()->back();
+            if ($out->success == true) {
 
-        //     } else {
-        //         return redirect()->back()->withErrors([
-        //             'form' => 'Ошибка отправки формы. Попробуйте еще раз.'
-        //         ]);
-        //         ;
-        //     }
-        // }
+                Mail::to('info@zhd.su')->send(new SendMail($title, $data, $files));
+
+                Session::flash('success', 'Заявка успешно отправлена');
+                return redirect()->back();
+
+            } else {
+                return redirect()->back()->withErrors([
+                    'form' => 'Ошибка отправки запроса. Попробуйте еще раз.'
+                ]);
+                ;
+            }
+        }
     }
 }

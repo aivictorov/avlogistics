@@ -10,12 +10,12 @@ class ContactFormRequest extends FormRequest
     {
         return [
             'company' => ['nullable', 'string'],
-            'name' => ['nullable', 'string'],
+            'name' => ['required', 'string'],
+            'email' => ['required', 'email'],
             'phone' => ['nullable', 'string'],
-            'email' => ['nullable', 'string'],
             'from' => ['nullable', 'string'],
             'to' => ['nullable', 'string'],
-            'message' => ['nullable', 'string', 'min:3'],
+            'message' => ['required', 'string', 'min:5'],
             'files.*' => [
                 'nullable',
                 'mimes:pdf,jpeg,jpg,png,docx,doc,xlsx,xls',
@@ -23,7 +23,7 @@ class ContactFormRequest extends FormRequest
                 'min:1',
                 'max:5120'
             ],
-            // 'g-recaptcha-response' => ['required', 'string'],
+            'g-recaptcha-response' => ['required', 'string'],
         ];
     }
 
@@ -32,8 +32,6 @@ class ContactFormRequest extends FormRequest
         function my_trim($var)
         {
             $var = strip_tags($var);
-            $var = htmlspecialchars($var);
-            $var = quotemeta($var);
             return $var;
         }
 
