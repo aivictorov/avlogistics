@@ -1,5 +1,4 @@
 import { gallery } from "./components/gallery";
-
 import { subnavInit } from "./components/subnav";
 import { upform } from "./components/upform";
 import { modalWindows } from "./components/modals";
@@ -10,6 +9,7 @@ import { swipers } from "./components/swipers";
 import { captcha } from "./components/grecaptcha"
 import { fancybox } from "./components/fancybox"
 import { metrika } from "./components/metrika"
+import { inputFile } from "./components/inputFile"
 
 document.addEventListener('DOMContentLoaded', () => {
 	metrika();
@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	modalWindows();
 	swipers();
 	fancybox();
+	inputFile();
 });
 
 

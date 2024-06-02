@@ -10,10 +10,10 @@
     <meta name="Description" content="@yield('description')" />
     <meta name="Keywords" content="@yield('keywords')" />
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
+    <!-- Styles -->
+    <link rel="stylesheet" href="/assets/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/assets/fancybox/fancybox.css" />
+    <link rel="stylesheet" href="/assets/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/main.css">
 
     <!-- Favicons -->
@@ -43,8 +43,9 @@
     @include('site.sections.footer')
 
     <script src="/assets/jquery/jquery.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script src="/assets/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/fancybox/fancybox.umd.js"></script>
+
     <script src="/js/main.js"></script>
 </body>
 

@@ -9,14 +9,21 @@ class ContactFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'company' => ['required', 'string'],
-            'name' => ['required', 'string'],
-            'phone' => ['required', 'string'],
-            'email' => ['required', 'string'],
-            'from' => ['sometimes', 'string'],
-            'to' => ['sometimes', 'string'],
-            'message' => ['required', 'string', 'min:5'],
-            'g-recaptcha-response' => ['required', 'string'],
+            'company' => ['nullable', 'string'],
+            'name' => ['nullable', 'string'],
+            'phone' => ['nullable', 'string'],
+            'email' => ['nullable', 'string'],
+            'from' => ['nullable', 'string'],
+            'to' => ['nullable', 'string'],
+            'message' => ['nullable', 'string', 'min:3'],
+            'files.*' => [
+                'nullable',
+                'mimes:pdf,jpeg,jpg,png,docx,doc,xlsx,xls',
+                'mimetypes:application/pdf,image/jpeg,image/png,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel',
+                'min:1',
+                'max:5120'
+            ],
+            // 'g-recaptcha-response' => ['required', 'string'],
         ];
     }
 
@@ -24,10 +31,9 @@ class ContactFormRequest extends FormRequest
     {
         function my_trim($var)
         {
-            $var = trim($var);
-            $var = htmlspecialchars($var);
-            $var = stripcslashes($var);
             $var = strip_tags($var);
+            $var = htmlspecialchars($var);
+            $var = quotemeta($var);
             return $var;
         }
 

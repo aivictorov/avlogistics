@@ -37,28 +37,46 @@ class ContactFormController extends Controller
         $message_text .= "Пункт назначения: " . $validated['to'] . "<br>";
         $message_text .= "Характеристика груза: " . $validated['message'] . "<br>";
 
-        $secret = "6LfKbeYpAAAAABsu2Bp27JHzgfi2FAn20-_DfA2W";
+        // $secret = "6LfKbeYpAAAAABsu2Bp27JHzgfi2FAn20-_DfA2W";
 
-        if (!empty($validated['g-recaptcha-response'])) {
-            $out = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
-            $out = json_decode($out);
+        // if (!empty($validated['g-recaptcha-response'])) {
+        //     $out = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
+        //     $out = json_decode($out);
 
-            if ($out->success == true) {
+        //     if ($out->success == true) {
 
-                $title = 'Заявка с сайта';
-                $body = $message_text;
+        $title = 'Заявка с сайта';
+        $files = [];
 
-                Mail::to('shema-pogruzki@yandex.ru')->send(new SendMail($title, $body));
+        if ($request->has('files') && isset($validated['files'])) {
+            $files = $validated['files'];
 
-                Session::flash('success', 'Заявка успешно отправлена');
-                return redirect()->back();
+            $message_text .= "Прикрепленные файлы: ";
 
-            } else {
-                return redirect()->back()->withErrors([
-                    'form' => 'Ошибка отправки формы. Попробуйте еще раз.'
-                ]);
-                ;
+            foreach ($files as $key => $file) {
+                if ($key === 0) {
+                    $message_text .= $file->getClientOriginalName() . "(" . $file->getMimeType() . ")";
+                } else {
+                    $message_text .= ", " . $file->getClientOriginalName() . "(" . $file->getMimeType() . ")";
+                }
             }
+
+            $message_text .= " (см. вложения)<br>";
         }
+
+        $body = $message_text;
+
+        Mail::to('shema-pogruzki@yandex.ru')->send(new SendMail($title, $body, $files));
+
+        Session::flash('success', 'Заявка успешно отправлена');
+        return redirect()->back();
+
+        //     } else {
+        //         return redirect()->back()->withErrors([
+        //             'form' => 'Ошибка отправки формы. Попробуйте еще раз.'
+        //         ]);
+        //         ;
+        //     }
+        // }
     }
 }

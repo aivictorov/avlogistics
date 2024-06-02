@@ -1,4 +1,4 @@
-<form class="form" action="{{ route('contactForm.send') }}" method="post">
+<form class="form" action="{{ route('contactForm.send') }}" method="post" enctype="multipart/form-data">
     @csrf
     <x-errors />
     <x-user-notice />
@@ -10,7 +10,7 @@
                 <x-input class="form-input" type="text" name="company" />
             </label>
             <label class="form-control form-label">
-                <span>Контактное лицо</span>
+                <span>Контактное лицо (*)</span>
                 <x-input class="form-input" type="text" name="name" />
             </label>
             <label class="form-control form-label">
@@ -18,7 +18,7 @@
                 <x-input class="form-input" type="text" name="phone" />
             </label>
             <label class="form-control form-label">
-                <span>E-mail</span>
+                <span>E-mail (*)</span>
                 <x-input class="form-input" type="text" name="email" />
             </label>
         </div>
@@ -38,17 +38,21 @@
             </div>
             <div class="form-row">
                 <label class="form-control form-label">
-                    <span>Характеристика груза</span>
-                    <x-textarea class="form-textarea" name="message"></x-textarea>
+                    <span>Информация о грузе (*)</span>
+                    <x-textarea class="form-textarea" name="message"
+                        placeholder="Укажите наименование, массу груза, количество мест, тип упаковки и другую необходимую информацию."></x-textarea>
                 </label>
             </div>
         </div>
     </div>
-    {{-- <div class="form__row">
+    <div class="form__row">
+        (*) - поле обязательно для заполнения
+    </div>
+    <div class="form__row">
         <div class="form__item">
             <div class="input-file">
                 <label class="input-file__label">
-                    <input class="input-file__hidden visually-hidden" name="file[]" type="file"
+                    <input class="input-file__hidden visually-hidden" name="files[]" type="file"
                         accept="application/pdf, image/jpeg, image/png" multiple>
                     <div class="input-file__icon">
                         <svg class="icon icon--plus">
@@ -57,14 +61,14 @@
                     </div>
                     <div class="input-file__text">
                         <div class="input-file__info">Прикрепить файл</div>
-                        <div class="input-file__notice">Вы можете прикрепить не более 3 файлов формата PDF, JPG, PNG
-                            размером до 5 мб каждый.</div>
+                        <div class="input-file__notice">Вы можете прикрепить не более 3 файлов формата PDF, JPG, PNG,
+                            DOC, DOCX, XLS, XLSX размером до 5 мб каждый.</div>
                     </div>
                 </label>
                 <span class="input-notify"></span>
             </div>
         </div>
-    </div> --}}
+    </div>
     <div class="form__row">
         <div class="captcha">
             <div id="captcha_id"></div>

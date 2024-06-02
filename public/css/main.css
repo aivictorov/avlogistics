@@ -1053,7 +1053,7 @@ a.logo img {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  row-gap: 12px;
+  row-gap: 16px;
   max-width: 680px;
 }
 
@@ -1087,7 +1087,6 @@ a.logo img {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  row-gap: 2px;
 }
 
 .form-column,

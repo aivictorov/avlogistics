@@ -131,6 +131,43 @@ function captcha() {
 
 /***/ }),
 
+/***/ "./resources/js/components/inputFile.js":
+/*!**********************************************!*\
+  !*** ./resources/js/components/inputFile.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   inputFile: () => (/* binding */ inputFile)
+/* harmony export */ });
+function inputFile() {
+  document.querySelectorAll('input[type="file"]').forEach(function (input) {
+    var label = input.closest('label');
+    var info = label.querySelector('.input-file__info');
+    input.addEventListener('change', function () {
+      if (input.files.length > 0) {
+        info.innerText = "\u041F\u0440\u0438\u043A\u0440\u0435\u043F\u043B\u0435\u043D\u043E \u0444\u0430\u0439\u043B\u043E\u0432: ".concat(input.files.length);
+      } else {
+        info.innerText = "Прикрепить файл";
+      }
+      ;
+    });
+    input.addEventListener('change', function () {
+      if (input.files.length > 3) {
+        input.value = "";
+        alert('Ошибка! Нельзя прикреплять больше 3 файлов');
+        info.innerText = "Прикрепить файл";
+      }
+      ;
+    });
+  });
+}
+;
+
+/***/ }),
+
 /***/ "./resources/js/components/mainContent.js":
 /*!************************************************!*\
   !*** ./resources/js/components/mainContent.js ***!
@@ -17826,6 +17863,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_grecaptcha__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/grecaptcha */ "./resources/js/components/grecaptcha.js");
 /* harmony import */ var _components_fancybox__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/fancybox */ "./resources/js/components/fancybox.js");
 /* harmony import */ var _components_metrika__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/metrika */ "./resources/js/components/metrika.js");
+/* harmony import */ var _components_inputFile__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/inputFile */ "./resources/js/components/inputFile.js");
+
 
 
 
@@ -17849,6 +17888,7 @@ document.addEventListener('DOMContentLoaded', function () {
   (0,_components_modals__WEBPACK_IMPORTED_MODULE_3__.modalWindows)();
   (0,_components_swipers__WEBPACK_IMPORTED_MODULE_7__.swipers)();
   (0,_components_fancybox__WEBPACK_IMPORTED_MODULE_9__.fancybox)();
+  (0,_components_inputFile__WEBPACK_IMPORTED_MODULE_11__.inputFile)();
 });
 
 // window.addEventListener('load', () => {
