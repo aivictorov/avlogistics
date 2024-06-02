@@ -27,7 +27,6 @@
     height: 165px;
     transform: skewX(-60deg);
     overflow: hidden;
-
 }
 
 .portfolio-index__item_in {
@@ -37,6 +36,7 @@
     width: 500px;
     height: 165px;
     background-position: 0 165px;
+    font-size: 0;
     transform: skewX(60deg);
 
     &:hover {

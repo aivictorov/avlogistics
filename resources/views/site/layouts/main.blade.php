@@ -42,10 +42,9 @@
 
     @include('site.sections.footer')
 
-    <script src="/assets/jquery/jquery.js"></script>
+    <script src="/assets/jquery/jquery.min.js"></script>
     <script src="/assets/swiper/swiper-bundle.min.js"></script>
     <script src="/assets/fancybox/fancybox.umd.js"></script>
-
     <script src="/js/main.js"></script>
 </body>
 
