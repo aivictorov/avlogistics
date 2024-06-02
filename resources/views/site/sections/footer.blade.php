@@ -6,7 +6,7 @@
                 <div>Все права защищены законодательством РФ.</div>
             </div>
             <div class="footer__right">
-                <div>Телефон: +7 (812) 642-26-40, +7 (921) 951-29-84 </div>
+                <div>+7 (812) 642-26-40, +7 (921) 951-29-84 </div>
                 <div>e-mail: <a href="mailto:info@zhd.su">info@zhd.su</a></div>
             </div>
         </div>
