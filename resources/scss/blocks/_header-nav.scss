@@ -1,10 +1,8 @@
-.main-nav {}
-
 .main-nav ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    column-gap: 20px;
+    column-gap: 16px;
 
     @include bp(900px) {
         column-gap: 10px;
@@ -17,22 +15,23 @@
     color: #505050;
     font-size: 16px;
     position: relative;
-}
+    white-space: nowrap;
 
-.main-nav ul li a.opened::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: -20px;
-    margin-left: 3px;
-    border: 9px solid transparent;
-    border-bottom: 9px solid #f14214;
-}
+    &.opened::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: -20px;
+        margin-left: 3px;
+        border: 9px solid transparent;
+        border-bottom: 9px solid #f14214;
+    }
 
-.main-nav ul li a.cur {
-    color: #f14214;
-}
+    &:hover {
+        color: #f14214;
+    }
 
-.main-nav ul li a:hover {
-    color: #f14214;
+    &.cur {
+        color: #f14214;
+    }
 }

@@ -368,8 +368,8 @@ a:visited {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  -moz-column-gap: 20px;
-       column-gap: 20px;
+  -moz-column-gap: 16px;
+       column-gap: 16px;
 }
 @media screen and (max-width: 900px) {
   .main-nav ul {
@@ -384,8 +384,8 @@ a:visited {
   color: #505050;
   font-size: 16px;
   position: relative;
+  white-space: nowrap;
 }
-
 .main-nav ul li a.opened::after {
   content: "";
   position: absolute;
@@ -395,12 +395,10 @@ a:visited {
   border: 9px solid transparent;
   border-bottom: 9px solid #f14214;
 }
-
-.main-nav ul li a.cur {
+.main-nav ul li a:hover {
   color: #f14214;
 }
-
-.main-nav ul li a:hover {
+.main-nav ul li a.cur {
   color: #f14214;
 }
 
