@@ -17,7 +17,7 @@
                     </div>
                     @if ($image_path)
                         <div class="article__avatar">
-                            <img src={{ $image_path }} />
+                            <img src={{ $image_path }} alt="{{ $page->name }}" />
                         </div>
                     @endif
                     <div class="article__content article__content--min-height">
@@ -29,7 +29,7 @@
                                         <a href="{{ Image::path($item['image'], 'big') }}" class="content-gallery__item"
                                             data-fancybox="gallery-{{ $gallery['id'] }}" title="{{ $item['text'] }}"
                                             data-caption="{{ $item['text'] }}">
-                                            <img src="{{ Image::path($item['image'], '1_4') }}" alt="">
+                                            <img src="{{ Image::path($item['image'], '1_4') }}" alt="{{ $gallery->name }}">
                                         </a>
                                     @endforeach
                                 </div>
