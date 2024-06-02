@@ -102,7 +102,7 @@ function initTinymce() {
         Flmngr: {
             apiKey: "FLMNFLMN",
             urlFileManager: '/flmngr',
-            urlFiles: 'http://avlogistics.test/storage/upload/files'
+            urlFiles: '/storage/upload/files'
         },
         relative_urls: false,
         extended_valid_elements: "*[*]",

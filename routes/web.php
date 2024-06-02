@@ -14,7 +14,6 @@ use EdSDK\FlmngrServer\FlmngrServer;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
-
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', App\Http\Controllers\Admin\HomeController::class)->name('home');
 
@@ -75,13 +74,21 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::post('/removeGalleryItem', [App\Http\Controllers\Admin\AjaxController::class, 'removeGalleryItem'])->name('ajax.removeGalleryItem');
     });
 
-    Route::post('/flmngr', function () {
-        FlmngrServer::flmngrRequest(array('dirFiles' => base_path() . '/storage/app/public/upload/files'));
-    });
-
     Route::get('/linkStorage', function () {
         Artisan::call('storage:link');
     });
+
+    Route::get('/clearCache', function () {
+        Artisan::call('cache:clear');
+    });
+});
+
+Route::post('/flmngr', function () {
+    FlmngrServer::flmngrRequest(
+        array(
+            'dirFiles' => base_path() . '/storage/app/public/upload/files',
+        )
+    );
 });
 
 Route::name('user.')->group(function () {
