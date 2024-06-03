@@ -12,6 +12,4 @@ mix.js('resources/js/admin.js', 'public/js')
 mix.browserSync('127.0.0.1:8000');
 
 mix.disableSuccessNotifications();
-
-// mix.disableNotifications();
-// mix.setPublicPath('dist');
+mix.disableNotifications();

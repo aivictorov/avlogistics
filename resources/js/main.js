@@ -1,7 +1,5 @@
 import { gallery } from "./components/gallery";
 import { subnavInit } from "./components/subnav";
-import { upform } from "./components/upform";
-import { modalWindows } from "./components/modals";
 import { arrowBar } from "./components/arrowBar";
 import { mobileNavInit } from "./components/mobileNav";
 import { mainContent } from "./components/mainContent";
@@ -10,38 +8,26 @@ import { captcha } from "./components/grecaptcha"
 import { fancybox } from "./components/fancybox"
 import { metrika } from "./components/metrika"
 import { inputFile } from "./components/inputFile"
+// import { upform } from "./components/upform";
+// import { modalWindows } from "./components/modals";
 
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
 	metrika();
-	gallery();
 	subnavInit();
 	mobileNavInit();
-	mainContent();
-	upform();
-	captcha();
 	arrowBar();
-	modalWindows();
+	mainContent();
 	swipers();
-	fancybox();
-	inputFile();
+	// upform();
+	// modalWindows();
 });
 
+document.addEventListener('click', function () {
+	inputFile();
+	captcha();
+}, { once: true });
 
-// window.addEventListener('load', () => {
-// 	loader();
-// 	modalWindows();
-// 	mobileNav();
-// 	metrika();
-// });
-
-// document.addEventListener('click', function () {
-// 	callbackForm();
-// 	inputFile();
-// 	oversizeForm();
-// 	captcha();
-// }, { once: true });
-
-// document.addEventListener('scroll', function () {
-// 	faq();
-// 	scrollup();
-// }, { once: true });
+document.addEventListener('scroll', function () {
+	gallery();
+	fancybox();
+}, { once: true });

@@ -22,6 +22,7 @@
 
 .header__logo {
     padding-bottom: 10px;
+    font-size: 0;
 
     @include bp(600px) {
         padding-bottom: 0;
