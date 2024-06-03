@@ -26,38 +26,6 @@
     }
 }
 
-// .index-content__submain-text {
-//     padding: 20px 50px;
-//     margin: 20px;
-//     font-size: 18px;
-//     font-family: 'Roboto', sans-serif;
-//     font-weight: lighter;
-//     text-align: center;
-//     line-height: 29px;
-//     position: relative;
-// }
-
-
-// .index-content-allinclusive {
-//     background: url('/images/index_content/allinclusive.png') top center no-repeat;
-//     padding: 140px 100px 20px 100px;
-//     font-size: 24px;
-//     font-family: 'Roboto', sans-serif;
-//     font-weight: lighter;
-//     text-align: center;
-//     margin: 30px 0;
-// }
-
-// .index-content-ourbest {
-//     background: url('/images/index_content/ourbest.png') no-repeat top center;
-//     padding: 170px 150px 30px 150px;
-//     font-family: 'Roboto', sans-serif;
-//     font-weight: lighter;
-//     text-align: center;
-//     font-size: 24px;
-//     margin: 40px 0;
-// }
-
 .index-content-columns {
     display: flex;
     justify-content: space-between;
@@ -72,9 +40,6 @@
     @include bp(800px) {
         flex-direction: column;
     }
-
-
-
 }
 
 .index-content-columns__left,

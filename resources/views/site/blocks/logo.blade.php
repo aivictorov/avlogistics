@@ -1,3 +1,6 @@
 <div class="header__logo">
-    <a href="/" class="logo"><img src="/images/logo/logo@2x.png"></a>
+    <a href="/" class="logo">
+        <img src="/images/logo/logo@2x.png"
+            alt="ООО Авангард Логистика. Перевозки грузов железнодорожным, автомобильным, морским транспортом из любой точки России, СНГ, Китая">
+    </a>
 </div>
