@@ -21,6 +21,9 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+
+    # Redirect if index.php is in the URL
+    RewriteRule ^index.php/(.+) /$1 [R=301,L]
 </IfModule>
 
 Redirect 301 /contact https://zhd.su/contact-form
