@@ -3,6 +3,7 @@
 @section('title', $seo->title)
 @section('description', $seo->description)
 @section('keywords', $seo->keywords)
+@section('canonical', 'https://zhd.su')
 
 @section('content')
     <main class="main">

@@ -10,7 +10,7 @@
     <title>@yield('title')</title>
     <meta name="Description" content="@yield('description')" />
     <meta name="Keywords" content="@yield('keywords')" />
-    <link rel="canonical" href="{{ url()->current() }}" />
+    <link rel="canonical" href="@yield('canonical', url()->current())" />
 
     <!-- Styles -->
     <link rel="stylesheet" href="/assets/swiper/swiper-bundle.min.css">
