@@ -1,2 +1,7 @@
 User-agent: *
-Disallow:
+Disallow: /login
+Disallow: /logout
+Disallow: /admin
+Disallow: /*?_ym_status-check=13339072&_ym_lang=ru
+Host: https://zhd.su
+Sitemap: https://zhd.su/sitemap.xml

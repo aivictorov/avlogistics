@@ -32,6 +32,8 @@ Redirect 301 /zhd-perevozki/zhd-perevozki-dlinnomernyh-gruzov https://zhd.su/neg
 
 Redirect 301 /zhd-perevozki/zhd-perevozki-gruzov-v-vagonah https://zhd.su/zhd-perevozki
 
+Redirect 301 /konteynernye-perevozki https://zhd.su//konteinernye-perevozki
+
 Redirect 301 /zhd-perevozki/zhd-perevozki-gruzov https://zhd.su/perevozki-tehniki
 Redirect 301 /zhd-perevozki/zhd-perevozki-avtokranov https://zhd.su/perevozki-tehniki/perevozki-avtokranov
 Redirect 301 /zhd-perevozki/zhd-perevozki-buldozerov https://zhd.su/perevozki-tehniki/perevozki-buldozerov
