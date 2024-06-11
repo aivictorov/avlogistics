@@ -2,7 +2,7 @@
 
 namespace App\Actions\Question;
 
-use App\Models\FAQ_Questions;
+use App\Models\FaqQuestions;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,7 +10,7 @@ class CreateQuestionAction
 {
     public function run($data)
     {
-        return FAQ_Questions::create([
+        return FaqQuestions::create([
             'name' => $data->name,
             'answer' => $data->answer,
             'sort' => $data->sort,

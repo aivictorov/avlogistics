@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Actions\FAQ;
+namespace App\Actions\Faq;
 
-use App\Models\FAQ_Categories;
+use App\Models\FaqCategories;
 
 class GetFaqAction
 {
     public function run($id)
     {
-        return FAQ_Categories::find($id);
+        return FaqCategories::find($id);
     }
 }

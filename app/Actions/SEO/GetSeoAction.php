@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Actions\SEO;
+namespace App\Actions\Seo;
 
-use App\Models\SEO;
+use App\Models\Seo;
 
 class GetSeoAction
 {
     public function run($id)
     {
-        return SEO::find($id);
+        return Seo::find($id);
     }
 }

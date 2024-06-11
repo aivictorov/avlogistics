@@ -7,7 +7,7 @@ use App\Actions\Image\GetImageAction;
 use App\Actions\Page\GetPageAction;
 use App\Actions\Page\GetPageIDAction;
 use App\Actions\Page\GetPageParentsAction;
-use App\Actions\SEO\GetSeoAction;
+use App\Actions\Seo\GetSeoAction;
 use App\Http\Controllers\Controller;
 use App\Models\Galleries;
 use App\Models\GalleryItems;

@@ -11,7 +11,7 @@ use App\Actions\Portfolio\GetPortfolioAction;
 use App\Actions\Portfolio\GetPortfolioIDAction;
 use App\Actions\Portfolio\GetPortfolioParentsAction;
 use App\Actions\PortfolioSection\GetPortfolioSectionsAction;
-use App\Actions\SEO\GetSeoAction;
+use App\Actions\Seo\GetSeoAction;
 use App\Http\Controllers\Controller;
 use App\Models\Image;
 use App\Models\Portfolio;

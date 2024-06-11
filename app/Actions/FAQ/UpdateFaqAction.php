@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Actions\FAQ;
+namespace App\Actions\Faq;
 
-use App\Actions\FAQ\UpdateFaqData;
+use App\Actions\Faq\UpdateFaqData;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 

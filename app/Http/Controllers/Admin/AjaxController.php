@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Actions\FAQ\saveQuestionAction;
-use App\Actions\FAQ\saveQuestionData;
+use App\Actions\Faq\SaveQuestionAction;
+use App\Actions\Faq\SaveQuestionData;
 use App\Actions\Image\CreateImageAction;
 use App\Actions\Image\CreateImageData;
 use App\Actions\Image\DestroyImageAction;
@@ -13,7 +13,7 @@ use App\Actions\Image\ReplaceImageData;
 use App\Actions\Image\UpdateImageAction;
 use App\Actions\Image\UpdateImageData;
 use App\Http\Controllers\Controller;
-use App\Models\FAQ_Questions;
+use App\Models\FaqQuestions;
 use App\Models\GalleryItems;
 use App\Models\Image;
 use App\Models\Page;
@@ -127,8 +127,8 @@ class AjaxController extends Controller
     {
         $validated = $request->validated();
 
-        $result = (new saveQuestionAction)->run(
-            new saveQuestionData(
+        $result = (new SaveQuestionAction)->run(
+            new SaveQuestionData(
                 id: $validated['id'],
                 name: $validated['name'],
                 answer: $validated['answer'],
@@ -144,7 +144,7 @@ class AjaxController extends Controller
     {
         $id = file_get_contents('php://input');
 
-        $question = FAQ_Questions::find($id);
+        $question = FaqQuestions::find($id);
         $question->delete();
 
         return 'question ' . $id . ' removed';

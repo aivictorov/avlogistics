@@ -2,7 +2,7 @@
 
 namespace App\Actions\Question;
 
-use App\Models\FAQ_Questions;
+use App\Models\FaqQuestions;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 

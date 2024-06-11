@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\FAQ;
+namespace App\Actions\Faq;
 
 use App\Actions\Page\GetPageAction;
 use App\Actions\Page\GetPageIDAction;

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Actions\FAQ;
+namespace App\Actions\Faq;
 
-class saveQuestionData
+class SaveQuestionData
 {
     public function __construct(
         public $id,

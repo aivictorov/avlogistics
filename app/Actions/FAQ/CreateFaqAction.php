@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Actions\FAQ;
+namespace App\Actions\Faq;
 
-use App\Models\FAQ_Categories;
+use App\Models\FaqCategories;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,7 +10,7 @@ class CreateFaqAction
 {
     public function run($data)
     {
-        return FAQ_Categories::create([
+        return FaqCategories::create([
             'name' => $data->name,
             'h1' => $data->h1,
             'announce' => $data->announce,

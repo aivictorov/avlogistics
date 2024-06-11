@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Actions\FAQ\CreateFaqAction;
-use App\Actions\FAQ\CreateFaqData;
-use App\Actions\FAQ\GetFaqAction;
-use App\Actions\FAQ\GetFaqSectionsAction;
-use App\Actions\FAQ\UpdateFaqAction;
-use App\Actions\FAQ\UpdateFaqData;
+use App\Actions\Faq\CreateFaqAction;
+use App\Actions\Faq\CreateFaqData;
+use App\Actions\Faq\GetFaqAction;
+use App\Actions\Faq\GetFaqSectionsAction;
+use App\Actions\Faq\UpdateFaqAction;
+use App\Actions\Faq\UpdateFaqData;
 use App\Actions\Question\CreateQuestionAction;
 use App\Actions\Question\CreateQuestionData;
 use App\Actions\Question\GetQuestionsAction;
 use App\Actions\Question\UpdateQuestionAction;
 use App\Actions\Question\UpdateQuestionData;
-use App\Actions\SEO\CreateSeoAction;
-use App\Actions\SEO\CreateSeoData;
-use App\Actions\SEO\GetSeoAction;
-use App\Actions\SEO\UpdateSeoAction;
-use App\Actions\SEO\UpdateSeoData;
+use App\Actions\Seo\CreateSeoAction;
+use App\Actions\Seo\CreateSeoData;
+use App\Actions\Seo\GetSeoAction;
+use App\Actions\Seo\UpdateSeoAction;
+use App\Actions\Seo\UpdateSeoData;
 use App\Http\Controllers\Controller;
-use App\Models\FAQ_Categories;
-use App\Models\FAQ_Questions;
+use App\Models\FaqCategories;
+use App\Models\FaqQuestions;
 use App\Http\Requests\FaqCreateRequest;
 use App\Http\Requests\FaqEditRequest;
 use App\Http\Requests\SearchRequest;
@@ -33,10 +33,10 @@ class FaqController extends Controller
     public function index(SearchRequest $request)
     {
         if ($search = $request->validated('search')) {
-            $faq_categories = FAQ_Categories::where('name', 'like', '%' . $search . '%')->paginate(15);
+            $faq_categories = FaqCategories::where('name', 'like', '%' . $search . '%')->paginate(15);
             $faq_categories->appends(['search' => $search]);
         } else {
-            $faq_categories = FAQ_Categories::paginate(15);
+            $faq_categories = FaqCategories::paginate(15);
         }
 
         // $faq_categories = (new GetFaqSectionsAction)->run();
@@ -150,7 +150,7 @@ class FaqController extends Controller
             };
 
             foreach ($validated['questions'] as $key => $question) {
-                if (!FAQ_Questions::Find($key)) {
+                if (!FaqQuestions::Find($key)) {
                     (new CreateQuestionAction)->run(
                         new CreateQuestionData(
                             name: $question['name'],
@@ -186,7 +186,7 @@ class FaqController extends Controller
     {
         $status = $request->get('published');
 
-        FAQ_Categories::find($id)->update([
+        FaqCategories::find($id)->update([
             'status' => $status,
             'update_date' => Carbon::now()->toDateTimeString(),
         ]);

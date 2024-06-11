@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\SEO;
+namespace App\Actions\Seo;
 
 class CreateSeoData
 {

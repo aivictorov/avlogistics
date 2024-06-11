@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\Page\GetPageAction;
 use App\Actions\Page\GetPageIDAction;
-use App\Actions\SEO\GetSeoAction;
+use App\Actions\Seo\GetSeoAction;
 use App\Http\Controllers\Controller;
 
 class HomeController extends Controller

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Actions\SEO;
+namespace App\Actions\Seo;
 
-use App\Actions\SEO\CreateSeoData;
-use App\Models\SEO;
+use App\Actions\Seo\CreateSeoData;
+use App\Models\Seo;
 
 class CreateSeoAction
 {
     public function run(CreateSeoData $data)
     {
-        return SEO::create([
+        return Seo::create([
             'title' => $data->title,
             'description' => $data->description,
             'keywords' => $data->keywords,

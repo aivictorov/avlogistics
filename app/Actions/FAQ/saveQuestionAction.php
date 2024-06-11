@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Actions\FAQ;
+namespace App\Actions\Faq;
 
-use App\Actions\FAQ\UpdateFaqData;
-use App\Models\FAQ_Questions;
+use App\Actions\Faq\UpdateFaqData;
+use App\Models\FaqQuestions;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
-class saveQuestionAction
+class SaveQuestionAction
 {
-    public function run(saveQuestionData $data)
+    public function run(SaveQuestionData $data)
     {
-        $question = FAQ_Questions::find($data->id);
+        $question = FaqQuestions::find($data->id);
 
         if ($question) {
             $result = $question->update([
@@ -25,7 +25,7 @@ class saveQuestionAction
                 'file_id' => 0,
             ]);
         } else {
-            $result = FAQ_Questions::create([
+            $result = FaqQuestions::create([
                 'name' => $data->name,
                 'answer' => $data->answer,
                 'sort' => $data->sort,

@@ -2,14 +2,14 @@
 
 namespace App\Actions\Question;
 
-use App\Models\FAQ_Questions;
+use App\Models\FaqQuestions;
 use Illuminate\Support\Str;
 
 class GetQuestionsAction
 {
     public function run($id)
     {
-        $faq_questions = FAQ_Questions::where('faq_id', $id)
+        $faq_questions = FaqQuestions::where('faq_id', $id)
             ->orderBy('sort')
             ->get();
 
