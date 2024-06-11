@@ -59,7 +59,7 @@
     font-size: 14px;
     font-family: 'PT Sans', sans-serif;
 
-    @include bp(600px) {
+    @include bp(700px) {
         display: none;
     }
 }
@@ -71,14 +71,16 @@
     }
 }
 
-
 .header__icons-desktop {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
     color: #bdbdbd;
     font-size: 14px;
     font-family: 'PT Sans', sans-serif;
     font-size: 0;
 
-    @include bp(600px) {
+    @include bp(700px) {
         display: none;
     }
 }
@@ -96,21 +98,13 @@
     &:hover {
         opacity: 1;
     }
-
-    &--at {
-        background: url('/images/icons/icon_soc_at.png');
-    }
-
-    &--vk {
-        background: url('/images/icons/icon_soc_vk.png');
-    }
 }
 
 .header__icons-mobile {
     display: none;
     font-size: 0;
 
-    @include bp(600px) {
+    @include bp(700px) {
         display: flex;
         align-items: center;
         column-gap: 6px;

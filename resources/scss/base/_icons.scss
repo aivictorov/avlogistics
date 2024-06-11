@@ -6,35 +6,22 @@
     &--email {
         width: 32px;
         height: 32px;
-        // fill: #bdbdbd;
-        fill: #dadada;
+        fill: #bdbdbd;
 
         &:hover {
             fill: #f14214;
         }
     }
 
-    // &--arrow-next {
-    //     width: 8px;
-    //     height: 12px;
-    // }
+    &--whatsapp,
+    &--telegram {
+        width: 28px;
+        height: 28px;
+        fill: #bdbdbd;
 
-    // &--arrow-up {
-    //     width: 24px;
-    //     height: 12px;
-    //     stroke: #f14214;
-
-    //     @include bp(768px) {
-    //         width: 12px;
-    //         height: 6px;
-    //     }
-    // }
-
-    &--arrow-right {
-        width: 10px;
-        height: 10px;
-        stroke: #f14214;
-        stroke-width: 3px;
+        &:hover {
+            fill: #f14214;
+        }
     }
 
     &--arrow-down {

@@ -8,15 +8,24 @@
         </div>
     </div>
     <div class="header__icons-desktop">
-        {{-- <a class="header__social-icon header__social-icon--at" href="mailto:info@zhd.su">
-            Обратная связь
-        </a> --}}
         <a href="mailto:info@zhd.su">
             Написать на электронную почту
             <svg class="icon icon--email">
                 <use xlink:href="/images/icons/sprite.svg#email"></use>
             </svg>
         </a>
+        <a href="https://wa.me/+79219512984">
+            Написать в whatsapp
+            <svg class="icon icon--whatsapp">
+                <use xlink:href="/images/icons/sprite.svg#whatsapp"></use>
+            </svg>
+        </a>
+        {{-- <a href="https://t.me/+79219512984">
+            Написать в telegram
+            <svg class="icon icon--telegram">
+                <use xlink:href="/images/icons/sprite.svg#telegram"></use>
+            </svg>
+        </a> --}}
     </div>
     <div class="header__icons-mobile">
         <a href="tel:+78126422640">
@@ -31,5 +40,17 @@
                 <use xlink:href="/images/icons/sprite.svg#email"></use>
             </svg>
         </a>
+        <a href="https://wa.me/+79219512984">
+            Написать в whatsapp
+            <svg class="icon icon--whatsapp">
+                <use xlink:href="/images/icons/sprite.svg#whatsapp"></use>
+            </svg>
+        </a>
+        {{-- <a href="https://t.me/+79219512984">
+            Написать в telegram
+            <svg class="icon icon--telegram">
+                <use xlink:href="/images/icons/sprite.svg#telegram"></use>
+            </svg>
+        </a> --}}
     </div>
 </div>
