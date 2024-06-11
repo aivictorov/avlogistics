@@ -88,7 +88,9 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <a href={{ route('admin.users.destroy', ['id' => $user['id']]) }}
-                                class="btn btn-block btn-danger btn-lg">Удалить</a>
+                                class="btn btn-block btn-danger btn-lg" onclick="return check()">
+                                Удалить
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-3">

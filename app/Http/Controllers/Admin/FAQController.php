@@ -86,7 +86,7 @@ class FaqController extends Controller
             //     );
             // };
         }, 3);
-        return redirect(route('admin.pages.faq.index'));
+        return redirect(route('admin.faq.index'));
     }
 
     public function edit($id)
@@ -162,7 +162,7 @@ class FaqController extends Controller
                 }
             };
         }, 3);
-        return redirect(route('admin.pages.faq.index'));
+        return redirect(route('admin.faq.index'));
     }
 
     public function destroy($id)
@@ -179,7 +179,7 @@ class FaqController extends Controller
             }
         }, 3);
 
-        return redirect(route('admin.pages.faq.index'));
+        return redirect(route('admin.faq.index'));
     }
 
     public function publish($id, Request $request)

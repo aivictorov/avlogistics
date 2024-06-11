@@ -13,7 +13,7 @@
 
                     <div class="article__title">
                         <h1 class="h1">
-                            {{ $page->name }}
+                            {{ $page->h1 }}
                         </h1>
                     </div>
                     <div class="article__content">

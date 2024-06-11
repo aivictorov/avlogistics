@@ -35,7 +35,10 @@
                                     <label for="portfolio_section_id">Категория</label>
                                     <select class="form-control" id="portfolio_section_id" name="portfolio_section_id">
                                         @foreach ($sections as $section)
-                                            <option value={{ $section['id'] }}>{{ $section['name'] }}</option>
+                                            <option value={{ $section['id'] }}
+                                                {{ $section['id'] == $portfolio['portfolio_section_id'] ? 'selected' : '' }}>
+                                                {{ $section['name'] }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>

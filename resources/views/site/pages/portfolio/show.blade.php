@@ -13,7 +13,7 @@
                     @include('site.blocks.breadcrumbs')
 
                     <div class="article__title">
-                        <h1 class="h1">{{ $page->name }}</h1>
+                        <h1 class="h1">{{ $page->h1 }}</h1>
                     </div>
 
                     <div class="portfolio__slider">

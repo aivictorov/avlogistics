@@ -111,7 +111,7 @@ class PortfolioController extends Controller
             }
         }, 3);
 
-        return redirect(route('admin.pages.portfolio.index'));
+        return redirect(route('admin.portfolio.index'));
     }
 
     public function edit($id)
@@ -137,7 +137,6 @@ class PortfolioController extends Controller
         $validated = $request->validated();
 
         DB::transaction(function () use ($portfolio, $seo, $validated, $request) {
-
             (new UpdatePortfolioAction)->run(
                 $portfolio,
                 new UpdatePortfolioData(
@@ -221,24 +220,25 @@ class PortfolioController extends Controller
         }, 3);
 
         Session::flash('success', 'Изменения сохранены');
-        // return redirect(route('admin.pages.portfolio.edit', ['id' => $id]));
-        return redirect(route('admin.pages.portfolio.index'));
+        return redirect(route('admin.portfolio.index'));
     }
 
     public function destroy($id)
     {
-        dd($id);
-
         DB::transaction(function () use ($id) {
             $portfolio = (new GetPortfolioAction)->run($id);
             $seo = (new GetSeoAction)->run($portfolio['seo_id']);
+            $images = (new GetImagesAction)->run($id, parent_type: 'portfolio_image');
 
             $portfolio->delete();
             $seo->delete();
-            (new DestroyAllImagesAction)->run($id);
+
+            foreach ($images as $image) {
+                (new DestroyImageAction)->run($image);
+            }
         }, 3);
 
-        return redirect(route('admin.pages.portfolio.index'));
+        return redirect(route('admin.portfolio.index'));
     }
 
     public function publish($id, Request $request)

@@ -92,7 +92,8 @@
                                                             <div class="form-group w-100">
                                                                 <button type="button" class="btn btn-block btn-danger"
                                                                     data-action="removeQuestion"
-                                                                    data-id="{{ $question['id'] }}">
+                                                                    data-id="{{ $question['id'] }}"
+                                                                    onclick="return check()">
                                                                     Удалить
                                                                 </button>
                                                             </div>
@@ -190,7 +191,9 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <a href={{ route('admin.faq.destroy', ['id' => $faq['id']]) }}
-                                class="btn btn-block btn-danger btn-lg">Удалить</a>
+                                class="btn btn-block btn-danger btn-lg" onclick="return check()">
+                                Удалить
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-3">

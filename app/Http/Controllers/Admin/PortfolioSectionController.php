@@ -45,7 +45,7 @@ class PortfolioSectionController extends Controller
 
         PortfolioSection::create($validated);
 
-        return redirect(route('admin.pages.portfolioSections.index'));
+        return redirect(route('admin.portfolioSections.index'));
     }
 
     public function edit($id)
@@ -67,7 +67,7 @@ class PortfolioSectionController extends Controller
         $section = (new GetPortfolioSectionAction)->run($id);
         $section->update($validated);
 
-        return redirect(route('admin.pages.portfolioSections.index'));
+        return redirect(route('admin.portfolioSections.index'));
     }
 
     public function destroy($id)
@@ -78,7 +78,7 @@ class PortfolioSectionController extends Controller
         } else {
             $section = (new GetPortfolioSectionAction)->run($id);
             $section->delete();
-            return redirect(route('admin.pages.portfolioSections.index'));
+            return redirect(route('admin.portfolioSections.index'));
         }
     }
 
