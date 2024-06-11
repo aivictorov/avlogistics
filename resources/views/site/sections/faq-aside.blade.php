@@ -4,11 +4,9 @@
         @foreach ($faq_categories as $category)
             <li>
                 <a href="/faq/{{ $category['url'] }}/">{{ $category['name'] }}</a>
-                <span class="aside__blocks-count">(3)</span>
+                <span class="aside__blocks-count">({{ count($category['items']) }})</span>
             </li>
         @endforeach
     </ul>
     @include('site.blocks.order-button')
 </aside>
-.
-.
