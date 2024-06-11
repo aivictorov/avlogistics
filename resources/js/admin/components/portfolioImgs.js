@@ -1,3 +1,5 @@
+import { addDestroyImageButton } from './destroyImageBtns'
+
 export function addImagesToPortfolio() {
     const button = document.querySelector('[data-action="addImagesToPortfolio"]');
 

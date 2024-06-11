@@ -8,7 +8,7 @@ export function initDestroyImageButtons() {
     }
 };
 
-function addDestroyImageButton(image) {
+export function addDestroyImageButton(image) {
     const id = image.src.split('/')[7];
 
     const button = document.createElement('button');
