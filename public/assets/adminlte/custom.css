@@ -42,3 +42,10 @@
 .destroy-image-btn:hover {
     color: #0069d9;
 }
+
+.small-box {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+}

@@ -7,7 +7,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- SEO -->
-    <title>@yield('title')</title>
+    <title>
+        @hasSection('specific_title')
+            @yield('specific_title')
+        @else
+            @yield('title') | Авангард Логистика
+        @endif
+    </title>
     <meta name="Description" content="@yield('description')" />
     <meta name="Keywords" content="@yield('keywords')" />
     <link rel="canonical" href="@yield('canonical', url()->current())" />

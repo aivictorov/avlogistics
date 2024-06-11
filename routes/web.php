@@ -63,6 +63,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/users/{id}/edit', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{id}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update');
     Route::get('/users/{id}/delete', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
+    Route::get('/users/{id}/publish', [App\Http\Controllers\Admin\UserController::class, 'publish'])->name('users.publish');
 
     Route::prefix('ajax')->group(function () {
         Route::post('/updateAvatar', [App\Http\Controllers\Admin\AjaxController::class, 'updateAvatar'])->name('ajax.updateAvatar');

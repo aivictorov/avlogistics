@@ -11,7 +11,6 @@ class UserEditRequest extends FormRequest
         return [
             'name' => ['required'],
             'email' => ['required'],
-            'current_password' => ['current_password'],
             'password' => ['confirmed'],
             'role' => ['required'],
             'status' => ['required'],

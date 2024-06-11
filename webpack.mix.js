@@ -3,7 +3,6 @@ let mix = require('laravel-mix');
 mix.webpackConfig({ devtool: 'source-map' })
 
 mix.sass('resources/scss/main.scss', 'public/css')
-    .sass('resources/scss/admin.scss', 'public/css')
     .sourceMaps();
 
 mix.js('resources/js/admin.js', 'public/js')

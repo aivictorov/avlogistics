@@ -1,6 +1,6 @@
 ﻿@extends('site.layouts.main')
 
-@section('title', $seo->title)
+@section('specific_title', $seo->title)
 @section('description', $seo->description)
 @section('keywords', $seo->keywords)
 @section('canonical', 'https://zhd.su')

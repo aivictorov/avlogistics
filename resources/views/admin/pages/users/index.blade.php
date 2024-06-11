@@ -54,11 +54,16 @@
 
                                             <td>
                                                 @if ($user['status'] == 1)
-                                                    <i class="fas fa-eye"></i>
+                                                    <a href={{ route('admin.users.publish', ['id' => $user['id'], 'published' => false]) }}
+                                                        onclick="return check()">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
                                                 @else
-                                                    <i class="fas fa-eye-slash"></i>
+                                                    <a href={{ route('admin.users.publish', ['id' => $user['id'], 'published' => true]) }}
+                                                        onclick="return check()">
+                                                        <i class="fas fa-eye-slash"></i>
+                                                    </a>
                                                 @endif
-
                                                 <a class="d-inline-block ml-2"
                                                     href={{ route('admin.users.destroy', ['id' => $user['id']]) }}
                                                     onclick="return check()">

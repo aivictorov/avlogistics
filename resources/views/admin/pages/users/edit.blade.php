@@ -29,11 +29,11 @@
                                     <x-input type="text" class="form-control" id="email" name="email"
                                         value="{{ $user['email'] }}" />
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="current_password">Текущий пароль</label>
                                     <x-input id="current_password" class="form-control" type="password"
                                         name="current_password" />
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
                                     <label for="password">Новый пароль</label>
                                     <x-input id="password" class="form-control" type="password" name="password" />
@@ -66,9 +66,11 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Статус</label>
-                                            <select class="form-control" name="status" disabled>
-                                                <option value="1" selected>Включено</option>
-                                                <option value="0">Выключено</option>
+                                            <select class="form-control" name="status">
+                                                <option value="1" {{ $user['status'] == 1 ? 'selected' : '' }}>
+                                                    Включено</option>
+                                                <option value="0" {{ $user['status'] == 0 ? 'selected' : '' }}>
+                                                    Отключено</option>
                                             </select>
                                         </div>
                                     </div>

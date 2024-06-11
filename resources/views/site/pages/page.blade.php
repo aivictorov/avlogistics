@@ -13,11 +13,11 @@
                 <article class="article">
                     @include('site.blocks.breadcrumbs')
                     <div class="article__title">
-                        <h1 class="h1">{{ $page->name }}</h1>
+                        <h1 class="h1">{{ $page->h1 }}</h1>
                     </div>
                     @if ($image_path)
                         <div class="article__avatar">
-                            <img src={{ $image_path }} alt="{{ $page->name }}" />
+                            <img src={{ $image_path }} alt="{{ $page->h1 }}" />
                         </div>
                     @endif
                     <div class="article__content article__content--min-height">

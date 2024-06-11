@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Actions\User\CreateUserAction;
 use App\Actions\User\CreateUserData;
 use App\Actions\User\GetUserAction;
-use App\Actions\User\GetUsersAction;
 use App\Actions\User\UpdateUserAction;
 use App\Actions\User\UpdateUserData;
 use App\Http\Controllers\Controller;
@@ -28,7 +27,6 @@ class UserController extends Controller
             $users = User::paginate(15);
         }
 
-        // $users = (new GetUsersAction)->run();
         return view('admin.pages.users.index', compact('users'));
     }
 
@@ -51,7 +49,7 @@ class UserController extends Controller
             )
         );
 
-        return redirect(route('admin.pages.users.index'));
+        return redirect(route('admin.users.index'));
     }
 
     public function edit($id)
@@ -72,10 +70,11 @@ class UserController extends Controller
                 name: $validated['name'],
                 email: $validated['email'],
                 password: $validated['password'],
+                status: $validated['status'],
             )
         );
 
-        return redirect(route('admin.pages.users.index'));
+        return redirect(route('admin.users.index'));
     }
 
     public function destroy($id)
@@ -83,7 +82,7 @@ class UserController extends Controller
         if (User::count() > 1) {
             $user = User::find($id);
             $user->delete();
-            return redirect(route('admin.pages.users.index'));
+            return redirect(route('admin.users.index'));
         } else {
             Session::flash('danger', 'Нельзя удалить единственного пользователя');
             return redirect()->back();
