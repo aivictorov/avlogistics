@@ -44,7 +44,7 @@
 
     </div>
 
-    <script src="/assets/jquery/jquery.js"></script>
+    <script src="/assets/jquery/jquery.min.js"></script>
     <script src="/assets/adminlte/dist/js/adminlte.js"></script>
     <script src="/assets/adminlte/plugins/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="/assets/adminlte/plugins/bs-custom-file-input/bs-custom-file-input.js"></script>

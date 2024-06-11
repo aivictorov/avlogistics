@@ -117,7 +117,7 @@ class AjaxController extends Controller
                 )
             );
 
-            array_push($result, Image::path($image, "small"));
+            array_push($result, Image::path($image, "small_"));
         }
 
         return $result;
