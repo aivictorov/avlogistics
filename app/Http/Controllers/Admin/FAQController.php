@@ -162,6 +162,7 @@ class FaqController extends Controller
                 }
             };
         }, 3);
+
         return redirect(route('admin.faq.index'));
     }
 

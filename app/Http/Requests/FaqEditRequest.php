@@ -12,7 +12,7 @@ class FaqEditRequest extends FormRequest
         return [
             'name' => ['required'],
             'h1' => ['required'],
-            'announce' => ['required'],
+            'announce' => ['nullable'],
             'url' => ['required'],
             'sort_key' => ['required'],
             'status' => ['required'],
