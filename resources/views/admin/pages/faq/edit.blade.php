@@ -68,7 +68,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-5">
+                                                        <div class="col-md-4">
                                                             <div class="form-group">
                                                                 <label for="questions[{{ $question['id'] }}][sort]">Ключ
                                                                     сортировки</label>
@@ -78,7 +78,7 @@
                                                                     value="{{ $question['sort'] }}" data-name="sort" />
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-5 d-flex align-items-end">
+                                                        <div class="col-md-4 d-flex align-items-end">
                                                             <div class="form-group w-100">
                                                                 <button type="button" class="btn btn-block btn-primary"
                                                                     data-action="saveQuestion"
@@ -88,7 +88,7 @@
                                                                 </button>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-2 d-flex align-items-end">
+                                                        <div class="col-md-4 d-flex align-items-end">
                                                             <div class="form-group w-100">
                                                                 <button type="button" class="btn btn-block btn-danger"
                                                                     data-action="removeQuestion"

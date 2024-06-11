@@ -36,7 +36,9 @@ class FaqEditRequest extends FormRequest
         }
 
         foreach ($questons as &$item) {
-            $item['sort'] = 1;
+            if (!$item['sort']) {
+                $item['sort'] = 1;
+            }
         }
 
         $this->merge([
