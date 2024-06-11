@@ -48,4 +48,5 @@
     height: 100%;
     flex-direction: column;
     justify-content: space-between;
+    margin-bottom: 0px;
 }
