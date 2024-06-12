@@ -1,6 +1,10 @@
 <div class="breadcrumbs">
     @foreach ($parents as $parent)
-        <a href={{ route('pages.show', $parent['url']) }}>{{ $parent['name'] }}</a>
+        @if ($parent['url'] == 'index')
+            <a href={{ route('home') }}>{{ $parent['name'] }}</a>
+        @else
+            <a href={{ route('pages.show', $parent['url']) }}>{{ $parent['name'] }}</a>
+        @endif
         <span class="divider">/</span>
     @endforeach
 

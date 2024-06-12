@@ -22,7 +22,7 @@
 
                     <section class="faq">
                         @foreach ($faq_categories as $category)
-                            <a class="faq__block-header" href="/faq/gabarity-pogruzki/">{{ $category['name'] }}</a>
+                            <a class="faq__block-header" href="/faq/{{ $category['url'] }}">{{ $category['name'] }}</a>
 
                             @if ($category['announce'])
                                 <div class="faq__block-announce">
@@ -33,7 +33,7 @@
                             <ul class="faq__block-list">
                                 @foreach ($category['items'] as $item)
                                     <li>
-                                        <a href="/faq/{{ $category['url'] }}/#{{ $item['url'] }}">
+                                        <a href="/faq/{{ $category['url'] }}#{{ $item['url'] }}">
                                             {{ $item['name'] }}
                                         </a>
                                     </li>
