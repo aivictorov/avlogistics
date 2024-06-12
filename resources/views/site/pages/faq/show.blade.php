@@ -1,6 +1,8 @@
 @extends('site.layouts.main')
 
-@section('title', $seo->title)
+@section('title')
+    {{ $seo->title }} | Вопросы и ответы
+@endsection
 @section('description', $seo->description)
 @section('keywords', $seo->keywords)
 

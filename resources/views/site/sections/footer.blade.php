@@ -2,7 +2,7 @@
     <div class="container">
         <div class="footer__row">
             <div class="footer__left">
-                <div>&copy; 2010&mdash;<?= date('Y') ?>. ООО "<a href="http://zhd.su">Авангард Логистика</a>".</div>
+                <div>&copy; 2010&mdash;<?= date('Y') ?>. ООО "<a href={{ route('home') }}>Авангард Логистика</a>".</div>
                 <div>Все права защищены законодательством РФ.</div>
             </div>
             <div class="footer__right">

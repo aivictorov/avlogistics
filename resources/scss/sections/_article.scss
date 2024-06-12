@@ -1,6 +1,6 @@
 .article {
     padding-top: 30px;
-    padding-bottom: 30px;
+    padding-bottom: 90px;
     font-family: "Tahoma", "PT Sans", sans-serif;
     font-size: 12px;
     line-height: 1.67;
@@ -84,5 +84,12 @@
                 background: url('/images/icons/list_item_bg.png') no-repeat 0 0;
             }
         }
+    }
+
+    .article__append {
+        text-align: justify;
+        border-left: 3px solid #f14214;
+        padding: 10px 0 10px 20px;
+
     }
 }
