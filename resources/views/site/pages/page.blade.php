@@ -37,11 +37,16 @@
                         @endif
                         <div class="article__append">
                             Если Вам необходима перевозка груза или разработка схемы погрузки, Вы можете обратиться в нашу
-                            компанию по телефону <a href="tel:+78126422640">+7 (812) 642-26-40</a> или <a
-                                href="tel:+79219512984">+7 (921) 951-29-84</a>, написать в <a
-                                href="https://wa.me/+79219512984">Whatsapp</a>, на электронную почту <a
-                                href="mailto:info@zhd.su">info@zhd.su</a> или заполнить <a
-                                href="{{ route('contactForm.show') }}">форму заявки</a> на нашем сайте. Мы в кратчайшие
+                            компанию по телефону
+                            <a href="tel:+78126422640" target="_blank" rel="noopener noreferrer">+7 (812) 642-26-40</a>
+                            или
+                            <a href="tel:+79219512984" target="_blank" rel="noopener noreferrer">+7 (921) 951-29-84</a>,
+                            написать в
+                            <a href="https://wa.me/+79219512984" target="_blank" rel="noopener noreferrer">Whatsapp</a>,
+                            на электронную почту
+                            <a href="mailto:info@zhd.su" target="_blank" rel="noopener noreferrer">info@zhd.su</a>
+                            или заполнить
+                            <a href="{{ route('contactForm.show') }}">форму заявки</a> на нашем сайте. Мы в кратчайшие
                             сроки ответим на все интересующие Вас вопросы.
                         </div>
                     </div>

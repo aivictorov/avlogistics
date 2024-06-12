@@ -61,7 +61,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href={{ route('home') }} class="nav-link" target="_blank">
+                    <a href={{ route('home') }} class="nav-link" target="_blank" rel="noopener noreferrer">
                         <i class="nav-icon fas fa-reply"></i>
                         <p>
                             Вернуться на сайт
