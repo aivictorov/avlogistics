@@ -1,4 +1,6 @@
-@extends('site.layouts.main')
+@extends('site.layouts.error')
+
+@section('title', 'Страница не найдена')
 
 @section('content')
     <main class="main">
