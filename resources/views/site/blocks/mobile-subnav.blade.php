@@ -5,7 +5,7 @@
                 <div class="mobile-subnav-column">
                     <div class="mobile-subnav-block__header">
                         <a href={{ route('pages.show', $tree[array_key_first($tree)]['children'][$i]['url']) }}>
-                            <h2>{{ $tree[array_key_first($tree)]['children'][$i]['name'] }}</h2>
+                            <div class="h2">{{ $tree[array_key_first($tree)]['children'][$i]['name'] }}</div>
                         </a>
                     </div>
                     @if (isset($tree[array_key_first($tree)]['children'][$i]['children']))
@@ -39,7 +39,7 @@
                 <div class="mobile-subnav-column">
                     <div class="mobile-subnav-block__header">
                         <a href={{ route('pages.show', $tree[array_key_first($tree)]['children'][$i]['url']) }}>
-                            <h2>{{ $tree[array_key_first($tree)]['children'][$i]['name'] }}</h2>
+                            <div class="h2">{{ $tree[array_key_first($tree)]['children'][$i]['name'] }}</div>
                         </a>
                     </div>
                     @if (isset($tree[array_key_first($tree)]['children'][$i]['children']))
@@ -65,7 +65,7 @@
                 <div class="mobile-subnav-column">
                     <div class="mobile-subnav-block__header">
                         <a href={{ route('pages.show', $tree[array_key_first($tree)]['children'][$i]['url']) }}>
-                            <h2>{{ $tree[array_key_first($tree)]['children'][$i]['name'] }}</h2>
+                            <div class="h2">{{ $tree[array_key_first($tree)]['children'][$i]['name'] }}</div>
                         </a>
                     </div>
                     @if (isset($tree[array_key_first($tree)]['children'][$i]['children']))
@@ -90,7 +90,7 @@
             <div class="mobile-subnav-column">
                 <div class="mobile-subnav-block__header">
                     <a href={{ route('portfolio.index') }}>
-                        <h2>Портфолио</h2>
+                        <div class="h2">Портфолио</div>
                     </a>
                 </div>
             </div>
@@ -98,7 +98,7 @@
             <div class="mobile-subnav-column">
                 <div class="mobile-subnav-block__header">
                     <a href={{ route('pages.show', $tree[array_key_first($tree)]['children'][5]['url']) }}>
-                        <h2>{{ $tree[array_key_first($tree)]['children'][5]['name'] }}</h2>
+                        <div class="h2">{{ $tree[array_key_first($tree)]['children'][5]['name'] }}</div>
                     </a>
                 </div>
             </div>

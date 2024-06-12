@@ -6,7 +6,7 @@
             <a class="subnav-block__close js-subnav-close" href="#">закрыть</a>
 
             <div class="subnav-block__header">
-                <h2>{{ $tree[array_key_first($tree)]['children'][2]['name'] }}</h2>
+                <div class="h2">{{ $tree[array_key_first($tree)]['children'][2]['name'] }}</div>
                 <a href={{ route('pages.show', $tree[array_key_first($tree)]['children'][2]['url']) }}>В раздел</a>
             </div>
 
@@ -34,7 +34,7 @@
         <div class="container">
             <a class="subnav-block__close js-subnav-close" href="#">закрыть</a>
             <div class="subnav-block__header">
-                <h2>{{ $tree[array_key_first($tree)]['children'][3]['name'] }}</h2>
+                <div class="h2">{{ $tree[array_key_first($tree)]['children'][3]['name'] }}</div>
                 <a href={{ route('pages.show', $tree[array_key_first($tree)]['children'][3]['url']) }}>В раздел</a>
             </div>
             <div class="subnav-block__columns">
@@ -60,7 +60,7 @@
         <div class="container">
             <a class="subnav-block__close js-subnav-close" href="#">закрыть</a>
             <div class="subnav-block__header">
-                <h2>{{ $tree[array_key_first($tree)]['children'][4]['name'] }}</h2>
+                <div class="h2">{{ $tree[array_key_first($tree)]['children'][4]['name'] }}</div>
                 <a href={{ route('pages.show', $tree[array_key_first($tree)]['children'][4]['url']) }}>В раздел</a>
             </div>
             <div class="subnav-block__columns">
@@ -86,7 +86,7 @@
         <div class="container">
             <a class="subnav-block__close js-subnav-close" href="#">закрыть</a>
             <div class="subnav-block__header">
-                <h2>{{ $tree[array_key_first($tree)]['children'][5]['name'] }}</h2>
+                <div class="h2">{{ $tree[array_key_first($tree)]['children'][5]['name'] }}</div>
                 <a href={{ route('pages.show', $tree[array_key_first($tree)]['children'][5]['url']) }}>В раздел</a>
             </div>
             <div class="subnav-block__columns">

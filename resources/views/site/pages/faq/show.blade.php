@@ -20,7 +20,9 @@
                     </div>
                     <div class="article__content">
                         @if ($page['announce'])
-                            <p>{{ $page['announce'] }}</p>
+                            <div class="faq-announce">
+                                {{ $page['announce'] }}
+                            </div>
                         @endif
                         <div class="faq-questions">
                             @foreach ($faq_questions as $question)
