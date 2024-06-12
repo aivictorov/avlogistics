@@ -54,11 +54,9 @@ class FaqController extends Controller
                 }
             }
 
-            $announce = $faq_categories[$id]['announce'];
-
             $faq_questions = (new GetQuestionsAction)->run($id);
 
-            return view('site.pages.faq.show', compact('page', 'parents', 'seo', 'faq_questions', 'faq_categories', 'announce'));
+            return view('site.pages.faq.show', compact('page', 'parents', 'seo', 'faq_questions', 'faq_categories'));
         } else {
             return view('site.404');
         }

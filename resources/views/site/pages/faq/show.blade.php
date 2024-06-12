@@ -19,8 +19,8 @@
                         </h1>
                     </div>
                     <div class="article__content">
-                        @if ($announce)
-                            <p>{{ $announce }}</p>
+                        @if ($page['announce'])
+                            <p>{{ $page['announce'] }}</p>
                         @endif
                         <div class="faq-questions">
                             @foreach ($faq_questions as $question)
