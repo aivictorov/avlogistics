@@ -10,20 +10,20 @@ class PageRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'min:3', 'max:100'],
-            'h1' => ['required', 'string', 'min:3', 'max:100'],
+            'name' => ['required', 'string'],
+            'h1' => ['required', 'string'],
             'parent_id' => ['required', 'integer', 'min:0'],
-            'text' => ['nullable', 'string', 'min:12'],
-            'url' => ['required', 'min:3', 'max:100'],
-            'menu_sort' => ['required', 'integer', 'min:0', 'max:100'],
+            'text' => ['nullable', 'string'],
+            'url' => ['required', 'min:3'],
+            'menu_sort' => ['required', 'integer', 'min:0'],
             'menu_show' => ['required', 'boolean'],
             'status' => ['required', 'boolean'],
 
-            'title' => ['required', 'string', 'min:3', 'max:200'],
-            'description' => ['required', 'string', 'min:3', 'max:500'],
-            'keywords' => ['required', 'string', 'min:3', 'max:500'],
+            'title' => ['required', 'string'],
+            'description' => ['required', 'string'],
+            'keywords' => ['required', 'string'],
 
-            'avatar' => ['nullable', 'mimes:jpg,jpeg', 'dimensions:min_width=670,min_height=270',],
+            'avatar' => ['nullable', 'mimes:jpg,jpeg', 'dimensions:min_width=670,min_height=270'],
         ];
     }
 

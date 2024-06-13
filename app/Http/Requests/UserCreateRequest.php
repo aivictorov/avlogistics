@@ -9,11 +9,11 @@ class UserCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required'],
-            'email' => ['required'],
-            'password' => ['required', 'confirmed'],
-            'role' => ['required'],
-            'status' => ['required'],
+            'name' => ['required', 'string'],
+            'email' => ['required', 'email'],
+            'password' => ['required', 'string', 'confirmed'],
+            'role' => ['required', 'string'],
+            'status' => ['required', 'boolean'],
         ];
     }
 

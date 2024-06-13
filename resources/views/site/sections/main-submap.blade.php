@@ -9,7 +9,8 @@
     <div class="sixbox">
         <div class="sixbox-wrapper">
             <div class="sixbox__block js-sixbox__block sixbox__block--services">
-                <a href="/perevozki-gruzov" class="sixbox__text js-sixbox__text">Перевозки
+                <a href="{{ route('pages.show', ['page' => 'perevozki-gruzov']) }}"
+                    class="sixbox__text js-sixbox__text">Перевозки
                     <span>грузов</span></a>
             </div>
             <i class="sixbox__icon sixbox__icon--services fa fa-truck fa-4x"></i>

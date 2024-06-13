@@ -2,6 +2,7 @@ a.logo {
     display: block;
     width: 236px;
     height: 62px;
+    font-size: 0;
 
     @include bp(600px) {
         width: 177px;

@@ -9,9 +9,9 @@ class GalleryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'min:3', 'max:50'],
-            'status' => ['required', 'boolean'],
+            'name' => ['required', 'string'],
             'page_id' => ['required', 'integer'],
+            'status' => ['required', 'boolean'],
 
             'items.*.text' => ['sometimes', 'string'],
             'items.*.sort' => ['sometimes', 'integer'],

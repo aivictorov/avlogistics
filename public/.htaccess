@@ -24,10 +24,16 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
-</IfModule>
 
-<IfModule headers_module>
-    Header set X-Frame-Options: "DENY"
+    # Заголовки безопасности
+    Header always set Strict-Transport-Security: "max-age=31536000" env=HTTPS
+    Header always set Content-Security-Policy "upgrade-insecure-requests"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Expect-CT "max-age=7776000, enforce"
+    Header always set Referrer-Policy: "no-referrer-when-downgrade"
+    Header always set X-Frame-Options SAMEORIGIN
+    # Конец заголовков безопасности
 </IfModule>
 
 Redirect 301 /contact https://zhd.su/contact-form
@@ -72,7 +78,6 @@ Redirect 301 /blog/perevozka-avtokrana-grove-7450-po-zheleznoy-doroge https://zh
 Redirect 301 /soglasovanie https://zhd.su/shemy-pogruzki
 
 Redirect 301 /avtomobilnye-perevozki https://zhd.su/perevozki-gruzov/avtomobilnye-perevozki
-Redirect 301 /dostavka-gruzov-iz-kitaia https://zhd.su/perevozki-gruzov/dostavka-gruzov-iz-kitaia
 Redirect 301 /konteinernye-perevozki https://zhd.su/perevozki-gruzov/konteinernye-perevozki
 Redirect 301 /morskie-perevozki https://zhd.su/perevozki-gruzov/morskie-perevozki
 Redirect 301 /multimodalnye-perevozki https://zhd.su/perevozki-gruzov/multimodalnye-perevozki

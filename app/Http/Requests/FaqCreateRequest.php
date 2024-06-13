@@ -13,7 +13,7 @@ class FaqCreateRequest extends FormRequest
             'name' => ['required'],
             'h1' => ['required'],
             'announce' => ['nullable'],
-            'url' => ['required'],
+            'url' => ['required', 'min:3'],
             'sort_key' => ['required'],
             'status' => ['required'],
 
@@ -21,9 +21,9 @@ class FaqCreateRequest extends FormRequest
             // 'questions.*.answer' => ['required'],
             // 'questions.*.sort' => ['required', 'integer', 'min:0'],
 
-            'title' => ['required', 'string', 'min:3', 'max:100'],
-            'description' => ['required', 'string', 'min:3', 'max:250'],
-            'keywords' => ['required', 'string', 'min:3', 'max:250'],
+            'title' => ['required', 'string'],
+            'description' => ['required', 'string'],
+            'keywords' => ['required', 'string'],
         ];
     }
 

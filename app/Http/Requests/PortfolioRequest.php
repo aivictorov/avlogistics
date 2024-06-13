@@ -10,17 +10,17 @@ class PortfolioRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'min:3', 'max:50'],
-            'h1' => ['required', 'string', 'min:3', 'max:100'],
+            'name' => ['required', 'string'],
+            'h1' => ['required', 'string'],
             'portfolio_section_id' => ['required', 'integer', 'min:0'],
-            'text' => ['required', 'string', 'min:12'],
-            'url' => ['required', 'min:3', 'max:50'],
-            'sort_key' => ['required', 'integer', 'min:0', 'max:100'],
+            'text' => ['required', 'string'],
+            'url' => ['required', 'min:3'],
+            'sort_key' => ['required', 'integer', 'min:0'],
             'status' => ['required', 'boolean'],
 
-            'title' => ['required', 'string', 'min:3', 'max:100'],
-            'description' => ['required', 'string', 'min:3', 'max:250'],
-            'keywords' => ['required', 'string', 'min:3', 'max:250'],
+            'title' => ['required', 'string'],
+            'description' => ['required', 'string'],
+            'keywords' => ['required', 'string'],
 
             'avatar' => ['sometimes', 'mimes:jpg,jpeg', 'dimensions:min_width=670,min_height=270',],
             'images.*' => ['sometimes', 'mimes:jpg,jpeg', 'dimensions:min_width=670,min_height=350',],

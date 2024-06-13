@@ -10,8 +10,8 @@ class QuestionRequest extends FormRequest
     {
         return [
             'id' => ['required', 'integer', 'min:0'],
-            'name' => ['required'],
-            'answer' => ['required'],
+            'name' => ['required', 'string'],
+            'answer' => ['required', 'string'],
             'sort' => ['required', 'integer', 'min:0'],
             'faq_id' => ['required', 'integer', 'min:0'],
         ];

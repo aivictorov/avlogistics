@@ -10,20 +10,20 @@ class FaqEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required'],
-            'h1' => ['required'],
-            'announce' => ['nullable'],
-            'url' => ['required'],
-            'sort_key' => ['required'],
-            'status' => ['required'],
+            'name' => ['required', 'string'],
+            'h1' => ['required', 'string'],
+            'announce' => ['nullable', 'string'],
+            'url' => ['required', 'min:3'],
+            'sort_key' => ['required', 'integer', 'min:0'],
+            'status' => ['required', 'boolean'],
 
             'questions.*.name' => ['required'],
             'questions.*.answer' => ['required'],
             'questions.*.sort' => ['required', 'integer', 'min:0'],
 
-            'title' => ['required', 'string', 'min:3', 'max:100'],
-            'description' => ['required', 'string', 'min:3', 'max:250'],
-            'keywords' => ['required', 'string', 'min:3', 'max:250'],
+            'title' => ['required', 'string'],
+            'description' => ['required', 'string'],
+            'keywords' => ['required', 'string'],
         ];
     }
 

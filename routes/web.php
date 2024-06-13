@@ -4,7 +4,6 @@ use App\Http\Controllers\Admin\AjaxController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\FaqController;
-use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PortfolioController;
@@ -97,8 +96,6 @@ Route::name('user.')->group(function () {
     Route::post('/login', [AuthController::class, 'auth'])->name('auth');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
-
-Route::post('/loadGallery', GalleryController::class)->name('loadGallery');
 
 Route::get('/', HomeController::class)->name('home');
 Route::redirect('/index', '/', 301);
