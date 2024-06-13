@@ -77,6 +77,12 @@ Redirect 301 /blog/perevozka-ekskavatorov-hitachi https://zhd.su/perevozki-gruzo
 Redirect 301 /blog/perevozka-avtokrana-grove-7450-po-zheleznoy-doroge https://zhd.su/portfolio/zhd-perevozka-avtokrana-grove-gmk-7450
 Redirect 301 /soglasovanie https://zhd.su/shemy-pogruzki
 
+Redirect 301 /zhd-perevozki https://zhd.su/perevozki-gruzov/zhd-perevozki
+Redirect 301 /perevozki-gruzov/zhd-perevozki/avtomobilnye-krany https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-avtokranov
+Redirect 301 /perevozki-gruzov/zhd-perevozki/dlinnomernye-gruzy https://zhd.su/perevozki-gruzov/negabaritnye-perevozki/perevozki-dlinnomernyh-gruzov
+
+
+
 Redirect 301 /avtomobilnye-perevozki https://zhd.su/perevozki-gruzov/avtomobilnye-perevozki
 Redirect 301 /konteinernye-perevozki https://zhd.su/perevozki-gruzov/konteinernye-perevozki
 Redirect 301 /morskie-perevozki https://zhd.su/perevozki-gruzov/morskie-perevozki
