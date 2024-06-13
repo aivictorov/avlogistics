@@ -25,7 +25,17 @@
     padding-top: 20px;
     padding-bottom: 30px;
     width: 100%;
-    // z-index: 225;
+
+    .subnav-block__columns {
+        margin-top: 30px;
+        column-count: 3;
+        column-width: 230px;
+        column-gap: 50px;
+
+        @include bp(900px) {
+            column-gap: 25px;
+        }
+    }
 
     &.opened {
         display: block;
@@ -63,18 +73,6 @@
         font-size: 18px;
         display: inline;
         margin-right: 20px;
-    }
-}
-
-.subnav-block__columns {
-    margin-top: 30px;
-    column-count: 3;
-    column-width: 230px;
-    column-gap: 50px;
-    // height: 400px;
-
-    @include bp(900px) {
-        column-gap: 25px;
     }
 }
 

@@ -26,52 +26,86 @@
     RewriteRule ^ index.php [L]
 </IfModule>
 
+<IfModule headers_module>
+    Header set X-Frame-Options: "DENY"
+</IfModule>
+
 Redirect 301 /contact https://zhd.su/contact-form
-
-Redirect 301 /zhd-perevozki/negabaritnye-perevozki https://zhd.su/negabaritnye-perevozki
-Redirect 301 /zhd-perevozki/zhd-perevozki-negabaritnyh-gruzov https://zhd.su/negabaritnye-perevozki/perevozki-negabaritnyh-gruzov
-Redirect 301 /zhd-perevozki/negabaritnye-gruzy https://zhd.su/negabaritnye-perevozki/perevozki-negabaritnyh-gruzov
-Redirect 301 /zhd-perevozki/zhd-perevozki-tyazhelovesnyh-gruzov https://zhd.su/negabaritnye-perevozki/perevozki-tyazhelovesnyh-gruzov
-Redirect 301 /zhd-perevozki/zhd-perevozki-dlinnomernyh-gruzov https://zhd.su/negabaritnye-perevozki/perevozki-dlinnomernyh-gruzov
-
-Redirect 301 /zhd-perevozki/zhd-perevozki-gruzov-v-vagonah https://zhd.su/zhd-perevozki
-Redirect 301 /zhd-perevozki/v-poluvagonah https://zhd.su/zhd-perevozki/zhd-perevozki-gruzov-v-poluvagonah
-Redirect 301 /zhd-perevozki/krytyi-vagon https://zhd.su/zhd-perevozki/zhd-perevozki-gruzov-v-krytyh-vagonah
-
-Redirect 301 /konteynernye-perevozki https://zhd.su//konteinernye-perevozki
-
-Redirect 301 /zhd-perevozki/zhd-perevozki-gruzov https://zhd.su/perevozki-tehniki
-Redirect 301 /zhd-perevozki/zhd-perevozki-avtokranov https://zhd.su/perevozki-tehniki/perevozki-avtokranov
-Redirect 301 /zhd-perevozki/zhd-perevozki-buldozerov https://zhd.su/perevozki-tehniki/perevozki-buldozerov
-Redirect 301 /zhd-perevozki/zhd-perevozki-burovyh-ustanovok https://zhd.su/perevozki-tehniki/perevozki-burovyh-ustanovok
-Redirect 301 /zhd-perevozki/zhd-perevozki-grohotov-i-drobilok https://zhd.su/perevozki-tehniki/perevozki-grohotov-i-drobilok
-Redirect 301 /zhd-perevozki/zhd-perevozki-gruzovyh-avtomobiley https://zhd.su/perevozki-tehniki/perevozki-gruzovyh-avtomobiley
-Redirect 301 /zhd-perevozki/zhd-perevozki-gusenichnyh-tyagachey https://zhd.su/perevozki-tehniki/perevozki-gusenichnyh-tyagachey
-Redirect 301 /zhd-perevozki/selskohozyaystvennaya-tehnika https://zhd.su/perevozki-tehniki/perevozki-kombaynov
-Redirect 301 /zhd-perevozki/zhd-perevozki-kombaynov https://zhd.su/perevozki-tehniki/perevozki-kombaynov
-Redirect 301 /zhd-perevozki/zhd-perevozki-pogruzchikov https://zhd.su/perevozki-tehniki/perevozki-pogruzchikov
-Redirect 301 /zhd-perevozki/zhd-perevozki-putevoy-tehniki https://zhd.su/perevozki-tehniki/perevozki-putevoy-tehniki
-Redirect 301 /zhd-perevozki/zhd-perevozki-samosvalov https://zhd.su/perevozki-tehniki/perevozki-samosvalov
-Redirect 301 /zhd-perevozki/zhd-perevozki-traktorov https://zhd.su/perevozki-tehniki/perevozki-traktorov
-Redirect 301 /zhd-perevozki/zhd-perevozki-forvarderov https://zhd.su/perevozki-tehniki/perevozki-forvarderov
-Redirect 301 /zhd-perevozki/zhd-perevozki-harvesterov https://zhd.su/perevozki-tehniki/perevozki-harvesterov
-Redirect 301 /zhd-perevozki/zhd-perevozki-ekskavatorov https://zhd.su/perevozki-tehniki/perevozki-ekskavatorov
-
-Redirect 301 /zhd-perevozki/zhd-perevozki-oborudovaniya https://zhd.su/perevozki-oborudovaniya
-Redirect 301 /zhd-perevozki/zhd-perevozki-kozlovyh-kranov https://zhd.su/perevozki-oborudovaniya/perevozki-kozlovyh-kranov
-Redirect 301 /zhd-perevozki/zhd-perevozki-modulnyh-zdaniy https://zhd.su/perevozki-oborudovaniya/perevozki-modulnyh-zdaniy
-Redirect 301 /zhd-perevozki/zhd-perevozki-mostovyh-kranov https://zhd.su/perevozki-oborudovaniya/perevozki-mostovyh-kranov
-
-Redirect 301 /zhd-perevozki/zhd-perevozki-metallokonstrukciy https://zhd.su/perevozki-metallokonstrukciy
-Redirect 301 /zhd-perevozki/zhd-perevozki-rezervuarov https://zhd.su/perevozki-metallokonstrukciy/perevozki-rezervuarov
-Redirect 301 /zhd-perevozki/zhd-perevozki-trub https://zhd.su/perevozki-metallokonstrukciy/perevozki-trub
-
-Redirect 301 /zhd-perevozki/zhd-perevozki-zhelezobetonnyh-izdeliy https://zhd.su/perevozki-zhelezobetonnyh-izdeliy
-
-Redirect 301 /blog/perevozka-transformatorov-abb-na-sahalin https://zhd.su/perevozki-oborudovaniya/perevozki-energeticeskogo-oborudovaniia
-Redirect 301 /blog/perevozka-selskohozyaystvennyh-kombaynov-john-deere https://zhd.su/perevozki-tehniki/perevozki-kombaynov
-Redirect 301 /blog/perevozka-stroitelnoy-tehniki-zhd-transportom https://zhd.su/perevozki-tehniki
-Redirect 301 /blog/perevozka-ekskavatorov-hitachi https://zhd.su/perevozki-tehniki/perevozki-ekskavatorov
+Redirect 301 /zhd-perevozki/negabaritnye-perevozki https://zhd.su/perevozki-gruzov/negabaritnye-perevozki
+Redirect 301 /zhd-perevozki/zhd-perevozki-negabaritnyh-gruzov https://zhd.su/perevozki-gruzov/negabaritnye-perevozki/perevozki-negabaritnyh-gruzov
+Redirect 301 /zhd-perevozki/negabaritnye-gruzy https://zhd.su/perevozki-gruzov/negabaritnye-perevozki/perevozki-negabaritnyh-gruzov
+Redirect 301 /zhd-perevozki/zhd-perevozki-tyazhelovesnyh-gruzov https://zhd.su/perevozki-gruzov/negabaritnye-perevozki/perevozki-tyazhelovesnyh-gruzov
+Redirect 301 /zhd-perevozki/zhd-perevozki-dlinnomernyh-gruzov https://zhd.su/perevozki-gruzov/negabaritnye-perevozki/perevozki-dlinnomernyh-gruzov
+Redirect 301 /zhd-perevozki/zhd-perevozki-gruzov-v-vagonah https://zhd.su/perevozki-gruzov/zhd-perevozki
+Redirect 301 /zhd-perevozki/v-poluvagonah https://zhd.su/perevozki-gruzov/zhd-perevozki/zhd-perevozki-gruzov-v-poluvagonah
+Redirect 301 /zhd-perevozki/krytyi-vagon https://zhd.su/perevozki-gruzov/zhd-perevozki/zhd-perevozki-gruzov-v-krytyh-vagonah
+Redirect 301 /konteynernye-perevozki https://zhd.su/perevozki-gruzov/konteinernye-perevozki
+Redirect 301 /zhd-perevozki/zhd-perevozki-gruzov https://zhd.su/perevozki-gruzov/perevozki-tehniki
+Redirect 301 /zhd-perevozki/zhd-perevozki-avtokranov https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-avtokranov
+Redirect 301 /zhd-perevozki/zhd-perevozki-buldozerov https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-buldozerov
+Redirect 301 /zhd-perevozki/zhd-perevozki-burovyh-ustanovok https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-burovyh-ustanovok
+Redirect 301 /zhd-perevozki/zhd-perevozki-grohotov-i-drobilok https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-grohotov-i-drobilok
+Redirect 301 /zhd-perevozki/zhd-perevozki-gruzovyh-avtomobiley https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-gruzovyh-avtomobiley
+Redirect 301 /zhd-perevozki/zhd-perevozki-gusenichnyh-tyagachey https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-gusenichnyh-tyagachey
+Redirect 301 /zhd-perevozki/selskohozyaystvennaya-tehnika https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-kombaynov
+Redirect 301 /zhd-perevozki/zhd-perevozki-kombaynov https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-kombaynov
+Redirect 301 /zhd-perevozki/zhd-perevozki-pogruzchikov https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-pogruzchikov
+Redirect 301 /zhd-perevozki/zhd-perevozki-putevoy-tehniki https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-putevoy-tehniki
+Redirect 301 /zhd-perevozki/zhd-perevozki-samosvalov https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-samosvalov
+Redirect 301 /zhd-perevozki/zhd-perevozki-traktorov https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-traktorov
+Redirect 301 /zhd-perevozki/zhd-perevozki-forvarderov https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-forvarderov
+Redirect 301 /zhd-perevozki/zhd-perevozki-harvesterov https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-harvesterov
+Redirect 301 /zhd-perevozki/zhd-perevozki-ekskavatorov https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-ekskavatorov
+Redirect 301 /zhd-perevozki/zhd-perevozki-oborudovaniya https://zhd.su/perevozki-gruzov/perevozki-oborudovaniya
+Redirect 301 /zhd-perevozki/zhd-perevozki-kozlovyh-kranov https://zhd.su/perevozki-gruzov/perevozki-oborudovaniya/perevozki-kozlovyh-kranov
+Redirect 301 /zhd-perevozki/zhd-perevozki-modulnyh-zdaniy https://zhd.su/perevozki-gruzov/perevozki-oborudovaniya/perevozki-modulnyh-zdaniy
+Redirect 301 /zhd-perevozki/zhd-perevozki-mostovyh-kranov https://zhd.su/perevozki-gruzov/perevozki-oborudovaniya/perevozki-mostovyh-kranov
+Redirect 301 /zhd-perevozki/zhd-perevozki-metallokonstrukciy https://zhd.su/perevozki-gruzov/perevozki-metallokonstrukciy
+Redirect 301 /zhd-perevozki/zhd-perevozki-rezervuarov https://zhd.su/perevozki-gruzov/perevozki-metallokonstrukciy/perevozki-rezervuarov
+Redirect 301 /zhd-perevozki/zhd-perevozki-trub https://zhd.su/perevozki-gruzov/perevozki-metallokonstrukciy/perevozki-trub
+Redirect 301 /zhd-perevozki/zhd-perevozki-zhelezobetonnyh-izdeliy https://zhd.su/perevozki-gruzov/perevozki-zhelezobetonnyh-izdeliy
+Redirect 301 /blog/perevozka-transformatorov-abb-na-sahalin https://zhd.su/perevozki-gruzov/perevozki-oborudovaniya/perevozki-energeticeskogo-oborudovaniia
+Redirect 301 /blog/perevozka-selskohozyaystvennyh-kombaynov-john-deere https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-kombaynov
+Redirect 301 /blog/perevozka-stroitelnoy-tehniki-zhd-transportom https://zhd.su/perevozki-gruzov/perevozki-tehniki
+Redirect 301 /blog/perevozka-ekskavatorov-hitachi https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-ekskavatorov
 Redirect 301 /blog/perevozka-avtokrana-grove-7450-po-zheleznoy-doroge https://zhd.su/portfolio/zhd-perevozka-avtokrana-grove-gmk-7450
-
 Redirect 301 /soglasovanie https://zhd.su/shemy-pogruzki
+
+Redirect 301 /avtomobilnye-perevozki https://zhd.su/perevozki-gruzov/avtomobilnye-perevozki
+Redirect 301 /dostavka-gruzov-iz-kitaia https://zhd.su/perevozki-gruzov/dostavka-gruzov-iz-kitaia
+Redirect 301 /konteinernye-perevozki https://zhd.su/perevozki-gruzov/konteinernye-perevozki
+Redirect 301 /morskie-perevozki https://zhd.su/perevozki-gruzov/morskie-perevozki
+Redirect 301 /multimodalnye-perevozki https://zhd.su/perevozki-gruzov/multimodalnye-perevozki
+Redirect 301 /negabaritnye-perevozki https://zhd.su/perevozki-gruzov/negabaritnye-perevozki
+Redirect 301 /negabaritnye-perevozki/perevozki-dlinnomernyh-gruzov https://zhd.su/perevozki-gruzov/negabaritnye-perevozki/perevozki-dlinnomernyh-gruzov
+Redirect 301 /negabaritnye-perevozki/perevozki-negabaritnyh-gruzov https://zhd.su/perevozki-gruzov/negabaritnye-perevozki/perevozki-negabaritnyh-gruzov
+Redirect 301 /negabaritnye-perevozki/perevozki-tyazhelovesnyh-gruzov https://zhd.su/perevozki-gruzov/negabaritnye-perevozki/perevozki-tyazhelovesnyh-gruzov
+Redirect 301 /perevozki-metallokonstrukciy https://zhd.su/perevozki-gruzov/perevozki-metallokonstrukciy
+Redirect 301 /perevozki-rezervuarov https://zhd.su/perevozki-gruzov/perevozki-rezervuarov
+Redirect 301 /perevozki-trub https://zhd.su/perevozki-gruzov/perevozki-trub
+Redirect 301 /perevozki-oborudovaniya https://zhd.su/perevozki-gruzov/perevozki-oborudovaniya
+Redirect 301 /perevozki-oborudovaniya/perevozki-energeticeskogo-oborudovaniia https://zhd.su/perevozki-gruzov/perevozki-oborudovaniya/perevozki-energeticeskogo-oborudovaniia
+Redirect 301 /perevozki-oborudovaniya/perevozki-kozlovyh-kranov https://zhd.su/perevozki-gruzov/perevozki-oborudovaniya/perevozki-kozlovyh-kranov
+Redirect 301 /perevozki-oborudovaniya/perevozki-modulnyh-zdaniy https://zhd.su/perevozki-gruzov/perevozki-oborudovaniya/perevozki-modulnyh-zdaniy
+Redirect 301 /perevozki-oborudovaniya/perevozki-mostovyh-kranov https://zhd.su/perevozki-gruzov/perevozki-oborudovaniya/perevozki-mostovyh-kranov
+Redirect 301 /perevozki-tehniki https://zhd.su/perevozki-gruzov/perevozki-tehniki
+Redirect 301 /perevozki-tehniki/perevozki-avtokranov https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-avtokranov
+Redirect 301 /perevozki-tehniki/perevozki-buldozerov https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-buldozerov
+Redirect 301 /perevozki-tehniki/perevozki-burovyh-ustanovok https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-burovyh-ustanovok
+Redirect 301 /perevozki-tehniki/perevozki-ekskavatorov https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-ekskavatorov
+Redirect 301 /perevozki-tehniki/perevozki-forvarderov https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-forvarderov
+Redirect 301 /perevozki-tehniki/perevozki-grohotov-i-drobilok https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-grohotov-i-drobilok
+Redirect 301 /perevozki-tehniki/perevozki-gruzovyh-avtomobiley https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-gruzovyh-avtomobiley
+Redirect 301 /perevozki-tehniki/perevozki-gusenichnyh-tyagachey https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-gusenichnyh-tyagachey
+Redirect 301 /perevozki-tehniki/perevozki-harvesterov https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-harvesterov
+Redirect 301 /perevozki-tehniki/perevozki-kombaynov https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-kombaynov
+Redirect 301 /perevozki-tehniki/perevozki-pogruzchikov https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-pogruzchikov
+Redirect 301 /perevozki-tehniki/perevozki-putevoy-tehniki https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-putevoy-tehniki
+Redirect 301 /perevozki-tehniki/perevozki-samosvalov https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-samosvalov
+Redirect 301 /perevozki-tehniki/perevozki-traktorov https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-traktorov
+Redirect 301 /perevozki-zhelezobetonnyh-izdeliy https://zhd.su/perevozki-gruzov/perevozki-zhelezobetonnyh-izdeliy
+Redirect 301 /zhd-perevozki https://zhd.su/perevozki-gruzov/zhd-perevozki
+Redirect 301 /zhd-perevozki/zhd-perevozki-gruzov-na-platformah https://zhd.su/perevozki-gruzov/zhd-perevozki/zhd-perevozki-gruzov-na-platformah
+Redirect 301 /zhd-perevozki/zhd-perevozki-gruzov-na-transporterah https://zhd.su/perevozki-gruzov/zhd-perevozki/zhd-perevozki-gruzov-na-transporterah
+Redirect 301 /zhd-perevozki/zhd-perevozki-gruzov-v-krytyh-vagonah https://zhd.su/perevozki-gruzov/zhd-perevozki/zhd-perevozki-gruzov-v-krytyh-vagonah
+Redirect 301 /zhd-perevozki/zhd-perevozki-gruzov-v-poluvagonah https://zhd.su/perevozki-gruzov/zhd-perevozki/zhd-perevozki-gruzov-v-poluvagonah

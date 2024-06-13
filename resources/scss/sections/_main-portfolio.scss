@@ -1,8 +1,22 @@
-.main-section__portfolio-index {
+.main-portfolio {
     border-top: 3px solid #f14214;
 }
 
-.portfolio-index {
+.main-portfolio__title {
+    font-family: 'robofanregular';
+    font-weight: normal;
+
+    font-size: 30px;
+    text-align: center;
+    padding: 30px 0 20px 0;
+    color: #191919;
+
+    @include bp(600px) {
+        font-size: 25px;
+    }
+}
+
+.main-portfolio__items-wrapper {
     position: relative;
     margin: auto;
     max-width: 1920px;
@@ -10,7 +24,7 @@
     overflow: hidden;
 }
 
-.portfolio-index__in {
+.main-portfolio__items {
     position: absolute;
     top: 0;
     left: 50%;
@@ -21,7 +35,7 @@
     transform: translateX(-50%);
 }
 
-.portfolio-index__item {
+.main-portfolio__item {
     margin-left: -1px;
     width: 165px;
     height: 165px;
@@ -29,7 +43,7 @@
     overflow: hidden;
 }
 
-.portfolio-index__item_in {
+.main-portfolio__item-image {
     position: relative;
     left: -150px;
     display: block;
@@ -92,7 +106,7 @@
     }
 }
 
-.portfolio-index__link {
+.main-portfolio__link {
     padding: 20px;
     text-align: center;
     font-size: 11px;

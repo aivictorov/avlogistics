@@ -1,4 +1,4 @@
-.index-content__main-text {
+.main-content__announce {
     font-family: 'Roboto', sans-serif;
     font-weight: lighter;
     font-size: 24px;
@@ -11,11 +11,20 @@
     }
 }
 
-.index-content__h2 {
+.main-content__title {
     font-size: 36px;
     font-family: 'Roboto', sans-serif;
     font-weight: lighter;
     text-align: center;
+
+    &>h2,
+    &>span {
+        display: inline;
+    }
+
+    h2 {
+        font-weight: 700;
+    }
 
     @include bp(800px) {
         font-size: 28px;
@@ -26,7 +35,7 @@
     }
 }
 
-.index-content-columns {
+.main-content-columns {
     display: flex;
     justify-content: space-between;
     column-gap: 100px;
@@ -42,8 +51,8 @@
     }
 }
 
-.index-content-columns__left,
-.index-content-columns__right {
+.main-content-columns__left,
+.main-content-columns__right {
     width: 50%;
 
     @include bp(850px) {
@@ -51,7 +60,7 @@
     }
 }
 
-.index-content-columns__item {
+.main-content-columns__item {
     list-style: none;
     background: url('/images/main/icon_ok.png') 0 6px no-repeat;
     padding-left: 70px;
@@ -61,6 +70,11 @@
     font-weight: lighter;
     font-size: 18px;
     line-height: 1.6;
+
+    h3 {
+        display: inline-block;
+        font-weight: 700;
+    }
 
     @include bp(950px) {
         padding-left: 60px;
@@ -76,7 +90,7 @@
     }
 }
 
-.index-content-simple {
+.main-content-simple {
     padding: 30px 40px;
     font-family: 'Roboto', sans-serif;
     font-weight: lighter;
