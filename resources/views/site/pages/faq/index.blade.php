@@ -10,7 +10,6 @@
             <div class="column column--main">
                 <article class="article">
                     @include('site.blocks.breadcrumbs')
-
                     <div class="article__title">
                         <h1 class="h1">
                             {{ $page->name }}
@@ -19,17 +18,14 @@
                     <div class="article__content">
                         {!! $page->text !!}
                     </div>
-
                     <section class="faq">
                         @foreach ($faq_categories as $category)
                             <a class="faq__block-header" href="/faq/{{ $category['url'] }}">{{ $category['name'] }}</a>
-
-                            @if ($category['announce'])
+                            {{-- @if ($category['announce'])
                                 <div class="faq__block-announce">
                                     {!! $category['announce'] !!}
                                 </div>
-                            @endif
-
+                            @endif --}}
                             <ul class="faq__block-list">
                                 @foreach ($category['items'] as $item)
                                     <li>

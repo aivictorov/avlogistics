@@ -17,7 +17,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zhd.su/portfolio/zhd-perevozka-ekskavatora-hitachi-zx470</loc>
+    <loc>https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-avtokranov</loc>
     <priority>0.9</priority>
   </url>
   <url>
@@ -25,7 +25,11 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-avtokranov</loc>
+    <loc>https://zhd.su/perevozki-gruzov/perevozki-oborudovaniya/perevozki-kozlovyh-kranov</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://zhd.su/portfolio/zhd-perevozka-ekskavatora-hitachi-zx470</loc>
     <priority>0.9</priority>
   </url>
   <url>
@@ -37,19 +41,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zhd.su/perevozki-gruzov</loc>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://zhd.su/perevozki-gruzov/perevozki-oborudovaniya/perevozki-kozlovyh-kranov</loc>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://zhd.su/o-kompanii</loc>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-buldozerov</loc>
     <priority>0.9</priority>
   </url>
   <url>
@@ -61,11 +53,11 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zhd.su/shemy-pogruzki/mestnye-tehnicheskie-usloviya</loc>
+    <loc>https://zhd.su/perevozki-gruzov</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zhd.su/perevozki-gruzov/perevozki-oborudovaniya/perevozki-mostovyh-kranov</loc>
+    <loc>https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-buldozerov</loc>
     <priority>0.9</priority>
   </url>
   <url>
@@ -73,7 +65,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zhd.su/perevozki-gruzov/perevozki-oborudovaniya/perevozki-modulnyh-zdaniy</loc>
+    <loc>https://zhd.su/perevozki-gruzov/perevozki-oborudovaniya/perevozki-mostovyh-kranov</loc>
     <priority>0.9</priority>
   </url>
   <url>
@@ -81,7 +73,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zhd.su/perevozki-gruzov/perevozki-trub</loc>
+    <loc>https://zhd.su/shemy-pogruzki/mestnye-tehnicheskie-usloviya</loc>
     <priority>0.9</priority>
   </url>
   <url>
@@ -89,7 +81,15 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://zhd.su/perevozki-gruzov/perevozki-trub</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://zhd.su/perevozki-gruzov/perevozki-rezervuarov</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://zhd.su/perevozki-gruzov/perevozki-oborudovaniya/perevozki-modulnyh-zdaniy</loc>
     <priority>0.9</priority>
   </url>
   <url>
@@ -105,15 +105,19 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-grohotov-i-drobilok</loc>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-pogruzchikov</loc>
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-grohotov-i-drobilok</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-traktorov</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://zhd.su/portfolio/zhd-perevozka-burovoy-ustanovki-atlas-copco-flexiroc-d65</loc>
     <priority>0.9</priority>
   </url>
   <url>
@@ -125,14 +129,6 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zhd.su/portfolio/zhd-perevozka-burovoy-ustanovki-atlas-copco-flexiroc-d65</loc>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://zhd.su/faq</loc>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://zhd.su/perevozki-gruzov/perevozki-zhelezobetonnyh-izdeliy</loc>
     <priority>0.9</priority>
   </url>
@@ -141,11 +137,11 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zhd.su/portfolio/zhd-perevozka-avtokrana-grove-gmk-7450</loc>
+    <loc>https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-samosvalov</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-samosvalov</loc>
+    <loc>https://zhd.su/portfolio/zhd-perevozka-avtokrana-grove-gmk-7450</loc>
     <priority>0.9</priority>
   </url>
   <url>
@@ -157,11 +153,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zhd.su/portfolio/zhd-perevozka-metallicheskoy-estakady</loc>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://zhd.su/perevozki-gruzov/perevozki-metallokonstrukciy</loc>
+    <loc>https://zhd.su/faq</loc>
     <priority>0.9</priority>
   </url>
   <url>
@@ -169,7 +161,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zhd.su/perevozki-gruzov/negabaritnye-perevozki</loc>
+    <loc>https://zhd.su/portfolio/zhd-perevozka-metallicheskoy-estakady</loc>
     <priority>0.9</priority>
   </url>
   <url>
@@ -177,15 +169,27 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zhd.su/portfolio/zhd-perevozka-avtokrana-ks-45717</loc>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://zhd.su/shemy-pogruzki/shemy-ntu</loc>
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://zhd.su/perevozki-gruzov/negabaritnye-perevozki</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://zhd.su/perevozki-gruzov/perevozki-metallokonstrukciy</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://zhd.su/portfolio/zhd-perevozka-avtokrana-ks-45717</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://zhd.su/perevozki-gruzov/morskie-perevozki</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://zhd.su/perevozki-gruzov/zhd-perevozki/zhd-perevozki-gruzov-na-transporterah</loc>
     <priority>0.9</priority>
   </url>
   <url>
@@ -197,15 +201,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zhd.su/perevozki-gruzov/zhd-perevozki/zhd-perevozki-gruzov-na-transporterah</loc>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://zhd.su/dostavka-gruzov-iz-kitaia</loc>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://zhd.su/perevozki-gruzov/perevozki-oborudovaniya</loc>
     <priority>0.9</priority>
   </url>
   <url>
@@ -213,11 +209,7 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zhd.su/perevozki-gruzov/negabaritnye-perevozki/perevozki-dlinnomernyh-gruzov</loc>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://zhd.su/perevozki-gruzov/zhd-perevozki/zhd-perevozki-gruzov-na-platformah</loc>
+    <loc>https://zhd.su/perevozki-gruzov/perevozki-oborudovaniya</loc>
     <priority>0.9</priority>
   </url>
   <url>
@@ -225,11 +217,11 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zhd.su/perevozki-gruzov/zhd-perevozki/zhd-perevozki-gruzov-v-poluvagonah</loc>
+    <loc>https://zhd.su/perevozki-gruzov/zhd-perevozki/zhd-perevozki-gruzov-na-platformah</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-harvesterov</loc>
+    <loc>https://zhd.su/perevozki-gruzov/negabaritnye-perevozki/perevozki-dlinnomernyh-gruzov</loc>
     <priority>0.9</priority>
   </url>
   <url>
@@ -237,15 +229,23 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://zhd.su/perevozki-gruzov/perevozki-tehniki/perevozki-harvesterov</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://zhd.su/kontakty</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://zhd.su/portfolio/zhd-perevozka-geomembrany</loc>
-    <priority>0.8</priority>
+    <loc>https://zhd.su/perevozki-gruzov/zhd-perevozki/zhd-perevozki-gruzov-v-poluvagonah</loc>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://zhd.su/portfolio/zhd-perevozka-gusenichnogo-vezdehoda-dt-30p</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zhd.su/portfolio/zhd-perevozka-geomembrany</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -265,7 +265,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://zhd.su/portfolio/zhd-perevozka-drobilki-metso-lokotrack-lt1213</loc>
+    <loc>https://zhd.su/portfolio/zhd-perevozka-burovoy-ustanovki-bauer-bg20h</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -273,11 +273,15 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://zhd.su/portfolio/zhd-perevozka-traktora-john-deere-9410r</loc>
+    <loc>https://zhd.su/portfolio/zhd-perevozka-drobilki-metso-lokotrack-lt1213</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://zhd.su/portfolio/zhd-perevozka-burovoy-ustanovki-bauer-bg20h</loc>
+    <loc>https://zhd.su/faq/soprovozhdenie-i-ohrana-gruzov</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zhd.su/portfolio/zhd-perevozka-traktora-john-deere-9410r</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -289,19 +293,23 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://zhd.su/portfolio/zhd-perevozka-avtobusa-cobus-3000</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://zhd.su/portfolio/zhd-perevozka-ekskavatora-doosan-dx225</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://zhd.su/portfolio/zhd-perevozka-pogruzchika-liebherr-556</loc>
+    <loc>https://zhd.su/portfolio/zhd-perevozka-avtobusa-cobus-3000</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zhd.su/faq/perevozochnye-dokumenty</loc>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zhd.su/portfolio/zhd-perevozka-grohota-mccloskey-r155</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zhd.su/portfolio/zhd-perevozka-pogruzchika-liebherr-556</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -329,19 +337,23 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://zhd.su/portfolio/zhd-perevozka-drobilki-mccloskey-c44</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://zhd.su/portfolio/zhd-perevozka-detaley-kassetnoy-mashiny</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://zhd.su/portfolio/zhd-perevozka-stekloplastikovogo-rezervuara-flotenk</loc>
+    <loc>https://zhd.su/portfolio/zhd-perevozka-gusenichnogo-tyagacha-gtt</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://zhd.su/portfolio/zhd-perevozka-gusenichnogo-tyagacha-gtt</loc>
+    <loc>https://zhd.su/portfolio/zhd-perevozka-drobilki-mccloskey-c44</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zhd.su/faq/razmeschenie-i-kreplenie-gruzov</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zhd.su/portfolio/zhd-perevozka-stekloplastikovogo-rezervuara-flotenk</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -361,11 +373,11 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://zhd.su/portfolio/zhd-perevozka-avtomobilya-man-cjs</loc>
+    <loc>https://zhd.su/faq/negabaritnye-gruzy</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://zhd.su/faq/negabaritnye-gruzy</loc>
+    <loc>https://zhd.su/portfolio/zhd-perevozka-avtomobilya-man-cjs</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -373,19 +385,19 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://zhd.su/portfolio/zhd-perevozka-traktorov-kirovec-k-704</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://zhd.su/portfolio/zhd-perevozka-buldozerov-caterpillar-d6-i-caterpillar-d8</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://zhd.su/portfolio/zhd-perevozka-dizelnoy-elektrostancii</loc>
+    <loc>https://zhd.su/portfolio/zhd-perevozka-traktorov-kirovec-k-704</loc>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://zhd.su/portfolio/zhd-perevozka-grohota-mccloskey-r230</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://zhd.su/portfolio/zhd-perevozka-dizelnoy-elektrostancii</loc>
     <priority>0.8</priority>
   </url>
 </urlset>
