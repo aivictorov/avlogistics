@@ -20,7 +20,9 @@
                     </div>
                     <section class="faq">
                         @foreach ($faq_categories as $category)
-                            <a class="faq__block-header" href="/faq/{{ $category['url'] }}">{{ $category['name'] }}</a>
+                            <h2>
+                                <a class="faq__block-header" href="/faq/{{ $category['url'] }}">{{ $category['name'] }}</a>
+                            </h2>
                             {{-- @if ($category['announce'])
                                 <div class="faq__block-announce">
                                     {!! $category['announce'] !!}
