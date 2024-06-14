@@ -104,8 +104,16 @@ export function addNewQuestion() {
                                 name="questions[${id}][name]" data-name="name">
                         </div>
                         <div class="form-group">
-                            <label for="question_answer[${id}]">Ответ</label>
-                            <textarea id="question_answer[${id}]" class="form-control" rows="3" name="questions[${id}][answer]" data-name="answer"></textarea>
+                            <div class="form-group">
+                                <label
+                                    for="questions[${id}][answer]">Ответ</label>
+                                <input class="form-control" type="hidden"
+                                    data-name="answer"
+                                    id="questions[${id}][answer]"
+                                    name="questions[${id}][answer]">
+                                <trix-editor
+                                    input="questions[${id}][answer]"></trix-editor>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-5">

@@ -11,6 +11,8 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="/assets/adminlte/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/assets/trix/trix.css">
+    <link rel="stylesheet" href="/assets/trix/trix.custom.css">
     <link rel="stylesheet" href="/assets/adminlte/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="/assets/adminlte/custom.css">
 </head>
@@ -49,13 +51,15 @@
     <script src="/assets/adminlte/plugins/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="/assets/adminlte/plugins/bs-custom-file-input/bs-custom-file-input.js"></script>
     <script src="/assets/tinymce/tinymce/tinymce.min.js"></script>
-
+    <script src="/assets/trix/trix.min.js"></script>
     <script src="/js/admin.js"></script>
+
     <script>
         function check($message = "Продолжить?") {
             return confirm($message);
         }
     </script>
+
 </body>
 
 </html>

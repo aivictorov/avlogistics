@@ -57,7 +57,7 @@
                                                             name="questions[{{ $question['id'] }}][name]"
                                                             value="{{ $question['name'] }}" />
                                                     </div>
-                                                    <div class="form-group">
+                                                    {{-- <div class="form-group">
                                                         <div class="form-group">
                                                             <label
                                                                 for="questions[{{ $question['id'] }}][answer]">Ответ</label>
@@ -65,6 +65,18 @@
                                                                 data-name="answer"
                                                                 id="questions[{{ $question['id'] }}][answer]"
                                                                 name="questions[{{ $question['id'] }}][answer]">{!! $question['answer'] !!}</x-textarea>
+                                                        </div>
+                                                    </div> --}}
+                                                    <div class="form-group">
+                                                        <div class="form-group">
+                                                            <label
+                                                                for="questions[{{ $question['id'] }}][answer]">Ответ</label>
+                                                            <input class="form-control" type="hidden" data-name="answer"
+                                                                id="questions[{{ $question['id'] }}][answer]"
+                                                                name="questions[{{ $question['id'] }}][answer]"
+                                                                value="{!! $question['answer'] !!}">
+                                                            <trix-editor
+                                                                input="questions[{{ $question['id'] }}][answer]"></trix-editor>
                                                         </div>
                                                     </div>
                                                     <div class="row">
