@@ -74,7 +74,7 @@
                                                             <input class="form-control" type="hidden" data-name="answer"
                                                                 id="questions[{{ $question['id'] }}][answer]"
                                                                 name="questions[{{ $question['id'] }}][answer]"
-                                                                value="{!! $question['answer'] !!}">
+                                                                value="{{ $question['answer'] }}">
                                                             <trix-editor
                                                                 input="questions[{{ $question['id'] }}][answer]"></trix-editor>
                                                         </div>
