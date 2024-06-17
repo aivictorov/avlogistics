@@ -5,6 +5,22 @@
     align-items: center;
     gap: 10px;
     width: 100%;
+
+    @include bp(900px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include bp(800px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    @include bp(600px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include bp(420px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 .content-gallery__item {
