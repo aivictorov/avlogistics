@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Galleries;
 use App\Models\GalleryItems;
 use App\Models\Image;
+use App\Models\Page;
 
 class PageController extends Controller
 {
@@ -23,6 +24,19 @@ class PageController extends Controller
             $page = (new GetPageAction)->run($id);
             $seo = (new GetSeoAction)->run($page['seo_id']);
             $parents = (new GetPageParentsAction)->run($id);
+
+            $children = Page::where([
+                ["parent_id", $id],
+                ["status", 1],
+                ["menu_show", 1]
+            ])->get()->sortBy('menu_sort');
+
+            $siblings = Page::where([
+                ["parent_id", $page['parent_id']],
+                ["status", 1],
+                ["menu_show", 1]
+            ])->get()->sortBy('menu_sort');
+
             $image = (new GetImageAction)->run($id);
             $image_path = (new BuildImagePathAction)->run($image);
 
@@ -32,7 +46,6 @@ class PageController extends Controller
             ])->get();
 
             if ($galleries) {
-
                 foreach ($galleries as $gallery) {
                     $items = GalleryItems::where('gallery_id', $gallery->id)->get()->sortBy('id');
 
@@ -49,7 +62,7 @@ class PageController extends Controller
                 }
             }
 
-            return view('site.pages.page', compact('page', 'parents', 'image_path', 'seo', 'galleries'));
+            return view('site.pages.page', compact('page', 'parents', 'children', 'siblings', 'image_path', 'seo', 'galleries'));
         } else {
             return response(view('site.pages.error'), 404);
         }

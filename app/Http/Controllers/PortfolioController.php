@@ -51,6 +51,13 @@ class PortfolioController extends Controller
         if ($id) {
             $page = (new GetPortfolioAction)->run($id);
             $parents = (new GetPortfolioParentsAction)->run();
+
+            $siblings = Portfolio::where([
+                ["portfolio_section_id", $page['portfolio_section_id']],
+                ["status", 1],
+                ["id", "!=", $id]
+            ])->get()->sortBy('sort_key');
+
             $seo = (new GetSeoAction)->run($page['seo_id']);
             $sections = (new GetPortfolioSectionsAction)->run(sort: 'sort_key', active: true);
             $avatar = (new GetImageAction)->run($id, parent_type: 'portfolio_avatar');
@@ -66,7 +73,7 @@ class PortfolioController extends Controller
                 }
             }
 
-            return view('site.pages.portfolio.show', compact('page', 'parents', 'seo', 'sections', 'avatar', 'images'));
+            return view('site.pages.portfolio.show', compact('page', 'parents', 'siblings', 'seo', 'sections', 'avatar', 'images'));
         } else {
             return view('site.404');
         }

@@ -20,8 +20,10 @@
                             <img src={{ $image_path }} alt="{{ $page->h1 }}" />
                         </div>
                     @endif
+
                     <div class="article__content article__content--min-height">
                         {!! $page->text !!}
+
                         @if ($galleries)
                             @foreach ($galleries as $gallery)
                                 <div class="content-gallery" data-id="{{ $gallery->id }}">
@@ -35,6 +37,7 @@
                                 </div>
                             @endforeach
                         @endif
+
                         <div class="article__append">
                             Если Вам необходима перевозка груза или разработка схемы погрузки, Вы можете обратиться в нашу
                             компанию по телефону
@@ -49,6 +52,35 @@
                             <a href="{{ route('contactForm.show') }}">форму заявки</a> на нашем сайте. Мы в кратчайшие
                             сроки ответим на все интересующие Вас вопросы.
                         </div>
+
+                        @if (!empty($children->toArray()) || !empty($siblings->toArray()))
+                            <div class="article__links article__links--mobile">
+                                @if (!empty($children->toArray()))
+                                    <div class="article__links-column">
+                                        <div class="h2">Подробнее:</div>
+                                        <ul>
+                                            @foreach ($children as $child)
+                                                <li><a
+                                                        href={{ route('pages.show', $child['url']) }}>{{ $child['name'] }}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                @if (!empty($siblings->toArray()))
+                                    <div class="article__links-column">
+                                        <div class="h2">Смотрите также:</div>
+                                        <ul>
+                                            @foreach ($siblings as $sibling)
+                                                <li><a
+                                                        href={{ route('pages.show', $sibling['url']) }}>{{ $sibling['name'] }}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                            </div>
+                        @endif
                     </div>
                 </article>
             </div>

@@ -90,6 +90,41 @@
         text-align: justify;
         border-left: 3px solid #f14214;
         padding: 10px 0 10px 20px;
+    }
 
+    .article__links {
+        display: flex;
+        flex-flow: row wrap;
+        column-gap: 50px;
+        row-gap: 30px;
+
+        &--mobile {
+            display: none;
+
+            @include bp(800px) {
+                display: flex;
+            }
+        }
+
+        @include bp(600px) {
+            display: flex;
+            flex-flow: column nowrap;
+        }
+    }
+
+    .article__links .article__links-column {
+        flex: 1;
+
+        &--mobile {
+            display: none;
+
+            @include bp(800px) {
+                display: block;
+            }
+        }
+    }
+
+    .article__links .h2 {
+        margin-bottom: 10px;
     }
 }
