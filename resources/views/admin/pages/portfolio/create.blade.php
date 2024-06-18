@@ -4,7 +4,7 @@
 
 @section('content')
     <section class="content">
-        <div class="container-fluid">
+        <div class="container">
             <x-errors />
             <x-notice />
 

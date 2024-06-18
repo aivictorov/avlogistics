@@ -4,7 +4,7 @@
 
 @section('content')
     <section class="content">
-        <div class="container-fluid">
+        <div class="container">
             <form action={{ route('admin.users.store') }} method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">

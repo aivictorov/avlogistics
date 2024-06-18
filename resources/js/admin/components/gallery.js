@@ -9,13 +9,13 @@ export function initGalleryItems() {
 }
 
 function initGalleryItem(item) {
-    // const saveButton = question.querySelector('[data-action="saveQuestion"]')
-    // saveButton.addEventListener('click', saveQuestionHandle)
+    // const saveButton = gallery.querySelector('[data-action="saveGallery"]')
+    // saveButton.addEventListener('click', saveGalleryHandle)
 
     const removeButton = item.querySelector('[data-action="removeGalleryItem"]')
-    removeButton.addEventListener('click', removeQuestionHandle)
+    removeButton.addEventListener('click', removeGalleryHandle)
 
-    function removeQuestionHandle() {
+    function removeGalleryHandle() {
         const confirmation = confirm("Удалить изображение?");
         if (!confirmation) return;
 
@@ -41,7 +41,7 @@ function initGalleryItem(item) {
         }
     }
 
-    // function saveQuestionHandle() {
+    // function saveGalleryHandle() {
     //     const confirmation = confirm("Сохранить вопрос?");
     //     if (!confirmation) return;
 
@@ -49,14 +49,14 @@ function initGalleryItem(item) {
     //     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
     //     const id = saveButton.dataset.id;
-    //     const name = question.querySelector('[data-name="name"]').value
-    //     const answer = question.querySelector('[data-name="answer"]').value
-    //     let sort = question.querySelector('[data-name="sort"]').value
+    //     const name = gallery.querySelector('[data-name="name"]').value
+    //     const answer = gallery.querySelector('[data-name="answer"]').value
+    //     let sort = gallery.querySelector('[data-name="sort"]').value
     //     const faq = saveButton.dataset.faq;
 
     //     if (!sort) {
     //         sort = 1;
-    //         question.querySelector('[data-name="sort"]').value = sort;
+    //         gallery.querySelector('[data-name="sort"]').value = sort;
     //     }
 
     //     if (name && answer && sort) {
@@ -66,7 +66,7 @@ function initGalleryItem(item) {
     //         form.append('sort', sort);
     //         form.append('faq_id', faq);
 
-    //         fetch('/admin/ajax/saveQuestion', {
+    //         fetch('/admin/ajax/saveGallery', {
     //             method: 'POST',
     //             headers: {
     //                 'X-CSRF-TOKEN': csrfToken

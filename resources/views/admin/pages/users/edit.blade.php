@@ -4,7 +4,7 @@
 
 @section('content')
     <section class="content">
-        <div class="container-fluid">
+        <div class="container">
             <form action={{ route('admin.users.update', ['id' => $user['id']]) }} method="post"
                 enctype="multipart/form-data">
                 @method('PUT')

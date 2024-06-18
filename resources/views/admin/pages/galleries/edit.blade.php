@@ -6,7 +6,7 @@
 
 @section('content')
     <section class="content">
-        <div class="container-fluid">
+        <div class="container">
             <x-errors />
             <x-notice />
 
@@ -93,9 +93,13 @@
                                                     <div class="card-body">
                                                         <div class="row">
                                                             <div class="col-md-4">
-                                                                <div
-                                                                    class="portfolio-gallery-image mr-2 mt-1 mb-1 d-block position-relative">
-                                                                    <img src="{{ Image::path($item['image'], '1_4') }}" />
+                                                                <div class="form-group">
+                                                                    <label>Изображние</label>
+                                                                    <div
+                                                                        class="portfolio-gallery-image mr-2 mt-1 mb-1 d-block position-relative">
+                                                                        <img
+                                                                            src="{{ Image::path($item['image'], '1_4') }}" />
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-8">
@@ -104,7 +108,8 @@
                                                                         for="items[{{ $item['id'] }}][text]">Текст</label>
                                                                     <x-textarea class="form-control"
                                                                         id="items[{{ $item['id'] }}][text]"
-                                                                        name="items[{{ $item['id'] }}][text]">
+                                                                        name="items[{{ $item['id'] }}][text]"
+                                                                        rows="3">
                                                                         {{ $item['text'] }}
                                                                     </x-textarea>
                                                                 </div>
@@ -135,7 +140,8 @@
                                                                         data-action="removeGalleryItem"
                                                                         data-id="{{ $item['id'] }}"
                                                                         onclick="return check()">
-                                                                        Удалить
+                                                                        {{-- Удалить --}}
+                                                                        <i class='fas fa-trash-alt' style='color:#fff'></i>
                                                                     </button>
                                                                 </div>
                                                             </div>

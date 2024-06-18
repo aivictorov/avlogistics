@@ -4,9 +4,9 @@
 
 @section('content')
     <section class="content">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-3 col-6 mb-3">
                     <div class="small-box bg-info">
                         <div class="inner">
                             <h3>{{ $pages_count }}</h3>
@@ -19,7 +19,7 @@
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-3 col-6 mb-3">
                     <div class="small-box bg-success">
                         <div class="inner">
                             <h3>{{ $portfolio_count }}</h3>
@@ -32,7 +32,7 @@
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-3 col-6 mb-3">
                     <div class="small-box bg-warning">
                         <div class="inner">
                             <h3>{{ $questions_count }}</h3>
@@ -45,7 +45,7 @@
                                 class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-3 col-6 mb-3">
                     <div class="small-box bg-danger">
                         <div class="inner">
                             <h3>{{ $users_count }}</h3>

@@ -17,33 +17,25 @@
     <link rel="stylesheet" href="/assets/adminlte/custom.css">
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition layout-top-nav">
     <div class="wrapper">
-
-        @include('admin.sections.aside')
+        @include('admin.sections.nav')
 
         <div class="content-wrapper">
             <div class="content-header">
-                <div class="container-fluid">
+                <div class="container">
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <h1 class="m-0">@yield('title')</h1>
-                        </div>
-                        <div class="col-sm-6 text-right">
-                            <span>Добрый день,</span>
-                            <a
-                                href="{{ route('admin.users.edit', ['id' => Auth::user()->id]) }}">{{ Auth::user()->name }}</a><span>!</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             @yield('content')
-
         </div>
 
         @include('admin.sections.footer')
-
     </div>
 
     <script src="/assets/jquery/jquery.min.js"></script>
@@ -59,7 +51,6 @@
             return confirm($message);
         }
     </script>
-
 </body>
 
 </html>

@@ -1,3 +1,4 @@
+import { addDestroyImageButton } from './destroyImageBtns'
 
 export function initUpdateAvatar() {
     const button = document.querySelector('[data-action="updateAvatar"]');

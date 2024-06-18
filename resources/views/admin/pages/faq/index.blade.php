@@ -1,17 +1,15 @@
 @extends('admin.layouts.main')
 
-@section('title', 'FAQ')
+@section('title', 'Вопросы и ответы')
 
 @section('content')
     <section class="content">
-        <div class="container-fluid">
+        <div class="container">
             <x-errors />
             <x-notice />
-
             <a href={{ route('admin.faq.create') }} class="btn btn-primary btn-lg mb-3">
                 Добавить страницу
             </a>
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">

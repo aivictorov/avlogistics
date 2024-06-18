@@ -1,3 +1,5 @@
+import { addDestroyImageButton } from './destroyImageBtns'
+
 export function initSortPortfolioGallery() {
     if (!document.getElementById('portfolio-gallery')) return
 
