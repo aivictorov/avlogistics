@@ -3,7 +3,8 @@ export function widgetInit() {
     const closeBtn = document.querySelector('.js-widget-close');
 
     if (widget && closeBtn) {
-        closeBtn.addEventListener('click', function () {
+        closeBtn.addEventListener('click', function (event) {
+            event.preventDefault();
             widget.remove();
         })
     };
