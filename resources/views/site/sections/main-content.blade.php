@@ -1,4 +1,4 @@
-<div class="container main-section__container--inhider js-index-content" data-opened="false">
+<div class="container main-section__container--inhider js-index-content" data-opened="true" style="display: block;">
     <div class="main-content__announce">
         ООО <strong>"Авангард Логистика"</strong> осуществляет перевозки грузов железнодорожным, автомобильным и морским
         транспортом, включая перевозки негабаритных и тяжеловесных грузов. Наша компания обладает уникальным опытом

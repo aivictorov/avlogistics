@@ -10,7 +10,7 @@ export function mainContent() {
     });
 
     function opencontent() {
-        $('.js-index-content').data('wasopened', true)
+        $('.js-index-content').data('opened', true)
             .slideDown(2000, function () {
                 $('.js-index-submap').addClass('index-submap--nobg');
                 $('.js-index-content-opener').addClass('index-submap__arrow--up');
@@ -25,6 +25,4 @@ export function mainContent() {
                 $('.js-index-submap').removeClass('index-submap--nobg');
             });
     }
-
-    setTimeout(opencontent, 1000);
 }
