@@ -26,5 +26,5 @@ export function mainContent() {
             });
     }
 
-    setTimeout(opencontent, 2000);
+    setTimeout(opencontent, 1000);
 }

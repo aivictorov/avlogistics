@@ -1,5 +1,5 @@
 export function arrowBar() {
-    if (document.querySelector('.arrow-bar__arrow')) setTimeout(arrowBarInit, 2000);
+    if (document.querySelector('.arrow-bar__arrow')) setTimeout(arrowBarInit, 1000);
 }
 
 function arrowBarInit() {
