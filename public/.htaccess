@@ -119,6 +119,9 @@ Redirect 301 /zhd-perevozki/zhd-perevozki-gruzov-na-transporterah https://zhd.su
 Redirect 301 /zhd-perevozki/zhd-perevozki-gruzov-v-krytyh-vagonah https://zhd.su/perevozki-gruzov/zhd-perevozki/zhd-perevozki-gruzov-v-krytyh-vagonah
 Redirect 301 /zhd-perevozki/zhd-perevozki-gruzov-v-poluvagonah https://zhd.su/perevozki-gruzov/zhd-perevozki/zhd-perevozki-gruzov-v-poluvagonah
 
+Redirect 301 /perevozki-gruzov/perevozki-metallokonstrukciy/perevozki-trub https://zhd.su/perevozki-gruzov/perevozki-trub
+Redirect 301 /perevozki-gruzov/perevozki-metallokonstrukciy/perevozki-rezervuarov https://zhd.su/perevozki-gruzov/perevozki-rezervuarov
+
 Redirect 301 /faq/eskizy-pogruzki https://zhd.su/shemy-pogruzki/eskizy-pogruzki
 Redirect 301 /faq/shemy-ntu https://zhd.su/shemy-pogruzki/shemy-ntu
 Redirect 301 /faq/mestnye-tehnicheskie-usloviya https://zhd.su/shemy-pogruzki/mestnye-tehnicheskie-usloviya
