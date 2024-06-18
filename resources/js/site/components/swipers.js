@@ -1,9 +1,8 @@
 function swipers() {
     const widgetSlider = new Swiper('.widget .swiper', {
         loop: true,
-        spaceBetween: 30,
         effect: "fade",
-        speed: 2500,
+        speed: 1000,
         autoplay: {
             delay: 7500,
             disableOnInteraction: false,

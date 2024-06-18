@@ -2,18 +2,18 @@
     <div class="swiper">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <a class="widget__content widget__content--slide_1" href="{{ route('portfolio.index') }}">
+                <div class="widget__content widget__content--slide_1">
                     <div class="widget__overlay"></div>
-                    <div class="widget__title">Посмотреть портфолио перевозок</div>
+                    <a class="widget__link" href="{{ route('portfolio.index') }}">Посмотреть портфолио перевозок</a>
                     <div class="widget__close js-widget-close"></div>
-                </a>
+                </div>
             </div>
             <div class="swiper-slide">
-                <a class="widget__content widget__content--slide_2" href="{{ route('contactForm.show') }}">
+                <div class="widget__content widget__content--slide_2">
                     <div class="widget__overlay"></div>
-                    <div class="widget__title">Рассчитать стоимость перевозки</div>
+                    <a class="widget__link" href="{{ route('contactForm.show') }}">Рассчитать стоимость перевозки</a>
                     <div class="widget__close js-widget-close"></div>
-                </a>
+                </div>
             </div>
         </div>
     </div>
