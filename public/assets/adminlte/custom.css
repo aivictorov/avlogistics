@@ -52,6 +52,7 @@
 }
 
 .avatar {
+    max-width: 670px;
     width: 100%;
     height: auto;
 }
