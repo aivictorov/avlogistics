@@ -8,6 +8,7 @@ import { captcha } from "./components/grecaptcha"
 import { fancybox } from "./components/fancybox"
 import { metrika } from "./components/metrika"
 import { inputFile } from "./components/inputFile"
+import { widgetInit } from "./components/widget"
 // import { upform } from "./components/upform";
 // import { modalWindows } from "./components/modals";
 
@@ -18,6 +19,7 @@ window.addEventListener('load', () => {
 	arrowBar();
 	mainContent();
 	swipers();
+	widgetInit();
 	// upform();
 	// modalWindows();
 });

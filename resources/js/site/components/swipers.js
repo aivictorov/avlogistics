@@ -1,11 +1,18 @@
-import { initial } from "lodash";
-
 function swipers() {
+    const widgetSlider = new Swiper('.widget .swiper', {
+        loop: true,
+        spaceBetween: 30,
+        effect: "fade",
+        speed: 2500,
+        autoplay: {
+            delay: 7500,
+            disableOnInteraction: false,
+        },
+    });
 
     const portfolioSectionSlider = new Swiper('.portfolio-section__slider .swiper', {
         slidesPerView: 1,
         loop: true,
-
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
@@ -17,7 +24,6 @@ function swipers() {
         slidesPerView: "auto",
         freeMode: true,
         watchSlidesProgress: true,
-
         breakpoints: {
             0: {
                 slidesPerView: 3,
@@ -52,7 +58,6 @@ function swipers() {
             prevEl: ".swiper-button-prev",
         },
     });
-
 }
 
 export { swipers };

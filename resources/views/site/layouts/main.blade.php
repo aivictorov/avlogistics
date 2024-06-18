@@ -11,7 +11,6 @@
         <title>@yield('specific_title')</title>
     @else
         <title>@yield('title')</title>
-        {{-- <title>@yield('title') | Авангард Логистика</title> --}}
     @endif
     <meta name="Description" content="@yield('description')" />
     <meta name="Keywords" content="@yield('keywords')" />

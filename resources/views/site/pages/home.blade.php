@@ -15,4 +15,7 @@
 
         @include('site.sections.main-portfolio')
     </main>
+
+    @include('site.blocks.widget')
+
 @endsection
