@@ -14,7 +14,6 @@
                 enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
-
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-primary card-outline">
@@ -53,7 +52,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-primary card-outline">
@@ -61,9 +59,7 @@
                                 <h3 class="card-title">Изображения</h3>
                                 <x-ajaxBadge />
                             </div>
-
                             <div class="card-body">
-
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -76,7 +72,9 @@
                                                         data-browse="Выберите файлы">Файлы не выбраны</label>
                                                 </div>
                                                 <div class="input-group-append">
-                                                    <button type="button" class="btn btn-primary" {{-- data-action="addImagesToPortfolio" data-id="{{ $portfolio['id'] }}" data-type="portfolio" --}}>
+                                                    <button type="button" class="btn btn-primary"
+                                                        data-action="addImagesToGallery" data-id="{{ $gallery['id'] }}"
+                                                        data-type="gallery_item">
                                                         Загрузить
                                                     </button>
                                                 </div>
@@ -84,7 +82,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="gallery-items row">
                                     @if (isset($items) && count($items) > 0)
                                         @foreach ($items as $item)
@@ -109,9 +106,31 @@
                                                                     <x-textarea class="form-control"
                                                                         id="items[{{ $item['id'] }}][text]"
                                                                         name="items[{{ $item['id'] }}][text]"
-                                                                        rows="3">
+                                                                        rows="3" data-name="text">
                                                                         {{ $item['text'] }}
                                                                     </x-textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label
+                                                                        for="items[{{ $item['id'] }}][portfolio_id]">Ссылка
+                                                                        на портфолио</label>
+                                                                    <select class="form-control"
+                                                                        id="items[{{ $item['id'] }}][portfolio_id]"
+                                                                        name="items[{{ $item['id'] }}][portfolio_id]"
+                                                                        value="{{ $item['portfolio_id'] }}"
+                                                                        data-name="portfolio_id">
+                                                                        <option value="0">Не выбрано</option>
+                                                                        @foreach ($portfolioGalleries as $portfolioGallerу)
+                                                                            <option value="{{ $portfolioGallerу['id'] }}"
+                                                                                {{ $portfolioGallerу['id'] == $item['portfolio_id'] ? 'selected' : '' }}>
+                                                                                {{ $portfolioGallerу['name'] }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -129,19 +148,23 @@
                                                             <div class="col-md-5 d-flex align-items-end">
                                                                 <div class="form-group w-100">
                                                                     <button type="button"
-                                                                        class="btn btn-block btn-primary">
+                                                                        class="btn btn-block btn-primary"
+                                                                        data-action="saveGalleryItem"
+                                                                        data-id="{{ $item['id'] }}"
+                                                                        onclick="return check()">
                                                                         Сохранить
                                                                     </button>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-2 d-flex align-items-end">
                                                                 <div class="form-group w-100">
-                                                                    <button type="button" class="btn btn-block btn-danger"
+                                                                    <button type="button"
+                                                                        class="btn btn-block btn-danger"
                                                                         data-action="removeGalleryItem"
                                                                         data-id="{{ $item['id'] }}"
                                                                         onclick="return check()">
-                                                                        {{-- Удалить --}}
-                                                                        <i class='fas fa-trash-alt' style='color:#fff'></i>
+                                                                        <i class='fas fa-trash-alt'
+                                                                            style='color:#fff'></i>
                                                                     </button>
                                                                 </div>
                                                             </div>

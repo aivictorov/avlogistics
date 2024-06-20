@@ -7,6 +7,7 @@ class UpdateGalleryItemData
     public function __construct(
         public $text,
         public $sort,
+        public $portfolio_id,
     ) {
         //
     }

@@ -72,6 +72,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::post('/saveQuestion', [App\Http\Controllers\Admin\AjaxController::class, 'saveQuestion'])->name('ajax.saveQuestion');
         Route::post('/removeQuestion', [App\Http\Controllers\Admin\AjaxController::class, 'removeQuestion'])->name('ajax.removeQuestion');
         Route::post('/removeGalleryItem', [App\Http\Controllers\Admin\AjaxController::class, 'removeGalleryItem'])->name('ajax.removeGalleryItem');
+        Route::post('/updateGalleryItem', [App\Http\Controllers\Admin\AjaxController::class, 'updateGalleryItem'])->name('ajax.updateGalleryItem');
+        Route::post('/addImagesToGallery', [App\Http\Controllers\Admin\AjaxController::class, 'addImagesToGallery'])->name('ajax.addImagesToGallery');
     });
 
     Route::get('/linkStorage', function () {

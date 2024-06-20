@@ -4,6 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Actions\Faq\SaveQuestionAction;
 use App\Actions\Faq\SaveQuestionData;
+use App\Actions\Gallery\CreateGalleryItemAction;
+use App\Actions\Gallery\CreateGalleryItemData;
+use App\Actions\Gallery\UpdateGalleryAction;
+use App\Actions\Gallery\UpdateGalleryData;
+use App\Actions\Gallery\UpdateGalleryItemAction;
+use App\Actions\Gallery\UpdateGalleryItemData;
 use App\Actions\Image\CreateImageAction;
 use App\Actions\Image\CreateImageData;
 use App\Actions\Image\DestroyImageAction;
@@ -13,15 +19,18 @@ use App\Actions\Image\ReplaceImageData;
 use App\Actions\Image\UpdateImageAction;
 use App\Actions\Image\UpdateImageData;
 use App\Http\Controllers\Controller;
-use App\Models\FaqQuestions;
-use App\Models\GalleryItems;
-use App\Models\Image;
-use App\Models\Page;
+use App\Http\Requests\GalleryItemRequest;
+use App\Http\Requests\GalleryRequest;
 use App\Http\Requests\ImageRequest;
 use App\Http\Requests\ImagesRequest;
 use App\Http\Requests\QuestionRequest;
 use App\Http\Requests\UpdateAvatarRequest;
+use App\Models\FaqQuestions;
+use App\Models\GalleryItems;
+use App\Models\Image;
+use App\Models\Page;
 use Carbon\Carbon;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -150,7 +159,6 @@ class AjaxController extends Controller
         return 'question ' . $id . ' removed';
     }
 
-
     public function removeGalleryItem()
     {
         $id = file_get_contents('php://input');
@@ -169,5 +177,56 @@ class AjaxController extends Controller
         }, 3);
 
         return 'gallery item ' . $res . ' removed';
+    }
+
+    public function updateGalleryItem(GalleryItemRequest $request)
+    {
+        $validated = $request->validated();
+        $galleryItem = GalleryItems::find($validated['id']);
+
+        $galleryItem->update([
+            'text' => $validated['text'],
+            'sort' => $validated['sort'],
+            'portfolio_id' => $validated['portfolio_id'],
+            'update_date' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        return 'updated';
+    }
+
+    public function addImagesToGallery(ImagesRequest $request)
+    {
+        $validated = $request->validated();
+
+        $gallery_id = $validated['page_id'];
+        // $parent_type = $validated['page_type'];
+
+        $image_files = $validated['images'];
+
+        $result = [];
+
+        foreach ($image_files as $image_file) {
+            $galleryItem = (new CreateGalleryItemAction)->run(
+                new CreateGalleryItemData(
+                    gallery_id: $gallery_id,
+                    text: "",
+                    sort: 0,
+                    portfolio_id: null,
+                )
+            );
+
+            $image = (new CreateImageAction)->run(
+                $image_file,
+                new CreateImageData(
+                    image: $image_file->getClientOriginalName(),
+                    parent_type: 'gallery_item',
+                    parent_id: $galleryItem->id,
+                )
+            );
+
+            array_push($result, Image::path($image, "1_4"));
+        }
+
+        return $result;
     }
 }

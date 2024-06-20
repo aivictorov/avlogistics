@@ -13,6 +13,7 @@ class UpdateGalleryItemAction
         return $item->update([
             'text' => $data->text,
             'sort' => $data->sort,
+            'portfolio_id' => $data->portfolio_id,
 
             'update_date' => Carbon::now()->toDateTimeString(),
             'user_id' => Auth::user()->id,

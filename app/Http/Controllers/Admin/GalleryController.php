@@ -15,11 +15,12 @@ use App\Actions\Image\CreateImageData;
 use App\Actions\Image\DestroyImageAction;
 use App\Actions\Page\GetPagesAction;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GalleryRequest;
+use App\Http\Requests\SearchRequest;
 use App\Models\Galleries;
 use App\Models\GalleryItems;
 use App\Models\Image;
-use App\Http\Requests\GalleryRequest;
-use App\Http\Requests\SearchRequest;
+use App\Models\Portfolio;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -65,8 +66,8 @@ class GalleryController extends Controller
                     $galleryItem = (new CreateGalleryItemAction)->run(
                         new CreateGalleryItemData(
                             gallery_id: $gallery->id,
-                            text: "...",
-                            sort: 1,
+                            text: "",
+                            sort: 0,
                             portfolio_id: null,
                         )
                     );
@@ -90,7 +91,7 @@ class GalleryController extends Controller
     {
         $gallery = Galleries::find($id);
 
-        $items = GalleryItems::where('gallery_id', $id)->get()->sortBy('id');
+        $items = GalleryItems::where('gallery_id', $id)->orderBy('sort')->get();
 
         foreach ($items as $key => $item) {
             $image = Image::where([
@@ -103,7 +104,11 @@ class GalleryController extends Controller
 
         $pages = (new GetPagesAction)->run();
 
-        return view('admin.pages.galleries.edit', compact('pages', 'gallery', 'items'));
+        $portfolioGalleries = Portfolio::where([
+            ["status", 1],
+        ])->get()->sortBy('id');
+
+        return view('admin.pages.galleries.edit', compact('gallery', 'items', 'pages', 'portfolioGalleries'));
     }
 
     public function update(GalleryRequest $request, $id)
@@ -129,6 +134,7 @@ class GalleryController extends Controller
                         new UpdateGalleryItemData(
                             text: $validated['items'][$item->id]['text'],
                             sort: $validated['items'][$item->id]['sort'],
+                            portfolio_id: $validated['items'][$item->id]['portfolio_id'],
                         )
                     );
                 }
@@ -139,8 +145,8 @@ class GalleryController extends Controller
                     $galleryItem = (new CreateGalleryItemAction)->run(
                         new CreateGalleryItemData(
                             gallery_id: $gallery->id,
-                            text: "...",
-                            sort: 1,
+                            text: "",
+                            sort: 0,
                             portfolio_id: null,
                         )
                     );
@@ -161,7 +167,6 @@ class GalleryController extends Controller
 
         return redirect(route('admin.galleries.index'));
     }
-
     public function destroy($id)
     {
         $gallery = Galleries::find($id);

@@ -8,17 +8,14 @@ export function initGalleryItems() {
     }
 }
 
-function initGalleryItem(item) {
-    // const saveButton = gallery.querySelector('[data-action="saveGallery"]')
-    // saveButton.addEventListener('click', saveGalleryHandle)
+function initGalleryItem(galleryItem) {
+    const saveButton = galleryItem.querySelector('[data-action="saveGalleryItem"]')
+    saveButton.addEventListener('click', saveHandle)
 
-    const removeButton = item.querySelector('[data-action="removeGalleryItem"]')
-    removeButton.addEventListener('click', removeGalleryHandle)
+    const removeButton = galleryItem.querySelector('[data-action="removeGalleryItem"]')
+    removeButton.addEventListener('click', removeHandle)
 
-    function removeGalleryHandle() {
-        const confirmation = confirm("Удалить изображение?");
-        if (!confirmation) return;
-
+    function removeHandle() {
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
         const id = removeButton.dataset.id;
@@ -41,43 +38,31 @@ function initGalleryItem(item) {
         }
     }
 
-    // function saveGalleryHandle() {
-    //     const confirmation = confirm("Сохранить вопрос?");
-    //     if (!confirmation) return;
+    function saveHandle() {
+        const form = new FormData();
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-    //     const form = new FormData();
-    //     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        const id = saveButton.dataset.id;
+        const text = galleryItem.querySelector('[data-name="text"]').value
+        const sort = galleryItem.querySelector('[data-name="sort"]').value
+        const portfolio_id = galleryItem.querySelector('[data-name="portfolio_id"]').value
 
-    //     const id = saveButton.dataset.id;
-    //     const name = gallery.querySelector('[data-name="name"]').value
-    //     const answer = gallery.querySelector('[data-name="answer"]').value
-    //     let sort = gallery.querySelector('[data-name="sort"]').value
-    //     const faq = saveButton.dataset.faq;
+        form.append('id', id);
+        form.append('text', text);
+        form.append('sort', sort);
+        form.append('portfolio_id', portfolio_id);
 
-    //     if (!sort) {
-    //         sort = 1;
-    //         gallery.querySelector('[data-name="sort"]').value = sort;
-    //     }
-
-    //     if (name && answer && sort) {
-    //         form.append('id', id);
-    //         form.append('name', name);
-    //         form.append('answer', answer);
-    //         form.append('sort', sort);
-    //         form.append('faq_id', faq);
-
-    //         fetch('/admin/ajax/saveGallery', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'X-CSRF-TOKEN': csrfToken
-    //             },
-    //             body: form,
-    //         }).then(response => {
-    //             response.text().then(responseText => {
-    //                 console.log('result:', JSON.parse(responseText));
-    //                 removeButton.dataset.id = JSON.parse(responseText).id;
-    //             })
-    //         });
-    //     }
-    // }
+        fetch('/admin/ajax/updateGalleryItem', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            },
+            body: form,
+        }).then(response => {
+            response.text().then(responseText => {
+                console.log('result:', responseText);
+                // console.log('result:', JSON.parse(responseText));
+            })
+        });
+    }
 }
