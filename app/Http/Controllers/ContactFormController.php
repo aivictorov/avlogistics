@@ -27,6 +27,8 @@ class ContactFormController extends Controller
     {
         $validated = $request->validated();
 
+        dd($validated);
+
         $title = 'Запрос стоимости перевозки';
 
         $data = [];

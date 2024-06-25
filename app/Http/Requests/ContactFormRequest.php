@@ -24,6 +24,7 @@ class ContactFormRequest extends FormRequest
                 'max:5120'
             ],
             'g-recaptcha-response' => ['required', 'string'],
+            'agreement' => ['required'],
         ];
     }
 
