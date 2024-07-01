@@ -27,8 +27,6 @@ class ContactFormController extends Controller
     {
         $validated = $request->validated();
 
-        dd($validated);
-
         $title = 'Запрос стоимости перевозки';
 
         $data = [];
@@ -72,7 +70,6 @@ class ContactFormController extends Controller
                 return redirect()->back()->withErrors([
                     'form' => 'Ошибка отправки запроса. Попробуйте еще раз.'
                 ]);
-                ;
             }
         }
     }

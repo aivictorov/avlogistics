@@ -20,13 +20,13 @@ window.addEventListener('load', () => {
 	mainContent();
 	swipers();
 	widgetInit();
+	captcha();
 	// upform();
 	// modalWindows();
 });
 
 document.addEventListener('click', function () {
 	inputFile();
-	captcha();
 }, { once: true });
 
 document.addEventListener('scroll', function () {
