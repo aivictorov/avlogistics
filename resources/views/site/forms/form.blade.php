@@ -72,8 +72,10 @@
     <div class="form-row">
         <label class="form-control form-label">
             @section('text')
-                Даю согласие на обработку персональных данных.
-                {{-- Ознакомиться с <a href="#!" target="_blank" rel="noopener noreferrer nofollow">Политикой обработки персональных данных</a>. --}}
+                Подтверждаю свое
+                <a href="/personal_data.pdf" class="link" target="_blank" rel="nofollow">
+                    согласие на обработку персональных данных
+                </a>
             @endsection
             <x-checkbox type="checkbox" name="agreement" />
         </label>
